@@ -174,6 +174,7 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with Availability score at each position
+#' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
 #'
 #' @examples
@@ -315,7 +316,7 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with Reliability score for each position
-#' @import ggplot2 tidyverse doSNOW foreach
+#' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
 #'
 #' @examples
@@ -463,6 +464,7 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with Maintainability score at each position
+#' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
 #'
 #' @examples
@@ -614,6 +616,7 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with error rate score at each position
+#' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
 #'
 #' @examples
