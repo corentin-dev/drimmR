@@ -1,0 +1,33 @@
+Package: drimmR
+Type: Package
+Title: Drifting Markov Model
+Version: 0.2.0
+Author: Nicolas VERGNE [aut,cre]
+Maintainer: Nicolas Vergne <Nicolas.Vergne@univ-rouen.fr>
+Description: This package introduce the drifting Markov models (DMMs) which are 
+	inhomogeneous Markov models designed for modeling the heterogeneities of
+	sequences in a more <U+FB02>exible way than homogeneous Markov chains or even 
+	hidden Markov. In this context, we developed a R package dedicated to 
+	the estimation of drifting Markov models.
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat,
+    knitr,
+    rmarkdown
+Imports: seqinr,
+    Biostrings,
+    testthat,
+    stats,
+    ggplot2,
+    utils,
+	parallel,
+	foreach,
+	future,
+	doParallel,
+	doSNOW,
+    tidyverse 
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
