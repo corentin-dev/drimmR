@@ -14,15 +14,22 @@ length_probas(n, sequence, pos, x, output_file = NULL, plot = FALSE)
 \item{pos}{A vector of positions}
 
 \item{x}{An object of class "dmm"}
+
+\item{output_file}{A file containing the vector of probabilities}
+
+\item{plot}{FALSE (no figure plot of words probabilities); TRUE (figure plot)}
 }
 \value{
-a dataframe
+a dataframe of probability by position (and probability plots)
 }
 \description{
 Probability of appearance of the Observed word of size n in a sequence at several positions
 }
 \examples{
-length_probas(2, sequence, c(100,200), x)
+#' data(lambda, package = "drimmR")
+mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+PROB.out <- "C:\\\\...\\\\file.txt"
+length_probas(2, lambda, c(100,200), x, output_file=PROB.out)
 }
 \author{
 Victor Mataigne, Alexandre Seiller

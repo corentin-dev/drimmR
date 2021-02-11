@@ -307,7 +307,7 @@ getTransitionMatrix.dmmsum <- function(x, pos) {
 #' @param x An object of class "dmm"
 #' @param pos An integer for position
 #' @param all.pos FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)
-#' @param internal FALSE (default) ; TRUE (for internal use of dmmsum initial law)
+#' @param internal FALSE (default) ; TRUE (for internal use of dmmsum initial law and word applications)
 #' @author Alexandre Seiller
 #'
 #' @return A vector or matrix of stationary laws

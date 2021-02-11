@@ -315,7 +315,7 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @param output_file A file containing matrix of reliability probabilities
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with Reliability score for each position
+#' @return A matrix with Reliability score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
 #'

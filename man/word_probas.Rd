@@ -4,7 +4,7 @@
 \alias{word_probas}
 \title{Probabilities of a word at several positions of a DMM}
 \usage{
-word_probas(word, t, x, output_file = NULL)
+word_probas(word, t, x, output_file = NULL, plot = FALSE)
 }
 \arguments{
 \item{word}{A subsequence}
@@ -12,6 +12,10 @@ word_probas(word, t, x, output_file = NULL)
 \item{t}{A vector of positions}
 
 \item{x}{An object of class "dmm"}
+
+\item{output_file}{A file containing the vector of probabilities}
+
+\item{plot}{FALSE (no figure plot of word probabilities); TRUE (figure plot)}
 }
 \value{
 A numeric vector, probabilities of \code{word}
@@ -20,8 +24,11 @@ A numeric vector, probabilities of \code{word}
 Probabilities of a word at several positions of a DMM
 }
 \examples{
-word_probas("aggctga",c(100,300),x)
+#' data(lambda, package = "drimmR")
+mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+PROB.out <- "C:\\\\...\\\\file.txt"
+word_probas("aggctga",c(100,300),x, output_file=PROB.out, plot=FALSE)
 }
 \author{
-Victor Mataigne
+Victor Mataigne, Alexandre Seiller
 }

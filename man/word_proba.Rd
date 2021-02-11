@@ -4,14 +4,18 @@
 \alias{word_proba}
 \title{Probability of a word at a position t of a DMM}
 \usage{
-word_proba(word, t, x, output_file = NULL)
+word_proba(word, t, x, output_file = NULL, internal = FALSE)
 }
 \arguments{
-\item{word}{A subsequence}
+\item{word}{A subsequence (vector)}
 
-\item{t}{A position}
+\item{t}{A position (numeric)}
 
 \item{x}{An object of class "dmm"}
+
+\item{output_file}{A file containing the probability}
+
+\item{internal}{FALSE (default) ; TRUE (for internal use of word applications)}
 }
 \value{
 A numeric, probability of \code{word}
@@ -20,8 +24,11 @@ A numeric, probability of \code{word}
 Probability of a word at a position t of a DMM
 }
 \examples{
-word_proba("aggctga",4,x)
+#' data(lambda, package = "drimmR")
+mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+PROB.out <- "C:\\\\...\\\\file.txt"
+word_proba("aggctga",4,x, output_file=PROB.out)
 }
 \author{
-Victor Mataigne
+Victor Mataigne, Alexandre Seiller
 }

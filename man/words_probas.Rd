@@ -12,6 +12,8 @@ words_probas(words, pos, x, output_file = NULL)
 \item{pos}{A vector of positions}
 
 \item{x}{An object of class "dmm"}
+
+\item{plot}{FALSE (no figure plot of words probabilities); TRUE (figure plot)}
 }
 \value{
 a dataframe
@@ -23,5 +25,5 @@ Probability of several words at several positions of a DMM
 words_probas(c("atcgattc", "taggct", "ggatcgg"), c(100,200), x)
 }
 \author{
-Victor Mataigne
+Victor Mataigne, Alexandre Seiller
 }

@@ -13,7 +13,7 @@
 
 \item{all.pos}{FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)}
 
-\item{internal}{FALSE (default) ; TRUE (for internal use of dmmsum initial law)}
+\item{internal}{FALSE (default) ; TRUE (for internal use of dmmsum initial law and word applications)}
 }
 \value{
 A vector or matrix of stationary laws

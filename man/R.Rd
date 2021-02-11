@@ -18,7 +18,7 @@ R(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 \item{output_file}{A file containing matrix of reliability probabilities}
 }
 \value{
-A matrix with Reliability score for each position
+A matrix with Reliability score at each position
 }
 \description{
 Compute Reliability
