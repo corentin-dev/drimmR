@@ -1,7 +1,7 @@
 #' Probability of a word at a position t of a DMM
 #'
 #' @param word A subsequence (vector)
-#' @param t A position (numeric)
+#' @param pos A position (numeric)
 #' @param x An object of class "dmm"
 #' @param output_file A file containing the probability
 #' @param internal FALSE (default) ; TRUE (for internal use of word applications)
@@ -15,7 +15,7 @@
 #' mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
 #' word_proba("aggctga",4,x, output_file=PROB.out)
-word_proba <-function(word, t, x, output_file=NULL, internal=FALSE){
+word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
   word_c <- unlist(strsplit(word, split=""))
   word_length <- length(word_c)
   order <- x$order
@@ -25,7 +25,7 @@ word_proba <-function(word, t, x, output_file=NULL, internal=FALSE){
   }
 
   # ex : word = "aatcgt"
-  res <- getStationaryLaw(x, t, all.pos=FALSE, internal=TRUE)
+  res <- getStationaryLaw(x, pos, all.pos=FALSE, internal=TRUE)
 
   p <- 0.0
 
@@ -35,11 +35,11 @@ word_proba <-function(word, t, x, output_file=NULL, internal=FALSE){
     p <- res[which(mers==paste(unlist(strsplit(word_c, split=""))[1:order], collapse=''))]
     # Rest of the word (if any): "tcgt"
     if (word_length > order) {
-      t <- t+order;
+      pos <- pos+order;
       for (j in (order+1):word_length) {
-        p <- p * getTransitionMatrix(x, t)[which(mers==paste(unlist(strsplit(word_c, split=""))[(j-order):(j-1)], collapse='')),
+        p <- p * getTransitionMatrix(x, pos)[which(mers==paste(unlist(strsplit(word_c, split=""))[(j-order):(j-1)], collapse='')),
                                            which(x$states==word_c[j])]
-        t <- t+1;
+        pos <- pos+1;
       }
     }
   } else { # if word_length < order
@@ -58,7 +58,7 @@ word_proba <-function(word, t, x, output_file=NULL, internal=FALSE){
   if(isFALSE(internal)){names(word_proba) <- word}
 
   if (!is.null(output_file))
-    write.table(data.frame(word_proba), file=output_file, sep=",", col.names= paste0(word, " position = ", t))
+    write.table(data.frame(word_proba), file=output_file, sep=",", col.names= paste0(word, " position = ", pos))
 
 
   return(word_proba)
@@ -67,7 +67,7 @@ word_proba <-function(word, t, x, output_file=NULL, internal=FALSE){
 #' Probabilities of a word at several positions of a DMM
 #'
 #' @param word A subsequence
-#' @param t A vector of positions
+#' @param pos A vector of positions
 #' @param x An object of class "dmm"
 #' @param output_file A file containing the vector of probabilities
 #' @param plot FALSE (no figure plot of word probabilities); TRUE (figure plot)
@@ -83,28 +83,28 @@ word_proba <-function(word, t, x, output_file=NULL, internal=FALSE){
 #' PROB.out <- "C:\\...\\file.txt"
 #' word_probas("aggctga",c(100,300),x, output_file=PROB.out, plot=FALSE)
 
-word_probas <-function(word, t, x,  output_file=NULL, plot=FALSE){
+word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
   proba <- c()
 
-  if (missing(t)) {
+  if (missing(pos)) {
     stop("Error : positions not specified.")
   }
 
-  if (t[1] > t[2]) {
+  if (pos[1] > pos[2]) {
     stop("Wrong arguments : start > end")
   }
 
-  for (i in t[1]:t[2]){
+  for (i in pos[1]:pos[2]){
     proba <- c(proba, word_proba(word, i, x, internal=TRUE))
   }
-  word_probas <- proba
-  word_probas <- data.frame(cbind(c(t[1]:t[2]),word_probas))
+
+  word_probas <- data.frame(cbind(c(pos[1]:pos[2]),proba))
   colnames(word_probas) <- c("position","probability")
 
   if (!is.null(output_file))
     write.table(word_probas, file=output_file, sep=",",col.names= colnames(word_probas))
 
-  # probability plots
+  # probability plot
 
   if(isTRUE(plot)){
     frame <- word_probas
@@ -122,19 +122,25 @@ word_probas <-function(word, t, x,  output_file=NULL, plot=FALSE){
 
 #' Probability of several words at several positions of a DMM
 #'
-#' @param words A vector, containing words
+#' @param words A vector of character containing words
 #' @param pos A vector of positions
 #' @param x An object of class "dmm"
+#' @param output_file A file containing the matrix of probabilities
+
 #' @param plot FALSE (no figure plot of words probabilities); TRUE (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return a dataframe
+#' @import ggplot2 tidyverse reshape2
 #' @export
 #'
 #' @examples
-#' words_probas(c("atcgattc", "taggct", "ggatcgg"), c(100,200), x)
+#' #' data(lambda, package = "drimmR")
+#' mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' PROB.out <- "C:\\...\\file.txt"
+#' words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),x, output_file=PROB.out, plot=FALSE)
 
-words_probas <- function(words, pos, x, output_file=NULL) {
+words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 
   if (missing(pos)) {
     stop("Error : positions not specified.")
@@ -154,60 +160,32 @@ words_probas <- function(words, pos, x, output_file=NULL) {
     }
     row <- row + 1
   }
-  colnames(probas) <- c("position", words)
+  words_probas <- data.frame(probas)
+  colnames(words_probas) <- c("position",paste0("probability word '",words[c(1:length(words))]," '") )
+
 
   if (!is.null(output_file))
-    write.table(probas, file=output_file, sep=",", col.names=colnames(probas))
+    write.table(words_probas, file=output_file, sep=",", col.names=colnames(words_probas))
 
+  # probability plot
+  if(isTRUE(plot)){
+    colnames(probas) <- c("position",words[1:length(words)])
+    frame <- data.frame(reshape2::melt(probas[,-1]))
+    colnames(frame) <-c("position","word","probability")
+    fig1 <- list()
+    for (o in c(1:length(words))){
 
-  return(as.data.frame(probas))
-}
-
-
-#' Probability of words of a given size at several positions of a DMM
-#'
-#' @param n An integer, the length word
-#' @param pos A vector of positions
-#' @param x An object of class "dmm"
-#' @author Victor Mataigne
-#'
-#' @return a dataframe
-#' @export
-#'
-#' @examples
-#' words_of_size_n_probas(2, c(100,200), DMM)
-words_of_size_n_probas <- function(n, pos, x, output_file=NULL) {
-  t <- x$length - n
-  probas <- data.frame()
-
-  if (missing(pos)) {
-    stop("Error : positions not specified.")
-  }
-
-  if (pos[1] >= pos[2]) {
-    stop("Wrong arguments : start >= end")
-  }
-
-  # if start and end are settled
-  words <- .get_mers(n, x$states)
-  probas <- matrix(0, nrow=length(pos[1]:pos[2]), ncol=length(words)+1)
-
-  row <- 1
-  for (i in pos[1]:pos[2]) {
-    probas[row,1] <- i
-    for (j in 2:ncol(probas)) {
-      probas[row, j] <- word_proba(words[j-1], i, x)
+     fig1[[o]] <- frame %>% filter(word==words[o]) %>%  ggplot2::ggplot(aes(x=position, y=probability)) +
+       ggplot2::geom_line() + geom_point() +
+       ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", words[o],"' at each position of the frame")) +
+       ggplot2::theme_bw()
     }
-    row <- row + 1
   }
 
-  colnames(probas) <- c("position", words) # renames columns with corresponding positions
-
-  if (!is.null(output_file))
-    write.table(probas, file=output_file, sep=",", col.names=colnames(probas))
-
-  return(as.data.frame(probas)) # lines : positions, columns : words
+  return(list(words_probas,if(isTRUE(plot)){fig1}))
 }
+
+
 
 #' Probability of appearance of the Observed word of size n in a sequence at several positions
 #'
@@ -276,7 +254,7 @@ length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
     for (o in c(1:length(x$states))){
 
       fig2[[o]] <- frame %>% filter(last==x$states[o]) %>%  ggplot(aes(x=position, y=as.numeric(probability), group=word,colour=word)) +
-        geom_line() + theme_bw() + theme(panel.spacing.y=unit(1,"cm")) +
+        geom_line() + geom_point() + theme_bw() + theme(panel.spacing.y=unit(1,"cm")) +
         guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
         theme(axis.title.x = element_text(size=10, face="bold"), legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
         facet_wrap(.~word, scales = "free_y") + labs(x = "Position", y = "Probability",title=paste0("Words ending with '",mod$states[o],"'"), fill="Package :") +

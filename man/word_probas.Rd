@@ -4,12 +4,12 @@
 \alias{word_probas}
 \title{Probabilities of a word at several positions of a DMM}
 \usage{
-word_probas(word, t, x, output_file = NULL, plot = FALSE)
+word_probas(word, pos, x, output_file = NULL, plot = FALSE)
 }
 \arguments{
 \item{word}{A subsequence}
 
-\item{t}{A vector of positions}
+\item{pos}{A vector of positions}
 
 \item{x}{An object of class "dmm"}
 

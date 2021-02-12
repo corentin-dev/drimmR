@@ -4,12 +4,12 @@
 \alias{word_proba}
 \title{Probability of a word at a position t of a DMM}
 \usage{
-word_proba(word, t, x, output_file = NULL, internal = FALSE)
+word_proba(word, pos, x, output_file = NULL, internal = FALSE)
 }
 \arguments{
 \item{word}{A subsequence (vector)}
 
-\item{t}{A position (numeric)}
+\item{pos}{A position (numeric)}
 
 \item{x}{An object of class "dmm"}
 

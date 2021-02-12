@@ -4,14 +4,16 @@
 \alias{words_probas}
 \title{Probability of several words at several positions of a DMM}
 \usage{
-words_probas(words, pos, x, output_file = NULL)
+words_probas(words, pos, x, output_file = NULL, plot = FALSE)
 }
 \arguments{
-\item{words}{A vector, containing words}
+\item{words}{A vector of character containing words}
 
 \item{pos}{A vector of positions}
 
 \item{x}{An object of class "dmm"}
+
+\item{output_file}{A file containing the matrix of probabilities}
 
 \item{plot}{FALSE (no figure plot of words probabilities); TRUE (figure plot)}
 }
@@ -22,7 +24,10 @@ a dataframe
 Probability of several words at several positions of a DMM
 }
 \examples{
-words_probas(c("atcgattc", "taggct", "ggatcgg"), c(100,200), x)
+#' data(lambda, package = "drimmR")
+mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+PROB.out <- "C:\\\\...\\\\file.txt"
+words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),x, output_file=PROB.out, plot=FALSE)
 }
 \author{
 Victor Mataigne, Alexandre Seiller
