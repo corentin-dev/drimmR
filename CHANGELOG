@@ -1,5 +1,6 @@
 commits 15/02/2021 :
-correction of word applications and failure rates (object "mod" inside code instead of "x")
+correction of word applications and failure rates (toy object "mod" inside code instead of "x")
+word_expect application still in progress : do not use
 
 
 commits 12/02/2021 :
