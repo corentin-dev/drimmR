@@ -1,4 +1,6 @@
 commits 15/02/2021 :
+add help details for dmmsum
+correction of custom initial law conditions for customisable vector of initial law (init.estim=vector of length nb.state^order)
 correction of word applications and failure rates (toy object "mod" inside code instead of "x")
 word_expect application still in progress : do not use yet
 add of allgenerics.R file gathering all S3 generic functions. Deletion of former S3 generic function files (ex: simulate.R)
