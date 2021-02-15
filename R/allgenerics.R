@@ -123,11 +123,10 @@ getTransitionMatrix <- function(x, pos) {
 #' @export
 #'
 #' @examples
-#' data("sequence_example")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), 3000000)
+#' data(lambda, package = "drimmR")
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' t <- 10
-#' get_transition_matrix(dmm,t)
-
+#' getStationaryLaw(dmm,pos=t)
 
 getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
   UseMethod("getStationaryLaw", x)

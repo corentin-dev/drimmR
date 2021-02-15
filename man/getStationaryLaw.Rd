@@ -22,10 +22,10 @@ Stationary law at position x or at every positions
 Get stationary law at a given position or at every positions
 }
 \examples{
-data("sequence_example")
-dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), 3000000)
+data(lambda, package = "drimmR")
+dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 t <- 10
-get_transition_matrix(dmm,t)
+getStationaryLaw(dmm,pos=t)
 }
 \author{
 Alexandre Seiller
