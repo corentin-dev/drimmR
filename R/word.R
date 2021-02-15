@@ -283,7 +283,8 @@ length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
 #' PROB.out <- "C:\\...\\file.txt"
 #' word_expect("atcggatc", dmm, output_file=PROB.out)
 word_expect <- function(word, x,output_file) {
-  Nexp <- 0
+ # Nexp <- 0
+  Nexp <- list()
   n <- x$length
   l <- length(word)
 
@@ -291,9 +292,14 @@ word_expect <- function(word, x,output_file) {
  # doSNOW::registerDoSNOW(cl)
 
  # output <- foreach(i=c(1:n-l+1),.packages = c("doSNOW"), .combine = "c") %dopar% {
-  for ( i in 1:c(n-l+1)) {
-    Nexp <- Nexp + word_proba(word, i, x, internal=TRUE)
-  }
+ #  for ( i in 1:c(n-l+1)) {
+ #    Nexp <- Nexp + word_proba(word, i, x, internal=TRUE)
+ # }
+
+
+    for ( i in 1:c(n-l+1)) {
+      Nexp[[i]] <- word_proba(word, i, x, internal=TRUE)
+   }
 
   if (!is.null(output_file))
     write.table(Nexp, file=output_file, sep=",", col.names= paste0("Expectation of word '",word,"'"))

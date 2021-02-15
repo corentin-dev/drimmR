@@ -18,8 +18,9 @@ Simulate a sequence with the Drifting Markov Model
 }
 \examples{
 data(lambda, package = "drimmR")
+SIM.out <- "C:\\\\...\\\\file.txt"
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-simulate(dmm,"simulated_data.out",20000)
+simulate(dmm,SIM.out,20000)
 
 }
 \author{

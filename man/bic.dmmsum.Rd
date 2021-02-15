@@ -2,7 +2,7 @@
 % Please edit documentation in R/dmmsum.R
 \name{bic.dmmsum}
 \alias{bic.dmmsum}
-\title{Get BIC}
+\title{Compute BIC}
 \usage{
 \method{bic}{dmmsum}(x, sequences)
 }
@@ -15,7 +15,7 @@
 A numeric, BIC
 }
 \description{
-Get BIC
+Compute BIC
 }
 \examples{
 data(lambda, package = "drimmR")
@@ -24,5 +24,5 @@ Dmm<-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 bic(Dmm,sequence)
 }
 \author{
-Alexandre Seiller
+Victor Mataigne, Alexandre Seiller
 }

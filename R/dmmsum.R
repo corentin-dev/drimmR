@@ -268,7 +268,7 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 #'
 #' @param x An object of class "dmm"
 #' @param pos  position along the sequence (integer)
-#' @author Victor Mataigne
+#' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A transition matrix at a given position
 #' @export
@@ -592,7 +592,7 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #'
 #' @return A list of log-likelihood (numeric)
 #' @export
-#' @import parallel
+#' @import parallel future
 #'
 #' @examples
 #' data(lambda, package = "drimmR")
@@ -636,7 +636,7 @@ loglik.dmmsum <- function(x, sequences){
 
     # from the kth state onwards
 
-    cl <- parallel::makeCluster(detectCores(), type = "PSOCK")
+    cl <- parallel::makeCluster(future::availableCores(), type = "PSOCK")
     parallel::clusterExport(cl=cl, varlist=c("x","ll","sequences","k","states"),envir=environment())
     ll <- unlist(parallel::parLapply(cl, X=c(k:((length(sequences) - k) + 1)), function(i) {
       Pest <- drimmR::getTransitionMatrix(x, i)
@@ -667,7 +667,6 @@ loglik.dmmsum <- function(x, sequences){
 }
 
 
-# Get AIC author : Alexandre Seiller, Victor Mataigne
 #' Compute AIC
 #'
 #' @param x An object of class "dmm"
@@ -720,11 +719,11 @@ aic.dmmsum <- function(x,sequences) {
 
 }
 
-#' Get BIC
+#' Compute BIC
 #'
 #' @param x An object of class "dmm"
 #' @param sequence A character vector or a list of character vector representing the sequence
-#' @author Alexandre Seiller
+#' @author  Victor Mataigne, Alexandre Seiller
 #' @return A numeric, BIC
 #' @export
 #'
@@ -790,8 +789,9 @@ return(bic)
 #'
 #' @examples
 #' data(lambda, package = "drimmR")
+#' SIM.out <- "C:\\...\\file.txt"
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' simulate(dmm,"simulated_data.out",20000)
+#' simulate(dmm,SIM.out,20000)
 #'
 
 simulate.dmmsum <- function(x, output_file,model_size=NULL) {

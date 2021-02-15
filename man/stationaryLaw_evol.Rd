@@ -2,7 +2,7 @@
 % Please edit documentation in R/metrics.R
 \name{stationaryLaw_evol}
 \alias{stationaryLaw_evol}
-\title{Stationary laws between positions start and end}
+\title{Plot stationary laws for a range of positions between <start> and <end>}
 \usage{
 stationaryLaw_evol(
   x,
@@ -30,7 +30,7 @@ stationaryLaw_evol(
 A matrix of probabilities with position and probability of states (and figure plot)
 }
 \description{
-Stationary laws between positions start and end
+Plot stationary laws for a range of positions between <start> and <end>
 }
 \examples{
 #' data(lambda, package = "drimmR")

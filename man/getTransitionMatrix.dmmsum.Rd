@@ -24,5 +24,5 @@ t <- 10
 getTransitionMatrix(dmm,pos=t)
 }
 \author{
-Victor Mataigne
+Victor Mataigne, Alexandre Seiller
 }

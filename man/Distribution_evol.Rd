@@ -2,7 +2,7 @@
 % Please edit documentation in R/metrics.R
 \name{Distribution_evol}
 \alias{Distribution_evol}
-\title{Distributions for a range of positions}
+\title{Plot distributions for a range of positions between <start> and <end>}
 \usage{
 Distribution_evol(
   x,
@@ -28,7 +28,7 @@ Distribution_evol(
 A matrix of distributions with position and probability of states
 }
 \description{
-Distributions for a range of positions
+Plot distributions for a range of positions between <start> and <end>
 }
 \examples{
 #' data(lambda, package = "drimmR")

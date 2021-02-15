@@ -2,7 +2,7 @@
 ## =======================================================
 
 
-#' Distributions for a range of positions
+#' Plot distributions for a range of positions between <start> and <end>
 #'
 #' @param x An object of class "dmm"
 #' @param start Start position
@@ -32,13 +32,13 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
   nbc <- length(states)
   nbl <- length(states)^order
 
-  # Initialize matrix of stationary laws
+  # Initialize matrix of distributions
 
   distrib <- matrix(nrow = length(seq(from=start, to=end, by=step)), ncol = nbc+1)
   colnames(distrib) <-  c("position",states)
 
 
-  #  Get stationary law for each position from <start> to <end>
+  #  Distributions for each position from <start> to <end>
 
   for (i in seq_along(seq(from=start, to=end, by=step))) {
 
@@ -83,7 +83,7 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 
 
 
-#' Stationary laws between positions start and end
+#' Plot stationary laws for a range of positions between <start> and <end>
 #'
 #' @param x An object of class "dmm"
 #' @param start Start position
