@@ -1,5 +1,6 @@
 commits 15/02/2021 :
-add help descriptions and details for dmmsum, errorRATE
+from package version 0.2.0 to 1.0.0 in description file
+add help descriptions and details for dmmsum, errorRATE, availability, maintainability and reliability functions
 correction of custom initial law conditions for customisable vector of initial law (init.estim=vector of length nb.state^order)
 correction of word applications and failure rates (toy object "mod" inside code instead of "x")
 word_expect application still in progress : do not use yet
