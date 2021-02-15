@@ -112,7 +112,7 @@
 
 
 # Get result matrix for point estimate
-# Author : Alexandre Seiller, Brelurut Geoffray
+# Author :  Brelurut Geoffray, Alexandre Seiller
 .result_matrix <- function(pos, degree, coef, model.length){
   # apply to each element of the list
   R <- sapply(pos, function(p, degree, coef, model.length) {
@@ -128,7 +128,7 @@
 }
 
 # Get coefficient matrix for point estimate
-# Author : Alexandre Seiller, Brelurut Geoffray
+# Author :  Brelurut Geoffray, Alexandre Seiller
 .coef_matrix<-function(pos, degree, coef, model.length) {
 
   # Get all order mers
@@ -194,9 +194,8 @@
 
 
 
-## __________________________________________________________
 ## .productProb: Useful to compute the initial distribution when init.estim == "prod"
-## __________________________________________________________
+
 .productProb <- function(length = 2, prob) {
   if (length == 1) {
     return(prob)

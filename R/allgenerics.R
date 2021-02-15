@@ -152,7 +152,7 @@ getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' t <- 10
-#' getDistribution(dmm,t)
+#' getDistribution(dmm,pos=t)
 
 
 getDistribution <- function(x, pos, all.pos=FALSE, internal=FALSE) {

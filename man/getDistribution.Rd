@@ -25,7 +25,7 @@ Get distribution at a given position or at every positions
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 t <- 10
-getDistribution(dmm,t)
+getDistribution(dmm,pos=t)
 }
 \author{
 Alexandre Seiller

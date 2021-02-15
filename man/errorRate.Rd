@@ -26,7 +26,7 @@ errorRate(
 \item{error.rate}{Default="BMP". Method used to estimate the error rate. If error.rate= "BMP",
  then, `error.rate` is estimated as follows \eqn{\forall l-1 \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
 \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}} and \lambda (l)=0 otherwise. If error.rate= "RG then, `error.rate` is estimated as follows
-\eqn{\forall \ l \ge \ 1 \ , r(l)=-\ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}} and r(l)=-\ln R(0) if l=0.}
+\eqn{\forall \ l \ge \ 1 \ , r(l)=-ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}} and r(l)=-ln R(0) if l=0.}
 
 \item{output_file}{A file containing matrix of error rates at each position}
 }

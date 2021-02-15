@@ -4,13 +4,27 @@
 
 
 
-#' Point by point estimates of a k-th order Drifting Markov Model
+#' Point by point estimates of a k-th order Drifting-Markov Model
 #'
-#'@description Estimation of d+1 points of support transition matrices and |A|^{k} initial law of a k-th
+#'@description Estimation of d+1 points of support transition matrices and \eqn{|E|^{k}} initial law of a k-th
 #'   order Drifting Markov Model starting from one or several sequences.
 #'
-#' @details The initial distribution of a a k-th order Drifting Markov Model is defined as
-#'  \eqn{\mu_i = P(X_1 = i)}. Three methods are proposed for the estimation
+#' @details The `dmmsum` function creates a Drifting-Markov model object (`dmm`).
+#'
+#' Let \eqn{E={1,\ldots, s}}, s < \eqn{\infty} be random system with finite state space,
+#' with a time evolution governed by discrete-time stochastic process of values in \eqn{E}.
+#' A sequence \eqn{X_0, X_1, \ldots, X_n} with state space \eqn{E= {1, 2, \ldots, s}} is said to be a
+#' linear drifting Markov chain (of order 1) of length \eqn{n} between the Markov transition matrices
+#' \eqn{\Pi_0} and  \eqn{\Pi_1} if the distribution of \eqn{X_t}, \eqn{t = 1, \ldots, n}, is defined by
+#' \eqn{P(X_t=v \mid X_{t-1}	= u, X_{t-2}, \ldots ) = \Pi_{\frac{t}{n}}(u, v), ; u, v \in E}, where
+#' \eqn{\Pi_{\frac{t}{n}}(u, v) = ( 1 - \frac{t}{n}) \Pi_0(u, v) + \frac{t}{n} \Pi_1(u, v), \; u, v \in E}.
+#' The linear drifting Markov model of order \eqn{1} can be generalized to polynomial Drifting-Markov model of
+#' order \eqn{k} and degree \eqn{d}.Let \eqn{\Pi_{\frac{i}{d}} = (\Pi_{\frac{i}{d}}(u_1, \dots, u_k, v))_{u_1, \dots, u_k,v \in E}}
+#' be \eqn{d} Markov transition matrices (of order \eqn{k}) over a state space \eqn{E}.
+#'
+#'  The initial distribution of a k-th order Drifting Markov Model is defined as
+#'  \eqn{\mu_i = P(X_1 = i)}. The initial distribution of the k first letters is freely
+#'  be customisable by the user, but five methods are proposed for the estimation
 #'  of the latter :
 #'  \describe{
 #'    \item{Estimation based on the Maximum Likelihood Estimator:}{
@@ -30,9 +44,11 @@
 #'      frequences of each state (for all the sequences) in the word of length
 #'      \eqn{k}.}
 #'       \item{Estimation based on the stationary law of point of support
-#'       transition matrix for a word of length k:
+#'       transition matrix for a word of length k :}{
 #'      The initial distribution is estimated using \eqn{\mu(\Pi_{\frac{k-1}{n}}
 #'      }}
+#'       \item{Estimation based on the uniform law :}{
+#'       \eqn{\frac{1}{s}}}
 #'  }
 #'
 #' @param sequences A list of character vector(s) representing one (several) sequence(s)
@@ -47,8 +63,9 @@
 #'   the product of the frequences of each letter (for all the sequences) in
 #'   the word of length `k`. If init.estim = "stat.law", then `init` is
 #'   estimated by using the stationary law of the point of support transition
-#'   matrices of each letter. See Details for the formulas. If init.estim = "unif",
-#'   then, `init` of each letter is estimated by using \eqn{\frac{1}{s}}
+#'   matrices of each letter. If init.estim = "unif",
+#'   then, `init` of each letter is estimated by using \eqn{\frac{1}{s}}. Or
+#'   init.estim= customisable vector of length \eqn{|E|^k}. See Details for the formulas.
 #' @param model.length Model size
 #' @author  Geoffray Brelurut, Alexandre Seiller
 #'
@@ -66,7 +83,7 @@
 
 
 
-dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "freq","prod","stat.law", "unif")){
+dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "freq","prod","stat.law", "unif",...)){
 
 
   # ----------------------------------------------------------- Test input parameters
@@ -233,8 +250,8 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
   } else {  # custom initial law
     if(is.numeric(init.estim) & length(init.estim) != length(states)^order){stop("Length of 'init' is not equal to : number of states ^ order")}
     if (!is.numeric(init.estim)){stop("'init' must be a numeric vector")}
-    if (order!=0L && sum(init)!=1){ stop("The sum of 'init' is not equal to one")}
-    if (!(all(init >= 0) && all(init <= 1))) {stop("Probabilities in 'init' must be between [0, 1]")}
+    if (order!=0L && sum(init.estim)!=1){ stop("The sum of 'init' is not equal to one")}
+    if (!(all(init.estim >= 0) && all(init.estim <= 1))) {stop("Probabilities in 'init' must be between [0, 1]")}
       init <- init.estim
   }
 
