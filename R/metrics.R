@@ -166,11 +166,16 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 
 #' Compute Availability
 #'
+#' @description Estimation of the pointwise (or instantaneous) availability for (ergodic) repairable systems at time \eqn{l \in N}
+#'
+#' @details The pointwise (or instantaneous) availability is the probability that the system is in a working state at time \eqn{l},
+#' independently of the fact that the system worked or not during the time interval \eqn{[0; l)}
 #' @param x An object of class "dmm"
 #' @param k1 A numeric, start position
 #' @param k2 A numeric, end position
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1< s
 #' @param output_file A file containing matrix of availability probabilities
+#' @param plot FALSE (no figure plot of availability by position); TRUE (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with Availability score at each position
@@ -308,11 +313,16 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
 #' Compute Reliability
 #'
+#' @description Estimation of reliability for (ergodic) repairable or (non-ergodic) non-repairable systems at time \eqn{l \in N}
+#'
+#' @details The reliability at time \eqn{l \in N} is the probability thaht the system has functioned without failure in the period \eqn{[0, l]}
+#'
 #' @param x An object of class "dmm"
 #' @param k1 A numeric, start position
 #' @param k2 A numeric, end position
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
 #' @param output_file A file containing matrix of reliability probabilities
+#' @param plot FALSE (no figure plot of reliability by position); TRUE (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with Reliability score at each position
@@ -456,11 +466,17 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
 #' Compute Maintainability
 #'
+#' @description Estimation of maintainability for (ergodic) repairable system at time \eqn{k \in N}.
+#'
+#' @details The maintainability at time \eqn{k \in N} of a repairable system is the probability that the system is repaired up to time \eqn{l},
+#' given that is has failed at time \eqn{l=0}.
+#'
 #' @param x An object of class "dmm"
 #' @param k1 A numeric, start position
 #' @param k2 A numeric, end position
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
 #' @param output_file A file containing matrix of maintainability probabilities
+#' @param plot FALSE (no figure plot of maintainability by position); TRUE (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with Maintainability score at each position
@@ -610,10 +626,10 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' continuous time systems.
 #' The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
 #'
-#' @details if `error.rate`="BMP" then the error rate is estimated as follows \eqn{\forall R(l-1) \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
+#' @details if `error.rate`="BMP" then for a linear drifting Markov chain of order 1 the error rate is estimated as follows \eqn{\forall R(l-1) \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
 #' 1^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ 1^U}}, and \eqn{\lambda (l)=0} otherwise.
 #'
-#'If error.rate= "RG then, `error.rate` is estimated as follows
+#'If error.rate= "RG then for a linear drifting Markov chain of order 1 the error rate is estimated as follows
 #'  \eqn{\forall \ l \ge \ 1 \ , r(l)=-\ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}}
 #'  and \eqn{r(l)=-\ln R(0) if l=0} otherwise.
 #'
@@ -624,6 +640,7 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' then RG-failure rate is the method used to estimate the error rate. See Details for the formulas.
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
 #' @param output_file A file containing matrix of error rates at each position
+#' @param plot FALSE (no figure plot of error rates by position); TRUE (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with error rate score at each position

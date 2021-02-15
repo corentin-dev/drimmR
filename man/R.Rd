@@ -16,12 +16,17 @@ R(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 \item{s1}{Character vector of the subspace working states among the state space vector s.t. s1 < s}
 
 \item{output_file}{A file containing matrix of reliability probabilities}
+
+\item{plot}{FALSE (no figure plot of reliability by position); TRUE (figure plot)}
 }
 \value{
 A matrix with Reliability score at each position
 }
 \description{
-Compute Reliability
+Estimation of reliability for (ergodic) repairable or (non-ergodic) non-repairable systems at time \eqn{l \in N}
+}
+\details{
+The reliability at time \eqn{l \in N} is the probability thaht the system has functioned without failure in the period \eqn{[0, l]}
 }
 \examples{
 data(lambda, package = "drimmR")

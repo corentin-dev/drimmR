@@ -16,12 +16,18 @@ A(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 \item{s1}{Character vector of the subspace working states among the state space vector s.t. s1< s}
 
 \item{output_file}{A file containing matrix of availability probabilities}
+
+\item{plot}{FALSE (no figure plot of availability by position); TRUE (figure plot)}
 }
 \value{
 A matrix with Availability score at each position
 }
 \description{
-Compute Availability
+Estimation of the pointwise (or instantaneous) availability for (ergodic) repairable systems at time \eqn{l \in N}
+}
+\details{
+The pointwise (or instantaneous) availability is the probability that the system is in a working state at time \eqn{l},
+independently of the fact that the system worked or not during the time interval \eqn{[0; l)}
 }
 \examples{
 data(lambda, package = "drimmR")

@@ -27,6 +27,8 @@ errorRate(
 then RG-failure rate is the method used to estimate the error rate. See Details for the formulas.}
 
 \item{output_file}{A file containing matrix of error rates at each position}
+
+\item{plot}{FALSE (no figure plot of error rates by position); TRUE (figure plot)}
 }
 \value{
 A matrix with error rate score at each position
@@ -39,10 +41,10 @@ continuous time systems.
 The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
 }
 \details{
-if `error.rate`="BMP" then the error rate is estimated as follows \eqn{\forall R(l-1) \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
+if `error.rate`="BMP" then for a linear drifting Markov chain of order 1 the error rate is estimated as follows \eqn{\forall R(l-1) \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
 1^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ 1^U}}, and \eqn{\lambda (l)=0} otherwise.
 
-If error.rate= "RG then, `error.rate` is estimated as follows
+If error.rate= "RG then for a linear drifting Markov chain of order 1 the error rate is estimated as follows
  \eqn{\forall \ l \ge \ 1 \ , r(l)=-\ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}}
  and \eqn{r(l)=-\ln R(0) if l=0} otherwise.
 }
