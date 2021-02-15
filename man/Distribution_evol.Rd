@@ -32,9 +32,9 @@ Distributions for a range of positions
 }
 \examples{
 #' data(lambda, package = "drimmR")
-mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 DIST.out <- "C:\\\\...\\\\file.txt"
-Distribution_evol(mod,start=1,end=length(lambda)-1,step=10000, output_file=DIST.out, plot=FALSE)
+Distribution_evol(dmm,start=1,end=length(lambda)-1,step=10000, output_file=DIST.out, plot=FALSE)
 }
 \author{
 Alexandre Seiller

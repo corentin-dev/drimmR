@@ -20,8 +20,8 @@ Compute AIC
 \examples{
 data(lambda, package = "drimmR")
 sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
-Dmm<-point_estimate(lambda, 1, 1, c('a','c','g','t'), 1000000)
-aic(Dmm,sequence)
+dmm <-point_estimate(lambda, 1, 1, c('a','c','g','t'), 1000000)
+aic(dmm,sequence)
 }
 \author{
 Victor Mataigne, Alexandre Seiller

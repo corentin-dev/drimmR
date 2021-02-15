@@ -17,9 +17,9 @@
 
 #' @examples
 #' #' data(lambda, package = "drimmR")
-#' mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' DIST.out <- "C:\\...\\file.txt"
-#' Distribution_evol(mod,start=1,end=length(lambda)-1,step=10000, output_file=DIST.out, plot=FALSE)
+#' Distribution_evol(dmm,start=1,end=length(lambda)-1,step=10000, output_file=DIST.out, plot=FALSE)
 
 Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
 
@@ -98,9 +98,9 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 #' @export
 #' @examples
 #' #' data(lambda, package = "drimmR")
-#' mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' SL.out <- "C:\\...\\file.txt"
-#' stationaryLaw_evol(mod,start=10,end=1000,step=301, output_file=SL.out, plot=FALSE)
+#' stationaryLaw_evol(dmm,start=10,end=1000,step=301, output_file=SL.out, plot=FALSE)
 
 
 stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
@@ -644,7 +644,7 @@ errorRate <- function(x, k1,k2, s1,error.rate=c("BMP","RG"), output_file=NULL, p
 
   getR <- matrix(NA, nrow=k2, ncol=1)
 
-  getR <- R(mod,k1=k1, k2=k2,s1=s1,output_file = output_file, plot=FALSE)
+  getR <- R(x,k1=k1, k2=k2,s1=s1,output_file = output_file, plot=FALSE)
   getER <- matrix(NA, nrow=k2, ncol=1)
 
   # BMP failure-rate

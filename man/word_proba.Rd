@@ -25,9 +25,9 @@ Probability of a word at a position t of a DMM
 }
 \examples{
 #' data(lambda, package = "drimmR")
-mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
-word_proba("aggctga",4,x, output_file=PROB.out)
+word_proba("aggctga",4,dmm, output_file=PROB.out)
 }
 \author{
 Victor Mataigne, Alexandre Seiller

@@ -277,7 +277,7 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq")
 #' t <- 10
-#' getTransitionMatrix(dmm,t)
+#' getTransitionMatrix(dmm,pos=t)
 
 getTransitionMatrix.dmmsum <- function(x, pos) {
 
@@ -318,7 +318,7 @@ getTransitionMatrix.dmmsum <- function(x, pos) {
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' t <- 10
-#' getStationaryLaw(dmm,t)
+#' getStationaryLaw(dmm,pos=t)
 #'
 getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
@@ -446,7 +446,7 @@ getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' t <- 10
-#' getDistribution(dmm,t)
+#' getDistribution(dmm,pos=t)
 #'
 
 
@@ -679,8 +679,8 @@ loglik.dmmsum <- function(x, sequences){
 #' @examples
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
-#' Dmm<-point_estimate(lambda, 1, 1, c('a','c','g','t'), 1000000)
-#' aic(Dmm,sequence)
+#' dmm <-point_estimate(lambda, 1, 1, c('a','c','g','t'), 1000000)
+#' aic(dmm,sequence)
 aic.dmmsum <- function(x,sequences) {
 
   ################################################

@@ -34,9 +34,9 @@ Stationary laws between positions start and end
 }
 \examples{
 #' data(lambda, package = "drimmR")
-mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 SL.out <- "C:\\\\...\\\\file.txt"
-stationaryLaw_evol(mod,start=10,end=1000,step=301, output_file=SL.out, plot=FALSE)
+stationaryLaw_evol(dmm,start=10,end=1000,step=301, output_file=SL.out, plot=FALSE)
 }
 \author{
 Alexandre Seiller

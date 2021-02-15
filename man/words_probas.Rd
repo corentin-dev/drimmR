@@ -25,9 +25,9 @@ Probability of several words at several positions of a DMM
 }
 \examples{
 #' data(lambda, package = "drimmR")
-mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
-words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),x, output_file=PROB.out, plot=FALSE)
+words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, output_file=PROB.out, plot=FALSE)
 }
 \author{
 Victor Mataigne, Alexandre Seiller

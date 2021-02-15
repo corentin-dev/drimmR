@@ -27,9 +27,9 @@ Probability of appearance of the Observed word of size n in a sequence at severa
 }
 \examples{
 #' data(lambda, package = "drimmR")
-mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
-length_probas(2, lambda, c(100,200), x, output_file=PROB.out)
+length_probas(2, lambda, c(100,200), dmm, output_file=PROB.out)
 }
 \author{
 Victor Mataigne, Alexandre Seiller

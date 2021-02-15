@@ -25,7 +25,7 @@ Get stationary law
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 t <- 10
-getStationaryLaw(dmm,t)
+getStationaryLaw(dmm,pos=t)
 
 }
 \author{

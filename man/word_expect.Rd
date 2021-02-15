@@ -4,7 +4,7 @@
 \alias{word_expect}
 \title{Expectation of a word in a DMM}
 \usage{
-word_expect(word, x)
+word_expect(dmm, x, output_file)
 }
 \arguments{
 \item{word}{A subsequence}
@@ -18,8 +18,11 @@ a float
 Expectation of a word in a DMM
 }
 \examples{
-word_expect("atcggatc", DMM)
+#' data(lambda, package = "drimmR")
+dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+PROB.out <- "C:\\\\...\\\\file.txt"
+word_expect("atcggatc", mod, output_file=PROB.out)
 }
 \author{
-Victor Mataigne
+Victor Mataigne, Alexandre Seiller
 }

@@ -12,9 +12,9 @@
 #'
 #' @examples
 #' #' data(lambda, package = "drimmR")
-#' mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
-#' word_proba("aggctga",4,x, output_file=PROB.out)
+#' word_proba("aggctga",4,dmm, output_file=PROB.out)
 word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
   word_c <- unlist(strsplit(word, split=""))
   word_length <- length(word_c)
@@ -79,9 +79,9 @@ word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #'
 #' @examples
 #' #' data(lambda, package = "drimmR")
-#' mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
-#' word_probas("aggctga",c(100,300),x, output_file=PROB.out, plot=FALSE)
+#' word_probas("aggctga",c(100,300),dmm, output_file=PROB.out, plot=FALSE)
 
 word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
   proba <- c()
@@ -136,9 +136,9 @@ word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
 #'
 #' @examples
 #' #' data(lambda, package = "drimmR")
-#' mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
-#' words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),x, output_file=PROB.out, plot=FALSE)
+#' words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, output_file=PROB.out, plot=FALSE)
 
 words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 
@@ -203,9 +203,9 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #'
 #' @examples
 #' #' data(lambda, package = "drimmR")
-#' mod <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
-#' length_probas(2, lambda, c(100,200), x, output_file=PROB.out)
+#' length_probas(2, lambda, c(100,200), dmm, output_file=PROB.out)
 length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
   # Make sure that DMMLength in not shorter than the sequence !
   if (missing(pos)) {
@@ -257,7 +257,7 @@ length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
         geom_line() + geom_point() + theme_bw() + theme(panel.spacing.y=unit(1,"cm")) +
         guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
         theme(axis.title.x = element_text(size=10, face="bold"), legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
-        facet_wrap(.~word, scales = "free_y") + labs(x = "Position", y = "Probability",title=paste0("Words ending with '",mod$states[o],"'"), fill="Package :") +
+        facet_wrap(.~word, scales = "free_y") + labs(x = "Position", y = "Probability",title=paste0("Words ending with '",x$states[o],"'"), fill="Package :") +
         theme(title=element_text(size=15,face="bold"))
     }
    fig <-  append(list(fig1),fig2)
@@ -272,20 +272,32 @@ length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
 #'
 #' @param word A subsequence
 #' @param DMM An object of class "dmm"
-#' @author Victor Mataigne
+#' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return a float
 #' @export
 #'
 #' @examples
-#' word_expect("atcggatc", DMM)
-word_expect <- function(word, x) {
+#' #' data(lambda, package = "drimmR")
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' PROB.out <- "C:\\...\\file.txt"
+#' word_expect("atcggatc", mod, output_file=PROB.out)
+word_expect <- function(dmm, x,output_file) {
   Nexp <- 0
   n <- x$length
   l <- length(word)
+
+  cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+  doSNOW::registerDoSNOW(cl)
+
+ # output <- foreach(i=c(1:n-l+1),.packages = c("doSNOW"), .combine = "c") %dopar% {
   for ( i in 1:n-l+1) {
-    Nexp <- Nexp + word_proba(word, i, x)
+    Nexp <- Nexp + word_proba(word, i, x, internal=TRUE)
   }
+
+  if (!is.null(output_file))
+    write.table(Nexp, file=output_file, sep=",", col.names= paste0("Expectation of word '",word,"'"))
+
   return(Nexp)
 }
 

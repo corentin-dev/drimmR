@@ -21,7 +21,7 @@ Get transition matrix at a given position
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq")
 t <- 10
-getTransitionMatrix(dmm,t)
+getTransitionMatrix(dmm,pos=t)
 }
 \author{
 Victor Mataigne
