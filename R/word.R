@@ -281,17 +281,17 @@ length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
 #' #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
-#' word_expect("atcggatc", mod, output_file=PROB.out)
-word_expect <- function(dmm, x,output_file) {
+#' word_expect("atcggatc", dmm, output_file=PROB.out)
+word_expect <- function(word, x,output_file) {
   Nexp <- 0
   n <- x$length
   l <- length(word)
 
-  cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-  doSNOW::registerDoSNOW(cl)
+ # cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+ # doSNOW::registerDoSNOW(cl)
 
  # output <- foreach(i=c(1:n-l+1),.packages = c("doSNOW"), .combine = "c") %dopar% {
-  for ( i in 1:n-l+1) {
+  for ( i in 1:c(n-l+1)) {
     Nexp <- Nexp + word_proba(word, i, x, internal=TRUE)
   }
 
