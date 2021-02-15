@@ -13,7 +13,7 @@ R(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 
 \item{k2}{A numeric, end position}
 
-\item{s1}{Character vector of the subspace working states among the state space vector s.t. s1<|s|}
+\item{s1}{Character vector of the subspace working states among the state space vector s.t. s1 < s}
 
 \item{output_file}{A file containing matrix of reliability probabilities}
 }

@@ -9,7 +9,7 @@ dmmsum(
   order,
   degree,
   states,
-  init.estim = c("mle", "freq", "prod", "stat.law", "unif", ...)
+  init.estim = c("mle", "freq", "prod", "stationary", "unif", ...)
 )
 }
 \arguments{
@@ -22,15 +22,15 @@ dmmsum(
 \item{states}{Vector of states space of length s > 1}
 
 \item{init.estim}{Default="mle". Method used to estimate the initial law.
-If init.estim = "mle", then the classical Maximum Likelihood Estimator
-is used, if init.estim = "freq", then, the initial distribution `init`
+If `init.estim` = "mle", then the classical Maximum Likelihood Estimator
+is used, if `init.estim` = "freq", then, the initial distribution `init.estim`
 is estimated by taking the frequences of the words of length `k` for all
-sequences. If init.estim = "prod", then, `init` is estimated by using
+sequences. If `init.estim` = "prod", then, `init.estim` is estimated by using
 the product of the frequences of each letter (for all the sequences) in
-the word of length `k`. If init.estim = "stat.law", then `init` is
+the word of length `k`. If init.estim = "stationary", then `init.estim` is
 estimated by using the stationary law of the point of support transition
-matrices of each letter. If init.estim = "unif",
-then, `init` of each letter is estimated by using \eqn{\frac{1}{s}}. Or
+matrices of each letter. If `init.estim` = "unif",
+then, `init.estim` of each letter is estimated by using \eqn{\frac{1}{s}}. Or
 init.estim= customisable vector of length \eqn{|E|^k}. See Details for the formulas.}
 
 \item{model.length}{Model size}

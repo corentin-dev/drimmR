@@ -56,15 +56,15 @@
 #' @param degree Degree of the polynomials (e.g., linear drifting if degree=1, etc.)
 #' @param states Vector of states space of length s > 1
 #' @param init.estim Default="mle". Method used to estimate the initial law.
-#'   If init.estim = "mle", then the classical Maximum Likelihood Estimator
-#'   is used, if init.estim = "freq", then, the initial distribution `init`
+#'   If `init.estim` = "mle", then the classical Maximum Likelihood Estimator
+#'   is used, if `init.estim` = "freq", then, the initial distribution `init.estim`
 #'   is estimated by taking the frequences of the words of length `k` for all
-#'   sequences. If init.estim = "prod", then, `init` is estimated by using
+#'   sequences. If `init.estim` = "prod", then, `init.estim` is estimated by using
 #'   the product of the frequences of each letter (for all the sequences) in
-#'   the word of length `k`. If init.estim = "stat.law", then `init` is
+#'   the word of length `k`. If init.estim = "stationary", then `init.estim` is
 #'   estimated by using the stationary law of the point of support transition
-#'   matrices of each letter. If init.estim = "unif",
-#'   then, `init` of each letter is estimated by using \eqn{\frac{1}{s}}. Or
+#'   matrices of each letter. If `init.estim` = "unif",
+#'   then, `init.estim` of each letter is estimated by using \eqn{\frac{1}{s}}. Or
 #'   init.estim= customisable vector of length \eqn{|E|^k}. See Details for the formulas.
 #' @param model.length Model size
 #' @author  Geoffray Brelurut, Alexandre Seiller
@@ -83,7 +83,7 @@
 
 
 
-dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "freq","prod","stat.law", "unif",...)){
+dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "freq","prod","stationary", "unif",...)){
 
 
   # ----------------------------------------------------------- Test input parameters
@@ -238,7 +238,7 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
   } else if (init.estim == "freq" && order!=0L) {
     Nstart <- seqinr::count(seq = unlist(sequences), wordsize = order, alphabet = states)
     init <- Nstart / sum(Nstart)
-  } else if (init.estim == "stat.law" && order!=0L) {
+  } else if (init.estim == "stationary" && order!=0L) {
     init <- getStationaryLaw(temp.res, pos=c(order-1), all.pos=FALSE, internal=TRUE)
   } else if (init.estim == "prod" && order!=0L){
     Nstart <- seqinr::count(seq = unlist(sequences), wordsize = 1, alphabet = states)
@@ -248,14 +248,12 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
   }  else if (init.estim=="unif"  && order!=0L){
     init <- rep(1/c(length(states)^order), length(states)^order)
   } else {  # custom initial law
-    if(is.numeric(init.estim) & length(init.estim) != length(states)^order){stop("Length of 'init' is not equal to : number of states ^ order")}
-    if (!is.numeric(init.estim)){stop("'init' must be a numeric vector")}
-    if (order!=0L && sum(init.estim)!=1){ stop("The sum of 'init' is not equal to one")}
-    if (!(all(init.estim >= 0) && all(init.estim <= 1))) {stop("Probabilities in 'init' must be between [0, 1]")}
+    if(is.numeric(init.estim) & length(init.estim) != length(states)^order){stop("Length of 'init.estim' is not equal to : number of states ^ order")}
+    if (!is.numeric(init.estim)){stop("'init.estim' must be a numeric vector")}
+    if (order!=0L && sum(init.estim)!=1){ stop("The sum of 'init.estim' is not equal to one")}
+    if (!(all(init.estim >= 0) && all(init.estim <= 1))) {stop("Probabilities in 'init.estim' must be between [0, 1]")}
       init <- init.estim
   }
-
-
 
 
 

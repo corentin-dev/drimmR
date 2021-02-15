@@ -21,12 +21,10 @@ errorRate(
 
 \item{k2}{A numeric, end position}
 
-\item{s1}{Character vector of the subspace working states among the state space vector s.t. s1<|s|}
+\item{s1}{Character vector of the subspace working states among the state space vector s.t. s1 < s}
 
-\item{error.rate}{Default="BMP". Method used to estimate the error rate. If error.rate= "BMP",
- then, `error.rate` is estimated as follows \eqn{\forall l-1 \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
-\mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}} and \lambda (l)=0 otherwise. If error.rate= "RG then, `error.rate` is estimated as follows
-\eqn{\forall \ l \ge \ 1 \ , r(l)=-ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}} and r(l)=-ln R(0) if l=0.}
+\item{error.rate}{Default="BMP", then BMP-failure-rate is the method used to estimate the error rate. If error.rate= "RG",
+then RG-failure rate is the method used to estimate the error rate. See Details for the formulas.}
 
 \item{output_file}{A file containing matrix of error rates at each position}
 }
@@ -34,7 +32,19 @@ errorRate(
 A matrix with error rate score at each position
 }
 \description{
-Compute error rates
+Estimation of two different definition of the failure rate.
+
+The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
+continuous time systems.
+The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
+}
+\details{
+if `error.rate`="BMP" then the error rate is estimated as follows \eqn{\forall R(l-1) \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
+1^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ 1^U}}, and \eqn{\lambda (l)=0} otherwise.
+
+If error.rate= "RG then, `error.rate` is estimated as follows
+ \eqn{\forall \ l \ge \ 1 \ , r(l)=-\ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}}
+ and \eqn{r(l)=-\ln R(0) if l=0} otherwise.
 }
 \examples{
 data(lambda, package = "drimmR")

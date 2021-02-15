@@ -169,7 +169,7 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 #' @param x An object of class "dmm"
 #' @param k1 A numeric, start position
 #' @param k2 A numeric, end position
-#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1<|s|
+#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1< s
 #' @param output_file A file containing matrix of availability probabilities
 #' @author Alexandre Seiller
 #'
@@ -311,7 +311,7 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @param x An object of class "dmm"
 #' @param k1 A numeric, start position
 #' @param k2 A numeric, end position
-#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1<|s|
+#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
 #' @param output_file A file containing matrix of reliability probabilities
 #' @author Alexandre Seiller
 #'
@@ -459,7 +459,7 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @param x An object of class "dmm"
 #' @param k1 A numeric, start position
 #' @param k2 A numeric, end position
-#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1<|s|
+#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
 #' @param output_file A file containing matrix of maintainability probabilities
 #' @author Alexandre Seiller
 #'
@@ -604,14 +604,25 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
 #' Compute error rates
 #'
+#' @description Estimation of two different definition of the failure rate.
+#'
+#' The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
+#' continuous time systems.
+#' The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
+#'
+#' @details if `error.rate`="BMP" then the error rate is estimated as follows \eqn{\forall R(l-1) \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
+#' 1^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ 1^U}}, and \eqn{\lambda (l)=0} otherwise.
+#'
+#'If error.rate= "RG then, `error.rate` is estimated as follows
+#'  \eqn{\forall \ l \ge \ 1 \ , r(l)=-\ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}}
+#'  and \eqn{r(l)=-\ln R(0) if l=0} otherwise.
+#'
 #' @param x An object of class "dmm"
 #' @param k1 A numeric, start position
 #' @param k2 A numeric, end position
-#' @param error.rate Default="BMP". Method used to estimate the error rate. If error.rate= "BMP",
-#'   then, `error.rate` is estimated as follows \eqn{\forall l-1 \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
-#'  \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}} and \lambda (l)=0 otherwise. If error.rate= "RG then, `error.rate` is estimated as follows
-#'  \eqn{\forall \ l \ge \ 1 \ , r(l)=-ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}} and r(l)=-ln R(0) if l=0.
-#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1<|s|
+#' @param error.rate Default="BMP", then BMP-failure-rate is the method used to estimate the error rate. If error.rate= "RG",
+#' then RG-failure rate is the method used to estimate the error rate. See Details for the formulas.
+#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
 #' @param output_file A file containing matrix of error rates at each position
 #' @author Alexandre Seiller
 #'
