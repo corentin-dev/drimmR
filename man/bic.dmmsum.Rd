@@ -2,7 +2,7 @@
 % Please edit documentation in R/dmmsum.R
 \name{bic.dmmsum}
 \alias{bic.dmmsum}
-\title{Compute BIC}
+\title{Evaluate BIC}
 \usage{
 \method{bic}{dmmsum}(x, sequences)
 }
@@ -15,7 +15,7 @@
 A numeric, BIC
 }
 \description{
-Compute BIC
+Evaluate BIC
 }
 \examples{
 data(lambda, package = "drimmR")

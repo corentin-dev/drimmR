@@ -11,7 +11,7 @@ length_probas(n, sequence, pos, x, output_file = NULL, plot = FALSE)
 
 \item{sequence}{A vector of characters}
 
-\item{pos}{A vector of positions}
+\item{pos}{A vector of integer positions}
 
 \item{x}{An object of class "dmm"}
 
@@ -26,7 +26,7 @@ a dataframe of probability by position (and probability plots)
 Probability of appearance of the Observed word of size n in a sequence at several positions
 }
 \examples{
-#' data(lambda, package = "drimmR")
+data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
 length_probas(2, lambda, c(100,200), dmm, output_file=PROB.out)

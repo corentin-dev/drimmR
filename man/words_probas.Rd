@@ -7,9 +7,9 @@
 words_probas(words, pos, x, output_file = NULL, plot = FALSE)
 }
 \arguments{
-\item{words}{A vector of character containing words}
+\item{words}{A vector of characters containing words}
 
-\item{pos}{A vector of positions}
+\item{pos}{A vector of integer positions}
 
 \item{x}{An object of class "dmm"}
 
@@ -24,7 +24,7 @@ a dataframe
 Probability of several words at several positions of a DMM
 }
 \examples{
-#' data(lambda, package = "drimmR")
+data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
 words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, output_file=PROB.out, plot=FALSE)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/metrics.R
 \name{M}
 \alias{M}
-\title{Compute Maintainability}
+\title{Evaluate Maintainability}
 \usage{
 M(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 }
@@ -38,6 +38,9 @@ s1 <- c("c","t")  # vector of working states
 MAIN.out <- "C:\\\\...\\\\file.txt"
 M(dmm,k1,k2,s1, output_file=MAIN.out,plot=FALSE)
 
+}
+\seealso{
+\code{\link[drimmR]{dmmsum}}
 }
 \author{
 Alexandre Seiller

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dmmsum.R
 \name{aic.dmmsum}
 \alias{aic.dmmsum}
-\title{Compute AIC}
+\title{Evaluate AIC}
 \usage{
 \method{aic}{dmmsum}(x, sequences)
 }
@@ -15,7 +15,7 @@
 A list of numeric, AIC
 }
 \description{
-Compute AIC
+Evaluate AIC
 }
 \examples{
 data(lambda, package = "drimmR")

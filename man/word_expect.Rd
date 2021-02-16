@@ -9,7 +9,7 @@ word_expect(word, x, output_file)
 \arguments{
 \item{word}{A subsequence}
 
-\item{DMM}{An object of class "dmm"}
+\item{x}{An object of class "dmm"}
 }
 \value{
 a float
@@ -18,7 +18,7 @@ a float
 Expectation of a word in a DMM
 }
 \examples{
-#' data(lambda, package = "drimmR")
+data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
 word_expect("atcggatc", dmm, output_file=PROB.out)

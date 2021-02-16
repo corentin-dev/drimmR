@@ -164,7 +164,7 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 
 
 
-#' Compute Availability
+#' Evaluate Availability
 #'
 #' @description Estimation of the pointwise (or instantaneous) availability for (ergodic) repairable systems at time \eqn{l \in N}
 #'
@@ -181,6 +181,7 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 #' @return A matrix with Availability score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
+#' @seealso \code{\link[drimmR]{dmmsum}}, \code{\link[drimmR]{R}}, \code{\link[drimmR]{M}}
 #'
 #' @examples
 #' data(lambda, package = "drimmR")
@@ -311,7 +312,7 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 }
 
 
-#' Compute Reliability
+#' Evaluate Reliability
 #'
 #' @description Estimation of reliability for (ergodic) repairable or (non-ergodic) non-repairable systems at time \eqn{l \in N}
 #'
@@ -328,7 +329,7 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @return A matrix with Reliability score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
-#'
+#' @seealso \code{\link[drimmR]{dmmsum}}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda,1,1,c("a","c","g","t"))
@@ -377,7 +378,7 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
       }
       # add start of the reliability function and pos=0 (printed index= 1)
       getR <- rbind(1,init.law_u %*%  matrix(rep(1,length(s1))),getR)
-      #remove k2+2^th pos
+      #remove k2^th pos after adding start of function and pos=0
       getR <- getR[-c(k2+2),]
 
 
@@ -423,7 +424,7 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
       }
       # add start of the reliability function and pos=0 (printed index= 1)
       getR <- rbind(1,init.law_u %*%  matrix(rep(1,length(working.states))),getR)
-      #remove k2+2^th pos
+      #remove k2^th pos after adding start of function and pos=0
       getR <- getR[-c(k2+2),]
 
     # pos
@@ -464,7 +465,7 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
 
 
-#' Compute Maintainability
+#' Evaluate Maintainability
 #'
 #' @description Estimation of maintainability for (ergodic) repairable system at time \eqn{k \in N}.
 #'
@@ -483,6 +484,8 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
 #'
+#' @seealso \code{\link[drimmR]{dmmsum}}
+
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda,1,1,c("a","c","g","t"))
@@ -534,7 +537,7 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     }
     # add start of the maintainability function and pos=0 (printed index= 1)
     getM <- rbind(0,1-init.law_d %*%  matrix(rep(1,length(failure.states))),getM)
-    #remove k2+2^th pos
+    #remove k2^th pos after adding start of function and pos=0
     getM <- getM[-c(k2+2),]
 
     # pos
@@ -581,7 +584,7 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     }
     # add start of the maintainability function and pos=0 (printed index= 1)
     getM <- rbind(0,1-init.law_d %*%  matrix(rep(1,length(failure.states))),getM)
-    #remove k2+2^th pos
+    #remove k2^th pos after adding start of function and pos=0
     getM <- getM[-c(k2+2),]
 
     # pos
@@ -618,26 +621,21 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 }
 
 
-#' Compute error rates
+#' Evaluate error rates
 #'
-#' @description Estimation of two different definition of the failure rate.
+#' @description Estimation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate
 #'
-#' The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
+#'
+#' @details The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
 #' continuous time systems.
+#'
 #' The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
-#'
-#' @details if `error.rate`="BMP" then for a linear drifting Markov chain of order 1 the error rate is estimated as follows \eqn{\forall R(l-1) \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
-#' 1^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ 1^U}}, and \eqn{\lambda (l)=0} otherwise.
-#'
-#'If error.rate= "RG then for a linear drifting Markov chain of order 1 the error rate is estimated as follows
-#'  \eqn{\forall \ l \ge \ 1 \ , r(l)=-\ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}}
-#'  and \eqn{r(l)=-\ln R(0) if l=0} otherwise.
 #'
 #' @param x An object of class "dmm"
 #' @param k1 A numeric, start position
 #' @param k2 A numeric, end position
 #' @param error.rate Default="BMP", then BMP-failure-rate is the method used to estimate the error rate. If error.rate= "RG",
-#' then RG-failure rate is the method used to estimate the error rate. See Details for the formulas.
+#' then RG-failure rate is the method used to estimate the error rate.
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
 #' @param output_file A file containing matrix of error rates at each position
 #' @param plot FALSE (no figure plot of error rates by position); TRUE (figure plot)
@@ -646,7 +644,7 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @return A matrix with error rate score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
-#'
+#' @seealso \code{\link[drimmR]{dmmsum}}, \code{\link[drimmR]{R}}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda,1,1,c("a","c","g","t"))

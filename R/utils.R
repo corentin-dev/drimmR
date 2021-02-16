@@ -194,7 +194,7 @@
 
 
 
-## .productProb: Useful to compute the initial distribution when init.estim == "prod"
+## .productProb: used to compute the initial distribution when init.estim == "prod"
 
 .productProb <- function(length = 2, prob) {
   if (length == 1) {

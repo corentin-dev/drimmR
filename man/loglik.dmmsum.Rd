@@ -2,7 +2,7 @@
 % Please edit documentation in R/dmmsum.R
 \name{loglik.dmmsum}
 \alias{loglik.dmmsum}
-\title{Compute Log-likelihood}
+\title{Evaluate Log-likelihood}
 \usage{
 \method{loglik}{dmmsum}(x, sequences)
 }
@@ -15,7 +15,7 @@
 A list of log-likelihood (numeric)
 }
 \description{
-Compute Log-likelihood
+Evaluate Log-likelihood
 }
 \examples{
 data(lambda, package = "drimmR")

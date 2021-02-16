@@ -1,6 +1,6 @@
 #' Probability of a word at a position t of a DMM
 #'
-#' @param word A subsequence (vector)
+#' @param word A subsequence (string of characters)
 #' @param pos A position (numeric)
 #' @param x An object of class "dmm"
 #' @param output_file A file containing the probability
@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' #' data(lambda, package = "drimmR")
+#' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
 #' word_proba("aggctga",4,dmm, output_file=PROB.out)
@@ -66,8 +66,8 @@ word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
 
 #' Probabilities of a word at several positions of a DMM
 #'
-#' @param word A subsequence
-#' @param pos A vector of positions
+#' @param word A subsequence (string of characters)
+#' @param pos A vector of integer positions
 #' @param x An object of class "dmm"
 #' @param output_file A file containing the vector of probabilities
 #' @param plot FALSE (no figure plot of word probabilities); TRUE (figure plot)
@@ -78,7 +78,7 @@ word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #' @export
 #'
 #' @examples
-#' #' data(lambda, package = "drimmR")
+#' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
 #' word_probas("aggctga",c(100,300),dmm, output_file=PROB.out, plot=FALSE)
@@ -122,20 +122,20 @@ word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
 
 #' Probability of several words at several positions of a DMM
 #'
-#' @param words A vector of character containing words
-#' @param pos A vector of positions
+#' @param words A vector of characters containing words
+#' @param pos A vector of integer positions
 #' @param x An object of class "dmm"
 #' @param output_file A file containing the matrix of probabilities
-
 #' @param plot FALSE (no figure plot of words probabilities); TRUE (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return a dataframe
-#' @import ggplot2 tidyverse reshape2
+#' @import ggplot2 tidyverse tidyr reshape2
+#' @importFrom dplyr filter
 #' @export
 #'
 #' @examples
-#' #' data(lambda, package = "drimmR")
+#' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
 #' words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, output_file=PROB.out, plot=FALSE)
@@ -191,7 +191,7 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #'
 #' @param n An integer, the length word
 #' @param sequence A vector of characters
-#' @param pos A vector of positions
+#' @param pos A vector of integer positions
 #' @param x An object of class "dmm"
 #' @param output_file A file containing the vector of probabilities
 #' @param plot FALSE (no figure plot of words probabilities); TRUE (figure plot)
@@ -202,7 +202,7 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' @export
 #'
 #' @examples
-#' #' data(lambda, package = "drimmR")
+#' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
 #' length_probas(2, lambda, c(100,200), dmm, output_file=PROB.out)
@@ -271,14 +271,14 @@ length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
 #' Expectation of a word in a DMM
 #'
 #' @param word A subsequence
-#' @param DMM An object of class "dmm"
+#' @param x An object of class "dmm"
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return a float
 #' @export
 #'
 #' @examples
-#' #' data(lambda, package = "drimmR")
+#' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
 #' word_expect("atcggatc", dmm, output_file=PROB.out)

@@ -7,7 +7,7 @@
 word_proba(word, pos, x, output_file = NULL, internal = FALSE)
 }
 \arguments{
-\item{word}{A subsequence (vector)}
+\item{word}{A subsequence (string of characters)}
 
 \item{pos}{A position (numeric)}
 
@@ -24,7 +24,7 @@ A numeric, probability of \code{word}
 Probability of a word at a position t of a DMM
 }
 \examples{
-#' data(lambda, package = "drimmR")
+data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
 word_proba("aggctga",4,dmm, output_file=PROB.out)

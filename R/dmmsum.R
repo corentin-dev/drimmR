@@ -345,7 +345,7 @@ getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
   # warning order > 1
   if (x$order > 1L){
-   warning("The getStationaryLaw function could be time consuming for long sequences (> 50 000 model length) and higher orders (> 1). If Waiting time > 1 minute, prefer getDistribution function instead.")
+   warning("The getStationaryLaw function could be time consuming for long sequences (> 50 000 model length) and higher orders (> 1) with Waiting time > 1 minute")
   }
 
 
@@ -599,7 +599,7 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
 
 
-#' Compute Log-likelihood
+#' Evaluate Log-likelihood
 #'
 #' @param x An object of class "dmm"
 #' @param sequences A character vector or a list of character vectors representing the sequence
@@ -682,7 +682,7 @@ loglik.dmmsum <- function(x, sequences){
 }
 
 
-#' Compute AIC
+#' Evaluate AIC
 #'
 #' @param x An object of class "dmm"
 #' @param sequence A character vector or a list of character vector representing the sequence
@@ -734,7 +734,7 @@ aic.dmmsum <- function(x,sequences) {
 
 }
 
-#' Compute BIC
+#' Evaluate BIC
 #'
 #' @param x An object of class "dmm"
 #' @param sequence A character vector or a list of character vector representing the sequence

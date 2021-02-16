@@ -2,7 +2,7 @@
 % Please edit documentation in R/metrics.R
 \name{errorRate}
 \alias{errorRate}
-\title{Compute error rates}
+\title{Evaluate error rates}
 \usage{
 errorRate(
   x,
@@ -24,7 +24,7 @@ errorRate(
 \item{s1}{Character vector of the subspace working states among the state space vector s.t. s1 < s}
 
 \item{error.rate}{Default="BMP", then BMP-failure-rate is the method used to estimate the error rate. If error.rate= "RG",
-then RG-failure rate is the method used to estimate the error rate. See Details for the formulas.}
+then RG-failure rate is the method used to estimate the error rate.}
 
 \item{output_file}{A file containing matrix of error rates at each position}
 
@@ -34,19 +34,13 @@ then RG-failure rate is the method used to estimate the error rate. See Details 
 A matrix with error rate score at each position
 }
 \description{
-Estimation of two different definition of the failure rate.
-
-The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
-continuous time systems.
-The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
+Estimation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate
 }
 \details{
-if `error.rate`="BMP" then for a linear drifting Markov chain of order 1 the error rate is estimated as follows \eqn{\forall R(l-1) \neq 0 , \ \lambda (l) = 1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU})
-1^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ 1^U}}, and \eqn{\lambda (l)=0} otherwise.
+The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
+continuous time systems.
 
-If error.rate= "RG then for a linear drifting Markov chain of order 1 the error rate is estimated as follows
- \eqn{\forall \ l \ge \ 1 \ , r(l)=-\ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}}
- and \eqn{r(l)=-\ln R(0) if l=0} otherwise.
+The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
 }
 \examples{
 data(lambda, package = "drimmR")
@@ -57,6 +51,9 @@ s1 <- c("c","t")  # vector of working states
 ER.out <- "C:\\\\...\\\\file.txt"
 errorRate(dmm,k1,k2,s1, error.rate="BMP",output_file=ER.out,plot=FALSE)
 
+}
+\seealso{
+\code{\link[drimmR]{dmmsum}}, \code{\link[drimmR]{R}}
 }
 \author{
 Alexandre Seiller

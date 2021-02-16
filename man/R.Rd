@@ -2,7 +2,7 @@
 % Please edit documentation in R/metrics.R
 \name{R}
 \alias{R}
-\title{Compute Reliability}
+\title{Evaluate Reliability}
 \usage{
 R(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 }
@@ -37,6 +37,9 @@ s1 <- c("c","t")  # vector of working states
 REL.out <- "C:\\\\...\\\\file.txt"
 R(dmm,k1,k2,s1, output_file=REL.out,plot=FALSE)
 
+}
+\seealso{
+\code{\link[drimmR]{dmmsum}}
 }
 \author{
 Alexandre Seiller

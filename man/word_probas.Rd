@@ -7,9 +7,9 @@
 word_probas(word, pos, x, output_file = NULL, plot = FALSE)
 }
 \arguments{
-\item{word}{A subsequence}
+\item{word}{A subsequence (string of characters)}
 
-\item{pos}{A vector of positions}
+\item{pos}{A vector of integer positions}
 
 \item{x}{An object of class "dmm"}
 
@@ -24,7 +24,7 @@ A numeric vector, probabilities of \code{word}
 Probabilities of a word at several positions of a DMM
 }
 \examples{
-#' data(lambda, package = "drimmR")
+data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
 word_probas("aggctga",c(100,300),dmm, output_file=PROB.out, plot=FALSE)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/metrics.R
 \name{A}
 \alias{A}
-\title{Compute Availability}
+\title{Evaluate Availability}
 \usage{
 A(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 }
@@ -37,6 +37,9 @@ k2 <- 200
 s1 <- c("c","t")  # vector of working states
 AVA.out <- "C:\\\\...\\\\file.txt"
 A(dmm,k1,k2,s1, output_file=AVA.out,plot=FALSE)
+}
+\seealso{
+\code{\link[drimmR]{dmmsum}}, \code{\link[drimmR]{R}}, \code{\link[drimmR]{M}}
 }
 \author{
 Alexandre Seiller
