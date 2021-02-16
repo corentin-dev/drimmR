@@ -1,5 +1,7 @@
 commits 16/02/2021 :
 correction of words_probas roxygen imports (because filter function was not recognized)
+add a return of simulated sequence for simulate function
+update of each help of functions
 
 commits 15/02/2021 :
 from package version 0.2.0 to 1.0.0 in description file
