@@ -18,7 +18,7 @@ words_probas(words, pos, x, output_file = NULL, plot = FALSE)
 \item{plot}{FALSE (no figure plot of words probabilities); TRUE (figure plot)}
 }
 \value{
-a dataframe
+a dataframe of word probabilities along the positions of the sequence
 }
 \description{
 Probability of several words at several positions of a DMM
@@ -28,6 +28,9 @@ data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
 words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, output_file=PROB.out, plot=FALSE)
+}
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}, \link[drimmR]{word_probas}
 }
 \author{
 Victor Mataigne, Alexandre Seiller

@@ -23,6 +23,9 @@ sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 Dmm<-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 bic(Dmm,sequence)
 }
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{bic}
+}
 \author{
 Victor Mataigne, Alexandre Seiller
 }

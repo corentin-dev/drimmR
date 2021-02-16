@@ -287,7 +287,7 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 #'
 #' @return A transition matrix at a given position
 #' @export
-#'
+#' @seealso \link[drimmR]{dmmsum}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq")
@@ -328,7 +328,7 @@ getTransitionMatrix.dmmsum <- function(x, pos) {
 #' @return A vector or matrix of stationary laws
 #' @import foreach doParallel doSNOW future Rlinsolve
 #' @export
-#'
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{stationaryLaw_evol}, \link[drimmR]{getDistribution}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
@@ -456,7 +456,7 @@ getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' @return A matrix of probabilities
 #' @import foreach doParallel doSNOW future
 #' @export
-#'
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{Distribution_evol}, \link[drimmR]{getStationaryLaw}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
@@ -608,7 +608,7 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' @return A list of log-likelihood (numeric)
 #' @export
 #' @import parallel future
-#'
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
@@ -689,7 +689,7 @@ loglik.dmmsum <- function(x, sequences){
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A list of numeric, AIC
 #' @export
-#'
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{aic}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
@@ -741,7 +741,7 @@ aic.dmmsum <- function(x,sequences) {
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A numeric, BIC
 #' @export
-#'
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{bic}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
@@ -796,12 +796,13 @@ return(bic)
 #' Simulate a sequence with the Drifting Markov Model
 #'
 #' @param x An object of class "dmm"
-#' @param output_file directory path of the output file.fa
+#' @param output_file File containing the simulated sequence
 #' @param model_size Size of the model
 #' @author  Annthomy Gilles, Alexandre Seiller
 #' @import parallel doSNOW doParallel foreach seqinr
 #' @export
-#'
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{getStationaryLaw}
+#' @return the vector of simulated sequence
 #' @examples
 #' data(lambda, package = "drimmR")
 #' SIM.out <- "C:\\...\\file.txt"
@@ -872,6 +873,7 @@ simulate.dmmsum <- function(x, output_file,model_size=NULL) {
                       nbchar = 80, file.out = output_file)
 
   parallel::stopCluster(cl)
+  return(simulated_sequence)
 }
 
 

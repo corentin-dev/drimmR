@@ -9,9 +9,9 @@ R(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 \arguments{
 \item{x}{An object of class "dmm"}
 
-\item{k1}{A numeric, start position}
+\item{k1}{start position (numeric)}
 
-\item{k2}{A numeric, end position}
+\item{k2}{end position (numeric)}
 
 \item{s1}{Character vector of the subspace working states among the state space vector s.t. s1 < s}
 
@@ -39,7 +39,7 @@ R(dmm,k1,k2,s1, output_file=REL.out,plot=FALSE)
 
 }
 \seealso{
-\code{\link[drimmR]{dmmsum}}
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 }
 \author{
 Alexandre Seiller

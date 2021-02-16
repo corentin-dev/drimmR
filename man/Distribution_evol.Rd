@@ -16,9 +16,11 @@ Distribution_evol(
 \arguments{
 \item{x}{An object of class "dmm"}
 
-\item{start}{Start position}
+\item{start}{Start position (numeric)}
 
-\item{end}{End position}
+\item{end}{End position (numeric)}
+
+\item{step}{A step (numeric)}
 
 \item{output_file}{A file containing matrix of distributions}
 
@@ -35,6 +37,9 @@ Plot distributions for a range of positions between <start> and <end>
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 DIST.out <- "C:\\\\...\\\\file.txt"
 Distribution_evol(dmm,start=1,end=length(lambda)-1,step=10000, output_file=DIST.out, plot=FALSE)
+}
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}
 }
 \author{
 Alexandre Seiller

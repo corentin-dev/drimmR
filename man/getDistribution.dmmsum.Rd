@@ -28,6 +28,9 @@ t <- 10
 getDistribution(dmm,pos=t)
 
 }
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{Distribution_evol}, \link[drimmR]{getStationaryLaw}
+}
 \author{
 Alexandre Seiller
 }

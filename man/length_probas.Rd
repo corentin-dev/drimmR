@@ -2,7 +2,7 @@
 % Please edit documentation in R/word.R
 \name{length_probas}
 \alias{length_probas}
-\title{Probability of appearance of the Observed word of size n in a sequence at several positions}
+\title{Probability of occurrence of the Observed word of size n in a sequence at several positions}
 \usage{
 length_probas(n, sequence, pos, x, output_file = NULL, plot = FALSE)
 }
@@ -23,13 +23,16 @@ length_probas(n, sequence, pos, x, output_file = NULL, plot = FALSE)
 a dataframe of probability by position (and probability plots)
 }
 \description{
-Probability of appearance of the Observed word of size n in a sequence at several positions
+Probability of occurrence of the Observed word of size n in a sequence at several positions
 }
 \examples{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
-length_probas(2, lambda, c(100,200), dmm, output_file=PROB.out)
+length_probas(n=2, lambda, c(100,200), dmm, output_file=PROB.out, plot=FALSE)
+}
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}
 }
 \author{
 Victor Mataigne, Alexandre Seiller

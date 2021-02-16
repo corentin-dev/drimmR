@@ -5,8 +5,9 @@
 #' Plot distributions for a range of positions between <start> and <end>
 #'
 #' @param x An object of class "dmm"
-#' @param start Start position
-#' @param end End position
+#' @param start Start position (numeric)
+#' @param end End position (numeric)
+#' @param step A step (numeric)
 #' @param output_file A file containing matrix of distributions
 #' @param plot FALSE (no figure plot of dist evolution); TRUE (figure plot)
 #' @author Alexandre Seiller
@@ -14,7 +15,7 @@
 #' @return A matrix of distributions with position and probability of states
 #' @import ggplot2 tidyverse
 #' @export
-
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}
 #' @examples
 #' #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
@@ -86,9 +87,9 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 #' Plot stationary laws for a range of positions between <start> and <end>
 #'
 #' @param x An object of class "dmm"
-#' @param start Start position
-#' @param end End position
-#' @param step A step
+#' @param start Start position (numeric)
+#' @param end End position (numeric)
+#' @param step A step (numeric)
 #' @param output_file A file containing matrix of stationary laws
 #' @param plot FALSE (no figure plot of SL evolution); TRUE (figure plot)
 #' @author Alexandre Seiller
@@ -96,6 +97,7 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 #' @return A matrix of probabilities with position and probability of states (and figure plot)
 #' @import ggplot2 tidyverse
 #' @export
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getStationaryLaw}
 #' @examples
 #' #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
@@ -171,8 +173,8 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 #' @details The pointwise (or instantaneous) availability is the probability that the system is in a working state at time \eqn{l},
 #' independently of the fact that the system worked or not during the time interval \eqn{[0; l)}
 #' @param x An object of class "dmm"
-#' @param k1 A numeric, start position
-#' @param k2 A numeric, end position
+#' @param k1 start position (numeric)
+#' @param k2 end position (numeric)
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1< s
 #' @param output_file A file containing matrix of availability probabilities
 #' @param plot FALSE (no figure plot of availability by position); TRUE (figure plot)
@@ -181,7 +183,7 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 #' @return A matrix with Availability score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
-#' @seealso \code{\link[drimmR]{dmmsum}}, \code{\link[drimmR]{R}}, \code{\link[drimmR]{M}}
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{R}, \link[drimmR]{M}
 #'
 #' @examples
 #' data(lambda, package = "drimmR")
@@ -319,8 +321,8 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @details The reliability at time \eqn{l \in N} is the probability thaht the system has functioned without failure in the period \eqn{[0, l]}
 #'
 #' @param x An object of class "dmm"
-#' @param k1 A numeric, start position
-#' @param k2 A numeric, end position
+#' @param k1 start position (numeric)
+#' @param k2 end position (numeric)
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
 #' @param output_file A file containing matrix of reliability probabilities
 #' @param plot FALSE (no figure plot of reliability by position); TRUE (figure plot)
@@ -329,7 +331,7 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @return A matrix with Reliability score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
-#' @seealso \code{\link[drimmR]{dmmsum}}
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda,1,1,c("a","c","g","t"))
@@ -473,8 +475,8 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' given that is has failed at time \eqn{l=0}.
 #'
 #' @param x An object of class "dmm"
-#' @param k1 A numeric, start position
-#' @param k2 A numeric, end position
+#' @param k1 start position (numeric)
+#' @param k2 end position (numeric)
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
 #' @param output_file A file containing matrix of maintainability probabilities
 #' @param plot FALSE (no figure plot of maintainability by position); TRUE (figure plot)
@@ -484,7 +486,7 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
 #'
-#' @seealso \code{\link[drimmR]{dmmsum}}
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 
 #' @examples
 #' data(lambda, package = "drimmR")
@@ -632,8 +634,8 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
 #'
 #' @param x An object of class "dmm"
-#' @param k1 A numeric, start position
-#' @param k2 A numeric, end position
+#' @param k1 start position (numeric)
+#' @param k2 end position (numeric)
 #' @param error.rate Default="BMP", then BMP-failure-rate is the method used to estimate the error rate. If error.rate= "RG",
 #' then RG-failure rate is the method used to estimate the error rate.
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
@@ -644,7 +646,8 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @return A matrix with error rate score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @export
-#' @seealso \code{\link[drimmR]{dmmsum}}, \code{\link[drimmR]{R}}
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{R}
+
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda,1,1,c("a","c","g","t"))

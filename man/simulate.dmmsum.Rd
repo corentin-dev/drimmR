@@ -9,9 +9,12 @@
 \arguments{
 \item{x}{An object of class "dmm"}
 
-\item{output_file}{directory path of the output file.fa}
+\item{output_file}{File containing the simulated sequence}
 
 \item{model_size}{Size of the model}
+}
+\value{
+the vector of simulated sequence
 }
 \description{
 Simulate a sequence with the Drifting Markov Model
@@ -22,6 +25,9 @@ SIM.out <- "C:\\\\...\\\\file.txt"
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 simulate(dmm,SIM.out,20000)
 
+}
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{getStationaryLaw}
 }
 \author{
 Annthomy Gilles, Alexandre Seiller

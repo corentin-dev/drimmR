@@ -28,6 +28,9 @@ t <- 10
 getStationaryLaw(dmm,pos=t)
 
 }
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{stationaryLaw_evol}, \link[drimmR]{getDistribution}
+}
 \author{
 Alexandre Seiller
 }

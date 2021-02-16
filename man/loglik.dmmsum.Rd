@@ -24,6 +24,9 @@ dmm <-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 loglik(dmm,sequence)
 
 }
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
+}
 \author{
 Annthomy Gilles, Alexandre Seiller
 }

@@ -29,6 +29,9 @@ dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 PROB.out <- "C:\\\\...\\\\file.txt"
 word_probas("aggctga",c(100,300),dmm, output_file=PROB.out, plot=FALSE)
 }
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}, \link[drimmR]{words_probas}
+}
 \author{
 Victor Mataigne, Alexandre Seiller
 }

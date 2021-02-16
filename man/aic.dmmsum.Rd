@@ -23,6 +23,9 @@ sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 dmm <-point_estimate(lambda, 1, 1, c('a','c','g','t'), 1000000)
 aic(dmm,sequence)
 }
+\seealso{
+\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{aic}
+}
 \author{
 Victor Mataigne, Alexandre Seiller
 }

@@ -23,6 +23,9 @@ dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq")
 t <- 10
 getTransitionMatrix(dmm,pos=t)
 }
+\seealso{
+\link[drimmR]{dmmsum}
+}
 \author{
 Victor Mataigne, Alexandre Seiller
 }
