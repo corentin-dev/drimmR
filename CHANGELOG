@@ -1,3 +1,7 @@
+commits 17/02/2021 :
+add of vignette (still latex errors because of bibtex file)
+deletion of word_expect function (not started yet)
+
 commits 16/02/2021 :
 correction of words_probas roxygen imports (because filter function was not recognized)
 add a return of simulated sequence for simulate function
