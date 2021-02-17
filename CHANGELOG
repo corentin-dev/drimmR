@@ -1,4 +1,5 @@
 commits 17/02/2021 :
+add of reference manual
 add of vignette (still latex errors because of bibtex file)
 deletion of word_expect function (not started yet)
 
