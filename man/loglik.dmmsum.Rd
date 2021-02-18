@@ -7,7 +7,7 @@
 \method{loglik}{dmmsum}(x, sequences)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class "dmm",  \link[drimmR]{dmmsum}}
 
 \item{sequences}{A character vector or a list of character vectors representing the sequence}
 }

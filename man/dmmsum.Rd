@@ -32,11 +32,9 @@ estimated by using the stationary law of the point of support transition
 matrices of each letter. If `init.estim` = "unif",
 then, `init.estim` of each letter is estimated by using \eqn{\frac{1}{s}}. Or
 init.estim= customisable vector of length \eqn{|E|^k}. See Details for the formulas.}
-
-\item{model.length}{Model size}
 }
 \value{
-An object of class [dmm], [dmmsum].
+An object of class "dmm", \link[drimmR]{dmmsum}
 }
 \description{
 Estimation of d+1 points of support transition matrices and \eqn{|E|^{k}} initial law of a k-th

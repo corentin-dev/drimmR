@@ -11,8 +11,6 @@ loglik(x, sequences)
 
 \item{sequences}{A vector of character or list of vectors representing the sequences for which the
 log-likelihood of the model must be computed.}
-
-\item{states}{Vector of state space (of length s).}
 }
 \value{
 A numeric, the log-likelihood

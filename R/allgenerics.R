@@ -6,7 +6,6 @@
 #' @param x An object of class "dmm" for which the logikelihood can be computed.
 #' @param sequences A vector of character or list of vectors representing the sequences for which the
 #'   log-likelihood of the model must be computed.
-#' @param states Vector of state space (of length s).
 #' @author Annthomy Gilles, Alexandre Seiller
 #' @return A numeric, the log-likelihood
 #'
@@ -27,7 +26,6 @@ loglik <- function(x,sequences) {
 #' @param x An object of class "dmm" for which the logikelihood can be computed.
 #' @param sequence A vector of character or a list of vector of character representing the sequences for which the
 #'   AIC criterion must be computed.
-#' @param states Vector of state space E (of length s)
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A numeric value giving the value of the AIC.
 #'
@@ -48,7 +46,6 @@ aic <- function(x,sequence) {
 #' @param x An object of class "dmm" for which the logikelihood can be computed.
 #' @param sequence A vector or a list of vector of character representing the sequences for which the
 #'   BIC criterion must be computed.
-#' @param states Vector of state space E (of length s).
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A numeric value giving the value of the BIC.
 #'
@@ -92,7 +89,7 @@ simulate <- function(x, output_file,model_size=100000) {
 #' @param pos An integer, a position
 #' @author Victor Mataigne, Alexandre Seiller
 #'
-#' @return A transition matrix at
+#' @return A transition matrix at a given position
 #' @export
 #'
 #' @examples
@@ -113,13 +110,17 @@ getTransitionMatrix <- function(x, pos) {
 
 #' Get stationary law at a given position or at every positions
 #'
+#'
+#' @description Evaluate stationary law at a given position or at every position
+#'
+#' @details Stationary law at position l is evaluated by solving \eqn{\mu_0 \ \pi_l = \mu}
 #' @param x An object of class "dmm"
 #' @param pos An integer, a position
-#' @param all.pos FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)
+#' @param all.pos FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)
 #' @param internal FALSE (default) ; TRUE (for internal use of dmmsum initial law)
 #' @author Alexandre Seiller
 #'
-#' @return Stationary law at position x or at every positions
+#' @return A vector or matrix of stationary law probabilities
 #' @export
 #'
 #' @examples
@@ -139,13 +140,17 @@ getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
 
 #' Get distribution at a given position or at every positions
 #'
+#'
+#' @description Evaluate distribution at a given position or at every position
+#'
+#' @details Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM
 #' @param x An object of class "dmm"
 #' @param pos An integer, a position
-#' @param all.pos FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)
+#' @param all.pos FALSE (evaluation at pos index) ; TRUE (evaluation for all pos indices)
 #' @param internal FALSE (default) ; TRUE (for internal use of distrib_evol function)
 #' @author Alexandre Seiller
 #'
-#' @return distribution at position x or at every positions
+#' @return A vector or matrix of distribution probabilities
 #' @export
 #'
 #' @examples

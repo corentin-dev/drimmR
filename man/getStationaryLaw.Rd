@@ -11,15 +11,18 @@ getStationaryLaw(x, pos, all.pos = FALSE, internal = FALSE)
 
 \item{pos}{An integer, a position}
 
-\item{all.pos}{FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)}
+\item{all.pos}{FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)}
 
 \item{internal}{FALSE (default) ; TRUE (for internal use of dmmsum initial law)}
 }
 \value{
-Stationary law at position x or at every positions
+A vector or matrix of stationary law probabilities
 }
 \description{
-Get stationary law at a given position or at every positions
+Evaluate stationary law at a given position or at every position
+}
+\details{
+Stationary law at position l is evaluated by solving \eqn{\mu_0 \ \pi_l = \mu}
 }
 \examples{
 data(lambda, package = "drimmR")

@@ -7,19 +7,22 @@
 \method{getDistribution}{dmmsum}(x, pos, all.pos = FALSE, internal = FALSE)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
 
 \item{pos}{An integer for position}
 
-\item{all.pos}{FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)}
+\item{all.pos}{FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)}
 
 \item{internal}{FALSE (default) ; TRUE (for internal use of distrib_evol function)}
 }
 \value{
-A matrix of probabilities
+A vector or matrix of distribution probabilities
 }
 \description{
-Get distribution
+Evaluate distribution at a given position or at every position
+}
+\details{
+Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM
 }
 \examples{
 data(lambda, package = "drimmR")

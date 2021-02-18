@@ -66,10 +66,9 @@
 #'   matrices of each letter. If `init.estim` = "unif",
 #'   then, `init.estim` of each letter is estimated by using \eqn{\frac{1}{s}}. Or
 #'   init.estim= customisable vector of length \eqn{|E|^k}. See Details for the formulas.
-#' @param model.length Model size
 #' @author  Geoffray Brelurut, Alexandre Seiller
 #'
-#' @return An object of class [dmm], [dmmsum].
+#' @return An object of class "dmm", \link[drimmR]{dmmsum}
 #' @export
 #' @import future doSNOW doParallel foreach seqinr
 #' @references
@@ -281,7 +280,7 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 
 #' Get transition matrix at a given position
 #'
-#' @param x An object of class "dmm"
+#' @param x An object of class "dmm", \link[drimmR]{dmmsum}
 #' @param pos  position along the sequence (integer)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
@@ -319,13 +318,18 @@ getTransitionMatrix.dmmsum <- function(x, pos) {
 
 #' Get stationary law
 #'
-#' @param x An object of class "dmm"
+#' @description Evaluate stationary law at a given position or at every position
+#'
+#' @details Stationary law at position l is evaluated by solving \eqn{\mu_0 \ \pi_l = \mu}
+
+#'
+#' @param x An object of class "dmm", \link[drimmR]{dmmsum}
 #' @param pos An integer for position
-#' @param all.pos FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)
+#' @param all.pos FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)
 #' @param internal FALSE (default) ; TRUE (for internal use of dmmsum initial law and word applications)
 #' @author Alexandre Seiller
 #'
-#' @return A vector or matrix of stationary laws
+#' @return A vector or matrix of stationary law probabilities
 #' @import foreach doParallel doSNOW future Rlinsolve
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{stationaryLaw_evol}, \link[drimmR]{getDistribution}
@@ -447,13 +451,18 @@ getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
 #' Get distribution
 #'
-#' @param x An object of class "dmm"
+#' @description Evaluate distribution at a given position or at every position
+#'
+#' @details Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM
+
+#'
+#' @param x An object of class "dmm", \link[drimmR]{dmmsum}
 #' @param pos An integer for position
-#' @param all.pos FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)
+#' @param all.pos FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)
 #' @param internal FALSE (default) ; TRUE (for internal use of distrib_evol function)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix of probabilities
+#' @return A vector or matrix of distribution probabilities
 #' @import foreach doParallel doSNOW future
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{Distribution_evol}, \link[drimmR]{getStationaryLaw}
@@ -601,7 +610,7 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
 #' Evaluate Log-likelihood
 #'
-#' @param x An object of class "dmm"
+#' @param x An object of class "dmm",  \link[drimmR]{dmmsum}
 #' @param sequences A character vector or a list of character vectors representing the sequence
 #' @author Annthomy Gilles, Alexandre Seiller
 #'
@@ -684,7 +693,7 @@ loglik.dmmsum <- function(x, sequences){
 
 #' Evaluate AIC
 #'
-#' @param x An object of class "dmm"
+#' @param x An object of class "dmm", \link[drimmR]{dmmsum}
 #' @param sequence A character vector or a list of character vector representing the sequence
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A list of numeric, AIC
@@ -736,7 +745,7 @@ aic.dmmsum <- function(x,sequences) {
 
 #' Evaluate BIC
 #'
-#' @param x An object of class "dmm"
+#' @param x An object of class "dmm", \link[drimmR]{dmmsum}
 #' @param sequence A character vector or a list of character vector representing the sequence
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A numeric, BIC
@@ -795,7 +804,8 @@ return(bic)
 
 #' Simulate a sequence with the Drifting Markov Model
 #'
-#' @param x An object of class "dmm"
+#'
+#' @param x An object of class "dmm", \link[drimmR]{dmmsum}
 #' @param output_file File containing the simulated sequence
 #' @param model_size Size of the model
 #' @author  Annthomy Gilles, Alexandre Seiller

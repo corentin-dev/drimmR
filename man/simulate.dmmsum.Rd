@@ -7,7 +7,7 @@
 \method{simulate}{dmmsum}(x, output_file, model_size = NULL)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
 
 \item{output_file}{File containing the simulated sequence}
 

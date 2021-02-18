@@ -11,8 +11,6 @@ aic(x, sequence)
 
 \item{sequence}{A vector of character or a list of vector of character representing the sequences for which the
 AIC criterion must be computed.}
-
-\item{states}{Vector of state space E (of length s)}
 }
 \value{
 A numeric value giving the value of the AIC.

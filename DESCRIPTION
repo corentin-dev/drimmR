@@ -1,14 +1,23 @@
 Package: drimmR
 Type: Package
-Title: Drifting Markov Model
+Title: Estimation, Simulation and Reliability of drifting Markov Models
 Version: 1.0.0
-Author: Nicolas VERGNE [aut,cre]
+Author: Vlad Stefan Barbu,
+        Geoffray Brelurut, 
+		Annthomy Gilles, 
+		Arnaud Lefebvre, 
+		Victor Mataigne, 
+		Alexandre Seiller, 
+		Nicolas Vergne
 Maintainer: Nicolas Vergne <Nicolas.Vergne@univ-rouen.fr>
 Description: This package introduce the drifting Markov models (DMMs) which are 
 	inhomogeneous Markov models designed for modeling the heterogeneities of
-	sequences in a more <U+FB02>exible way than homogeneous Markov chains or even 
+	sequences in a more flexible way than homogeneous Markov chains or even 
 	hidden Markov. In this context, we developed a R package dedicated to 
-	the estimation of drifting Markov models.
+	the estimation, simulation and reliability of drifting Markov models. 
+	The implemented methods are described in
+	Vergne, N. (2008), <doi:10.2202/1544-6115.1326>,
+	Barbu, V.S., Vergne, N. (2019) <doi:10.1007/s11009-018-9682-8>
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true

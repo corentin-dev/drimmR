@@ -11,8 +11,6 @@ bic(x, sequence)
 
 \item{sequence}{A vector or a list of vector of character representing the sequences for which the
 BIC criterion must be computed.}
-
-\item{states}{Vector of state space E (of length s).}
 }
 \value{
 A numeric value giving the value of the BIC.

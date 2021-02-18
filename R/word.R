@@ -205,7 +205,9 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' PROB.out <- "C:\\...\\file.txt"
-#' length_probas(n=2, lambda, c(100,200), dmm, output_file=PROB.out, plot=FALSE)
+#' n <- 2
+#' length_probas(n, lambda, c(1,length(lambda)-n+1), mod, output_file=PROB.out, plot=TRUE)
+
 length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
   # Make sure that DMMLength in not shorter than the sequence !
   if (missing(pos)) {

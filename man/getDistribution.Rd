@@ -11,15 +11,18 @@ getDistribution(x, pos, all.pos = FALSE, internal = FALSE)
 
 \item{pos}{An integer, a position}
 
-\item{all.pos}{FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)}
+\item{all.pos}{FALSE (evaluation at pos index) ; TRUE (evaluation for all pos indices)}
 
 \item{internal}{FALSE (default) ; TRUE (for internal use of distrib_evol function)}
 }
 \value{
-distribution at position x or at every positions
+A vector or matrix of distribution probabilities
 }
 \description{
-Get distribution at a given position or at every positions
+Evaluate distribution at a given position or at every position
+}
+\details{
+Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM
 }
 \examples{
 data(lambda, package = "drimmR")

@@ -7,19 +7,22 @@
 \method{getStationaryLaw}{dmmsum}(x, pos, all.pos = FALSE, internal = FALSE)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
 
 \item{pos}{An integer for position}
 
-\item{all.pos}{FALSE (evaluation at pos index) ; TRUE (evaluation for all pos index)}
+\item{all.pos}{FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)}
 
 \item{internal}{FALSE (default) ; TRUE (for internal use of dmmsum initial law and word applications)}
 }
 \value{
-A vector or matrix of stationary laws
+A vector or matrix of stationary law probabilities
 }
 \description{
-Get stationary law
+Evaluate stationary law at a given position or at every position
+}
+\details{
+Stationary law at position l is evaluated by solving \eqn{\mu_0 \ \pi_l = \mu}
 }
 \examples{
 data(lambda, package = "drimmR")

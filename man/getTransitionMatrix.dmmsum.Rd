@@ -7,7 +7,7 @@
 \method{getTransitionMatrix}{dmmsum}(x, pos)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
 
 \item{pos}{position along the sequence (integer)}
 }

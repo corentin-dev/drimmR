@@ -12,7 +12,7 @@ getTransitionMatrix(x, pos)
 \item{pos}{An integer, a position}
 }
 \value{
-A transition matrix at
+A transition matrix at a given position
 }
 \description{
 Get transition matrix at a given position
