@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{getDistribution}
 \alias{getDistribution}
-\title{Get distribution at a given position or at every positions}
+\title{Get distribution S3 generic function}
 \usage{
 getDistribution(x, pos, all.pos = FALSE, internal = FALSE)
 }

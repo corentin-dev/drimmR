@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{simulate}
 \alias{simulate}
-\title{Simulate a sequence with the Drifting Markov Model}
+\title{Simulate S3 generic function}
 \usage{
 simulate(x, output_file, model_size = 1e+05)
 }
@@ -14,7 +14,7 @@ simulate(x, output_file, model_size = 1e+05)
 \item{model_size}{Size of the model}
 }
 \description{
-Simulate a sequence with the Drifting Markov Model
+Simulate S3 generic function
 }
 \examples{
 data(lambda, package = "drimmR")

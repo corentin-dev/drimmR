@@ -1,4 +1,4 @@
-#' Loglikelihood
+#' Loglikelihood S3 generic function
 #'
 #' @description Generic function computing the loglikelihood of the model `x`,
 #'   with the list of sequences `sequences`.
@@ -18,7 +18,7 @@ loglik <- function(x,sequences) {
 
 
 
-#' Akaike Information Criterion (AIC)
+#' Akaike Information Criterion (AIC) S3 generic function
 #'
 #' @description Generic function computing the Akaike Information Criterion of
 #'   the model `x`, with the list of sequences `sequences`.
@@ -38,7 +38,7 @@ aic <- function(x,sequence) {
 
 
 
-#' Bayesian Information Criterion (BIC)
+#' Bayesian Information Criterion (BIC) S3 generic function
 #'
 #' @description Generic function computing the Bayesian Information Criterion
 #'   of the model `x`, with the list of sequences `sequences`.
@@ -58,7 +58,7 @@ bic <- function(x, sequence) {
 
 
 
-#' Simulate a sequence with the Drifting Markov Model
+#' Simulate S3 generic function
 #'
 #' @param x An object of class "dmm"
 #' @param output_file A file containing matrix of probabilities
@@ -83,7 +83,7 @@ simulate <- function(x, output_file,model_size=100000) {
 ## Getting Transition Matrices and Steady State
 ## =====================================================
 
-#' Get transition matrix at a given position
+#' Get transition S3 generic function
 #'
 #' @param x An object of class "dmm"
 #' @param pos An integer, a position
@@ -108,7 +108,7 @@ getTransitionMatrix <- function(x, pos) {
 ## Get stationary laws
 ## =====================================================
 
-#' Get stationary law at a given position or at every positions
+#' Get stationary law S3 generic function
 #'
 #'
 #' @description Evaluate stationary law at a given position or at every position
@@ -138,7 +138,7 @@ getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
 ## Get distributions
 ## =====================================================
 
-#' Get distribution at a given position or at every positions
+#' Get distribution S3 generic function
 #'
 #'
 #' @description Evaluate distribution at a given position or at every position

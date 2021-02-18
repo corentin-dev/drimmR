@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{aic}
 \alias{aic}
-\title{Akaike Information Criterion (AIC)}
+\title{Akaike Information Criterion (AIC) S3 generic function}
 \usage{
 aic(x, sequence)
 }

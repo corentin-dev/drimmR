@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{bic}
 \alias{bic}
-\title{Bayesian Information Criterion (BIC)}
+\title{Bayesian Information Criterion (BIC) S3 generic function}
 \usage{
 bic(x, sequence)
 }

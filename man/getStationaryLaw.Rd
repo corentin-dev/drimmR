@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{getStationaryLaw}
 \alias{getStationaryLaw}
-\title{Get stationary law at a given position or at every positions}
+\title{Get stationary law S3 generic function}
 \usage{
 getStationaryLaw(x, pos, all.pos = FALSE, internal = FALSE)
 }

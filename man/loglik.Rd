@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{loglik}
 \alias{loglik}
-\title{Loglikelihood}
+\title{Loglikelihood S3 generic function}
 \usage{
 loglik(x, sequences)
 }

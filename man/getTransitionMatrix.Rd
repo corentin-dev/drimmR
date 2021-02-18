@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{getTransitionMatrix}
 \alias{getTransitionMatrix}
-\title{Get transition matrix at a given position}
+\title{Get transition S3 generic function}
 \usage{
 getTransitionMatrix(x, pos)
 }
@@ -15,7 +15,7 @@ getTransitionMatrix(x, pos)
 A transition matrix at a given position
 }
 \description{
-Get transition matrix at a given position
+Get transition S3 generic function
 }
 \examples{
 data(lambda, package = "drimmR")
