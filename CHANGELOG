@@ -1,5 +1,6 @@
 commits 18/02/2021 :
 modifications on reference manual (description page + add details to getStationaryLaw and getDistribution functions)
+correction of words_probas plot (former version : figure plot was not scaled on the selected frame)
 
 commits 17/02/2021 :
 add of reference manual
