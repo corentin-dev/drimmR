@@ -1,3 +1,6 @@
+commits 18/02/2021 :
+modifications on reference manual (description page + add details to getStationaryLaw and getDistribution functions)
+
 commits 17/02/2021 :
 add of reference manual
 add of vignette (still latex errors because of bibtex file)
