@@ -22,7 +22,7 @@ A vector or matrix of stationary law probabilities
 Evaluate stationary law at a given position or at every position
 }
 \details{
-Stationary law at position l is evaluated by solving \eqn{\mu_0 \ \pi_l = \mu}
+Stationary law at position l is evaluated by solving \eqn{\mu_k \ \pi_{\frac{k}{n}} = \mu}
 }
 \examples{
 data(lambda, package = "drimmR")

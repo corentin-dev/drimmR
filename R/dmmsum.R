@@ -45,7 +45,7 @@
 #'      \eqn{k}.}
 #'       \item{Estimation based on the stationary law of point of support
 #'       transition matrix for a word of length k :}{
-#'      The initial distribution is estimated using \eqn{\mu(\Pi_{\frac{k-1}{n}}
+#'      The initial distribution is estimated using \eqn{\mu(\Pi_{\frac{k-1}{n}})
 #'      }}
 #'       \item{Estimation based on the uniform law :}{
 #'       \eqn{\frac{1}{s}}}
@@ -320,7 +320,7 @@ getTransitionMatrix.dmmsum <- function(x, pos) {
 #'
 #' @description Evaluate stationary law at a given position or at every position
 #'
-#' @details Stationary law at position l is evaluated by solving \eqn{\mu_0 \ \pi_l = \mu}
+#' @details Stationary law at position l is evaluated by solving \eqn{\mu_k \ \pi_{\frac{k}{n}} = \mu}
 
 #'
 #' @param x An object of class "dmm", \link[drimmR]{dmmsum}

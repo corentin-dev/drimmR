@@ -77,7 +77,7 @@ be \eqn{d} Markov transition matrices (of order \eqn{k}) over a state space \eqn
      \eqn{k}.}
       \item{Estimation based on the stationary law of point of support
       transition matrix for a word of length k :}{
-     The initial distribution is estimated using \eqn{\mu(\Pi_{\frac{k-1}{n}}
+     The initial distribution is estimated using \eqn{\mu(\Pi_{\frac{k-1}{n}})
      }}
       \item{Estimation based on the uniform law :}{
       \eqn{\frac{1}{s}}}
