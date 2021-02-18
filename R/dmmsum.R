@@ -320,7 +320,7 @@ getTransitionMatrix.dmmsum <- function(x, pos) {
 #'
 #' @description Evaluate stationary law at a given position or at every position
 #'
-#' @details Stationary law at position l is evaluated by solving \eqn{\mu_k \ \pi_{\frac{k}{n}} = \mu}
+#' @details Stationary law at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
 
 #'
 #' @param x An object of class "dmm", \link[drimmR]{dmmsum}
