@@ -110,7 +110,7 @@ word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
     frame <- word_probas
     # probability plot on overall frame
     fig1 <- ggplot2::ggplot(data=frame, ggplot2::aes(x=position, y=probability)) +
-      ggplot2::geom_line() + geom_point() +
+      ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
       ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", word,"' at each position of the frame")) +
       ggplot2::theme_bw()
 
@@ -170,18 +170,20 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
   # probability plot
   if(isTRUE(plot)){
     colnames(probas) <- c("position",words[1:length(words)])
+   # probas<- subset(probas, position %in% c(pos[1]:pos[2]))
     frame <- data.frame(reshape2::melt(probas[,-1]))
+    frame <- frame[,-1]
+    frame <- cbind(rep(c(pos[1]:pos[2]),length(words)),frame)
     colnames(frame) <-c("position","word","probability")
     fig1 <- list()
     for (o in c(1:length(words))){
 
      fig1[[o]] <- frame %>% filter(word==words[o]) %>%  ggplot2::ggplot(aes(x=position, y=probability)) +
-       ggplot2::geom_line() + geom_point() +
+       ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
        ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", words[o],"' at each position of the frame")) +
        ggplot2::theme_bw()
     }
   }
-
   return(list(words_probas,if(isTRUE(plot)){fig1}))
 }
 
@@ -257,7 +259,7 @@ length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
 
       fig2[[o]] <- frame %>% filter(last==x$states[o]) %>%  ggplot(aes(x=position, y=as.numeric(probability), group=word,colour=word)) +
         geom_line() + geom_point() + theme_bw() + theme(panel.spacing.y=unit(1,"cm")) +
-        guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
+        guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
         theme(axis.title.x = element_text(size=10, face="bold"), legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
         facet_wrap(.~word, scales = "free_y") + labs(x = "Position", y = "Probability",title=paste0("Words ending with '",x$states[o],"'"), fill="Package :") +
         theme(title=element_text(size=15,face="bold"))
