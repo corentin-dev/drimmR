@@ -4,12 +4,12 @@
 \alias{simulate.dmmsum}
 \title{Simulate a sequence with the Drifting Markov Model}
 \usage{
-\method{simulate}{dmmsum}(x, output_file, model_size = NULL)
+\method{simulate}{dmmsum}(x, output_file = NULL, model_size = NULL)
 }
 \arguments{
 \item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
 
-\item{output_file}{File containing the simulated sequence}
+\item{output_file}{(Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")}
 
 \item{model_size}{Size of the model}
 }
@@ -21,10 +21,13 @@ Simulate a sequence with the Drifting Markov Model
 }
 \examples{
 data(lambda, package = "drimmR")
-SIM.out <- "C:\\\\...\\\\file.txt"
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-simulate(dmm,SIM.out,20000)
+simulate(dmm, model_size=100)
 
+}
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{getStationaryLaw}

@@ -91,7 +91,8 @@ degree <- 1
 dmmsum(lambda,order,degree,states, init.estim = "freq")
 }
 \references{
-
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \author{
 Geoffray Brelurut, Alexandre Seiller

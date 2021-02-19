@@ -10,7 +10,7 @@ Author: Vlad Stefan Barbu,
 		Alexandre Seiller, 
 		Nicolas Vergne
 Maintainer: Nicolas Vergne <Nicolas.Vergne@univ-rouen.fr>
-Description: This package introduce the drifting Markov models (DMMs) which are 
+Description: This package introduces the drifting Markov models (DMMs) which are 
 	inhomogeneous Markov models designed for modeling the heterogeneities of
 	sequences in a more flexible way than homogeneous Markov chains or even 
 	hidden Markov. In this context, we developed a R package dedicated to 
@@ -35,7 +35,11 @@ Imports: seqinr,
 	future,
 	doParallel,
 	doSNOW,
-    tidyverse 
+    tidyverse,
+	dplyr,
+	reshape2,
+	Rdpack
+RdMacros: Rdpack
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Depends: 

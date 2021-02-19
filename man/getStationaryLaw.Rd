@@ -24,11 +24,9 @@ Evaluate stationary law at a given position or at every position
 \details{
 Stationary law at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
 }
-\examples{
-data(lambda, package = "drimmR")
-dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-t <- 10
-getStationaryLaw(dmm,pos=t)
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \author{
 Alexandre Seiller

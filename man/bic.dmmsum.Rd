@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
 
-\item{sequence}{A character vector or a list of character vector representing the sequence}
+\item{sequences}{A character vector or a list of character vector representing the sequence}
 }
 \value{
 A numeric, BIC
@@ -20,8 +20,12 @@ Evaluate BIC
 \examples{
 data(lambda, package = "drimmR")
 sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
-Dmm<-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-bic(Dmm,sequence)
+dmm<-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+bic(dmm,sequence)
+}
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{bic}

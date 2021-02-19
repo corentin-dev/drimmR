@@ -13,7 +13,7 @@ word_probas(word, pos, x, output_file = NULL, plot = FALSE)
 
 \item{x}{An object of class "dmm"}
 
-\item{output_file}{A file containing the vector of probabilities}
+\item{output_file}{(Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")}
 
 \item{plot}{FALSE (no figure plot of word probabilities); TRUE (figure plot)}
 }
@@ -26,8 +26,11 @@ Probabilities of a word at several positions of a DMM
 \examples{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-PROB.out <- "C:\\\\...\\\\file.txt"
-word_probas("aggctga",c(100,300),dmm, output_file=PROB.out, plot=FALSE)
+word_probas("aggctga",c(100,300),dmm, plot=TRUE)
+}
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}, \link[drimmR]{words_probas}

@@ -15,7 +15,7 @@ length_probas(n, sequence, pos, x, output_file = NULL, plot = FALSE)
 
 \item{x}{An object of class "dmm"}
 
-\item{output_file}{A file containing the vector of probabilities}
+\item{output_file}{(Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")}
 
 \item{plot}{FALSE (no figure plot of words probabilities); TRUE (figure plot)}
 }
@@ -28,9 +28,12 @@ Probability of occurrence of the Observed word of size n in a sequence at severa
 \examples{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-PROB.out <- "C:\\\\...\\\\file.txt"
 n <- 2
-length_probas(n, lambda, c(1,length(lambda)-n+1), mod, output_file=PROB.out, plot=TRUE)
+length_probas(n, lambda, c(1,length(lambda)-n+1), dmm,plot=TRUE)
+}
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}

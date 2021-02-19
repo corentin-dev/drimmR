@@ -3,18 +3,21 @@
 #' @param word A subsequence (string of characters)
 #' @param pos A position (numeric)
 #' @param x An object of class "dmm"
-#' @param output_file A file containing the probability
+#' @param output_file (Optional) A file containing the probability (e.g,"C:/.../PROB.txt")
 #' @param internal FALSE (default) ; TRUE (for internal use of word applications)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A numeric, probability of \code{word}
 #' @export
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probas}, \link[drimmR]{words_probas}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' PROB.out <- "C:\\...\\file.txt"
-#' word_proba("aggctga",4,dmm, output_file=PROB.out)
+#' word_proba("aggctga",4,dmm)
 word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
   word_c <- unlist(strsplit(word, split=""))
   word_length <- length(word_c)
@@ -43,7 +46,7 @@ word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
       }
     }
   } else { # if word_length < order
-    al <- c("a","c","g","t")
+    al <- x$states
     for (i in 1:(word_length)) {
       if (i == 1) {
         p <- res[which(al==paste(unlist(strsplit(word_c, split="")))[i])]
@@ -69,19 +72,22 @@ word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #' @param word A subsequence (string of characters)
 #' @param pos A vector of integer positions
 #' @param x An object of class "dmm"
-#' @param output_file A file containing the vector of probabilities
+#' @param output_file (Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")
 #' @param plot FALSE (no figure plot of word probabilities); TRUE (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A numeric vector, probabilities of \code{word}
 #' @import ggplot2 tidyverse
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}, \link[drimmR]{words_probas}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' PROB.out <- "C:\\...\\file.txt"
-#' word_probas("aggctga",c(100,300),dmm, output_file=PROB.out, plot=FALSE)
+#' word_probas("aggctga",c(100,300),dmm, plot=TRUE)
 
 word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
   proba <- c()
@@ -125,20 +131,23 @@ word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
 #' @param words A vector of characters containing words
 #' @param pos A vector of integer positions
 #' @param x An object of class "dmm"
-#' @param output_file A file containing the matrix of probabilities
+#' @param output_file (Optional) A file containing the matrix of probabilities (e.g,"C:/.../PROB.txt")
 #' @param plot FALSE (no figure plot of words probabilities); TRUE (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return a dataframe of word probabilities along the positions of the sequence
-#' @import ggplot2 tidyverse tidyr reshape2
-#' @importFrom dplyr filter
+#' @import ggplot2 tidyverse
+#' @rawNamespace import(dplyr, except = count)
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}, \link[drimmR]{word_probas}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' PROB.out <- "C:\\...\\file.txt"
-#' words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, output_file=PROB.out, plot=FALSE)
+#' words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, plot=TRUE)
 
 words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 
@@ -178,7 +187,7 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
     fig1 <- list()
     for (o in c(1:length(words))){
 
-     fig1[[o]] <- frame %>% filter(word==words[o]) %>%  ggplot2::ggplot(aes(x=position, y=probability)) +
+     fig1[[o]] <- frame %>% dplyr::filter(word==words[o]) %>%  ggplot2::ggplot(aes(x=position, y=probability)) +
        ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
        ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", words[o],"' at each position of the frame")) +
        ggplot2::theme_bw()
@@ -195,20 +204,23 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' @param sequence A vector of characters
 #' @param pos A vector of integer positions
 #' @param x An object of class "dmm"
-#' @param output_file A file containing the vector of probabilities
+#' @param output_file (Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")
 #' @param plot FALSE (no figure plot of words probabilities); TRUE (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return a dataframe of probability by position (and probability plots)
 #' @import ggplot2 tidyverse
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' PROB.out <- "C:\\...\\file.txt"
 #' n <- 2
-#' length_probas(n, lambda, c(1,length(lambda)-n+1), mod, output_file=PROB.out, plot=TRUE)
+#' length_probas(n, lambda, c(1,length(lambda)-n+1), dmm,plot=TRUE)
 
 length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
   # Make sure that DMMLength in not shorter than the sequence !

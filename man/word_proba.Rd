@@ -13,7 +13,7 @@ word_proba(word, pos, x, output_file = NULL, internal = FALSE)
 
 \item{x}{An object of class "dmm"}
 
-\item{output_file}{A file containing the probability}
+\item{output_file}{(Optional) A file containing the probability (e.g,"C:/.../PROB.txt")}
 
 \item{internal}{FALSE (default) ; TRUE (for internal use of word applications)}
 }
@@ -26,8 +26,11 @@ Probability of a word at a position t of a DMM
 \examples{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-PROB.out <- "C:\\\\...\\\\file.txt"
-word_proba("aggctga",4,dmm, output_file=PROB.out)
+word_proba("aggctga",4,dmm)
+}
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probas}, \link[drimmR]{words_probas}

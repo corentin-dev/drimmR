@@ -4,12 +4,12 @@
 \alias{aic}
 \title{Akaike Information Criterion (AIC) S3 generic function}
 \usage{
-aic(x, sequence)
+aic(x, sequences)
 }
 \arguments{
 \item{x}{An object of class "dmm" for which the logikelihood can be computed.}
 
-\item{sequence}{A vector of character or a list of vector of character representing the sequences for which the
+\item{sequences}{A vector of character or a list of vector of character representing the sequences for which the
 AIC criterion must be computed.}
 }
 \value{
@@ -18,6 +18,10 @@ A numeric value giving the value of the AIC.
 \description{
 Generic function computing the Akaike Information Criterion of
   the model `x`, with the list of sequences `sequences`.
+}
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \author{
 Victor Mataigne, Alexandre Seiller

@@ -9,6 +9,11 @@
 #' @author Annthomy Gilles, Alexandre Seiller
 #' @return A numeric, the log-likelihood
 #'
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
+#'
 #'
 #' @export
 #'
@@ -24,15 +29,19 @@ loglik <- function(x,sequences) {
 #'   the model `x`, with the list of sequences `sequences`.
 #'
 #' @param x An object of class "dmm" for which the logikelihood can be computed.
-#' @param sequence A vector of character or a list of vector of character representing the sequences for which the
+#' @param sequences A vector of character or a list of vector of character representing the sequences for which the
 #'   AIC criterion must be computed.
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A numeric value giving the value of the AIC.
-#'
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
+
 #'
 #' @export
 #'
-aic <- function(x,sequence) {
+aic <- function(x,sequences) {
   UseMethod("aic", x)
 }
 
@@ -44,15 +53,18 @@ aic <- function(x,sequence) {
 #'   of the model `x`, with the list of sequences `sequences`.
 #'
 #' @param x An object of class "dmm" for which the logikelihood can be computed.
-#' @param sequence A vector or a list of vector of character representing the sequences for which the
+#' @param sequences A vector or a list of vector of character representing the sequences for which the
 #'   BIC criterion must be computed.
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A numeric value giving the value of the BIC.
-#'
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #'
 #' @export
 #'
-bic <- function(x, sequence) {
+bic <- function(x, sequences) {
   UseMethod("bic", x)
 }
 
@@ -60,19 +72,16 @@ bic <- function(x, sequence) {
 
 #' Simulate S3 generic function
 #'
-#' @param x An object of class "dmm"
-#' @param output_file A file containing matrix of probabilities
+#' @param x  An object of class "dmm", \link[drimmR]{dmmsum}
+#' @param output_file (Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")
 #' @param model_size Size of the model
 #' @author  Annthomy Gilles, Alexandre Seiller
 #' @import utils
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #' @export
-#'
-#' @examples
-#' data(lambda, package = "drimmR")
-#' SIM.out <- "C:\\...\\file.txt"
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' simulate(dmm,SIM.out,20000)
-#'
 
 simulate <- function(x, output_file,model_size=100000) {
   UseMethod("simulate", x)
@@ -91,13 +100,11 @@ simulate <- function(x, output_file,model_size=100000) {
 #'
 #' @return A transition matrix at a given position
 #' @export
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #'
-#' @examples
-#' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim="freq")
-#' t <- 10
-#' getTransitionMatrix(dmm,pos=t)
-
 
 getTransitionMatrix <- function(x, pos) {
   UseMethod("getTransitionMatrix", x)
@@ -122,12 +129,11 @@ getTransitionMatrix <- function(x, pos) {
 #'
 #' @return A vector or matrix of stationary law probabilities
 #' @export
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #'
-#' @examples
-#' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' t <- 10
-#' getStationaryLaw(dmm,pos=t)
 
 getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
   UseMethod("getStationaryLaw", x)
@@ -149,16 +155,12 @@ getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
 #' @param all.pos FALSE (evaluation at pos index) ; TRUE (evaluation for all pos indices)
 #' @param internal FALSE (default) ; TRUE (for internal use of distrib_evol function)
 #' @author Alexandre Seiller
-#'
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #' @return A vector or matrix of distribution probabilities
 #' @export
-#'
-#' @examples
-#' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' t <- 10
-#' getDistribution(dmm,pos=t)
-
 
 getDistribution <- function(x, pos, all.pos=FALSE, internal=FALSE) {
   UseMethod("getDistribution", x)

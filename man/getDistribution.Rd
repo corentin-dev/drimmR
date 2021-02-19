@@ -24,11 +24,9 @@ Evaluate distribution at a given position or at every position
 \details{
 Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM
 }
-\examples{
-data(lambda, package = "drimmR")
-dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-t <- 10
-getDistribution(dmm,pos=t)
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \author{
 Alexandre Seiller

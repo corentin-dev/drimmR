@@ -71,7 +71,10 @@
 #' @return An object of class "dmm", \link[drimmR]{dmmsum}
 #' @export
 #' @import future doSNOW doParallel foreach seqinr
+#' @importFrom Rdpack reprompt
 #' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #'
 #' @examples
 #' data(lambda, package = "drimmR")
@@ -286,6 +289,12 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 #'
 #' @return A transition matrix at a given position
 #' @export
+#'
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
+
 #' @seealso \link[drimmR]{dmmsum}
 #' @examples
 #' data(lambda, package = "drimmR")
@@ -328,9 +337,14 @@ getTransitionMatrix.dmmsum <- function(x, pos) {
 #' @param all.pos FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)
 #' @param internal FALSE (default) ; TRUE (for internal use of dmmsum initial law and word applications)
 #' @author Alexandre Seiller
-#'
+
 #' @return A vector or matrix of stationary law probabilities
-#' @import foreach doParallel doSNOW future Rlinsolve
+#' @import foreach doParallel doSNOW future
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
+
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{stationaryLaw_evol}, \link[drimmR]{getDistribution}
 #' @examples
@@ -361,8 +375,8 @@ getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
     names_states <- colnames(m)
 
     # Test if matrix is square
-    if (!drimmR:::.is_square(m))
-      m <- drimmR:::.overlap_states(m)
+    if (!.is_square(m))
+      m <- .overlap_states(m)
 
     # Get coefficient matrix
     size <- nrow(m)
@@ -396,12 +410,12 @@ getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
     output <- foreach(i= c(1:x$length),.packages = c("doSNOW"), .combine = "c") %dopar% {
 
       # Get transition matrix
-      m <- drimmR::getTransitionMatrix(x, i)
+      m <- getTransitionMatrix(x, i)
       names_states <- colnames(m)
 
       # Test if matrix is square
-      if (!drimmR:::.is_square(m))
-        m <- drimmR:::.overlap_states(m)
+      if (!.is_square(m))
+        m <- .overlap_states(m)
 
       # Get coefficient matrix
       size <- nrow(m)
@@ -447,8 +461,6 @@ getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
 
 
-
-
 #' Get distribution
 #'
 #' @description Evaluate distribution at a given position or at every position
@@ -464,6 +476,10 @@ getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #'
 #' @return A vector or matrix of distribution probabilities
 #' @import foreach doParallel doSNOW future
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{Distribution_evol}, \link[drimmR]{getStationaryLaw}
 #' @examples
@@ -502,14 +518,14 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
     if(order==1L){
 
       output <- parallel::parLapply(cl, X=c(order:pos), function(i) {
-        Pit <- drimmR::getTransitionMatrix(x, pos=i)
+        Pit <- getTransitionMatrix(x, pos=i)
       })
     }
 
     # DMM order > 1
     if(order>1L){
       output <- parallel::parLapply(cl, X=c(order:pos), function(i) {
-        Pit <- drimmR:::.overlap_states(drimmR::getTransitionMatrix(x, pos=i))
+        Pit <- .overlap_states(getTransitionMatrix(x, pos=i))
       })
 
     }
@@ -560,7 +576,7 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
       output <- foreach(i=seq(from = order, to = mod.length, by = 1),.packages = c("doSNOW"), .combine = "c") %dopar% {
 
-        Pit <- lapply(i,drimmR::getTransitionMatrix,x=x)
+        Pit <- lapply(i,getTransitionMatrix,x=x)
 
       }
       parallel::stopCluster(cl)
@@ -582,7 +598,7 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
       output <- foreach(i=seq(from = order, to = mod.length, by = 1),.packages = c("doSNOW"), .combine = "c") %dopar% {
 
-        Pit <- lapply(i,drimmR:::.overlap_states(drimmR::getTransitionMatrix),x=x)
+        Pit <- lapply(i,.overlap_states(getTransitionMatrix),x=x)
 
       }
       parallel::stopCluster(cl)
@@ -608,6 +624,8 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
 
 
+
+
 #' Evaluate Log-likelihood
 #'
 #' @param x An object of class "dmm",  \link[drimmR]{dmmsum}
@@ -617,6 +635,11 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' @return A list of log-likelihood (numeric)
 #' @export
 #' @import parallel future
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
+
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 #' @examples
 #' data(lambda, package = "drimmR")
@@ -663,7 +686,7 @@ loglik.dmmsum <- function(x, sequences){
     cl <- parallel::makeCluster(future::availableCores(), type = "PSOCK")
     parallel::clusterExport(cl=cl, varlist=c("x","ll","sequences","k","states"),envir=environment())
     ll <- unlist(parallel::parLapply(cl, X=c(k:((length(sequences) - k) + 1)), function(i) {
-      Pest <- drimmR::getTransitionMatrix(x, i)
+      Pest <- getTransitionMatrix(x, i)
       window <- paste(sequences[((i - k) + 1):i], collapse = "")
       if(i!=length(sequences)){
         ll <- ll + log(Pest[window, sequences[(i + 1)]])
@@ -694,15 +717,20 @@ loglik.dmmsum <- function(x, sequences){
 #' Evaluate AIC
 #'
 #' @param x An object of class "dmm", \link[drimmR]{dmmsum}
-#' @param sequence A character vector or a list of character vector representing the sequence
+#' @param sequences A character vector or a list of character vector representing the sequence
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A list of numeric, AIC
 #' @export
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
+
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{aic}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
-#' dmm <-point_estimate(lambda, 1, 1, c('a','c','g','t'), 1000000)
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' aic(dmm,sequence)
 aic.dmmsum <- function(x,sequences) {
 
@@ -746,16 +774,21 @@ aic.dmmsum <- function(x,sequences) {
 #' Evaluate BIC
 #'
 #' @param x An object of class "dmm", \link[drimmR]{dmmsum}
-#' @param sequence A character vector or a list of character vector representing the sequence
+#' @param sequences A character vector or a list of character vector representing the sequence
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A numeric, BIC
 #' @export
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
+
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{bic}
 #' @examples
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
-#' Dmm<-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' bic(Dmm,sequence)
+#' dmm<-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' bic(dmm,sequence)
 bic.dmmsum <- function(x,sequences) {
 
   ################################################
@@ -806,21 +839,24 @@ return(bic)
 #'
 #'
 #' @param x An object of class "dmm", \link[drimmR]{dmmsum}
-#' @param output_file File containing the simulated sequence
+#' @param output_file (Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")
 #' @param model_size Size of the model
 #' @author  Annthomy Gilles, Alexandre Seiller
 #' @import parallel doSNOW doParallel foreach seqinr
 #' @export
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{getStationaryLaw}
 #' @return the vector of simulated sequence
 #' @examples
 #' data(lambda, package = "drimmR")
-#' SIM.out <- "C:\\...\\file.txt"
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' simulate(dmm,SIM.out,20000)
+#' simulate(dmm, model_size=100)
 #'
 
-simulate.dmmsum <- function(x, output_file,model_size=NULL) {
+simulate.dmmsum <- function(x, output_file=NULL,model_size=NULL) {
 
   print("Write a simulated file from the model")
 
@@ -856,9 +892,6 @@ simulate.dmmsum <- function(x, output_file,model_size=NULL) {
     first_order_nucleotides[k]<- sample(states,1, prob=law_for_states)
   }
 
-  utils::write.table(first_order_nucleotides, file = output_file,
-                     append = FALSE, sep = "",row.names = FALSE,
-                     col.names = FALSE,eol = "",quote = FALSE)
 
   #  other orders
 
@@ -879,8 +912,9 @@ simulate.dmmsum <- function(x, output_file,model_size=NULL) {
 
   simulated_sequence <- c(first_order_nucleotides, simulated_sequence)
 
+  if(!is.null(output_file)){
   seqinr::write.fasta(sequences = simulated_sequence, names = names(simulated_sequence),
-                      nbchar = 80, file.out = output_file)
+                      nbchar = 80, file.out = output_file)}
 
   parallel::stopCluster(cl)
   return(simulated_sequence)

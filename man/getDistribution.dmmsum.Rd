@@ -31,6 +31,10 @@ t <- 10
 getDistribution(dmm,pos=t)
 
 }
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
+}
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{Distribution_evol}, \link[drimmR]{getStationaryLaw}
 }

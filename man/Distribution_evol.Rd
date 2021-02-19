@@ -22,7 +22,7 @@ Distribution_evol(
 
 \item{step}{A step (numeric)}
 
-\item{output_file}{A file containing matrix of distributions}
+\item{output_file}{(Optional) A file containing matrix of distributions (e.g, "C:/.../DIST.txt")}
 
 \item{plot}{FALSE (no figure plot of dist evolution); TRUE (figure plot)}
 }
@@ -33,10 +33,13 @@ A matrix of distributions with position and probability of states
 Plot distributions for a range of positions between <start> and <end>
 }
 \examples{
-#' data(lambda, package = "drimmR")
+data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-DIST.out <- "C:\\\\...\\\\file.txt"
-Distribution_evol(dmm,start=1,end=length(lambda)-1,step=10000, output_file=DIST.out, plot=FALSE)
+Distribution_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
+}
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}

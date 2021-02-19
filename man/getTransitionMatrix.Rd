@@ -17,11 +17,9 @@ A transition matrix at a given position
 \description{
 Get transition S3 generic function
 }
-\examples{
-data(lambda, package = "drimmR")
-dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim="freq")
-t <- 10
-getTransitionMatrix(dmm,pos=t)
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \author{
 Victor Mataigne, Alexandre Seiller

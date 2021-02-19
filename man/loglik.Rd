@@ -19,6 +19,10 @@ A numeric, the log-likelihood
 Generic function computing the loglikelihood of the model `x`,
   with the list of sequences `sequences`.
 }
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
+}
 \author{
 Annthomy Gilles, Alexandre Seiller
 }

@@ -2,86 +2,6 @@
 ## =======================================================
 
 
-#' Plot distributions for a range of positions between <start> and <end>
-#'
-#' @param x An object of class "dmm"
-#' @param start Start position (numeric)
-#' @param end End position (numeric)
-#' @param step A step (numeric)
-#' @param output_file A file containing matrix of distributions
-#' @param plot FALSE (no figure plot of dist evolution); TRUE (figure plot)
-#' @author Alexandre Seiller
-#'
-#' @return A matrix of distributions with position and probability of states
-#' @import ggplot2 tidyverse
-#' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}
-#' @examples
-#' #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' DIST.out <- "C:\\...\\file.txt"
-#' Distribution_evol(dmm,start=1,end=length(lambda)-1,step=10000, output_file=DIST.out, plot=FALSE)
-
-Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
-
-  states <- x$states
-  order <- x$order
-
-  if (is.null(end))
-    end <- x$length
-
-  nbc <- length(states)
-  nbl <- length(states)^order
-
-  # Initialize matrix of distributions
-
-  distrib <- matrix(nrow = length(seq(from=start, to=end, by=step)), ncol = nbc+1)
-  colnames(distrib) <-  c("position",states)
-
-
-  #  Distributions for each position from <start> to <end>
-
-  for (i in seq_along(seq(from=start, to=end, by=step))) {
-
-    # product of distribution with stationary law of k first states
-    distrib[i,] <- c(seq(from=start, to=end, by=step)[i],
-                     getStationaryLaw(x, pos=c(start+order-1), all.pos=FALSE)%*% getDistribution(x, pos=seq(from=start, to=end, by=step)[i], all.pos=FALSE, internal=TRUE))
-
-
-  }
-
-  # stochasticity condition
-
-  if (any(rowSums(distrib)< 0.99)){
-    warning("Non-stochasticity. Sum of matrix row must be equal to 1")}
-
-  # output file
-
- if (!is.null(output_file))
-      utils::write.table(distrib, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
-
-  # figure plot
-
-  if(isTRUE(plot)){
-
-    values <- c(distrib[,c(2:c(length(states)+1))])
-    pos <- rep(distrib[,1],length(c("a","c","g","t")))
-    States <- rep(c("a","c","g","t"), each=length(seq(from=start, to=end, by=step)))
-
-    tab <- data.frame(cbind(pos,States,values))
-
-
-    fig <- tab   %>% ggplot(aes(x=as.numeric(pos), y=as.numeric(values), group=States,colour=States)) +
-      geom_line() + geom_point()+ theme_bw() +
-      theme(panel.spacing.y=unit(1,"cm")) + guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
-      theme(axis.title.x = element_text(size=10, face="bold"),legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
-      labs(x = "Position", y = "Distributions",title=paste0("Evolution of distributions along the sequence : "), fill="States :")
-  }
-
- return(list(distrib, if(isTRUE(plot)){fig}))
-}
-
-
 
 
 #' Plot stationary laws for a range of positions between <start> and <end>
@@ -90,19 +10,22 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 #' @param start Start position (numeric)
 #' @param end End position (numeric)
 #' @param step A step (numeric)
-#' @param output_file A file containing matrix of stationary laws
+#' @param output_file (Optional) A file containing matrix of stationary laws (e.g, "C:/.../SL.txt")
 #' @param plot FALSE (no figure plot of SL evolution); TRUE (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix of probabilities with position and probability of states (and figure plot)
 #' @import ggplot2 tidyverse
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getStationaryLaw}
 #' @examples
-#' #' data(lambda, package = "drimmR")
+#' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' SL.out <- "C:\\...\\file.txt"
-#' stationaryLaw_evol(dmm,start=10,end=1000,step=301, output_file=SL.out, plot=FALSE)
+#' stationaryLaw_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
 
 
 stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
@@ -164,6 +87,90 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 
 
 
+#' Plot distributions for a range of positions between <start> and <end>
+#'
+#' @param x An object of class "dmm"
+#' @param start Start position (numeric)
+#' @param end End position (numeric)
+#' @param step A step (numeric)
+#' @param output_file (Optional) A file containing matrix of distributions (e.g, "C:/.../DIST.txt")
+#' @param plot FALSE (no figure plot of dist evolution); TRUE (figure plot)
+#' @author Alexandre Seiller
+#'
+#' @return A matrix of distributions with position and probability of states
+#' @import ggplot2 tidyverse
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{Ver08}{drimmR}
+#' @export
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}
+#' @examples
+#' data(lambda, package = "drimmR")
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' Distribution_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
+
+Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
+
+  states <- x$states
+  order <- x$order
+
+  if (is.null(end))
+    end <- x$length
+
+  nbc <- length(states)
+  nbl <- length(states)^order
+
+  # Initialize matrix of distributions
+
+  distrib <- matrix(nrow = length(seq(from=start, to=end, by=step)), ncol = nbc+1)
+  colnames(distrib) <-  c("position",states)
+
+
+  #  Distributions for each position from <start> to <end>
+
+  for (i in seq_along(seq(from=start, to=end, by=step))) {
+
+    # product of distribution with stationary law of k first states
+    distrib[i,] <- c(seq(from=start, to=end, by=step)[i],
+                     getStationaryLaw(x, pos=c(start+order-1), all.pos=FALSE)%*% getDistribution(x, pos=seq(from=start, to=end, by=step)[i], all.pos=FALSE, internal=TRUE))
+
+
+  }
+
+  # stochasticity condition
+
+  if (any(rowSums(distrib)< 0.99)){
+    warning("Non-stochasticity. Sum of matrix row must be equal to 1")}
+
+  # output file
+
+  if (!is.null(output_file))
+    utils::write.table(distrib, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
+
+  # figure plot
+
+  if(isTRUE(plot)){
+
+    values <- c(distrib[,c(2:c(length(states)+1))])
+    pos <- rep(distrib[,1],length(c("a","c","g","t")))
+    States <- rep(c("a","c","g","t"), each=length(seq(from=start, to=end, by=step)))
+
+    tab <- data.frame(cbind(pos,States,values))
+
+
+    fig <- tab   %>% ggplot(aes(x=as.numeric(pos), y=as.numeric(values), group=States,colour=States)) +
+      geom_line() + geom_point()+ theme_bw() +
+      theme(panel.spacing.y=unit(1,"cm")) + guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
+      theme(axis.title.x = element_text(size=10, face="bold"),legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
+      labs(x = "Position", y = "Distributions",title=paste0("Evolution of distributions along the sequence : "), fill="States :")
+  }
+
+  return(list(distrib, if(isTRUE(plot)){fig}))
+}
+
+
+
 
 
 #' Evaluate Availability
@@ -176,25 +183,27 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 #' @param k1 start position (numeric)
 #' @param k2 end position (numeric)
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1< s
-#' @param output_file A file containing matrix of availability probabilities
+#' @param output_file (Optional) A file containing matrix of availability probabilities (e.g, "C:/.../AVAL.txt")
 #' @param plot FALSE (no figure plot of availability by position); TRUE (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with Availability score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{R}, \link[drimmR]{M}
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}, \link[drimmR]{maintainability}
 #'
 #' @examples
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda,1,1,c("a","c","g","t"))
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
-#' AVA.out <- "C:\\...\\file.txt"
-#' A(dmm,k1,k2,s1, output_file=AVA.out,plot=FALSE)
-
-A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
+#' availability(dmm,k1,k2,s1,plot=TRUE)
+#'
+availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
   order <- x$order
   mod.length <- x$length
@@ -258,7 +267,7 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
     Pit <- list()
     for(i in k1:k2){
-      Pit[[i]] <- drimmR:::.overlap_states(getTransitionMatrix(x,pos=i))
+      Pit[[i]] <- .overlap_states(getTransitionMatrix(x,pos=i))
     }
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
@@ -324,24 +333,26 @@ A <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @param k1 start position (numeric)
 #' @param k2 end position (numeric)
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
-#' @param output_file A file containing matrix of reliability probabilities
+#' @param output_file (Optional) A file containing matrix of reliability probabilities (e.g, "C:/.../REL.txt")
 #' @param plot FALSE (no figure plot of reliability by position); TRUE (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with Reliability score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda,1,1,c("a","c","g","t"))
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
-#' REL.out <- "C:\\...\\file.txt"
-#' R(dmm,k1,k2,s1, output_file=REL.out,plot=FALSE)
+#' reliability(dmm,k1,k2,s1,plot=TRUE)
 #'
-R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
+reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
   order <- x$order
   mod.length <- x$length
@@ -404,7 +415,7 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     init.law_u <- x$init.estim[working.states]
     Pit <- list()
     for(i in k1:k2){
-      Pit[[i]] <- drimmR:::.overlap_states(getTransitionMatrix(x,pos=i))
+      Pit[[i]] <- .overlap_states(getTransitionMatrix(x,pos=i))
     }
 
     Pit_uu <- lapply(Pit, function(x) {x[working.states,working.states]})
@@ -478,27 +489,29 @@ R <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @param k1 start position (numeric)
 #' @param k2 end position (numeric)
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
-#' @param output_file A file containing matrix of maintainability probabilities
+#' @param output_file (Optional) A file containing matrix of maintainability probabilities (e.g, "C:/.../MAIN.txt")
 #' @param plot FALSE (no figure plot of maintainability by position); TRUE (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with Maintainability score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
 #' @export
 #'
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 
 #' @examples
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda,1,1,c("a","c","g","t"))
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
-#' MAIN.out <- "C:\\...\\file.txt"
-#' M(dmm,k1,k2,s1, output_file=MAIN.out,plot=FALSE)
+#' maintainability(dmm,k1,k2,s1,plot=TRUE)
 #'
 
-M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
+maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
   order <- x$order
   mod.length <- x$length
@@ -564,7 +577,7 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
     Pit <- list()
     for(i in k1:k2){
-      Pit[[i]] <- drimmR:::.overlap_states(getTransitionMatrix(x,pos=i))
+      Pit[[i]] <- .overlap_states(getTransitionMatrix(x,pos=i))
     }
 
     Pit_dd <- lapply(Pit, function(x) {x[failure.states,failure.states]})
@@ -623,7 +636,7 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 }
 
 
-#' Evaluate error rates
+#' Evaluate failure rates
 #'
 #' @description Estimation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate
 #'
@@ -639,26 +652,28 @@ M <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @param error.rate Default="BMP", then BMP-failure-rate is the method used to estimate the error rate. If error.rate= "RG",
 #' then RG-failure rate is the method used to estimate the error rate.
 #' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
-#' @param output_file A file containing matrix of error rates at each position
+#' @param output_file (Optional) A file containing matrix of error rates at each position (e.g, "C:/.../ER.txt")
 #' @param plot FALSE (no figure plot of error rates by position); TRUE (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with error rate score at each position
 #' @import ggplot2 tidyverse doSNOW foreach future
+#' @importFrom Rdpack reprompt
+#' @references
+#' \insertRef{BaVe2018}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{R}
+#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}
 
 #' @examples
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda,1,1,c("a","c","g","t"))
+#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
-#' ER.out <- "C:\\...\\file.txt"
-#' errorRate(dmm,k1,k2,s1, error.rate="BMP",output_file=ER.out,plot=FALSE)
+#' failureRate(dmm,k1,k2,s1,error.rate="BMP",plot=TRUE)
 #'
 
-errorRate <- function(x, k1,k2, s1,error.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
+failureRate <- function(x, k1,k2, s1,error.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
 
   if(is.null(error.rate)){
     # BMP failure rate as default estimate
@@ -673,7 +688,7 @@ errorRate <- function(x, k1,k2, s1,error.rate=c("BMP","RG"), output_file=NULL, p
 
   getR <- matrix(NA, nrow=k2, ncol=1)
 
-  getR <- R(x,k1=k1, k2=k2,s1=s1,output_file = output_file, plot=FALSE)
+  getR <- reliability(x,k1=k1, k2=k2,s1=s1,output_file = output_file, plot=FALSE)
   getER <- matrix(NA, nrow=k2, ncol=1)
 
   # BMP failure-rate

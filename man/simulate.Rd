@@ -7,21 +7,18 @@
 simulate(x, output_file, model_size = 1e+05)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
 
-\item{output_file}{A file containing matrix of probabilities}
+\item{output_file}{(Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")}
 
 \item{model_size}{Size of the model}
 }
 \description{
 Simulate S3 generic function
 }
-\examples{
-data(lambda, package = "drimmR")
-SIM.out <- "C:\\\\...\\\\file.txt"
-dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-simulate(dmm,SIM.out,20000)
-
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \author{
 Annthomy Gilles, Alexandre Seiller

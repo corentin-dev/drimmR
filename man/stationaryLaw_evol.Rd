@@ -22,7 +22,7 @@ stationaryLaw_evol(
 
 \item{step}{A step (numeric)}
 
-\item{output_file}{A file containing matrix of stationary laws}
+\item{output_file}{(Optional) A file containing matrix of stationary laws (e.g, "C:/.../SL.txt")}
 
 \item{plot}{FALSE (no figure plot of SL evolution); TRUE (figure plot)}
 }
@@ -33,10 +33,13 @@ A matrix of probabilities with position and probability of states (and figure pl
 Plot stationary laws for a range of positions between <start> and <end>
 }
 \examples{
-#' data(lambda, package = "drimmR")
+data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-SL.out <- "C:\\\\...\\\\file.txt"
-stationaryLaw_evol(dmm,start=10,end=1000,step=301, output_file=SL.out, plot=FALSE)
+stationaryLaw_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
+}
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getStationaryLaw}

@@ -4,12 +4,12 @@
 \alias{bic}
 \title{Bayesian Information Criterion (BIC) S3 generic function}
 \usage{
-bic(x, sequence)
+bic(x, sequences)
 }
 \arguments{
 \item{x}{An object of class "dmm" for which the logikelihood can be computed.}
 
-\item{sequence}{A vector or a list of vector of character representing the sequences for which the
+\item{sequences}{A vector or a list of vector of character representing the sequences for which the
 BIC criterion must be computed.}
 }
 \value{
@@ -18,6 +18,10 @@ A numeric value giving the value of the BIC.
 \description{
 Generic function computing the Bayesian Information Criterion
   of the model `x`, with the list of sequences `sequences`.
+}
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
 }
 \author{
 Victor Mataigne, Alexandre Seiller

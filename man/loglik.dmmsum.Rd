@@ -24,6 +24,10 @@ dmm <-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 loglik(dmm,sequence)
 
 }
+\references{
+\insertRef{BaVe2018}{drimmR}
+\insertRef{Ver08}{drimmR}
+}
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 }
