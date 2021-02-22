@@ -24,9 +24,11 @@ A dataframe of word probabilities along the positions of the sequence
 Probability of several words at several positions of a DMM
 }
 \examples{
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, plot=TRUE)
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

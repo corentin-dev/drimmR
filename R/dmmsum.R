@@ -77,11 +77,13 @@
 #' \insertRef{Ver08}{drimmR}
 #'
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' states <- c("a","c","g","t")
 #' order <- 1
 #' degree <- 1
 #' dmmsum(lambda,order,degree,states, init.estim = "freq")
+#' }
 
 
 
@@ -121,7 +123,9 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
   #######
   # size
   #######
-  model.length<-max(sapply(sequences, length))
+
+  # model length = length of the sequence - 1 (the model starts at X_0)
+  model.length<-max(sapply(sequences, length))-1
 
   #####################
   # Test integer values
@@ -299,10 +303,12 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 
 #' @seealso \link[drimmR]{dmmsum}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq")
 #' t <- 10
 #' getTransitionMatrix(dmm,pos=t)
+#' }
 
 getTransitionMatrix.dmmsum <- function(x, pos) {
 
@@ -350,11 +356,13 @@ getTransitionMatrix.dmmsum <- function(x, pos) {
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{stationaryLaw_evol}, \link[drimmR]{getDistribution}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' t <- 10
 #' getStationaryLaw(dmm,pos=t)
-#'
+#'}
+
 getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
   seq.from <- Vectorize(seq.default, vectorize.args = c("from"))
@@ -485,11 +493,12 @@ getStationaryLaw.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{Distribution_evol}, \link[drimmR]{getStationaryLaw}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' t <- 10
 #' getDistribution(dmm,pos=t)
-#'
+#'}
 
 
 getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
@@ -644,11 +653,12 @@ getDistribution.dmmsum <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' loglik(dmm,sequence)
-#'
+#'}
 
 loglik.dmmsum <- function(x, sequences){
 
@@ -730,10 +740,12 @@ loglik.dmmsum <- function(x, sequences){
 
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{aic}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' aic(dmm,sequence)
+#' }
 aic.dmmsum <- function(x,sequences) {
 
   ################################################
@@ -787,10 +799,12 @@ aic.dmmsum <- function(x,sequences) {
 
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{bic}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm<-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' bic(dmm,sequence)
+#' }
 bic.dmmsum <- function(x,sequences) {
 
   ################################################
@@ -854,10 +868,11 @@ return(bic)
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{getStationaryLaw}
 #' @return the vector of simulated sequence
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' simulate(dmm, model_size=100)
-#'
+#'}
 
 simulate.dmmsum <- function(x, output_file=NULL,model_size=NULL) {
 

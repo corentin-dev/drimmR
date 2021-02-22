@@ -50,13 +50,14 @@ continuous time systems.
 The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
 }
 \examples{
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 k1 <- 1
 k2 <- 200
 s1 <- c("c","t")  # vector of working states
 failureRate(dmm,k1,k2,s1,failure.rate="BMP",plot=TRUE)
-
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

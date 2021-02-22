@@ -33,9 +33,11 @@ A matrix with positions and stationary laws of states (and figure plot)
 Plot stationary laws for a range of positions between <start> and <end>
 }
 \examples{
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 stationaryLaw_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

@@ -30,13 +30,14 @@ The maintainability at time \eqn{k \in N} of a system is the probability that th
 given that is has failed at time \eqn{l=0}.
 }
 \examples{
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 k1 <- 1
 k2 <- 200
 s1 <- c("c","t")  # vector of working states
 maintainability(dmm,k1,k2,s1,plot=TRUE)
-
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

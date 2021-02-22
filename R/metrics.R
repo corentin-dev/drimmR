@@ -17,15 +17,18 @@
 #' @return A matrix with positions and stationary laws of states (and figure plot)
 #' @import ggplot2 tidyverse
 #' @importFrom Rdpack reprompt
+#' @importFrom utils write.table
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getStationaryLaw}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' stationaryLaw_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
+#' }
 
 
 stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
@@ -106,9 +109,11 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' Distribution_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
+#' }
 
 Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
 
@@ -196,13 +201,14 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}, \link[drimmR]{maintainability}
 #'
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
 #' availability(dmm,k1,k2,s1,plot=TRUE)
-#'
+#'}
 availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
   order <- x$order
@@ -224,29 +230,37 @@ availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     working.states <- states[states %in% unlist(strsplit(s1, split=""))]
     failure.states <- subset(states, subset=states %nin% working.states)
 
-    Pit <- lapply(c(k1:k2),getTransitionMatrix, x=x)
+    Pit <- lapply(c(1:k2),getTransitionMatrix, x=x)
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
     doSNOW::registerDoSNOW(cl)
 
-    output <- foreach(i=c(k1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
 
-      prod.mat <-  Reduce(`%*%`, Pit[c(k1:i)])
+      prod.mat <-  Reduce(`%*%`, Pit[c(1:i)])
 
     }
 
     list.prod.mat <- lapply(split(output, ceiling(seq_along(output)/c(length(states)^2))), matrix,nrow=length(states), ncol=length(states))
     names(list.prod.mat) <- NULL
 
-    for(m in seq_along(seq(from=k1,to=k2, by=1))){
-      getA[m,] <- init.law %*% list.prod.mat[[seq(from=k1,to=k2, by=1)[m]]] %*% matrix(c(diag(diag(length(working.states))),rep(0,length(failure.states))))
+    for(m in seq_along(seq(from=1,to=k2, by=1))){
+      getA[m,] <- init.law %*% list.prod.mat[[seq(from=1,to=k2, by=1)[m]]] %*% matrix(c(diag(diag(length(working.states))),rep(0,length(failure.states))))
     }
 
     # add pos=0
     getA <- rbind(init.law %*% c(diag(diag(length(working.states))),rep(0,length(failure.states))),getA)
 
     # pos
-    getA <- cbind(c(0,k1:k2), getA)
+    getA <- cbind(c(0:k2), getA)
+
+    if(k1>1L){
+      getA <- getA[c(1,k1:k2),]
+    }
+    if(k1==1L){
+      getA <- getA[c(k1:k2),]
+    }
+
 
     # set names
     colnames(getA) <- c("positions","availability")
@@ -266,31 +280,39 @@ availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     failure.states <- subset(names(x$init.estim), subset=names(x$init.estim) %nin% working.states)
 
     Pit <- list()
-    for(i in k1:k2){
+    for(i in 1:k2){
       Pit[[i]] <- .overlap_states(getTransitionMatrix(x,pos=i))
     }
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
     doSNOW::registerDoSNOW(cl)
 
-    output <- foreach(i=c(k1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
 
-      prod.mat <-  Reduce(`%*%`, Pit[c(k1:i)])
+      prod.mat <-  Reduce(`%*%`, Pit[c(1:i)])
 
     }
 
     list.prod.mat <- lapply(split(output, ceiling(seq_along(output)/c(length(init.law)^2))), matrix,nrow=length(init.law), ncol=length(init.law))
     names(list.prod.mat) <- NULL
 
-    for(m in seq_along(seq(from=k1,to=k2, by=1))){
-      getA[m,] <- init.law %*% list.prod.mat[[seq(from=k1,to=k2, by=1)[m]]] %*% matrix(c(diag(diag(length(working.states))),rep(0,length(failure.states))))
+    for(m in seq_along(seq(from=1,to=k2, by=1))){
+      getA[m,] <- init.law %*% list.prod.mat[[seq(from=1,to=k2, by=1)[m]]] %*% matrix(c(diag(diag(length(working.states))),rep(0,length(failure.states))))
     }
 
     # add pos=0
     getA <- rbind(init.law %*% c(diag(diag(length(working.states))),rep(0,length(failure.states))),getA)
 
     # pos
-    getA <- cbind(c(0,k1:k2), getA)
+    getA <- cbind(c(0:k2), getA)
+
+    if(k1>1L){
+      getA <- getA[c(1,k1:k2),]
+    }
+    if(k1==1L){
+      getA <- getA[c(k1:k2),]
+    }
+
 
     # set names
     colnames(getA) <- c("positions","availability")
@@ -345,12 +367,14 @@ availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
 #' reliability(dmm,k1,k2,s1,plot=TRUE)
+#' }
 #'
 reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
@@ -370,24 +394,24 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     init.law_u <- x$init.estim[names(x$init.estim) %in% working.states]
 
     # warning : pos=0 added further in the code. (k2-1)^th list of matrix corresponds to pos=k2
-    Pit <- lapply(c(k1:k2),getTransitionMatrix, x=x)
+    Pit <- lapply(c(1:k2),getTransitionMatrix, x=x)
     Pit_uu <- lapply(Pit, function(x) {x[working.states,working.states]})
 
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
     doSNOW::registerDoSNOW(cl)
 
-    output <- foreach(i=c(k1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
 
-      prod.mat <-  Reduce(`%*%`, Pit_uu[c(k1:i)])
+      prod.mat <-  Reduce(`%*%`, Pit_uu[c(1:i)])
 
     }
 
       list.prod.mat <- lapply(split(output, ceiling(seq_along(output)/c(length(working.states)^2))), matrix,nrow=length(working.states), ncol=length(working.states))
       names(list.prod.mat) <- NULL
 
-      for(m in seq_along(seq(from=k1,to=k2-1, by=1))){
-        getR[m,] <- init.law_u %*% list.prod.mat[[seq(from=k1,to=k2-1, by=1)[m]]] %*% matrix(diag(diag(length(working.states))))
+      for(m in seq_along(seq(from=1,to=k2-1, by=1))){
+        getR[m,] <- init.law_u %*% list.prod.mat[[seq(from=1,to=k2-1, by=1)[m]]] %*% matrix(diag(diag(length(working.states))))
       }
       # add start of the reliability function and pos=0 (printed index= 1)
       getR <- rbind(1,init.law_u %*%  matrix(rep(1,length(s1))),getR)
@@ -396,7 +420,14 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
 
     # pos
-    getR <- cbind(c(0,k1:k2), getR)
+    getR <- cbind(c(0:k2), getR)
+
+    if(k1>1L){
+    getR <- getR[c(1,k1:k2),]
+    }
+    if(k1==1L){
+      getR <- getR[c(k1:k2),]
+    }
 
     # set names
     colnames(getR) <- c("positions","reliability")
@@ -414,7 +445,7 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
     init.law_u <- x$init.estim[working.states]
     Pit <- list()
-    for(i in k1:k2){
+    for(i in 1:k2){
       Pit[[i]] <- .overlap_states(getTransitionMatrix(x,pos=i))
     }
 
@@ -423,17 +454,17 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
     doSNOW::registerDoSNOW(cl)
 
-    output <- foreach(i=c(k1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
 
-      prod.mat <-  Reduce(`%*%`, Pit_uu[c(k1:i)])
+      prod.mat <-  Reduce(`%*%`, Pit_uu[c(1:i)])
 
     }
 
       list.prod.mat <- lapply(split(output, ceiling(seq_along(output)/c(length(working.states)^2))), matrix,nrow=length(working.states), ncol=length(working.states))
       names(list.prod.mat) <- NULL
 
-      for(m in seq_along(seq(from=k1,to=k2-1, by=1))){
-        getR[m,] <- init.law_u %*% list.prod.mat[[seq(from=k1,to=k2-1, by=1)[m]]] %*% matrix(diag(diag(length(working.states))))
+      for(m in seq_along(seq(from=1,to=k2-1, by=1))){
+        getR[m,] <- init.law_u %*% list.prod.mat[[seq(from=1,to=k2-1, by=1)[m]]] %*% matrix(diag(diag(length(working.states))))
       }
       # add start of the reliability function and pos=0 (printed index= 1)
       getR <- rbind(1,init.law_u %*%  matrix(rep(1,length(working.states))),getR)
@@ -441,7 +472,15 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
       getR <- getR[-c(k2+2),]
 
     # pos
-    getR <- cbind(c(0,k1:k2), getR)
+    getR <- cbind(c(0:k2), getR)
+
+    if(k1>1L){
+      getR <- getR[c(1,k1:k2),]
+    }
+    if(k1==1L){
+      getR <- getR[c(k1:k2),]
+    }
+
 
     # set names
     colnames(getR) <- c("positions","reliability")
@@ -472,7 +511,7 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
   }
 
-  return(list(getR,if(isTRUE(plot)){fig}))
+ return(list(getR,if(isTRUE(plot)){fig}))
 }
 
 
@@ -503,13 +542,14 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
 #' maintainability(dmm,k1,k2,s1,plot=TRUE)
-#'
+#'}
 
 maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
@@ -530,16 +570,16 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     failure.states <- subset(states, subset=states%nin% working.states)
     init.law_d <- x$init.estim[failure.states]
 
-    Pit <- lapply(c(k1:k2),getTransitionMatrix, x=x)
+    Pit <- lapply(c(1:k2),getTransitionMatrix, x=x)
     Pit_dd <- lapply(Pit, function(x) {x[ failure.states, failure.states]})
 
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
     doSNOW::registerDoSNOW(cl)
 
-    output <- foreach(i=c(k1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
 
-      prod.mat <-  Reduce(`%*%`, Pit_dd[c(k1:i)])
+      prod.mat <-  Reduce(`%*%`, Pit_dd[c(1:i)])
 
     }
 
@@ -547,8 +587,8 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     list.prod.mat <- lapply(split(output, ceiling(seq_along(output)/c(length(failure.states)^2))), matrix,nrow=length(failure.states), ncol=length(failure.states))
     names(list.prod.mat) <- NULL
 
-    for(m in seq_along(seq(from=k1,to=k2-1, by=1))){
-      getM[m,] <- 1-init.law_d %*% list.prod.mat[[seq(from=k1,to=k2-1, by=1)[m]]] %*% matrix(diag(diag(length(failure.states))))
+    for(m in seq_along(seq(from=1,to=k2-1, by=1))){
+      getM[m,] <- 1-init.law_d %*% list.prod.mat[[seq(from=1,to=k2-1, by=1)[m]]] %*% matrix(diag(diag(length(failure.states))))
     }
     # add start of the maintainability function and pos=0 (printed index= 1)
     getM <- rbind(0,1-init.law_d %*%  matrix(rep(1,length(failure.states))),getM)
@@ -556,7 +596,15 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     getM <- getM[-c(k2+2),]
 
     # pos
-    getM <- cbind(c(0,k1:k2), getM)
+    getM <- cbind(c(0:k2), getM)
+
+    if(k1>1L){
+      getM <- getM[c(1,k1:k2),]
+    }
+    if(k1==1L){
+      getM <- getM[c(k1:k2),]
+    }
+
 
     # set names
     colnames(getM) <- c("positions","maintainability")
@@ -576,7 +624,7 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     init.law_d <- x$init.estim[failure.states]
 
     Pit <- list()
-    for(i in k1:k2){
+    for(i in 1:k2){
       Pit[[i]] <- .overlap_states(getTransitionMatrix(x,pos=i))
     }
 
@@ -585,17 +633,17 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
     doSNOW::registerDoSNOW(cl)
 
-    output <- foreach(i=c(k1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
 
-      prod.mat <-  Reduce(`%*%`, Pit_dd[c(k1:i)])
+      prod.mat <-  Reduce(`%*%`, Pit_dd[c(1:i)])
 
     }
 
     list.prod.mat <- lapply(split(output, ceiling(seq_along(output)/c(length(failure.states)^2))), matrix,nrow=length(failure.states), ncol=length(failure.states))
     names(list.prod.mat) <- NULL
 
-    for(m in seq_along(seq(from=k1,to=k2-1, by=1))){
-      getM[m,] <- 1-init.law_d %*% list.prod.mat[[seq(from=k1,to=k2-1, by=1)[m]]] %*% matrix(diag(diag(length(failure.states))))
+    for(m in seq_along(seq(from=1,to=k2-1, by=1))){
+      getM[m,] <- 1-init.law_d %*% list.prod.mat[[seq(from=1,to=k2-1, by=1)[m]]] %*% matrix(diag(diag(length(failure.states))))
     }
     # add start of the maintainability function and pos=0 (printed index= 1)
     getM <- rbind(0,1-init.law_d %*%  matrix(rep(1,length(failure.states))),getM)
@@ -603,7 +651,15 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
     getM <- getM[-c(k2+2),]
 
     # pos
-    getM <- cbind(c(0,k1:k2), getM)
+    getM <- cbind(c(0:k2), getM)
+
+    if(k1>1L){
+      getM <- getM[c(1,k1:k2),]
+    }
+    if(k1==1L){
+      getM <- getM[c(k1:k2),]
+    }
+
 
     # set names
     colnames(getM) <- c("positions","maintainability")
@@ -673,13 +729,14 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}
 
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
 #' failureRate(dmm,k1,k2,s1,failure.rate="BMP",plot=TRUE)
-#'
+#'}
 
 failureRate <- function(x, k1,k2, s1,failure.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
 
@@ -696,28 +753,36 @@ failureRate <- function(x, k1,k2, s1,failure.rate=c("BMP","RG"), output_file=NUL
 
   getR <- matrix(NA, nrow=k2, ncol=1)
 
-  getR <- reliability(x,k1=k1, k2=k2,s1=s1,output_file = output_file, plot=FALSE)
-  getER <- matrix(NA, nrow=k2, ncol=1)
+  getR <- reliability(x,k1=1, k2=k2+1,s1=s1, plot=FALSE)
+  getFR <- matrix(NA, nrow=k2, ncol=1)
 
   # BMP failure-rate
 
   if(failure.rate=="BMP"){
 
-    for (i in c(k1:k2)){
-      getER[i,] <- 1- as.vector(getR[[1]][i+1,2])/as.vector(getR[[1]][i,2])
+    for (i in c(1:k2)){
+      getFR[i,] <- 1- as.vector(getR[[1]][i+1,2])/as.vector(getR[[1]][i,2])
       # otherwise
-      if(isTRUE(getER[i,]==0L)){
-        getER[i,] <- 0L
+      if(isTRUE(getFR[i,]==0L)){
+        getFR[i,] <- 0L
       }
 
     }
 
     # add pos=0
-    getER <- rbind(0,getER)
-    getER <- cbind(c(0,c(k1:k2)), getER)
+    getFR <- rbind(0,getFR)
+    getFR <- cbind(c(0:k2), getFR)
+
+    if(k1>1L){
+      getFR <- getFR[c(1,k1:k2),]
+    }
+    if(k1==1L){
+      getFR <- getFR[c(k1:k2),]
+    }
+
 
     # set names
-    colnames(getER) <- c("positions",failure.rate)
+    colnames(getFR) <- c("positions",failure.rate)
 
   }
 
@@ -725,17 +790,24 @@ failureRate <- function(x, k1,k2, s1,failure.rate=c("BMP","RG"), output_file=NUL
 
   if(failure.rate=="RG"){
 
-    for (i in c(k1:k2)){
+    for (i in c(1:k2)){
       if (k1>=1L){
-        getER[i,] <- -log(as.vector(getR[[1]][i+1,2])/as.vector(getR[[1]][i,2]))
+        getFR[i,] <- -log(as.vector(getR[[1]][i+1,2])/as.vector(getR[[1]][i,2]))
       }
     }
     # add pos=0
-    getER <- rbind(-log(as.vector(getR[[1]][1,2])),getER)
-    getER <- cbind(c(0,c(k1:k2)), getER)
+    getFR <- rbind(-log(as.vector(getR[[1]][1,2])),getFR)
+    getFR <- cbind(c(0:k2), getFR)
+
+    if(k1>1L){
+      getFR <- getFR[c(1,k1:k2),]
+    }
+    if(k1==1L){
+      getFR <- getFR[c(k1:k2),]
+    }
 
     # set names
-    colnames(getER) <- c("positions",failure.rate)
+    colnames(getFR) <- c("positions",failure.rate)
 
   }
 
@@ -745,12 +817,12 @@ failureRate <- function(x, k1,k2, s1,failure.rate=c("BMP","RG"), output_file=NUL
   ##################### output file
 
   if (!is.null(output_file))
-    utils::write.table(getER, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
+    utils::write.table(getFR, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
 
   ##################### figure plot
 
   if(isTRUE(plot)){
-    fig <- ggplot2::ggplot(data.frame(getER), aes(positions,getER[,2])) + geom_path() +
+    fig <- ggplot2::ggplot(data.frame(getFR), aes(positions,getFR[,2])) + geom_path() +
       theme_bw() + geom_point() +
       scale_y_continuous(name= paste0(failure.rate,"-failure rate")) +
       scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
@@ -762,7 +834,6 @@ failureRate <- function(x, k1,k2, s1,failure.rate=c("BMP","RG"), output_file=NUL
 
   }
 
-
-  return(list(getER,if(isTRUE(plot)){fig}))
+  return(list(getFR,if(isTRUE(plot)){fig}))
 }
 

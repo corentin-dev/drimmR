@@ -26,10 +26,12 @@ A dataframe of probability by position (and probability plots)
 Probability of occurrence of the observed word of size n in a sequence at several positions
 }
 \examples{
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 n <- 2
 length_probas(n, lambda, c(1,length(lambda)-n+1), dmm,plot=TRUE)
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

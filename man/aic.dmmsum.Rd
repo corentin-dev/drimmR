@@ -18,10 +18,12 @@ A list of numeric, AIC
 Evaluate AIC
 }
 \examples{
+\dontrun{
 data(lambda, package = "drimmR")
 sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 aic(dmm,sequence)
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

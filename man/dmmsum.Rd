@@ -84,11 +84,13 @@ be \eqn{d} Markov transition matrices (of order \eqn{k}) over a state space \eqn
  }
 }
 \examples{
+\dontrun{
 data(lambda, package = "drimmR")
 states <- c("a","c","g","t")
 order <- 1
 degree <- 1
 dmmsum(lambda,order,degree,states, init.estim = "freq")
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}
