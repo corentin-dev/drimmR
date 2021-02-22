@@ -2,28 +2,28 @@
 % Please edit documentation in R/metrics.R
 \name{availability}
 \alias{availability}
-\title{Evaluate Availability}
+\title{Availability function}
 \usage{
 availability(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class `dmm`}
 
-\item{k1}{start position (numeric)}
+\item{k1}{Start position :  a positive integer giving the start position along the sequence from which the availabilities of the DMM should be computed}
 
-\item{k2}{end position (numeric)}
+\item{k2}{End position :  a positive integer giving the end position along the sequence until which the availabilities of the DMM should be computed}
 
-\item{s1}{Character vector of the subspace working states among the state space vector s.t. s1< s}
+\item{s1}{Character vector of the subspace working states among the state space vector such that s1< s}
 
 \item{output_file}{(Optional) A file containing matrix of availability probabilities (e.g, "C:/.../AVAL.txt")}
 
-\item{plot}{FALSE (no figure plot of availability by position); TRUE (figure plot)}
+\item{plot}{`FALSE` (no figure plot of availability by position); `TRUE` (figure plot)}
 }
 \value{
-A matrix with Availability score at each position
+A matrix with positions and availability probabilities of states (and figure plot)
 }
 \description{
-Estimation of the pointwise (or instantaneous) availability for (ergodic) repairable systems at time \eqn{l \in N}
+Pointwise (or instantaneous) availability of a system at time \eqn{l \in N}
 }
 \details{
 The pointwise (or instantaneous) availability is the probability that the system is in a working state at time \eqn{l},

@@ -2,12 +2,12 @@
 % Please edit documentation in R/allgenerics.R
 \name{loglik}
 \alias{loglik}
-\title{Loglikelihood S3 generic function}
+\title{Loglikelihood S3}
 \usage{
 loglik(x, sequences)
 }
 \arguments{
-\item{x}{An object of class "dmm" for which the logikelihood can be computed.}
+\item{x}{An object of class `dmm` for which the logikelihood can be computed.}
 
 \item{sequences}{A vector of character or list of vectors representing the sequences for which the
 log-likelihood of the model must be computed.}

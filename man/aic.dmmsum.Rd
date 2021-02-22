@@ -7,7 +7,7 @@
 \method{aic}{dmmsum}(x, sequences)
 }
 \arguments{
-\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
+\item{x}{An object of class `dmm`, `dmmsum`}
 
 \item{sequences}{A character vector or a list of character vector representing the sequence}
 }

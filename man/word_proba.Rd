@@ -15,7 +15,7 @@ word_proba(word, pos, x, output_file = NULL, internal = FALSE)
 
 \item{output_file}{(Optional) A file containing the probability (e.g,"C:/.../PROB.txt")}
 
-\item{internal}{FALSE (default) ; TRUE (for internal use of word applications)}
+\item{internal}{`FALSE` (default) ; `TRUE` (for internal use of word applications)}
 }
 \value{
 A numeric, probability of \code{word}

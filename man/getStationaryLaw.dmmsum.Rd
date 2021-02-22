@@ -7,19 +7,19 @@
 \method{getStationaryLaw}{dmmsum}(x, pos, all.pos = FALSE, internal = FALSE)
 }
 \arguments{
-\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
+\item{x}{An object of class `dmm`, `dmmsum`}
 
-\item{pos}{An integer for position}
+\item{pos}{A positive integer giving the position along the sequence on which the stationary law of the DMM should be computed}
 
-\item{all.pos}{FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)}
+\item{all.pos}{`FALSE` (default, evaluation at position index) ; `TRUE` (evaluation for all position indices)}
 
-\item{internal}{FALSE (default) ; TRUE (for internal use of dmmsum initial law and word applications)}
+\item{internal}{`FALSE` (default) ; `TRUE` (for internal use of th initial law of \link[drimmR]{dmmsum} and word applications)}
 }
 \value{
 A vector or matrix of stationary law probabilities
 }
 \description{
-Evaluate stationary law at a given position or at every position
+Evaluate the stationary law of the DMM at a given position or at every position
 }
 \details{
 Stationary law at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}

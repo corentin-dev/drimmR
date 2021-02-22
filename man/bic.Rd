@@ -2,12 +2,12 @@
 % Please edit documentation in R/allgenerics.R
 \name{bic}
 \alias{bic}
-\title{Bayesian Information Criterion (BIC) S3 generic function}
+\title{Bayesian Information Criterion (BIC)}
 \usage{
 bic(x, sequences)
 }
 \arguments{
-\item{x}{An object of class "dmm" for which the logikelihood can be computed.}
+\item{x}{An object of class `dmm` for which the logikelihood can be computed.}
 
 \item{sequences}{A vector or a list of vector of character representing the sequences for which the
 BIC criterion must be computed.}

@@ -2,31 +2,31 @@
 % Please edit documentation in R/metrics.R
 \name{maintainability}
 \alias{maintainability}
-\title{Evaluate Maintainability}
+\title{Maintainability function}
 \usage{
 maintainability(x, k1, k2, s1, output_file = NULL, plot = FALSE)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class `dmm`}
 
-\item{k1}{start position (numeric)}
+\item{k1}{Start position :  a positive integer giving the start position along the sequence from which the maintainabilities of the DMM should be computed}
 
-\item{k2}{end position (numeric)}
+\item{k2}{End position :  a positive integer giving the end position along the sequence until which the maintainabilities of the DMM should be computed}
 
-\item{s1}{Character vector of the subspace working states among the state space vector s.t. s1 < s}
+\item{s1}{Character vector of the subspace working states among the state space vector such that s1 < s}
 
 \item{output_file}{(Optional) A file containing matrix of maintainability probabilities (e.g, "C:/.../MAIN.txt")}
 
-\item{plot}{FALSE (no figure plot of maintainability by position); TRUE (figure plot)}
+\item{plot}{`FALSE` (no figure plot of maintainability by position); `TRUE` (figure plot)}
 }
 \value{
-A matrix with Maintainability score at each position
+A matrix with positions and maintainability probabilities of states (and figure plot)
 }
 \description{
-Estimation of maintainability for (ergodic) repairable system at time \eqn{k \in N}.
+Maintainability of a system at time \eqn{k \in N}.
 }
 \details{
-The maintainability at time \eqn{k \in N} of a repairable system is the probability that the system is repaired up to time \eqn{l},
+The maintainability at time \eqn{k \in N} of a system is the probability that the system is repaired up to time \eqn{l},
 given that is has failed at time \eqn{l=0}.
 }
 \examples{

@@ -14,20 +14,20 @@ Distribution_evol(
 )
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class `dmm`}
 
-\item{start}{Start position (numeric)}
+\item{start}{Start position :  a positive integer giving the start position along the sequence from which the distributions of the DMM should be computed}
 
-\item{end}{End position (numeric)}
+\item{end}{End position :  a positive integer giving the end position along the sequence until which the distributions of the DMM should be computed}
 
-\item{step}{A step (numeric)}
+\item{step}{A step (integer)}
 
 \item{output_file}{(Optional) A file containing matrix of distributions (e.g, "C:/.../DIST.txt")}
 
-\item{plot}{FALSE (no figure plot of dist evolution); TRUE (figure plot)}
+\item{plot}{`FALSE` (no figure plot of dist evolution); `TRUE` (figure plot)}
 }
 \value{
-A matrix of distributions with position and probability of states
+A matrix with positions and distributions of states (and figure plot)
 }
 \description{
 Plot distributions for a range of positions between <start> and <end>

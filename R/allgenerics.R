@@ -1,9 +1,9 @@
-#' Loglikelihood S3 generic function
+#' Loglikelihood S3
 #'
 #' @description Generic function computing the loglikelihood of the model `x`,
 #'   with the list of sequences `sequences`.
 #'
-#' @param x An object of class "dmm" for which the logikelihood can be computed.
+#' @param x An object of class `dmm` for which the logikelihood can be computed.
 #' @param sequences A vector of character or list of vectors representing the sequences for which the
 #'   log-likelihood of the model must be computed.
 #' @author Annthomy Gilles, Alexandre Seiller
@@ -23,12 +23,12 @@ loglik <- function(x,sequences) {
 
 
 
-#' Akaike Information Criterion (AIC) S3 generic function
+#' Akaike Information Criterion (AIC)
 #'
 #' @description Generic function computing the Akaike Information Criterion of
 #'   the model `x`, with the list of sequences `sequences`.
 #'
-#' @param x An object of class "dmm" for which the logikelihood can be computed.
+#' @param x An object of class `dmm` for which the logikelihood can be computed.
 #' @param sequences A vector of character or a list of vector of character representing the sequences for which the
 #'   AIC criterion must be computed.
 #' @author  Victor Mataigne, Alexandre Seiller
@@ -47,12 +47,12 @@ aic <- function(x,sequences) {
 
 
 
-#' Bayesian Information Criterion (BIC) S3 generic function
+#' Bayesian Information Criterion (BIC)
 #'
 #' @description Generic function computing the Bayesian Information Criterion
 #'   of the model `x`, with the list of sequences `sequences`.
 #'
-#' @param x An object of class "dmm" for which the logikelihood can be computed.
+#' @param x An object of class `dmm` for which the logikelihood can be computed.
 #' @param sequences A vector or a list of vector of character representing the sequences for which the
 #'   BIC criterion must be computed.
 #' @author  Victor Mataigne, Alexandre Seiller
@@ -70,9 +70,11 @@ bic <- function(x, sequences) {
 
 
 
-#' Simulate S3 generic function
+#' Simulate a sequence under a drifting Markov model
 #'
-#' @param x  An object of class "dmm", \link[drimmR]{dmmsum}
+#' @description Generic function simulating a sequence under a k-th order DMM.
+#'
+#' @param x  An object of class `dmm`
 #' @param output_file (Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")
 #' @param model_size Size of the model
 #' @author  Annthomy Gilles, Alexandre Seiller
@@ -92,10 +94,12 @@ simulate <- function(x, output_file,model_size=100000) {
 ## Getting Transition Matrices and Steady State
 ## =====================================================
 
-#' Get transition S3 generic function
+#' Get transition matrix of the drifting Markov Model
 #'
-#' @param x An object of class "dmm"
-#' @param pos An integer, a position
+#' @description Generic function evaluating the transition matrix of the DMM at a given position
+#'
+#' @param x An object of class `dmm`
+#' @param pos A positive integer giving the position along the sequence on which the transition matrix of the DMM should be computed
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A transition matrix at a given position
@@ -115,16 +119,16 @@ getTransitionMatrix <- function(x, pos) {
 ## Get stationary laws
 ## =====================================================
 
-#' Get stationary law S3 generic function
+#' Get the stationary laws of the DMM
 #'
 #'
-#' @description Evaluate stationary law at a given position or at every position
+#' @description Generic function evaluating the stationary law of the DMM at a given position or at every position
 #'
-#' @details Stationary law at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
-#' @param x An object of class "dmm"
-#' @param pos An integer, a position
-#' @param all.pos FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)
-#' @param internal FALSE (default) ; TRUE (for internal use of dmmsum initial law)
+#' @details \code{Stationary law} at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
+#' @param x An object of class `dmm`
+#' @param pos A positive integer giving the position along the sequence on which the stationary law of the DMM should be computed
+#' @param all.pos `FALSE` (default, evaluation at position index) ; `TRUE` (evaluation for all position indices)
+#' @param internal `FALSE` (default) ; `TRUE` (for internal use of the initial law computation)
 #' @author Alexandre Seiller
 #'
 #' @return A vector or matrix of stationary law probabilities
@@ -144,16 +148,16 @@ getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
 ## Get distributions
 ## =====================================================
 
-#' Get distribution S3 generic function
+#' Get the distributions of the DMM
 #'
 #'
-#' @description Evaluate distribution at a given position or at every position
+#' @description Generic function evaluating the distribution of the DMM at a given position or at every position
 #'
 #' @details Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM
-#' @param x An object of class "dmm"
-#' @param pos An integer, a position
-#' @param all.pos FALSE (evaluation at pos index) ; TRUE (evaluation for all pos indices)
-#' @param internal FALSE (default) ; TRUE (for internal use of distrib_evol function)
+#' @param x An object of class `dmm`
+#' @param pos A positive integer giving the position along the sequence on which the distribution of the DMM should be computed
+#' @param all.pos `FALSE` (evaluation at position index) ; `TRUE` (evaluation for all position indices)
+#' @param internal `FALSE` (default) ; `TRUE` (for internal use of the \link[drimmR]{Distribution_evol} function)
 #' @author Alexandre Seiller
 #' @importFrom Rdpack reprompt
 #' @references

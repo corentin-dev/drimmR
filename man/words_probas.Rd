@@ -11,14 +11,14 @@ words_probas(words, pos, x, output_file = NULL, plot = FALSE)
 
 \item{pos}{A vector of integer positions}
 
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class `dmm`}
 
 \item{output_file}{(Optional) A file containing the matrix of probabilities (e.g,"C:/.../PROB.txt")}
 
-\item{plot}{FALSE (no figure plot of words probabilities); TRUE (figure plot)}
+\item{plot}{`FALSE` (no figure plot of words probabilities); `TRUE` (figure plot)}
 }
 \value{
-a dataframe of word probabilities along the positions of the sequence
+A dataframe of word probabilities along the positions of the sequence
 }
 \description{
 Probability of several words at several positions of a DMM

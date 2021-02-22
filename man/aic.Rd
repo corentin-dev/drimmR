@@ -2,12 +2,12 @@
 % Please edit documentation in R/allgenerics.R
 \name{aic}
 \alias{aic}
-\title{Akaike Information Criterion (AIC) S3 generic function}
+\title{Akaike Information Criterion (AIC)}
 \usage{
 aic(x, sequences)
 }
 \arguments{
-\item{x}{An object of class "dmm" for which the logikelihood can be computed.}
+\item{x}{An object of class `dmm` for which the logikelihood can be computed.}
 
 \item{sequences}{A vector of character or a list of vector of character representing the sequences for which the
 AIC criterion must be computed.}

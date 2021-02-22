@@ -2,20 +2,20 @@
 % Please edit documentation in R/dmmsum.R
 \name{getTransitionMatrix.dmmsum}
 \alias{getTransitionMatrix.dmmsum}
-\title{Get transition matrix at a given position}
+\title{Get transition matrix of the drifting Markov Model}
 \usage{
 \method{getTransitionMatrix}{dmmsum}(x, pos)
 }
 \arguments{
-\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
+\item{x}{An object of class `dmm`, `dmmsum`}
 
-\item{pos}{position along the sequence (integer)}
+\item{pos}{A positive integer giving the position along the sequence on which the transition matrix of the DMM should be computed}
 }
 \value{
 A transition matrix at a given position
 }
 \description{
-Get transition matrix at a given position
+Evaluate the transition matrix of the DMM at a given position
 }
 \examples{
 data(lambda, package = "drimmR")

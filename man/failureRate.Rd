@@ -2,39 +2,46 @@
 % Please edit documentation in R/metrics.R
 \name{failureRate}
 \alias{failureRate}
-\title{Evaluate failure rates}
+\title{Failure rates function}
 \usage{
 failureRate(
   x,
   k1,
   k2,
   s1,
-  error.rate = c("BMP", "RG"),
+  failure.rate = c("BMP", "RG"),
   output_file = NULL,
   plot = FALSE
 )
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class `dmm`}
 
-\item{k1}{start position (numeric)}
+\item{k1}{Start position :  a positive integer giving the start position along the sequence from which the failure rates of the DMM should be computed}
 
-\item{k2}{end position (numeric)}
+\item{k2}{End position :  a positive integer giving the end position along the sequence until which the failure rates of the DMM should be computed}
 
-\item{s1}{Character vector of the subspace working states among the state space vector s.t. s1 < s}
+\item{s1}{Character vector of the subspace working states among the state space vector such that s1 < s}
 
-\item{error.rate}{Default="BMP", then BMP-failure-rate is the method used to estimate the error rate. If error.rate= "RG",
-then RG-failure rate is the method used to estimate the error rate.}
+\item{failure.rate}{Default="BMP", then BMP-failure-rate is the method used to estimate the failure rate. If `failure.rate`= "RG",
+then RG-failure rate is the method used to estimate the failure rate.}
 
-\item{output_file}{(Optional) A file containing matrix of error rates at each position (e.g, "C:/.../ER.txt")}
+\item{output_file}{(Optional) A file containing matrix of failure rates at each position (e.g, "C:/.../ER.txt")}
 
-\item{plot}{FALSE (no figure plot of error rates by position); TRUE (figure plot)}
+\item{plot}{`FALSE` (no figure plot of failure rates by position); `TRUE` (figure plot)}
 }
 \value{
-A matrix with error rate score at each position
+A matrix with positions and failure rate scores of states (and figure plot)
 }
 \description{
-Estimation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate
+Estimation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate.
+
+As for BMP-failure rate, consider a system S starting to work at time \eqn{l = 0}. The BMP-failure rate at time \eqn{l \in N} is
+the conditional probability that the failure of the system occurs at time \eqn{l}, given that the system has
+worked until time \eqn{l - 1}.
+
+The RG-failure rate is a discrete-time adapted failure-rate proposed by D. Roy and R. Gupta. Classification of discrete
+lives. \emph{Microelectronics Reliability}, 32(10):1459–1473, 1992.
 }
 \details{
 The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
@@ -48,11 +55,12 @@ dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 k1 <- 1
 k2 <- 200
 s1 <- c("c","t")  # vector of working states
-failureRate(dmm,k1,k2,s1,error.rate="BMP",plot=TRUE)
+failureRate(dmm,k1,k2,s1,failure.rate="BMP",plot=TRUE)
 
 }
 \references{
 \insertRef{BaVe2018}{drimmR}
+\insertRef{roygup1992}{drimmR}
 }
 \seealso{
 \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}

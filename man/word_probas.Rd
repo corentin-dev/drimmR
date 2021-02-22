@@ -15,7 +15,7 @@ word_probas(word, pos, x, output_file = NULL, plot = FALSE)
 
 \item{output_file}{(Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")}
 
-\item{plot}{FALSE (no figure plot of word probabilities); TRUE (figure plot)}
+\item{plot}{`FALSE` (no figure plot of word probabilities); `TRUE` (figure plot)}
 }
 \value{
 A numeric vector, probabilities of \code{word}

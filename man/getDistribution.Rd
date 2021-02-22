@@ -2,24 +2,24 @@
 % Please edit documentation in R/allgenerics.R
 \name{getDistribution}
 \alias{getDistribution}
-\title{Get distribution S3 generic function}
+\title{Get the distributions of the DMM}
 \usage{
 getDistribution(x, pos, all.pos = FALSE, internal = FALSE)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class `dmm`}
 
-\item{pos}{An integer, a position}
+\item{pos}{A positive integer giving the position along the sequence on which the distribution of the DMM should be computed}
 
-\item{all.pos}{FALSE (evaluation at pos index) ; TRUE (evaluation for all pos indices)}
+\item{all.pos}{`FALSE` (evaluation at position index) ; `TRUE` (evaluation for all position indices)}
 
-\item{internal}{FALSE (default) ; TRUE (for internal use of distrib_evol function)}
+\item{internal}{`FALSE` (default) ; `TRUE` (for internal use of the \link[drimmR]{Distribution_evol} function)}
 }
 \value{
 A vector or matrix of distribution probabilities
 }
 \description{
-Evaluate distribution at a given position or at every position
+Generic function evaluating the distribution of the DMM at a given position or at every position
 }
 \details{
 Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM

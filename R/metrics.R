@@ -6,15 +6,15 @@
 
 #' Plot stationary laws for a range of positions between <start> and <end>
 #'
-#' @param x An object of class "dmm"
-#' @param start Start position (numeric)
-#' @param end End position (numeric)
-#' @param step A step (numeric)
+#' @param x An object of class `dmm`
+#' @param start Start position :  a positive integer giving the start position along the sequence from which the stationary laws of the DMM should be computed
+#' @param end End position : a positive integer giving the end position along the sequence until which the stationary laws of the DMM should be computed
+#' @param step A step (integer)
 #' @param output_file (Optional) A file containing matrix of stationary laws (e.g, "C:/.../SL.txt")
-#' @param plot FALSE (no figure plot of SL evolution); TRUE (figure plot)
+#' @param plot `FALSE` (no figure plot of SL evolution); `TRUE` (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix of probabilities with position and probability of states (and figure plot)
+#' @return A matrix with positions and stationary laws of states (and figure plot)
 #' @import ggplot2 tidyverse
 #' @importFrom Rdpack reprompt
 #' @references
@@ -89,15 +89,15 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 
 #' Plot distributions for a range of positions between <start> and <end>
 #'
-#' @param x An object of class "dmm"
-#' @param start Start position (numeric)
-#' @param end End position (numeric)
-#' @param step A step (numeric)
+#' @param x An object of class `dmm`
+#' @param start  Start position :  a positive integer giving the start position along the sequence from which the distributions of the DMM should be computed
+#' @param end  End position :  a positive integer giving the end position along the sequence until which the distributions of the DMM should be computed
+#' @param step A step (integer)
 #' @param output_file (Optional) A file containing matrix of distributions (e.g, "C:/.../DIST.txt")
-#' @param plot FALSE (no figure plot of dist evolution); TRUE (figure plot)
+#' @param plot `FALSE` (no figure plot of dist evolution); `TRUE` (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix of distributions with position and probability of states
+#' @return A matrix with positions and distributions of states (and figure plot)
 #' @import ggplot2 tidyverse
 #' @importFrom Rdpack reprompt
 #' @references
@@ -173,21 +173,21 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 
 
 
-#' Evaluate Availability
+#' Availability function
 #'
-#' @description Estimation of the pointwise (or instantaneous) availability for (ergodic) repairable systems at time \eqn{l \in N}
+#' @description Pointwise (or instantaneous) availability of a system at time \eqn{l \in N}
 #'
 #' @details The pointwise (or instantaneous) availability is the probability that the system is in a working state at time \eqn{l},
 #' independently of the fact that the system worked or not during the time interval \eqn{[0; l)}
-#' @param x An object of class "dmm"
-#' @param k1 start position (numeric)
-#' @param k2 end position (numeric)
-#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1< s
+#' @param x An object of class `dmm`
+#' @param k1  Start position :  a positive integer giving the start position along the sequence from which the availabilities of the DMM should be computed
+#' @param k2 End position :  a positive integer giving the end position along the sequence until which the availabilities of the DMM should be computed
+#' @param s1 Character vector of the subspace working states among the state space vector such that s1< s
 #' @param output_file (Optional) A file containing matrix of availability probabilities (e.g, "C:/.../AVAL.txt")
-#' @param plot FALSE (no figure plot of availability by position); TRUE (figure plot)
+#' @param plot `FALSE` (no figure plot of availability by position); `TRUE` (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with Availability score at each position
+#' @return A matrix with positions and availability probabilities of states (and figure plot)
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @importFrom Rdpack reprompt
 #' @references
@@ -323,21 +323,21 @@ availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 }
 
 
-#' Evaluate Reliability
+#' Reliability function
 #'
-#' @description Estimation of reliability for (ergodic) repairable or (non-ergodic) non-repairable systems at time \eqn{l \in N}
+#' @description Reliability or the survival function of a system at time \eqn{l \in N}
 #'
-#' @details The reliability at time \eqn{l \in N} is the probability thaht the system has functioned without failure in the period \eqn{[0, l]}
+#' @details The reliability at time \eqn{l \in N} is the probability that the system has functioned without failure in the period \eqn{[0, l]}
 #'
-#' @param x An object of class "dmm"
-#' @param k1 start position (numeric)
-#' @param k2 end position (numeric)
-#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
+#' @param x An object of class `dmm`
+#' @param k1 Start position :  a positive integer giving the start position along the sequence from which the reliabilities of the DMM should be computed
+#' @param k2 End position :  a positive integer giving the end position along the sequence until which the reliabilities of the DMM should be computed
+#' @param s1 Character vector of the subspace working states among the state space vector such that s1 < s
 #' @param output_file (Optional) A file containing matrix of reliability probabilities (e.g, "C:/.../REL.txt")
-#' @param plot FALSE (no figure plot of reliability by position); TRUE (figure plot)
+#' @param plot `FALSE` (no figure plot of reliability by position); `TRUE` (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with Reliability score at each position
+#' @return A matrix with positions and reliability probabilities of states (and figure plot)
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @importFrom Rdpack reprompt
 #' @references
@@ -478,22 +478,22 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
 
 
-#' Evaluate Maintainability
+#' Maintainability function
 #'
-#' @description Estimation of maintainability for (ergodic) repairable system at time \eqn{k \in N}.
+#' @description Maintainability of a system at time \eqn{k \in N}.
 #'
-#' @details The maintainability at time \eqn{k \in N} of a repairable system is the probability that the system is repaired up to time \eqn{l},
+#' @details The maintainability at time \eqn{k \in N} of a system is the probability that the system is repaired up to time \eqn{l},
 #' given that is has failed at time \eqn{l=0}.
 #'
-#' @param x An object of class "dmm"
-#' @param k1 start position (numeric)
-#' @param k2 end position (numeric)
-#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
+#' @param x An object of class `dmm`
+#' @param k1 Start position :  a positive integer giving the start position along the sequence from which the maintainabilities of the DMM should be computed
+#' @param k2 End position :  a positive integer giving the end position along the sequence until which the maintainabilities of the DMM should be computed
+#' @param s1 Character vector of the subspace working states among the state space vector such that s1 < s
 #' @param output_file (Optional) A file containing matrix of maintainability probabilities (e.g, "C:/.../MAIN.txt")
-#' @param plot FALSE (no figure plot of maintainability by position); TRUE (figure plot)
+#' @param plot `FALSE` (no figure plot of maintainability by position); `TRUE` (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with Maintainability score at each position
+#' @return A matrix with positions and maintainability probabilities of states (and figure plot)
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @importFrom Rdpack reprompt
 #' @references
@@ -636,9 +636,16 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 }
 
 
-#' Evaluate failure rates
+#' Failure rates function
 #'
-#' @description Estimation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate
+#' @description Estimation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate.
+#'
+#' As for BMP-failure rate, consider a system S starting to work at time \eqn{l = 0}. The BMP-failure rate at time \eqn{l \in N} is
+#' the conditional probability that the failure of the system occurs at time \eqn{l}, given that the system has
+#' worked until time \eqn{l - 1}.
+#'
+#' The RG-failure rate is a discrete-time adapted failure-rate proposed by D. Roy and R. Gupta. Classification of discrete
+#' lives. \emph{Microelectronics Reliability}, 32(10):1459–1473, 1992.
 #'
 #'
 #' @details The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
@@ -646,21 +653,22 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #'
 #' The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
 #'
-#' @param x An object of class "dmm"
-#' @param k1 start position (numeric)
-#' @param k2 end position (numeric)
-#' @param error.rate Default="BMP", then BMP-failure-rate is the method used to estimate the error rate. If error.rate= "RG",
-#' then RG-failure rate is the method used to estimate the error rate.
-#' @param s1 Character vector of the subspace working states among the state space vector s.t. s1 < s
-#' @param output_file (Optional) A file containing matrix of error rates at each position (e.g, "C:/.../ER.txt")
-#' @param plot FALSE (no figure plot of error rates by position); TRUE (figure plot)
+#' @param x An object of class `dmm`
+#' @param k1 Start position :  a positive integer giving the start position along the sequence from which the failure rates of the DMM should be computed
+#' @param k2 End position :  a positive integer giving the end position along the sequence until which the failure rates of the DMM should be computed
+#' @param failure.rate Default="BMP", then BMP-failure-rate is the method used to estimate the failure rate. If `failure.rate`= "RG",
+#' then RG-failure rate is the method used to estimate the failure rate.
+#' @param s1 Character vector of the subspace working states among the state space vector such that s1 < s
+#' @param output_file (Optional) A file containing matrix of failure rates at each position (e.g, "C:/.../ER.txt")
+#' @param plot `FALSE` (no figure plot of failure rates by position); `TRUE` (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with error rate score at each position
+#' @return A matrix with positions and failure rate scores of states (and figure plot)
 #' @import ggplot2 tidyverse doSNOW foreach future
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
+#' \insertRef{roygup1992}{drimmR}
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}
 
@@ -670,21 +678,21 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
-#' failureRate(dmm,k1,k2,s1,error.rate="BMP",plot=TRUE)
+#' failureRate(dmm,k1,k2,s1,failure.rate="BMP",plot=TRUE)
 #'
 
-failureRate <- function(x, k1,k2, s1,error.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
+failureRate <- function(x, k1,k2, s1,failure.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
 
-  if(is.null(error.rate)){
+  if(is.null(failure.rate)){
     # BMP failure rate as default estimate
-    error.rate <- "BMP"
+    failure.rate <- "BMP"
   }
 
   order <- x$order
   mod.length <- x$length
   states <- x$states
 
-  if(order==0L){stop("Error rates are not relevant for DMM of order 0")}
+  if(order==0L){stop("Failure rates are not relevant for DMM of order 0")}
 
   getR <- matrix(NA, nrow=k2, ncol=1)
 
@@ -693,7 +701,7 @@ failureRate <- function(x, k1,k2, s1,error.rate=c("BMP","RG"), output_file=NULL,
 
   # BMP failure-rate
 
-  if(error.rate=="BMP"){
+  if(failure.rate=="BMP"){
 
     for (i in c(k1:k2)){
       getER[i,] <- 1- as.vector(getR[[1]][i+1,2])/as.vector(getR[[1]][i,2])
@@ -709,13 +717,13 @@ failureRate <- function(x, k1,k2, s1,error.rate=c("BMP","RG"), output_file=NULL,
     getER <- cbind(c(0,c(k1:k2)), getER)
 
     # set names
-    colnames(getER) <- c("positions",error.rate)
+    colnames(getER) <- c("positions",failure.rate)
 
   }
 
   # RG failure-rate
 
-  if(error.rate=="RG"){
+  if(failure.rate=="RG"){
 
     for (i in c(k1:k2)){
       if (k1>=1L){
@@ -727,7 +735,7 @@ failureRate <- function(x, k1,k2, s1,error.rate=c("BMP","RG"), output_file=NULL,
     getER <- cbind(c(0,c(k1:k2)), getER)
 
     # set names
-    colnames(getER) <- c("positions",error.rate)
+    colnames(getER) <- c("positions",failure.rate)
 
   }
 
@@ -744,7 +752,7 @@ failureRate <- function(x, k1,k2, s1,error.rate=c("BMP","RG"), output_file=NULL,
   if(isTRUE(plot)){
     fig <- ggplot2::ggplot(data.frame(getER), aes(positions,getER[,2])) + geom_path() +
       theme_bw() + geom_point() +
-      scale_y_continuous(name= paste0(error.rate,"-failure rate")) +
+      scale_y_continuous(name= paste0(failure.rate,"-failure rate")) +
       scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
                          else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
                          else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}

@@ -2,19 +2,19 @@
 % Please edit documentation in R/allgenerics.R
 \name{simulate}
 \alias{simulate}
-\title{Simulate S3 generic function}
+\title{Simulate a sequence under a drifting Markov model}
 \usage{
 simulate(x, output_file, model_size = 1e+05)
 }
 \arguments{
-\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
+\item{x}{An object of class `dmm`}
 
 \item{output_file}{(Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")}
 
 \item{model_size}{Size of the model}
 }
 \description{
-Simulate S3 generic function
+Generic function simulating a sequence under a k-th order DMM.
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

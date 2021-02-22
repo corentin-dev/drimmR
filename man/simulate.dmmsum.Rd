@@ -2,12 +2,12 @@
 % Please edit documentation in R/dmmsum.R
 \name{simulate.dmmsum}
 \alias{simulate.dmmsum}
-\title{Simulate a sequence with the Drifting Markov Model}
+\title{Simulate a sequence under a drifting Markov model}
 \usage{
 \method{simulate}{dmmsum}(x, output_file = NULL, model_size = NULL)
 }
 \arguments{
-\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
+\item{x}{An object of class `dmm`, `dmmsum`}
 
 \item{output_file}{(Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")}
 
@@ -17,7 +17,7 @@
 the vector of simulated sequence
 }
 \description{
-Simulate a sequence with the Drifting Markov Model
+Simulate a sequence under a k-th order DMM.
 }
 \examples{
 data(lambda, package = "drimmR")

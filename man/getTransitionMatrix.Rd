@@ -2,20 +2,20 @@
 % Please edit documentation in R/allgenerics.R
 \name{getTransitionMatrix}
 \alias{getTransitionMatrix}
-\title{Get transition S3 generic function}
+\title{Get transition matrix of the drifting Markov Model}
 \usage{
 getTransitionMatrix(x, pos)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class `dmm`}
 
-\item{pos}{An integer, a position}
+\item{pos}{A positive integer giving the position along the sequence on which the transition matrix of the DMM should be computed}
 }
 \value{
 A transition matrix at a given position
 }
 \description{
-Get transition S3 generic function
+Generic function evaluating the transition matrix of the DMM at a given position
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

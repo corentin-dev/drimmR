@@ -2,7 +2,7 @@
 % Please edit documentation in R/word.R
 \name{length_probas}
 \alias{length_probas}
-\title{Probability of occurrence of the Observed word of size n in a sequence at several positions}
+\title{Probability of occurrence of the observed word of size n in a sequence at several positions}
 \usage{
 length_probas(n, sequence, pos, x, output_file = NULL, plot = FALSE)
 }
@@ -17,13 +17,13 @@ length_probas(n, sequence, pos, x, output_file = NULL, plot = FALSE)
 
 \item{output_file}{(Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")}
 
-\item{plot}{FALSE (no figure plot of words probabilities); TRUE (figure plot)}
+\item{plot}{`FALSE` (no figure plot of words probabilities); `TRUE` (figure plot)}
 }
 \value{
-a dataframe of probability by position (and probability plots)
+A dataframe of probability by position (and probability plots)
 }
 \description{
-Probability of occurrence of the Observed word of size n in a sequence at several positions
+Probability of occurrence of the observed word of size n in a sequence at several positions
 }
 \examples{
 data(lambda, package = "drimmR")

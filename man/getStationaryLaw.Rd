@@ -2,27 +2,27 @@
 % Please edit documentation in R/allgenerics.R
 \name{getStationaryLaw}
 \alias{getStationaryLaw}
-\title{Get stationary law S3 generic function}
+\title{Get the stationary laws of the DMM}
 \usage{
 getStationaryLaw(x, pos, all.pos = FALSE, internal = FALSE)
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class `dmm`}
 
-\item{pos}{An integer, a position}
+\item{pos}{A positive integer giving the position along the sequence on which the stationary law of the DMM should be computed}
 
-\item{all.pos}{FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)}
+\item{all.pos}{`FALSE` (default, evaluation at position index) ; `TRUE` (evaluation for all position indices)}
 
-\item{internal}{FALSE (default) ; TRUE (for internal use of dmmsum initial law)}
+\item{internal}{`FALSE` (default) ; `TRUE` (for internal use of the initial law computation)}
 }
 \value{
 A vector or matrix of stationary law probabilities
 }
 \description{
-Evaluate stationary law at a given position or at every position
+Generic function evaluating the stationary law of the DMM at a given position or at every position
 }
 \details{
-Stationary law at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
+\code{Stationary law} at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

@@ -14,20 +14,20 @@ stationaryLaw_evol(
 )
 }
 \arguments{
-\item{x}{An object of class "dmm"}
+\item{x}{An object of class `dmm`}
 
-\item{start}{Start position (numeric)}
+\item{start}{Start position :  a positive integer giving the start position along the sequence from which the stationary laws of the DMM should be computed}
 
-\item{end}{End position (numeric)}
+\item{end}{End position : a positive integer giving the end position along the sequence until which the stationary laws of the DMM should be computed}
 
-\item{step}{A step (numeric)}
+\item{step}{A step (integer)}
 
 \item{output_file}{(Optional) A file containing matrix of stationary laws (e.g, "C:/.../SL.txt")}
 
-\item{plot}{FALSE (no figure plot of SL evolution); TRUE (figure plot)}
+\item{plot}{`FALSE` (no figure plot of SL evolution); `TRUE` (figure plot)}
 }
 \value{
-A matrix of probabilities with position and probability of states (and figure plot)
+A matrix with positions and stationary laws of states (and figure plot)
 }
 \description{
 Plot stationary laws for a range of positions between <start> and <end>

@@ -4,7 +4,7 @@
 #' @param pos A position (numeric)
 #' @param x An object of class "dmm"
 #' @param output_file (Optional) A file containing the probability (e.g,"C:/.../PROB.txt")
-#' @param internal FALSE (default) ; TRUE (for internal use of word applications)
+#' @param internal `FALSE` (default) ; `TRUE` (for internal use of word applications)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A numeric, probability of \code{word}
@@ -73,7 +73,7 @@ word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #' @param pos A vector of integer positions
 #' @param x An object of class "dmm"
 #' @param output_file (Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")
-#' @param plot FALSE (no figure plot of word probabilities); TRUE (figure plot)
+#' @param plot `FALSE` (no figure plot of word probabilities); `TRUE` (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A numeric vector, probabilities of \code{word}
@@ -130,12 +130,12 @@ word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
 #'
 #' @param words A vector of characters containing words
 #' @param pos A vector of integer positions
-#' @param x An object of class "dmm"
+#' @param x An object of class `dmm`
 #' @param output_file (Optional) A file containing the matrix of probabilities (e.g,"C:/.../PROB.txt")
-#' @param plot FALSE (no figure plot of words probabilities); TRUE (figure plot)
+#' @param plot `FALSE` (no figure plot of words probabilities); `TRUE` (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
-#' @return a dataframe of word probabilities along the positions of the sequence
+#' @return A dataframe of word probabilities along the positions of the sequence
 #' @import ggplot2 tidyverse
 #' @rawNamespace import(dplyr, except = count)
 #' @importFrom Rdpack reprompt
@@ -198,17 +198,17 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 
 
 
-#' Probability of occurrence of the Observed word of size n in a sequence at several positions
+#' Probability of occurrence of the observed word of size n in a sequence at several positions
 #'
 #' @param n An integer, the length word
 #' @param sequence A vector of characters
 #' @param pos A vector of integer positions
 #' @param x An object of class "dmm"
 #' @param output_file (Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")
-#' @param plot FALSE (no figure plot of words probabilities); TRUE (figure plot)
+#' @param plot `FALSE` (no figure plot of words probabilities); `TRUE` (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
-#' @return a dataframe of probability by position (and probability plots)
+#' @return A dataframe of probability by position (and probability plots)
 #' @import ggplot2 tidyverse
 #' @importFrom Rdpack reprompt
 #' @references

@@ -7,19 +7,19 @@
 \method{getDistribution}{dmmsum}(x, pos, all.pos = FALSE, internal = FALSE)
 }
 \arguments{
-\item{x}{An object of class "dmm", \link[drimmR]{dmmsum}}
+\item{x}{An object of class `dmm`, `dmmsum`}
 
-\item{pos}{An integer for position}
+\item{pos}{A positive integer giving the position along the sequence on which the distribution of the DMM should be computed}
 
-\item{all.pos}{FALSE (default, evaluation at position index) ; TRUE (evaluation for all position indices)}
+\item{all.pos}{`FALSE` (default, evaluation at position index) ; `TRUE` (evaluation for all position indices)}
 
-\item{internal}{FALSE (default) ; TRUE (for internal use of distrib_evol function)}
+\item{internal}{`FALSE` (default) ; `TRUE` (for internal use of \link[drimmR]{Distribution_evol} function)}
 }
 \value{
 A vector or matrix of distribution probabilities
 }
 \description{
-Evaluate distribution at a given position or at every position
+Evaluate the distribution of the DMM at a given position or at every position
 }
 \details{
 Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM
