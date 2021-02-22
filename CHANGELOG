@@ -1,5 +1,6 @@
 commits 22/02/2021 :
 modifications on reference manual following Vlad Barbu's corrections sent the 20/02/2021 
+add \dontrun on examples code to pass CRAN tests
 
 commits 19/02/2021 :
 modifications on reference manual (description page + add of optional argument output_file on several functions + add of references + corrections following tests)
