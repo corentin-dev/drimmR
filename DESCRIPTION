@@ -17,11 +17,11 @@ Description: This package introduces the drifting Markov models (DMMs) which are
 	the estimation, simulation and reliability of drifting Markov models. 
 	The implemented methods are described in
 	Vergne, N. (2008), <doi:10.2202/1544-6115.1326> and
-	Barbu, V.S., Vergne, N. (2019) <doi:10.1007/s11009-018-9682-8>
-License: GPL-3 + file LICENSE
+	Barbu, V.S., Vergne, N. (2019) <doi:10.1007/s11009-018-9682-8> .
+License: GPL
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat,
+Suggests: utils,
     knitr,
     rmarkdown
 Imports: seqinr,
@@ -29,7 +29,6 @@ Imports: seqinr,
     testthat,
     stats,
     ggplot2,
-    utils,
 	parallel,
 	foreach,
 	future,

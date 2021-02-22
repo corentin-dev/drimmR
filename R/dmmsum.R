@@ -87,7 +87,7 @@
 
 
 
-dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "freq","prod","stationary", "unif",...)){
+dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "freq","prod","stationary", "unif")){
 
 
   # ----------------------------------------------------------- Test input parameters

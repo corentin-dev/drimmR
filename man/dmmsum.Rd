@@ -9,7 +9,7 @@ dmmsum(
   order,
   degree,
   states,
-  init.estim = c("mle", "freq", "prod", "stationary", "unif", ...)
+  init.estim = c("mle", "freq", "prod", "stationary", "unif")
 )
 }
 \arguments{
