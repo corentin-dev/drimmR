@@ -29,14 +29,12 @@ Reliability or the survival function of a system at time \eqn{l \in N}
 The reliability at time \eqn{l \in N} is the probability that the system has functioned without failure in the period \eqn{[0, l]}
 }
 \examples{
-\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 k1 <- 1
 k2 <- 200
 s1 <- c("c","t")  # vector of working states
 reliability(dmm,k1,k2,s1,plot=TRUE)
-}
 
 }
 \references{

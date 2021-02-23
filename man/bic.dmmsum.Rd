@@ -18,12 +18,10 @@ A numeric, BIC
 Evaluate BIC
 }
 \examples{
-\dontrun{
 data(lambda, package = "drimmR")
 sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 dmm<-dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 bic(dmm,sequence)
-}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

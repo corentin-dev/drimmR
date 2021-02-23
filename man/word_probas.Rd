@@ -24,11 +24,11 @@ A numeric vector, probabilities of \code{word}
 Probabilities of a word at several positions of a DMM
 }
 \examples{
-\dontrun{
+
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 word_probas("aggctga",c(100,300),dmm, plot=TRUE)
-}
+
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

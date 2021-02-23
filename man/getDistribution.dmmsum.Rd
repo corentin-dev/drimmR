@@ -2,7 +2,7 @@
 % Please edit documentation in R/dmmsum.R
 \name{getDistribution.dmmsum}
 \alias{getDistribution.dmmsum}
-\title{Get distribution}
+\title{Get the distributions of the DMM}
 \usage{
 \method{getDistribution}{dmmsum}(x, pos, all.pos = FALSE, internal = FALSE)
 }
@@ -25,12 +25,10 @@ Evaluate the distribution of the DMM at a given position or at every position
 Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM
 }
 \examples{
-\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 t <- 10
 getDistribution(dmm,pos=t)
-}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

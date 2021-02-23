@@ -2,7 +2,7 @@
 % Please edit documentation in R/dmmsum.R
 \name{getStationaryLaw.dmmsum}
 \alias{getStationaryLaw.dmmsum}
-\title{Get stationary law}
+\title{Get the stationary laws of the DMM}
 \usage{
 \method{getStationaryLaw}{dmmsum}(x, pos, all.pos = FALSE, internal = FALSE)
 }
@@ -25,12 +25,10 @@ Evaluate the stationary law of the DMM at a given position or at every position
 Stationary law at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
 }
 \examples{
-\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 t <- 10
 getStationaryLaw(dmm,pos=t)
-}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

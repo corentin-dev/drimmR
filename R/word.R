@@ -15,11 +15,10 @@
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probas}, \link[drimmR]{words_probas}
 #' @examples
-#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' word_proba("aggctga",4,dmm)
-#' }
+#'
 word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
   word_c <- unlist(strsplit(word, split=""))
   word_length <- length(word_c)
@@ -87,11 +86,11 @@ word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}, \link[drimmR]{words_probas}
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' word_probas("aggctga",c(100,300),dmm, plot=TRUE)
-#' }
+#'
 
 word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
   proba <- c()
@@ -149,11 +148,11 @@ word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}, \link[drimmR]{word_probas}
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, plot=TRUE)
-#' }
+#'
 
 words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 
@@ -223,12 +222,11 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}
 #' @examples
-#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' n <- 2
 #' length_probas(n, lambda, c(1,length(lambda)-n+1), dmm,plot=TRUE)
-#' }
+#'
 
 length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
   # Make sure that DMMLength in not shorter than the sequence !

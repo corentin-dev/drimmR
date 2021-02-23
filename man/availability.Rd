@@ -30,14 +30,12 @@ The pointwise (or instantaneous) availability is the probability that the system
 independently of the fact that the system worked or not during the time interval \eqn{[0; l)}
 }
 \examples{
-\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 k1 <- 1
 k2 <- 200
 s1 <- c("c","t")  # vector of working states
 availability(dmm,k1,k2,s1,plot=TRUE)
-}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}
