@@ -120,11 +120,20 @@ dmmsum <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 
   # ----------------------------------------------------------- Set model
 
+
+  ############################
+  # Checking parameter degree
+  ############################
+
+  if (degree==0L)
+    stop("DMM of degree 0 not allowed")
+
+
   #######
   # size
   #######
 
-  # model length = length of the sequence - 1 (the model starts at X_0)
+  # model size = length of the sequence - 1 since the model if of length n and starts at (X_0, ..., X_n)
   model.length<-max(sapply(sequences, length))-1
 
   #####################
@@ -314,6 +323,7 @@ getTransitionMatrix.dmmsum <- function(x, pos) {
 
   if(pos<0){ stop("pos < 0 does not exist")}
 
+  # model size  is of length n :
   if(pos>x$length){stop("Position outside model size")}
 
   matrix <- matrix(0, nrow = length(x$states)^x$order,
@@ -698,7 +708,7 @@ loglik.dmmsum <- function(x, sequences){
     cl <- parallel::makeCluster(future::availableCores(), type = "PSOCK")
     parallel::clusterExport(cl=cl, varlist=c("x","ll","sequences","k","states"),envir=environment())
     ll <- unlist(parallel::parLapply(cl, X=c(k:((length(sequences) - k) + 1)), function(i) {
-      Pest <- getTransitionMatrix(x, i)
+      Pest <- getTransitionMatrix(x, i-1)
       window <- paste(sequences[((i - k) + 1):i], collapse = "")
       if(i!=length(sequences)){
         ll <- ll + log(Pest[window, sequences[(i + 1)]])
@@ -922,13 +932,15 @@ simulate.dmmsum <- function(x, output_file=NULL,model_size=NULL) {
   parallel::clusterExport(cl=cl, varlist=c("t","first_order_nucleotides"),envir=environment())
 
   simulated_sequence <- unlist(parallel::parLapply(cl, X=t, function(pos) {
-    dist <- getTransitionMatrix(x, pos)
+    dist <- getTransitionMatrix(x, pos-1)
     dist_transition <- dist[paste(first_order_nucleotides,collapse = ''),]
     s <-  sample(states,1, prob=abs(dist_transition))
     return(s)
   }))
 
-  simulated_sequence <- c(first_order_nucleotides, simulated_sequence)
+  if(model_size==1L){simulated_sequence <- first_order_nucleotides}
+  else{
+  simulated_sequence <- c(first_order_nucleotides, simulated_sequence)}
 
   if(!is.null(output_file)){
   seqinr::write.fasta(sequences = simulated_sequence, names = names(simulated_sequence),
