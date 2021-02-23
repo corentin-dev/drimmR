@@ -37,7 +37,6 @@ loglik <- function(x,sequences) {
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
-
 #'
 #' @export
 #'

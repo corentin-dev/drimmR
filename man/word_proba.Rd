@@ -24,10 +24,11 @@ A numeric, probability of \code{word}
 Probability of a word at a position t of a DMM
 }
 \examples{
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 word_proba("aggctga",4,dmm)
-
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

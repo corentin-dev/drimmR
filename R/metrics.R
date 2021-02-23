@@ -24,10 +24,11 @@
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getStationaryLaw}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' stationaryLaw_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
-#'
+#' }
 
 
 stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
@@ -108,10 +109,11 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' Distribution_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
-#'
+#' }
 
 Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
 
@@ -199,12 +201,14 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}, \link[drimmR]{maintainability}
 #'
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
 #' availability(dmm,k1,k2,s1,plot=TRUE)
+#' }
 
 availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
@@ -364,12 +368,14 @@ availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @export
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
 #' reliability(dmm,k1,k2,s1,plot=TRUE)
+#' }
 #'
 reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
@@ -537,12 +543,14 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
 
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
 #' maintainability(dmm,k1,k2,s1,plot=TRUE)
+#' }
 
 
 maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
@@ -723,12 +731,14 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}
 
 #' @examples
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' k1 <- 1
 #' k2 <- 200
 #' s1 <- c("c","t")  # vector of working states
 #' failureRate(dmm,k1,k2,s1,failure.rate="BMP",plot=TRUE)
+#' }
 
 failureRate <- function(x, k1,k2, s1,failure.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
 
