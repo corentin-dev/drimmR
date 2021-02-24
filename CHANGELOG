@@ -1,5 +1,6 @@
 commits 24/02/2021 :
 update of reference manual
+update following Nicolas Vergne's new remarks in mail on 24/02/2021
 
 commits 23/02/2021 :
 following the remarks of the meeting on 18/02, change of the attribute length of the model : length sequence -1 to model from X_0 to X_n in dmmsum function 
