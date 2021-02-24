@@ -2,9 +2,9 @@
 #'
 #' @param word A subsequence (string of characters)
 #' @param pos A position (numeric)
-#' @param x An object of class "dmm"
+#' @param x An object of class \code{dmm}
 #' @param output_file (Optional) A file containing the probability (e.g,"C:/.../PROB.txt")
-#' @param internal `FALSE` (default) ; `TRUE` (for internal use of word applications)
+#' @param internal \code{FALSE} (default) ; \code{TRUE} (for internal use of word applications)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A numeric, probability of \code{word}
@@ -13,14 +13,14 @@
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probas}, \link[drimmR]{words_probas}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probabilities}, \link[drimmR]{words_probabilities}
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' word_proba("aggctga",4,dmm)
-#' }
-word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
+#' word_probability("aggctga",4,dmm)
+#'
+word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
   word_c <- unlist(strsplit(word, split=""))
   word_length <- length(word_c)
   order <- x$order
@@ -73,9 +73,9 @@ word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #'
 #' @param word A subsequence (string of characters)
 #' @param pos A vector of integer positions
-#' @param x An object of class "dmm"
+#' @param x An object of class \code{dmm}
 #' @param output_file (Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")
-#' @param plot `FALSE` (no figure plot of word probabilities); `TRUE` (figure plot)
+#' @param plot \code{FALSE} (no figure plot of word probabilities); \code{TRUE} (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A numeric vector, probabilities of \code{word}
@@ -85,15 +85,15 @@ word_proba <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}, \link[drimmR]{words_probas}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}, \link[drimmR]{words_probabilities}
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' word_probas("aggctga",c(100,300),dmm, plot=TRUE)
-#' }
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
+#' word_probabilities("aggctga",c(100,300),dmm, plot=TRUE)
+#'
 
-word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
+word_probabilities <-function(word, pos, x,  output_file=NULL, plot=FALSE){
   proba <- c()
 
   if (missing(pos)) {
@@ -108,16 +108,16 @@ word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
     proba <- c(proba, word_proba(word, i, x, internal=TRUE))
   }
 
-  word_probas <- data.frame(cbind(c(pos[1]:pos[2]),proba))
-  colnames(word_probas) <- c("position","probability")
+  word_probabilities <- data.frame(cbind(c(pos[1]:pos[2]),proba))
+  colnames(word_probabilities) <- c("position","probability")
 
   if (!is.null(output_file))
-    write.table(word_probas, file=output_file, sep=",",col.names= colnames(word_probas))
+    write.table(word_probabilities, file=output_file, sep=",",col.names= colnames(word_probabilities))
 
   # probability plot
 
   if(isTRUE(plot)){
-    frame <- word_probas
+    frame <- word_probabilities
     # probability plot on overall frame
     fig1 <- ggplot2::ggplot(data=frame, ggplot2::aes(x=position, y=probability)) +
       ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
@@ -126,17 +126,17 @@ word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
 
   }
 
-  return(list(word_probas,if(isTRUE(plot)){fig1}))
+  return(list(word_probabilities,if(isTRUE(plot)){fig1}))
 
 }
 
-#' Probability of several words at several positions of a DMM
+#' Probability of appearance of several words at several positions of a DMM
 #'
 #' @param words A vector of characters containing words
 #' @param pos A vector of integer positions
-#' @param x An object of class `dmm`
+#' @param x An object of class \code{dmm}
 #' @param output_file (Optional) A file containing the matrix of probabilities (e.g,"C:/.../PROB.txt")
-#' @param plot `FALSE` (no figure plot of words probabilities); `TRUE` (figure plot)
+#' @param plot \code{FALSE} (no figure plot of words probabilities); \code{TRUE} (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A dataframe of word probabilities along the positions of the sequence
@@ -147,15 +147,15 @@ word_probas <-function(word, pos, x,  output_file=NULL, plot=FALSE){
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}, \link[drimmR]{word_probas}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}, \link[drimmR]{word_probabilities}
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' words_probas(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, plot=TRUE)
-#' }
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
+#' words_probabilities(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, plot=TRUE)
+#'
 
-words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
+words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 
   if (missing(pos)) {
     stop("Error : positions not specified.")
@@ -165,28 +165,28 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
     stop("Wrong arguments : start >= end")
   }
 
-  probas <- matrix(0, nrow=length(pos[1]:pos[2]), ncol=length(words)+1)
+  probabilities <- matrix(0, nrow=length(pos[1]:pos[2]), ncol=length(words)+1)
 
   row <- 1
   for (i in pos[1]:pos[2]) {
-    probas[row,1] <- i
-    for (j in 2:ncol(probas)) {
-      probas[row,j] <- word_proba(words[j-1], i, x, internal=TRUE)
+    probabilities[row,1] <- i
+    for (j in 2:ncol(probabilities)) {
+      probabilities[row,j] <- word_proba(words[j-1], i, x, internal=TRUE)
     }
     row <- row + 1
   }
-  words_probas <- data.frame(probas)
-  colnames(words_probas) <- c("position",paste0("probability word '",words[c(1:length(words))]," '") )
+  words_probabilities <- data.frame(probabilities)
+  colnames(words_probabilities) <- c("position",paste0("probability word '",words[c(1:length(words))]," '") )
 
 
   if (!is.null(output_file))
-    write.table(words_probas, file=output_file, sep=",", col.names=colnames(words_probas))
+    write.table(words_probabilities, file=output_file, sep=",", col.names=colnames(words_probabilities))
 
   # probability plot
   if(isTRUE(plot)){
-    colnames(probas) <- c("position",words[1:length(words)])
-   # probas<- subset(probas, position %in% c(pos[1]:pos[2]))
-    frame <- data.frame(reshape2::melt(probas[,-1]))
+    colnames(probabilities) <- c("position",words[1:length(words)])
+   # probabilities<- subset(probabilities, position %in% c(pos[1]:pos[2]))
+    frame <- data.frame(reshape2::melt(probabilities[,-1]))
     frame <- frame[,-1]
     frame <- cbind(rep(c(pos[1]:pos[2]),length(words)),frame)
     colnames(frame) <-c("position","word","probability")
@@ -199,19 +199,19 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
        ggplot2::theme_bw()
     }
   }
-  return(list(words_probas,if(isTRUE(plot)){fig1}))
+  return(list(words_probabilities,if(isTRUE(plot)){fig1}))
 }
 
 
 
 #' Probability of occurrence of the observed word of size n in a sequence at several positions
 #'
-#' @param n An integer, the length word
+#' @param m An integer, the length word
 #' @param sequence A vector of characters
 #' @param pos A vector of integer positions
-#' @param x An object of class "dmm"
+#' @param x An object of class \code{dmm}
 #' @param output_file (Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")
-#' @param plot `FALSE` (no figure plot of words probabilities); `TRUE` (figure plot)
+#' @param plot \code{FALSE} (no figure plot of words probabilities); \code{TRUE} (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A dataframe of probability by position (and probability plots)
@@ -221,16 +221,16 @@ words_probas <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_proba}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' n <- 2
-#' length_probas(n, lambda, c(1,length(lambda)-n+1), dmm,plot=TRUE)
-#' }
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' m <- 2
+#' lengthWord_probabilities(m, lambda, c(1,length(lambda)-m+1), dmm,plot=TRUE, fit.method="sum")
+#'
 
-length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
+lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL, plot=FALSE) {
   # Make sure that DMMLength in not shorter than the sequence !
   if (missing(pos)) {
     stop("Error : positions not specified.")
@@ -240,27 +240,27 @@ length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
     stop("Wrong arguments : start >= end")
   }
 
-  probas <- data.frame(matrix(0, nrow=length(pos[1]:pos[2]), ncol=3), row.names=(pos[1]:pos[2]))
-  #probas <- matrix(0, nrow=length(pos[1]:pos[2]), ncol=3)
+  probabilities <- data.frame(matrix(0, nrow=length(pos[1]:pos[2]), ncol=3), row.names=(pos[1]:pos[2]))
+  #probabilities <- matrix(0, nrow=length(pos[1]:pos[2]), ncol=3)
 
 
-  # Probas computation
+  # probabilities computation
   j <- 1
   for (i in pos[1]:pos[2]) {
-    word <- sequence[i:(i+n-1)]
-    probas[j,] <- c(i, paste(word, collapse=""), word_proba(word, i, x, internal=TRUE))
+    word <- sequence[i:(i+m-1)]
+    probabilities[j,] <- c(i, paste(word, collapse=""), word_proba(word, i, x, internal=TRUE))
     j <- j+1
   }
 
-  colnames(probas) <- c("position", "word", "probability")
+  colnames(probabilities) <- c("position", "word", "probability")
 
   if (!is.null(output_file))
-    write.table(probas, file=output_file, sep=",", col.names=colnames(probas))
+    write.table(probabilities, file=output_file, sep=",", col.names=colnames(probabilities))
 
   # probability plots
 
   if(isTRUE(plot)){
-    frame <- probas
+    frame <- probabilities
     frame$position = as.numeric(frame$position)
     frame$probability = as.numeric(frame$probability)
 
@@ -288,6 +288,6 @@ length_probas <- function(n, sequence, pos, x, output_file=NULL, plot=FALSE) {
 
   }
 
-  return(list(probas,if(isTRUE(plot)){fig}))
+  return(list(probabilities,if(isTRUE(plot)){fig}))
 }
 

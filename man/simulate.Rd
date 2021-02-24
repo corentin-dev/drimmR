@@ -7,14 +7,17 @@
 simulate(x, output_file, model_size = 1e+05)
 }
 \arguments{
-\item{x}{An object of class `dmm`}
+\item{x}{An object for which simulated sequences of the DMM can be computed.}
 
 \item{output_file}{(Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")}
 
 \item{model_size}{Size of the model}
 }
+\value{
+the vector of simulated sequence
+}
 \description{
-Generic function simulating a sequence under a k-th order DMM.
+Generic function simulating a sequence of length \code{model_size} under a model \code{x}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

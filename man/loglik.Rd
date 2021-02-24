@@ -2,22 +2,22 @@
 % Please edit documentation in R/allgenerics.R
 \name{loglik}
 \alias{loglik}
-\title{Loglikelihood S3}
+\title{Log-likelihood}
 \usage{
 loglik(x, sequences)
 }
 \arguments{
-\item{x}{An object of class `dmm` for which the logikelihood can be computed.}
+\item{x}{An object for which the log-likelihood of the DMM can be computed.}
 
 \item{sequences}{A vector of character or list of vectors representing the sequences for which the
 log-likelihood of the model must be computed.}
 }
 \value{
-A numeric, the log-likelihood
+A list of loglikelihood (numeric)
 }
 \description{
-Generic function computing the loglikelihood of the model `x`,
-  with the list of sequences `sequences`.
+Generic function computing the log-likelihood of the model \code{x},
+  with the list of sequences \code{sequences}.
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

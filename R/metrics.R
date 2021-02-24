@@ -6,12 +6,12 @@
 
 #' Plot stationary laws for a range of positions between <start> and <end>
 #'
-#' @param x An object of class `dmm`
+#' @param x An object of class \code{dmm}
 #' @param start Start position :  a positive integer giving the start position along the sequence from which the stationary laws of the DMM should be computed
 #' @param end End position : a positive integer giving the end position along the sequence until which the stationary laws of the DMM should be computed
 #' @param step A step (integer)
 #' @param output_file (Optional) A file containing matrix of stationary laws (e.g, "C:/.../SL.txt")
-#' @param plot `FALSE` (no figure plot of SL evolution); `TRUE` (figure plot)
+#' @param plot \code{FALSE} (no figure plot of SL evolution); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with positions and stationary laws of states (and figure plot)
@@ -22,16 +22,16 @@
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getStationaryLaw}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getStationaryLaw}
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' stationaryLaw_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
-#' }
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
+#' stationary_distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
+#'
 
 
-stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
+stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
 
   states <- x$states
   order <- x$order
@@ -92,12 +92,12 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 
 #' Plot distributions for a range of positions between <start> and <end>
 #'
-#' @param x An object of class `dmm`
+#' @param x An object of class \code{dmm}
 #' @param start  Start position :  a positive integer giving the start position along the sequence from which the distributions of the DMM should be computed
 #' @param end  End position :  a positive integer giving the end position along the sequence until which the distributions of the DMM should be computed
 #' @param step A step (integer)
 #' @param output_file (Optional) A file containing matrix of distributions (e.g, "C:/.../DIST.txt")
-#' @param plot `FALSE` (no figure plot of dist evolution); `TRUE` (figure plot)
+#' @param plot \code{FALSE} (no figure plot of dist evolution); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with positions and distributions of states (and figure plot)
@@ -107,15 +107,15 @@ stationaryLaw_evol <- function(x, start = 1, end = NULL, step = NULL, output_fil
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
-#' Distribution_evol(dmm,start=1,end=1000,step=100, plot=TRUE)
-#' }
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
+#' distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
+#'
 
-Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
+distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
 
   states <- x$states
   order <- x$order
@@ -184,12 +184,12 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 #'
 #' @details The pointwise (or instantaneous) availability is the probability that the system is in a working state at time \eqn{l},
 #' independently of the fact that the system worked or not during the time interval \eqn{[0; l)}
-#' @param x An object of class `dmm`
+#' @param x An object of class \code{dmm}
 #' @param k1  Start position :  a positive integer giving the start position along the sequence from which the availabilities of the DMM should be computed
 #' @param k2 End position :  a positive integer giving the end position along the sequence until which the availabilities of the DMM should be computed
-#' @param s1 Character vector of the subspace working states among the state space vector such that s1< s
+#' @param upstates Character vector of the subspace working states among the state space vector such that upstates< s
 #' @param output_file (Optional) A file containing matrix of availability probabilities (e.g, "C:/.../AVAL.txt")
-#' @param plot `FALSE` (no figure plot of availability by position); `TRUE` (figure plot)
+#' @param plot \code{FALSE} (no figure plot of availability by position); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with positions and availability probabilities of states (and figure plot)
@@ -198,19 +198,19 @@ Distribution_evol <- function(x, start = 1, end = NULL, step = NULL, output_file
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}, \link[drimmR]{maintainability}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}, \link[drimmR]{maintainability}
 #'
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' k1 <- 1
 #' k2 <- 200
-#' s1 <- c("c","t")  # vector of working states
-#' availability(dmm,k1,k2,s1,plot=TRUE)
-#' }
+#' upstates <- c("c","t")  # vector of working states
+#' availability(dmm,k1,k2,upstates,plot=TRUE)
+#'
 
-availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
+availability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
 
   order <- x$order
   mod.length <- x$length
@@ -225,10 +225,10 @@ availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
   if(order==1L){
 
-    # s1 index of subspace of working states
+    # upstates index of subspace of working states
 
     `%nin%` <- Negate(`%in%`)
-    working.states <- states[states %in% unlist(strsplit(s1, split=""))]
+    working.states <- states[states %in% unlist(strsplit(upstates, split=""))]
     failure.states <- subset(states, subset=states %nin% working.states)
 
     Pit <- lapply(c(1:k2),getTransitionMatrix, x=x)
@@ -275,7 +275,7 @@ availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
 
     grep.multpat <- Vectorize(grep, vectorize.args = "pattern")
-    working.states <- names(x$init.estim)[!(names(x$init.estim) %in% unique(c(grep.multpat(x$states[!(x$states %in% x$states[x$states %in% unlist(strsplit(s1, split=""))])], names(x$init.estim),value=TRUE))))]
+    working.states <- names(x$init.estim)[!(names(x$init.estim) %in% unique(c(grep.multpat(x$states[!(x$states %in% x$states[x$states %in% unlist(strsplit(upstates, split=""))])], names(x$init.estim),value=TRUE))))]
 
     `%nin%` <- Negate(`%in%`)
     failure.states <- subset(names(x$init.estim), subset=names(x$init.estim) %nin% working.states)
@@ -352,12 +352,12 @@ availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #'
 #' @details The reliability at time \eqn{l \in N} is the probability that the system has functioned without failure in the period \eqn{[0, l]}
 #'
-#' @param x An object of class `dmm`
+#' @param x An object of class \code{dmm}
 #' @param k1 Start position :  a positive integer giving the start position along the sequence from which the reliabilities of the DMM should be computed
 #' @param k2 End position :  a positive integer giving the end position along the sequence until which the reliabilities of the DMM should be computed
-#' @param s1 Character vector of the subspace working states among the state space vector such that s1 < s
+#' @param upstates Character vector of the subspace working states among the state space vector such that upstates < s
 #' @param output_file (Optional) A file containing matrix of reliability probabilities (e.g, "C:/.../REL.txt")
-#' @param plot `FALSE` (no figure plot of reliability by position); `TRUE` (figure plot)
+#' @param plot \code{FALSE} (no figure plot of reliability by position); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with positions and reliability probabilities of states (and figure plot)
@@ -366,18 +366,18 @@ availability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' k1 <- 1
 #' k2 <- 200
-#' s1 <- c("c","t")  # vector of working states
-#' reliability(dmm,k1,k2,s1,plot=TRUE)
-#' }
+#' upstates <- c("c","t")  # vector of working states
+#' reliability(dmm,k1,k2,upstates,plot=TRUE)
 #'
-reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
+#'
+reliability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
 
   order <- x$order
   mod.length <- x$length
@@ -389,9 +389,9 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
   if(order==1L){
 
-    # s1 index of subspace of working states
+    # upstates index of subspace of working states
 
-    working.states <- states[states %in% unlist(strsplit(s1, split=""))]
+    working.states <- states[states %in% unlist(strsplit(upstates, split=""))]
     init.law_u <- x$init.estim[names(x$init.estim) %in% working.states]
 
     # warning : pos=0 added further in the code. (k2-1)^th list of matrix corresponds to pos=k2
@@ -415,7 +415,7 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
         getR[m,] <- init.law_u %*% list.prod.mat[[seq(from=1,to=k2-1, by=1)[m]]] %*% matrix(diag(diag(length(working.states))))
       }
       # add start of the reliability function and pos=0 (printed index= 1)
-      getR <- rbind(1,init.law_u %*%  matrix(rep(1,length(s1))),getR)
+      getR <- rbind(1,init.law_u %*%  matrix(rep(1,length(upstates))),getR)
       #remove k2^th pos after adding start of function and pos=0
       getR <- getR[-c(k2+2),]
 
@@ -442,7 +442,7 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
     grep.multpat <- Vectorize(grep, vectorize.args = "pattern")
 
-    working.states <- names(x$init.estim)[!(names(x$init.estim) %in% unique(c(grep.multpat(x$states[!(x$states %in% x$states[x$states %in% unlist(strsplit(s1, split=""))])], names(x$init.estim),value=TRUE))))]
+    working.states <- names(x$init.estim)[!(names(x$init.estim) %in% unique(c(grep.multpat(x$states[!(x$states %in% x$states[x$states %in% unlist(strsplit(upstates, split=""))])], names(x$init.estim),value=TRUE))))]
 
     init.law_u <- x$init.estim[working.states]
     Pit <- list()
@@ -525,12 +525,12 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' @details The maintainability at time \eqn{k \in N} of a system is the probability that the system is repaired up to time \eqn{l},
 #' given that is has failed at time \eqn{l=0}.
 #'
-#' @param x An object of class `dmm`
+#' @param x An object of class \code{dmm}
 #' @param k1 Start position :  a positive integer giving the start position along the sequence from which the maintainabilities of the DMM should be computed
 #' @param k2 End position :  a positive integer giving the end position along the sequence until which the maintainabilities of the DMM should be computed
-#' @param s1 Character vector of the subspace working states among the state space vector such that s1 < s
+#' @param upstates Character vector of the subspace working states among the state space vector such that upstates < s
 #' @param output_file (Optional) A file containing matrix of maintainability probabilities (e.g, "C:/.../MAIN.txt")
-#' @param plot `FALSE` (no figure plot of maintainability by position); `TRUE` (figure plot)
+#' @param plot \code{FALSE} (no figure plot of maintainability by position); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with positions and maintainability probabilities of states (and figure plot)
@@ -540,20 +540,20 @@ reliability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' \insertRef{BaVe2018}{drimmR}
 #' @export
 #'
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' k1 <- 1
 #' k2 <- 200
-#' s1 <- c("c","t")  # vector of working states
-#' maintainability(dmm,k1,k2,s1,plot=TRUE)
-#' }
+#' upstates <- c("c","t")  # vector of working states
+#' maintainability(dmm,k1,k2,upstates,plot=TRUE)
+#'
 
 
-maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
+maintainability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
 
   order <- x$order
   mod.length <- x$length
@@ -565,10 +565,10 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 
   if(order==1L){
 
-    # s1 index of subspace of working states
+    # upstates index of subspace of working states
 
     `%nin%` <- Negate(`%in%`)
-    working.states <- states[states %in% unlist(strsplit(s1, split=""))]
+    working.states <- states[states %in% unlist(strsplit(upstates, split=""))]
     failure.states <- subset(states, subset=states%nin% working.states)
     init.law_d <- x$init.estim[failure.states]
 
@@ -619,7 +619,7 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
   if(order>1L){
 
     grep.multpat <- Vectorize(grep, vectorize.args = "pattern")
-    working.states <- names(x$init.estim)[!(names(x$init.estim) %in% unique(c(grep.multpat(x$states[!(x$states %in% x$states[x$states %in% unlist(strsplit(s1, split=""))])], names(x$init.estim),value=TRUE))))]
+    working.states <- names(x$init.estim)[!(names(x$init.estim) %in% unique(c(grep.multpat(x$states[!(x$states %in% x$states[x$states %in% unlist(strsplit(upstates, split=""))])], names(x$init.estim),value=TRUE))))]
 
     `%nin%` <- Negate(`%in%`)
     failure.states <- subset(names(x$init.estim), subset=names(x$init.estim)%nin% working.states)
@@ -711,14 +711,14 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #'
 #' The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
 #'
-#' @param x An object of class `dmm`
+#' @param x An object of class \code{dmm}
 #' @param k1 Start position :  a positive integer giving the start position along the sequence from which the failure rates of the DMM should be computed
 #' @param k2 End position :  a positive integer giving the end position along the sequence until which the failure rates of the DMM should be computed
-#' @param failure.rate Default="BMP", then BMP-failure-rate is the method used to estimate the failure rate. If `failure.rate`= "RG",
+#' @param \code{failure.rate} Default="BMP", then BMP-failure-rate is the method used to estimate the failure rate. If \code{failure.rate}= "RG",
 #' then RG-failure rate is the method used to estimate the failure rate.
-#' @param s1 Character vector of the subspace working states among the state space vector such that s1 < s
+#' @param upstates Character vector of the subspace working states among the state space vector such that upstates < s
 #' @param output_file (Optional) A file containing matrix of failure rates at each position (e.g, "C:/.../ER.txt")
-#' @param plot `FALSE` (no figure plot of failure rates by position); `TRUE` (figure plot)
+#' @param plot \code{FALSE} (no figure plot of failure rates by position); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with positions and failure rate scores of states (and figure plot)
@@ -728,19 +728,19 @@ maintainability <- function(x, k1,k2, s1, output_file=NULL, plot=FALSE) {
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{roygup1992}{drimmR}
 #' @export
-#' @seealso \link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}
+#' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}
 
 #' @examples
-#' \dontrun{
+#'
 #' data(lambda, package = "drimmR")
-#' dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+#' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' k1 <- 1
 #' k2 <- 200
-#' s1 <- c("c","t")  # vector of working states
-#' failureRate(dmm,k1,k2,s1,failure.rate="BMP",plot=TRUE)
-#' }
+#' upstates <- c("c","t")  # vector of working states
+#' failureRate(dmm,k1,k2,upstates,failure.rate="BMP",plot=TRUE)
+#'
 
-failureRate <- function(x, k1,k2, s1,failure.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
+failureRate <- function(x, k1,k2, upstates,failure.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
 
   if(is.null(failure.rate)){
     # BMP failure rate as default estimate
@@ -755,7 +755,7 @@ failureRate <- function(x, k1,k2, s1,failure.rate=c("BMP","RG"), output_file=NUL
 
   getR <- matrix(NA, nrow=k2, ncol=1)
 
-  getR <- reliability(x,k1=1, k2=k2+1,s1=s1, plot=FALSE)
+  getR <- reliability(x,k1=1, k2=k2+1,upstates=upstates, plot=FALSE)
   getFR <- matrix(NA, nrow=k2, ncol=1)
 
   # BMP failure-rate

@@ -4,20 +4,20 @@
 \alias{availability}
 \title{Availability function}
 \usage{
-availability(x, k1, k2, s1, output_file = NULL, plot = FALSE)
+availability(x, k1, k2, upstates, output_file = NULL, plot = FALSE)
 }
 \arguments{
-\item{x}{An object of class `dmm`}
+\item{x}{An object of class \code{dmm}}
 
 \item{k1}{Start position :  a positive integer giving the start position along the sequence from which the availabilities of the DMM should be computed}
 
 \item{k2}{End position :  a positive integer giving the end position along the sequence until which the availabilities of the DMM should be computed}
 
-\item{s1}{Character vector of the subspace working states among the state space vector such that s1< s}
+\item{upstates}{Character vector of the subspace working states among the state space vector such that upstates< s}
 
 \item{output_file}{(Optional) A file containing matrix of availability probabilities (e.g, "C:/.../AVAL.txt")}
 
-\item{plot}{`FALSE` (no figure plot of availability by position); `TRUE` (figure plot)}
+\item{plot}{\code{FALSE} (no figure plot of availability by position); \code{TRUE} (figure plot)}
 }
 \value{
 A matrix with positions and availability probabilities of states (and figure plot)
@@ -30,20 +30,20 @@ The pointwise (or instantaneous) availability is the probability that the system
 independently of the fact that the system worked or not during the time interval \eqn{[0; l)}
 }
 \examples{
-\dontrun{
+
 data(lambda, package = "drimmR")
-dmm <- dmmsum(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 k1 <- 1
 k2 <- 200
-s1 <- c("c","t")  # vector of working states
-availability(dmm,k1,k2,s1,plot=TRUE)
-}
+upstates <- c("c","t")  # vector of working states
+availability(dmm,k1,k2,upstates,plot=TRUE)
+
 }
 \references{
 \insertRef{BaVe2018}{drimmR}
 }
 \seealso{
-\link[drimmR]{dmmsum}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}, \link[drimmR]{maintainability}
+\link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}, \link[drimmR]{maintainability}
 }
 \author{
 Alexandre Seiller

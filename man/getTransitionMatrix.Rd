@@ -7,7 +7,7 @@
 getTransitionMatrix(x, pos)
 }
 \arguments{
-\item{x}{An object of class `dmm`}
+\item{x}{An object for which the transition matrices of the DMM can be computed.}
 
 \item{pos}{A positive integer giving the position along the sequence on which the transition matrix of the DMM should be computed}
 }
@@ -15,7 +15,7 @@ getTransitionMatrix(x, pos)
 A transition matrix at a given position
 }
 \description{
-Generic function evaluating the transition matrix of the DMM at a given position
+Generic function evaluating the transition matrix of a model \code{x} at a given position \code{pos}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

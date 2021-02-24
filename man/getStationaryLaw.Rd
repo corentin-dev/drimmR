@@ -7,7 +7,7 @@
 getStationaryLaw(x, pos, all.pos = FALSE, internal = FALSE)
 }
 \arguments{
-\item{x}{An object of class `dmm`}
+\item{x}{An object for which the stationary laws of the DMM can be computed.}
 
 \item{pos}{A positive integer giving the position along the sequence on which the stationary law of the DMM should be computed}
 
@@ -19,10 +19,10 @@ getStationaryLaw(x, pos, all.pos = FALSE, internal = FALSE)
 A vector or matrix of stationary law probabilities
 }
 \description{
-Generic function evaluating the stationary law of the DMM at a given position or at every position
+Generic function evaluating the stationary law of a model \code{x} at a given position \code{pos} or at every position \code{all.pos}
 }
 \details{
-\code{Stationary law} at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
+Stationary law at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

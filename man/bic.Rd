@@ -7,17 +7,17 @@
 bic(x, sequences)
 }
 \arguments{
-\item{x}{An object of class `dmm` for which the logikelihood can be computed.}
+\item{x}{An object for which BIC of the DMM can be computed.}
 
 \item{sequences}{A vector or a list of vector of character representing the sequences for which the
 BIC criterion must be computed.}
 }
 \value{
-A numeric value giving the value of the BIC.
+A list of BIC (numeric)
 }
 \description{
 Generic function computing the Bayesian Information Criterion
-  of the model `x`, with the list of sequences `sequences`.
+  of the model \code{x}, with the list of sequences \code{sequences}.
 }
 \references{
 \insertRef{BaVe2018}{drimmR}
