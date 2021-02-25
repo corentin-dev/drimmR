@@ -4,7 +4,7 @@
 \alias{lengthWord_probabilities}
 \title{Probability of occurrence of the observed word of size m in a sequence at several positions}
 \usage{
-lengthWord_probabilities(m, sequence, pos, x, output_file = NULL)
+lengthWord_probabilities(m, sequence, pos, x, output_file = NULL, plot = FALSE)
 }
 \arguments{
 \item{m}{An integer, the length word}
@@ -16,6 +16,8 @@ lengthWord_probabilities(m, sequence, pos, x, output_file = NULL)
 \item{x}{An object of class \code{dmm}}
 
 \item{output_file}{(Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")}
+
+\item{plot}{\code{FALSE} (default); \code{TRUE} (display figure plots of probabilities of occurrence of the observed word of size \code{m} by position)}
 }
 \value{
 A dataframe of probability by position
@@ -24,41 +26,12 @@ A dataframe of probability by position
 Probability of occurrence of the observed word of size m in a sequence at several positions
 }
 \examples{
-
+\dontrun{
 data(lambda, package = "drimmR")
-dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 m <- 2
-frame <- lengthWord_probabilities(m, lambda, c(1,length(lambda)-m+1), dmm, fit.method="sum")
-
-
-Figure plots examples :
-library(ggplot2)
-
-
-frame$position = as.numeric(frame$position)
-frame$probability = as.numeric(frame$probability)
-
-# probability plot on overall frame
-fig1 <- ggplot2::ggplot(data=frame, ggplot2::aes(x=position, y=probability)) +
- ggplot2::geom_line() + geom_point() +
- ggplot2::ggtitle("Overall frame : \n Probability of appearance of observed words along the sequence") +
- ggplot2::theme_bw()
-# probability plot by ending letter :
-frame <- cbind(frame,sapply(frame$word, function(y) substr(y, nchar(y), nchar(y))))
-colnames(frame)[4] <-"last"
-fig2 <- list()
-for (o in c(1:length(dmm$states))){
-
- fig2[[o]] <- frame \%>\% filter(last==dmm$states[o]) \%>\%  ggplot(aes(x=position, y=as.numeric(probability), group=word,colour=word)) +
-   geom_line() + geom_point() + theme_bw() + theme(panel.spacing.y=unit(1,"cm")) +
-   guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
-   theme(axis.title.x = element_text(size=10, face="bold"), legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
-   facet_wrap(.~word, scales = "free_y") + labs(x = "Position", y = "Probability",title=paste0("Words ending with '",dmm$states[o],"'"), fill="Package :") +
-   theme(title=element_text(size=15,face="bold"))
+lengthWord_probabilities(m, lambda, c(1,length(lambda)-m+1), dmm, plot=TRUE)
 }
-fig <-  append(list(fig1),fig2)
-fig
-
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

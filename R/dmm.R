@@ -96,13 +96,13 @@
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @examples
-#'
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' states <- c("a","c","g","t")
 #' order <- 1
 #' degree <- 1
 #' fitdmm(lambda,order,degree,states, init.estim = "freq",fit.method="sum")
-#'
+#' }
 
 
 fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "freq","prod","stationary","unif"), fit.method=c("sum")){
@@ -340,12 +340,12 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}
 #' @examples
-#'
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq", fit.method="sum")
 #' t <- 10
 #' getTransitionMatrix(dmm,pos=t)
-#'
+#' }
 
 getTransitionMatrix.dmm <- function(x, pos) {
 
@@ -393,12 +393,12 @@ getTransitionMatrix.dmm <- function(x, pos) {
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{stationary_distributions}, \link[drimmR]{getDistribution}
 #' @examples
-#'
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' t <- 10
 #' getStationaryLaw(dmm,pos=t)
-#'
+#' }
 
 getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
@@ -530,12 +530,12 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{distributions}, \link[drimmR]{getStationaryLaw}
 #' @examples
-#'
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' t <- 10
 #' getDistribution(dmm,pos=t)
-#'
+#' }
 
 
 
@@ -690,12 +690,12 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 #' @examples
-#'
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' loglik(dmm,sequence)
-#'
+#' }
 
 
 loglik.dmm <- function(x, sequences){
@@ -779,12 +779,12 @@ loglik.dmm <- function(x, sequences){
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{aic}
 #' @examples
-#'
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' aic(dmm,sequence)
-#'
+#' }
 
 aic.dmm <- function(x,sequences) {
 
@@ -814,7 +814,7 @@ aic.dmm <- function(x,sequences) {
   }
 
   aicfunc <- function(x, sequences){
-  nb.param <- (length(x$states)^x$order) * (length(x$states) -
+  nb.param <- (x$degree+1) * (length(x$states)^x$order) * (length(x$states) -
                                               1)
   res <- -2 * unlist(loglik(x, sequences)) + 2 * nb.param
   return(res)
@@ -840,12 +840,12 @@ aic.dmm <- function(x,sequences) {
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{bic}
 #' @examples
-#'
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm<- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' bic(dmm,sequence)
-#'
+#' }
 
 bic.dmm <- function(x,sequences) {
 
@@ -877,7 +877,7 @@ bic.dmm <- function(x,sequences) {
 
   bicfunc <- function(x,sequences) {
 
-  nb.param <- (length(x$states)^x$order) * (length(x$states) -
+  nb.param <- (x$degree+1) * (length(x$states)^x$order) * (length(x$states) -
                                               1)
   if(max(sapply(sequences, length))==1){
   res <- -2 * unlist(loglik(x, sequences)) + nb.param * log(length(sequences))
@@ -910,11 +910,11 @@ return(bic)
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{getStationaryLaw}
 #' @return the vector of simulated sequence
 #' @examples
-#'
+#' \dontrun{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' simulate(dmm, model_size=100)
-#'
+#' }
 
 
 simulate.dmm <- function(x, output_file=NULL,model_size=NULL) {

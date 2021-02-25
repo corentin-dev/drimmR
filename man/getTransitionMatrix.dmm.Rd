@@ -18,12 +18,12 @@ A transition matrix at a given position
 Evaluate the transition matrix of the DMM at a given position
 }
 \examples{
-
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq", fit.method="sum")
 t <- 10
 getTransitionMatrix(dmm,pos=t)
-
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

@@ -4,7 +4,14 @@
 \alias{distributions}
 \title{Distributions for a range of positions between <start> and <end>}
 \usage{
-distributions(x, start = 1, end = NULL, step = NULL, output_file = NULL)
+distributions(
+  x,
+  start = 1,
+  end = NULL,
+  step = NULL,
+  output_file = NULL,
+  plot = FALSE
+)
 }
 \arguments{
 \item{x}{An object of class \code{dmm}}
@@ -16,6 +23,8 @@ distributions(x, start = 1, end = NULL, step = NULL, output_file = NULL)
 \item{step}{A step (integer)}
 
 \item{output_file}{(Optional) A file containing matrix of distributions (e.g, "C:/.../DIST.txt")}
+
+\item{plot}{\code{FALSE} (default); \code{TRUE} (display a figure plot of distribution probabilities by position)}
 }
 \value{
 A matrix with positions and distributions of states
@@ -24,24 +33,12 @@ A matrix with positions and distributions of states
 Distributions for a range of positions between <start> and <end>
 }
 \examples{
-
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
-distrib <- distributions(dmm,start=1,end=1000,step=100)
+distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
+}
 
-
-# Figure plot example :
-
-library(ggplot2)
-values <- c(distrib[,c(2:c(length(dmm$states)+1))])
-pos <- rep(distrib[,1],length(dmm$states))
-States <- rep(dmm$states, each=length(seq(from=start, to=end, by=step)))
-tab <- data.frame(cbind(pos,States,values))
-tab   \%>\% ggplot(aes(x=as.numeric(pos), y=as.numeric(values), group=States,colour=States)) +
- geom_line() + geom_point()+ theme_bw() +
- theme(panel.spacing.y=unit(1,"cm")) + guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
- theme(axis.title.x = element_text(size=10, face="bold"),legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
- labs(x = "Position", y = "Distributions",title=paste0("Evolution of distributions along the sequence : "), fill="States :")
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

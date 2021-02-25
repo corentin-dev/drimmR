@@ -20,11 +20,11 @@ the vector of simulated sequence
 Simulate a sequence under a k-th order DMM.
 }
 \examples{
-
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 simulate(dmm, model_size=100)
-
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

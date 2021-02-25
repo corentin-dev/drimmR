@@ -25,12 +25,12 @@ Evaluate the stationary law of the DMM at a given position or at every position
 Stationary law at position t is evaluated by solving \eqn{\mu_t \ \pi_{\frac{t}{n}} = \mu}
 }
 \examples{
-
+\dontrun{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 t <- 10
 getStationaryLaw(dmm,pos=t)
-
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

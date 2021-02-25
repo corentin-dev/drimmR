@@ -4,18 +4,20 @@
 \alias{availability}
 \title{Availability function}
 \usage{
-availability(x, k1, k2, upstates, output_file = NULL)
+availability(x, k1 = 0L, k2, upstates, output_file = NULL, plot = FALSE)
 }
 \arguments{
 \item{x}{An object of class \code{dmm}}
 
-\item{k1}{Start position :  a positive integer giving the start position along the sequence from which the availabilities of the DMM should be computed}
+\item{k1}{Start position (default value=0):  a positive integer giving the start position along the sequence from which the availabilities of the DMM should be computed, such that \code{k1}<\code{k2}}
 
-\item{k2}{End position :  a positive integer giving the end position along the sequence until which the availabilities of the DMM should be computed}
+\item{k2}{End position :  a positive integer giving the end position along the sequence until which the availabilities of the DMM should be computed, such that \code{k2}>\code{k1}}
 
 \item{upstates}{Character vector giving the subset of operational states U.}
 
 \item{output_file}{(Optional) A file containing matrix of availability probabilities (e.g, "C:/.../AVAL.txt")}
+
+\item{plot}{\code{FALSE} (default); \code{TRUE} (display a figure plot of availability probabilities by position)}
 }
 \value{
 A vector of length k+1 giving the values of the availability for the period \eqn{[0 \ldots k]}
@@ -31,26 +33,15 @@ Consider a system (or a component) System whose possible states during its evolu
 different operating modes or performance levels of the system, whereas the states of D can be seen as failures of the systems with different modes.
 }
 \examples{
-
+\dontrun{
 data(lambda, package = "drimmR")
-dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
+dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
+ fit.method="sum", plot=TRUE)
 k1 <- 1
 k2 <- 200
 upstates <- c("c","t")  # vector of working states
-getA <- availability(dmm,k1,k2,upstates)
-
-Figure plot example :
-library(ggplot2)
-ggplot2::ggplot(data.frame(getA), aes(positions,availability)) + geom_path() +
-theme_bw() + geom_point() +
- scale_y_continuous(name= "Availability") +
- scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
-                    else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
-                    else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
-                    else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
-                    else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
-                    else{seq(from=0,to=k2, by=100000)})
-
+getA <- availability(dmm,k1,k2,upstates,plot=TRUE)
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

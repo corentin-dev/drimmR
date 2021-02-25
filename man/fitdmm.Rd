@@ -105,13 +105,13 @@ The estimation of DMMs is carried out for 4 different types of data :
  }
 }
 \examples{
-
+\dontrun{
 data(lambda, package = "drimmR")
 states <- c("a","c","g","t")
 order <- 1
 degree <- 1
 fitdmm(lambda,order,degree,states, init.estim = "freq",fit.method="sum")
-
+}
 }
 \references{
 \insertRef{BaVe2018}{drimmR}
