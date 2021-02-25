@@ -1,4 +1,9 @@
 commits 24/02/2021 :
+same updates as 24/02/2021
+deletion of plot arguments. Add plots in examples on help pages (+ deletion). Add plots inside code.
+deletion of vignette directory (see repertory vignette sent by email on 26/02/2021)
+
+commits 24/02/2021 :
 update of reference manual (add drimmR-package help page)
 update following Nicolas Vergne's new remarks in mail on 24/02/2021
 
