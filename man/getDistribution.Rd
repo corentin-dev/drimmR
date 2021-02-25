@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{getDistribution}
 \alias{getDistribution}
-\title{Get the distributions of the DMM}
+\title{Distributions of the drifting Markov Model}
 \usage{
 getDistribution(x, pos, all.pos = FALSE, internal = FALSE)
 }
@@ -19,7 +19,7 @@ getDistribution(x, pos, all.pos = FALSE, internal = FALSE)
 A vector or matrix of distribution probabilities
 }
 \description{
-Generic function evaluating the distribution of a model \code{x} at a given position \code{code} or at every position \code{all.pos}
+Generic function evaluating the distribution of a model \code{x} at a given position \code{pos} or at every position \code{all.pos}
 }
 \details{
 Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM

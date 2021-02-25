@@ -2,15 +2,14 @@
 % Please edit documentation in R/metrics.R
 \name{stationary_distributions}
 \alias{stationary_distributions}
-\title{Plot stationary laws for a range of positions between <start> and <end>}
+\title{Stationary laws for a range of positions between <start> and <end>}
 \usage{
 stationary_distributions(
   x,
   start = 1,
   end = NULL,
   step = NULL,
-  output_file = NULL,
-  plot = FALSE
+  output_file = NULL
 )
 }
 \arguments{
@@ -23,21 +22,32 @@ stationary_distributions(
 \item{step}{A step (integer)}
 
 \item{output_file}{(Optional) A file containing matrix of stationary laws (e.g, "C:/.../SL.txt")}
-
-\item{plot}{\code{FALSE} (no figure plot of SL evolution); \code{TRUE} (figure plot)}
 }
 \value{
-A matrix with positions and stationary laws of states (and figure plot)
+A matrix with positions and stationary laws of states
 }
 \description{
-Plot stationary laws for a range of positions between <start> and <end>
+Stationary laws for a range of positions between <start> and <end>
 }
 \examples{
 
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
-stationary_distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
+stat_law <- stationary_distributions(dmm,start=1,end=1000,step=100)
 
+
+# Figure plot example :
+
+library(ggplot2)
+values <- c(stat_law[,c(2:c(length(dmm$states)+1))])
+pos <- rep(stat_law[,1],length(dmm$states))
+States <- rep(dmm$states, each=length(seq(from=start, to=end, by=step)))
+tab <- data.frame(cbind(pos,States,values))
+tab   \%>\% ggplot(aes(x=as.numeric(pos), y=as.numeric(values), group=States,colour=States)) +
+geom_line() + geom_point()+ theme_bw() +
+theme(panel.spacing.y=unit(1,"cm")) + guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
+theme(axis.title.x = element_text(size=10, face="bold"),legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
+labs(x = "Position", y = "stationary laws",title=paste0("Evolution of stationary laws along the sequence : "), fill="States :")
 }
 \references{
 \insertRef{BaVe2018}{drimmR}

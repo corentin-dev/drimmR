@@ -4,7 +4,7 @@
 \alias{word_probabilities}
 \title{Probabilities of a word at several positions of a DMM}
 \usage{
-word_probabilities(word, pos, x, output_file = NULL, plot = FALSE)
+word_probabilities(word, pos, x, output_file = NULL)
 }
 \arguments{
 \item{word}{A subsequence (string of characters)}
@@ -14,8 +14,6 @@ word_probabilities(word, pos, x, output_file = NULL, plot = FALSE)
 \item{x}{An object of class \code{dmm}}
 
 \item{output_file}{(Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")}
-
-\item{plot}{\code{FALSE} (no figure plot of word probabilities); \code{TRUE} (figure plot)}
 }
 \value{
 A numeric vector, probabilities of \code{word}
@@ -27,7 +25,17 @@ Probabilities of a word at several positions of a DMM
 
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
-word_probabilities("aggctga",c(100,300),dmm, plot=TRUE)
+frame <- word_probabilities("aggctga",c(100,300),dmm)
+
+ # Figure plot example :
+library(ggplot2)
+
+
+# probability plot on overall frame
+ggplot2::ggplot(data=frame, ggplot2::aes(x=position, y=probability)) +
+ ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
+ ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", word,"' at each position of the frame")) +
+ ggplot2::theme_bw()
 
 }
 \references{

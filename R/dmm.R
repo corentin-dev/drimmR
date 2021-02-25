@@ -675,7 +675,7 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
 
 
-#' Evaluate Log-likelihood
+#' Evaluate the log-likelihood of a drifting Markov Model
 #'
 #' @param x An object of class \code{dmm}
 #' @param sequences A character vector or a list of character vectors representing the sequence
@@ -764,10 +764,12 @@ loglik.dmm <- function(x, sequences){
 }
 
 
-#' Evaluate AIC
+#' Evaluate the AIC of a drifting Markov Model
+#'
+#' @description Computation of the Akaike Information Criterion.
 #'
 #' @param x An object of class \code{dmm}
-#' @param sequences A character vector or a list of character vector representing the sequence
+#' @param sequences A character vector or a list of character vector representing the sequences for which the AIC will be computed based on \code{x}.
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A list of AIC (numeric)
 #' @export
@@ -823,12 +825,14 @@ aic.dmm <- function(x,sequences) {
 
 }
 
-#' Evaluate BIC
+#' Evaluate the BIC of a drifting Markov Model
+#'
+#' @description Computation of the Bayesian Information Criterion.
 #'
 #' @param x An object of class \code{dmm}
-#' @param sequences A character vector or a list of character vector representing the sequence
+#' @param sequences A character vector or a list of character vector representing the sequences for which the BIC will be computed based on \code{x}.
 #' @author  Victor Mataigne, Alexandre Seiller
-#' @return  A list of BIC (numeric)
+#' @return  A list of BIC (numeric).
 #' @export
 #' @importFrom Rdpack reprompt
 #' @references

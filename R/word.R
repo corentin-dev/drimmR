@@ -75,11 +75,10 @@ word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #' @param pos A vector of integer positions
 #' @param x An object of class \code{dmm}
 #' @param output_file (Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")
-#' @param plot \code{FALSE} (no figure plot of word probabilities); \code{TRUE} (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A numeric vector, probabilities of \code{word}
-#' @import ggplot2 tidyverse
+#' @import tidyverse
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -90,10 +89,20 @@ word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #'
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
-#' word_probabilities("aggctga",c(100,300),dmm, plot=TRUE)
+#' frame <- word_probabilities("aggctga",c(100,300),dmm)
+#'
+#'  # Figure plot example :
+#' library(ggplot2)
+#'
+#'
+#' # probability plot on overall frame
+#' ggplot2::ggplot(data=frame, ggplot2::aes(x=position, y=probability)) +
+#'  ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
+#'  ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", word,"' at each position of the frame")) +
+#'  ggplot2::theme_bw()
 #'
 
-word_probabilities <-function(word, pos, x,  output_file=NULL, plot=FALSE){
+word_probabilities <-function(word, pos, x,  output_file=NULL){
   proba <- c()
 
   if (missing(pos)) {
@@ -105,7 +114,7 @@ word_probabilities <-function(word, pos, x,  output_file=NULL, plot=FALSE){
   }
 
   for (i in pos[1]:pos[2]){
-    proba <- c(proba, word_proba(word, i, x, internal=TRUE))
+    proba <- c(proba, word_probability(word, i, x, internal=TRUE))
   }
 
   word_probabilities <- data.frame(cbind(c(pos[1]:pos[2]),proba))
@@ -114,19 +123,8 @@ word_probabilities <-function(word, pos, x,  output_file=NULL, plot=FALSE){
   if (!is.null(output_file))
     write.table(word_probabilities, file=output_file, sep=",",col.names= colnames(word_probabilities))
 
-  # probability plot
 
-  if(isTRUE(plot)){
-    frame <- word_probabilities
-    # probability plot on overall frame
-    fig1 <- ggplot2::ggplot(data=frame, ggplot2::aes(x=position, y=probability)) +
-      ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
-      ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", word,"' at each position of the frame")) +
-      ggplot2::theme_bw()
-
-  }
-
-  return(list(word_probabilities,if(isTRUE(plot)){fig1}))
+  return(word_probabilities)
 
 }
 
@@ -136,11 +134,10 @@ word_probabilities <-function(word, pos, x,  output_file=NULL, plot=FALSE){
 #' @param pos A vector of integer positions
 #' @param x An object of class \code{dmm}
 #' @param output_file (Optional) A file containing the matrix of probabilities (e.g,"C:/.../PROB.txt")
-#' @param plot \code{FALSE} (no figure plot of words probabilities); \code{TRUE} (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A dataframe of word probabilities along the positions of the sequence
-#' @import ggplot2 tidyverse
+#' @import  tidyverse
 #' @rawNamespace import(dplyr, except = count)
 #' @importFrom Rdpack reprompt
 #' @references
@@ -152,10 +149,32 @@ word_probabilities <-function(word, pos, x,  output_file=NULL, plot=FALSE){
 #'
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
-#' words_probabilities(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, plot=TRUE)
+#' words <- c("atcgattc", "taggct", "ggatcgg")
+#' pos <- c(100,300)
+#' words_probas <- words_probabilities(words=words,pos=pos,dmm)
 #'
-
-words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
+#'
+#' # Figure plot example :
+#' library(ggplot2)
+#' library(reshape2)
+#'
+#' colnames(words_probas) <- c("position",words[1:length(words)])
+#' words_probas<- subset(words_probas, position %in% c(pos[1]:pos[2]))
+#' # warning is ok :
+#' frame <- data.frame(reshape2::melt(words_probas[,-1]))
+#' frame <- cbind(rep(c(pos[1]:pos[2]),length(words)),frame)
+#' colnames(frame) <-c("position","word","probability")
+#' fig <- list()
+#' for (o in c(1:length(words))){
+#'
+#'   fig[[o]] <- frame %>% dplyr::filter(word==words[o]) %>%  ggplot2::ggplot(aes(x=position, y=probability)) +
+#'   ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
+#'     ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", words[o],"' at each position of the frame")) +
+#'     ggplot2::theme_bw()
+#' }
+#' fig
+#'
+words_probabilities <- function(words, pos, x, output_file=NULL) {
 
   if (missing(pos)) {
     stop("Error : positions not specified.")
@@ -171,7 +190,7 @@ words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
   for (i in pos[1]:pos[2]) {
     probabilities[row,1] <- i
     for (j in 2:ncol(probabilities)) {
-      probabilities[row,j] <- word_proba(words[j-1], i, x, internal=TRUE)
+      probabilities[row,j] <- word_probability(words[j-1], i, x, internal=TRUE)
     }
     row <- row + 1
   }
@@ -182,40 +201,23 @@ words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
   if (!is.null(output_file))
     write.table(words_probabilities, file=output_file, sep=",", col.names=colnames(words_probabilities))
 
-  # probability plot
-  if(isTRUE(plot)){
-    colnames(probabilities) <- c("position",words[1:length(words)])
-   # probabilities<- subset(probabilities, position %in% c(pos[1]:pos[2]))
-    frame <- data.frame(reshape2::melt(probabilities[,-1]))
-    frame <- frame[,-1]
-    frame <- cbind(rep(c(pos[1]:pos[2]),length(words)),frame)
-    colnames(frame) <-c("position","word","probability")
-    fig1 <- list()
-    for (o in c(1:length(words))){
 
-     fig1[[o]] <- frame %>% dplyr::filter(word==words[o]) %>%  ggplot2::ggplot(aes(x=position, y=probability)) +
-       ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
-       ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", words[o],"' at each position of the frame")) +
-       ggplot2::theme_bw()
-    }
-  }
-  return(list(words_probabilities,if(isTRUE(plot)){fig1}))
+  return(words_probabilities)
 }
 
 
 
-#' Probability of occurrence of the observed word of size n in a sequence at several positions
+#' Probability of occurrence of the observed word of size m in a sequence at several positions
 #'
 #' @param m An integer, the length word
 #' @param sequence A vector of characters
 #' @param pos A vector of integer positions
 #' @param x An object of class \code{dmm}
 #' @param output_file (Optional) A file containing the vector of probabilities (e.g,"C:/.../PROB.txt")
-#' @param plot \code{FALSE} (no figure plot of words probabilities); \code{TRUE} (figure plot)
 #' @author Victor Mataigne, Alexandre Seiller
 #'
-#' @return A dataframe of probability by position (and probability plots)
-#' @import ggplot2 tidyverse
+#' @return A dataframe of probability by position
+#' @import tidyverse
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -227,10 +229,40 @@ words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 #' m <- 2
-#' lengthWord_probabilities(m, lambda, c(1,length(lambda)-m+1), dmm,plot=TRUE, fit.method="sum")
+#' frame <- lengthWord_probabilities(m, lambda, c(1,length(lambda)-m+1), dmm, fit.method="sum")
+#'
+#'
+#' Figure plots examples :
+#' library(ggplot2)
+#'
+#'
+#' frame$position = as.numeric(frame$position)
+#' frame$probability = as.numeric(frame$probability)
+#'
+#' # probability plot on overall frame
+#' fig1 <- ggplot2::ggplot(data=frame, ggplot2::aes(x=position, y=probability)) +
+#'  ggplot2::geom_line() + geom_point() +
+#'  ggplot2::ggtitle("Overall frame : \n Probability of appearance of observed words along the sequence") +
+#'  ggplot2::theme_bw()
+
+#' # probability plot by ending letter :
+#' frame <- cbind(frame,sapply(frame$word, function(y) substr(y, nchar(y), nchar(y))))
+#' colnames(frame)[4] <-"last"
+#' fig2 <- list()
+#' for (o in c(1:length(dmm$states))){
+#'
+#'  fig2[[o]] <- frame %>% filter(last==dmm$states[o]) %>%  ggplot(aes(x=position, y=as.numeric(probability), group=word,colour=word)) +
+#'    geom_line() + geom_point() + theme_bw() + theme(panel.spacing.y=unit(1,"cm")) +
+#'    guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
+#'    theme(axis.title.x = element_text(size=10, face="bold"), legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
+#'    facet_wrap(.~word, scales = "free_y") + labs(x = "Position", y = "Probability",title=paste0("Words ending with '",dmm$states[o],"'"), fill="Package :") +
+#'    theme(title=element_text(size=15,face="bold"))
+#'}
+#' fig <-  append(list(fig1),fig2)
+#' fig
 #'
 
-lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL, plot=FALSE) {
+lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL) {
   # Make sure that DMMLength in not shorter than the sequence !
   if (missing(pos)) {
     stop("Error : positions not specified.")
@@ -248,7 +280,7 @@ lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL, plot
   j <- 1
   for (i in pos[1]:pos[2]) {
     word <- sequence[i:(i+m-1)]
-    probabilities[j,] <- c(i, paste(word, collapse=""), word_proba(word, i, x, internal=TRUE))
+    probabilities[j,] <- c(i, paste(word, collapse=""), word_probability(word, i, x, internal=TRUE))
     j <- j+1
   }
 
@@ -257,37 +289,7 @@ lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL, plot
   if (!is.null(output_file))
     write.table(probabilities, file=output_file, sep=",", col.names=colnames(probabilities))
 
-  # probability plots
 
-  if(isTRUE(plot)){
-    frame <- probabilities
-    frame$position = as.numeric(frame$position)
-    frame$probability = as.numeric(frame$probability)
-
-    # probability plot on overall frame
-    fig1 <- ggplot2::ggplot(data=frame, ggplot2::aes(x=position, y=probability)) +
-      ggplot2::geom_line() + geom_point() +
-      ggplot2::ggtitle("Overall frame : \n Probability of appearance of observed words along the sequence") +
-      ggplot2::theme_bw()
-
-    # probability plot by ending letter
-
-    frame <- cbind(frame,sapply(frame$word, function(y) substr(y, nchar(y), nchar(y))))
-    colnames(frame)[4] <-"last"
-    fig2 <- list()
-    for (o in c(1:length(x$states))){
-
-      fig2[[o]] <- frame %>% filter(last==x$states[o]) %>%  ggplot(aes(x=position, y=as.numeric(probability), group=word,colour=word)) +
-        geom_line() + geom_point() + theme_bw() + theme(panel.spacing.y=unit(1,"cm")) +
-        guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
-        theme(axis.title.x = element_text(size=10, face="bold"), legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
-        facet_wrap(.~word, scales = "free_y") + labs(x = "Position", y = "Probability",title=paste0("Words ending with '",x$states[o],"'"), fill="Package :") +
-        theme(title=element_text(size=15,face="bold"))
-    }
-   fig <-  append(list(fig1),fig2)
-
-  }
-
-  return(list(probabilities,if(isTRUE(plot)){fig}))
+  return(probabilities)
 }
 

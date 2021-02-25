@@ -2,7 +2,7 @@
 % Please edit documentation in R/dmm.R
 \name{loglik.dmm}
 \alias{loglik.dmm}
-\title{Evaluate Log-likelihood}
+\title{Evaluate the log-likelihood of a drifting Markov Model}
 \usage{
 \method{loglik}{dmm}(x, sequences)
 }
@@ -15,7 +15,7 @@
 A list of log-likelihood (numeric)
 }
 \description{
-Evaluate Log-likelihood
+Evaluate the log-likelihood of a drifting Markov Model
 }
 \examples{
 

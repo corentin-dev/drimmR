@@ -7,10 +7,10 @@
 aic(x, sequences)
 }
 \arguments{
-\item{x}{An object for which AIC of the DMM can be computed.}
+\item{x}{An object for which the log-likelihood of the DMM can be computed.}
 
-\item{sequences}{A vector of character or a list of vector of character representing the sequences for which the
-AIC criterion must be computed.}
+\item{sequences}{A vector of characters or a list of vector of characters representing the sequences for which the
+AIC will be computed based on \code{x}.}
 }
 \value{
 A list of AIC (numeric)

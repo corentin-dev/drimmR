@@ -2,20 +2,20 @@
 % Please edit documentation in R/dmm.R
 \name{aic.dmm}
 \alias{aic.dmm}
-\title{Evaluate AIC}
+\title{Evaluate the AIC of a drifting Markov Model}
 \usage{
 \method{aic}{dmm}(x, sequences)
 }
 \arguments{
 \item{x}{An object of class \code{dmm}}
 
-\item{sequences}{A character vector or a list of character vector representing the sequence}
+\item{sequences}{A character vector or a list of character vector representing the sequences for which the AIC will be computed based on \code{x}.}
 }
 \value{
 A list of AIC (numeric)
 }
 \description{
-Evaluate AIC
+Computation of the Akaike Information Criterion.
 }
 \examples{
 

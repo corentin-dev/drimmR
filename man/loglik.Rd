@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{loglik}
 \alias{loglik}
-\title{Log-likelihood}
+\title{Log-likelihood of the drifting Markov Model}
 \usage{
 loglik(x, sequences)
 }

@@ -57,6 +57,7 @@
 %% recommended packages
 \usepackage{thumbpdf,lmodern}
 \usepackage[backend=biber]{biblatex}
+\addbibresource{drimmr.bib}
 \usepackage{amsmath,amsfonts,amssymb}
 
 %% new custom commands
@@ -146,16 +147,20 @@ Vlad Stefan Barbu\\University of Rouen \And Geoffray Brelurut\\University of Rou
   showspaces=false,
   showstringspaces=false,
   showtabs=false}
+
+
+
+
+%\SweaveOpts{concordance=TRUE}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
-
 \section{Introduction}
 
-In this work we focus on multi-state systems modeled by means of a particular class of non-homogeneous Markov processes introduced in \citet{Ver08}, called drifting Markov processes. Most of the estimation methods and reliability results are developed in \citet{BaVe2018}.
+In this work we focus on multi-state systems modeled by means of a particular class of non-homogeneous Markov processes introduced in \citet{Ver08}, called drifting Markov processes. Most of the estimation methods and reliability results are developed in \cite{BaVe2018}.
 
-Note that in many mathematical models it is assumed the homogeneity with respect to time, which is inappropriate in most of the applications. But, considering general non-homogeneous processes could be unrealistic from a practical point of view. For this reason, the drifting Markov chains introduced in  \citet{Ver08} assume that the Markov transition matrix is a linear/polynomial function of two/several Markov transition matrices.  Thus we obtain  a ``smooth'' non-homogeneity, with sensibly less parameters than in the general case.
+Note that in many mathematical models it is assumed the homogeneity with respect to time, which is inappropriate in most of the applications. But, considering general non-homogeneous processes could be unrealistic from a practical point of view. For this reason, the drifting Markov chains introduced in  \cite{Ver08} assume that the Markov transition matrix is a linear/polynomial function of two/several Markov transition matrices.  Thus we obtain  a ``smooth'' non-homogeneity, with sensibly less parameters than in the general case.
 
-Few R packages have been developed to handle similar types of models of Markov, semi-Markov or hidden semi-Markov type, useful in reliability or DNA analysis. For semi-Markov models we have {\tt semiMarkov} {\tt R} package \citet{krol_semimarkov_2015} that performs maximum likelihood estimation for parametric continuous-time semi-Markov processes, {\tt smm}  {\tt R} package \citep{BaBeCeSaVe} which performs parametric and non-parametric estimation and simulation for multi-state discrete-time semi-Markov processes. Two  {\tt R} packages are also dedicated to hidden semi-Markov models, implementing estimation and prediction methods: the {\tt hsmm} {\tt R} package \citet{bulla_hsmm_2010} and  the {\tt mhsmm}  {\tt R} package \citet{oconnell_hidden_2011}.
+Few R packages have been developed to handle similar types of models of Markov, semi-Markov or hidden semi-Markov type, useful in reliability or DNA analysis. For semi-Markov models we have {\tt semiMarkov} {\tt R} package \cite{krol_semimarkov_2015} that performs maximum likelihood estimation for parametric continuous-time semi-Markov processes, {\tt smm}  {\tt R} package \cite{BaBeCeSaVe} which performs parametric and non-parametric estimation and simulation for multi-state discrete-time semi-Markov processes. Two  {\tt R} packages are also dedicated to hidden semi-Markov models, implementing estimation and prediction methods: the {\tt hsmm} {\tt R} package \cite{bulla_hsmm_2010} and  the {\tt mhsmm}  {\tt R} package \citet{oconnell_hidden_2011}.
 
 Note that there is no {\tt R} package  developed for drifting Markov models (DMMs). Thus the purpose of this paper is to present an {\tt R} package that we have developed, called {\tt drimmR}, which performs estimation and simulation for such models, as well as the estimation of associated reliability measures. The aim of this paper is to describe the different possibilities of this package. To summarize, the package {\tt drimmR} that we present deals with different problems:
 
@@ -167,7 +172,7 @@ Note that there is no {\tt R} package  developed for drifting Markov models (DMM
 \item We compute the  probabilities of appearance of a word in a given sequence under a given model.
 \end{itemize}
 
-We would like to mention that a web interface called {\tt WebDRIMM} has been also developed \citep[cf.][]{Kom2018} for simulating and estimating drifting Markov models, as well as associated reliability indicators; it is available at \verb|http://bioinfo.univ-rouen.fr/WebDRIMM|\\
+We would like to mention that a web interface called {\tt WebDRIMM} has been also developed \citep[cf.][]{web2018} for simulating and estimating drifting Markov models, as well as associated reliability indicators; it is available at \verb|http://bioinfo.univ-rouen.fr/WebDRIMM|\\
 
 The paper is organized as follows. Section \ref{section_DMM} describes the drifting Markov models used in this package, present associated reliability indicators and corresponding estimation results and techniques. Section~\ref{section_package} illustrates the different functions of the {\tt drimmR} package and we end the paper by presenting some concluding remarks on this {\tt R} package in Section~\ref{concluding}.
 
@@ -932,8 +937,9 @@ The fields of application of the DMMs can be numerous; we only want to point out
 
 \clearpage
 
-%\bibliographystyle{natbib}
 \bibliography{drimmr}
+
+\printbibliography
 
 
 \begin{figure}[htbp]

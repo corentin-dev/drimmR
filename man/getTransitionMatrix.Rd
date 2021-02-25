@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{getTransitionMatrix}
 \alias{getTransitionMatrix}
-\title{Get transition matrix of the drifting Markov Model}
+\title{Transition matrix of the drifting Markov Model}
 \usage{
 getTransitionMatrix(x, pos)
 }

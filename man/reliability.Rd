@@ -4,7 +4,7 @@
 \alias{reliability}
 \title{Reliability function}
 \usage{
-reliability(x, k1, k2, upstates, output_file = NULL, plot = FALSE)
+reliability(x, k1, k2, upstates, output_file = NULL)
 }
 \arguments{
 \item{x}{An object of class \code{dmm}}
@@ -16,17 +16,15 @@ reliability(x, k1, k2, upstates, output_file = NULL, plot = FALSE)
 \item{upstates}{Character vector of the subspace working states among the state space vector such that upstates < s}
 
 \item{output_file}{(Optional) A file containing matrix of reliability probabilities (e.g, "C:/.../REL.txt")}
-
-\item{plot}{\code{FALSE} (no figure plot of reliability by position); \code{TRUE} (figure plot)}
 }
 \value{
-A matrix with positions and reliability probabilities of states (and figure plot)
+A vector of length k + 1 giving the values of the reliability for the period \eqn{[0 \ldots k]}
 }
 \description{
-Reliability or the survival function of a system at time \eqn{l \in N}
+Reliability or the survival function of a system at time \eqn{k \in N}
 }
 \details{
-The reliability at time \eqn{l \in N} is the probability that the system has functioned without failure in the period \eqn{[0, l]}
+The reliability at time \eqn{k \in N} is the probability that the system has functioned without failure in the period \eqn{[0, k]}
 }
 \examples{
 
@@ -35,7 +33,19 @@ dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method=
 k1 <- 1
 k2 <- 200
 upstates <- c("c","t")  # vector of working states
-reliability(dmm,k1,k2,upstates,plot=TRUE)
+getR <- reliability(dmm,k1,k2,upstates)
+
+# Figure plot example :
+
+ggplot2::ggplot(data.frame(getR), aes(positions,reliability)) + geom_path() +
+theme_bw() + geom_point() +
+ scale_y_continuous(name= "Reliability") +
+ scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
+                    else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
+                    else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
+                    else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
+                    else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
+                    else{seq(from=0,to=k2, by=100000)})
 
 
 }

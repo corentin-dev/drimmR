@@ -7,10 +7,10 @@
 bic(x, sequences)
 }
 \arguments{
-\item{x}{An object for which BIC of the DMM can be computed.}
+\item{x}{An object for which the log-likelihood of the DMM can be computed.}
 
-\item{sequences}{A vector or a list of vector of character representing the sequences for which the
-BIC criterion must be computed.}
+\item{sequences}{A list of vectors representing the sequences for which the BIC will be computed
+based on \code{x}.}
 }
 \value{
 A list of BIC (numeric)

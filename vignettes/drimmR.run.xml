@@ -78,5 +78,8 @@
     <requires type="dynamic">
       <file>drimmR.bcf</file>
     </requires>
+    <requires type="editable">
+      <file>drimmr.bib</file>
+    </requires>
   </external>
 </requests>

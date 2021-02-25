@@ -4,18 +4,17 @@
 
 
 
-#' Plot stationary laws for a range of positions between <start> and <end>
+#' Stationary laws for a range of positions between <start> and <end>
 #'
 #' @param x An object of class \code{dmm}
 #' @param start Start position :  a positive integer giving the start position along the sequence from which the stationary laws of the DMM should be computed
 #' @param end End position : a positive integer giving the end position along the sequence until which the stationary laws of the DMM should be computed
 #' @param step A step (integer)
 #' @param output_file (Optional) A file containing matrix of stationary laws (e.g, "C:/.../SL.txt")
-#' @param plot \code{FALSE} (no figure plot of SL evolution); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with positions and stationary laws of states (and figure plot)
-#' @import ggplot2 tidyverse
+#' @return A matrix with positions and stationary laws of states
+#' @import tidyverse
 #' @importFrom Rdpack reprompt
 #' @importFrom utils write.table
 #' @references
@@ -27,11 +26,25 @@
 #'
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
-#' stationary_distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
+#' stat_law <- stationary_distributions(dmm,start=1,end=1000,step=100)
 #'
+#'
+#' # Figure plot example :
+#'
+#' library(ggplot2)
+#' values <- c(stat_law[,c(2:c(length(dmm$states)+1))])
+#' pos <- rep(stat_law[,1],length(dmm$states))
+#' States <- rep(dmm$states, each=length(seq(from=start, to=end, by=step)))
+#' tab <- data.frame(cbind(pos,States,values))
+#' tab   %>% ggplot(aes(x=as.numeric(pos), y=as.numeric(values), group=States,colour=States)) +
+#' geom_line() + geom_point()+ theme_bw() +
+#' theme(panel.spacing.y=unit(1,"cm")) + guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
+#' theme(axis.title.x = element_text(size=10, face="bold"),legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
+#' labs(x = "Position", y = "stationary laws",title=paste0("Evolution of stationary laws along the sequence : "), fill="States :")
 
 
-stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
+
+stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL) {
 
   states <- x$states
   order <- x$order
@@ -66,42 +79,24 @@ stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, outp
   if (!is.null(output_file))
     utils::write.table(stat_law, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
 
-  # figure plot
 
-  if(isTRUE(plot)){
-
-    values <- c(stat_law[,c(2:c(length(states)+1))])
-    pos <- rep(stat_law[,1],length(c("a","c","g","t")))
-    States <- rep(c("a","c","g","t"), each=length(seq(from=start, to=end, by=step)))
-
-    tab <- data.frame(cbind(pos,States,values))
-
-
-    fig <- tab   %>% ggplot(aes(x=as.numeric(pos), y=as.numeric(values), group=States,colour=States)) +
-      geom_line() + geom_point()+ theme_bw() +
-      theme(panel.spacing.y=unit(1,"cm")) + guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
-      theme(axis.title.x = element_text(size=10, face="bold"),legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
-      labs(x = "Position", y = "stationary laws",title=paste0("Evolution of stationary laws along the sequence : "), fill="States :")
-  }
-
-  return(list(stat_law, if(isTRUE(plot)){fig}))
+  return(stat_law)
 }
 
 
 
 
-#' Plot distributions for a range of positions between <start> and <end>
+#' Distributions for a range of positions between <start> and <end>
 #'
 #' @param x An object of class \code{dmm}
 #' @param start  Start position :  a positive integer giving the start position along the sequence from which the distributions of the DMM should be computed
 #' @param end  End position :  a positive integer giving the end position along the sequence until which the distributions of the DMM should be computed
 #' @param step A step (integer)
 #' @param output_file (Optional) A file containing matrix of distributions (e.g, "C:/.../DIST.txt")
-#' @param plot \code{FALSE} (no figure plot of dist evolution); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with positions and distributions of states (and figure plot)
-#' @import ggplot2 tidyverse
+#' @return A matrix with positions and distributions of states
+#' @import  tidyverse
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -112,10 +107,24 @@ stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, outp
 #'
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
-#' distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
+#' distrib <- distributions(dmm,start=1,end=1000,step=100)
 #'
+#'
+#' # Figure plot example :
+#'
+#' library(ggplot2)
+#' values <- c(distrib[,c(2:c(length(dmm$states)+1))])
+#' pos <- rep(distrib[,1],length(dmm$states))
+#' States <- rep(dmm$states, each=length(seq(from=start, to=end, by=step)))
+#' tab <- data.frame(cbind(pos,States,values))
+#' tab   %>% ggplot(aes(x=as.numeric(pos), y=as.numeric(values), group=States,colour=States)) +
+#'  geom_line() + geom_point()+ theme_bw() +
+#'  theme(panel.spacing.y=unit(1,"cm")) + guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
+#'  theme(axis.title.x = element_text(size=10, face="bold"),legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
+#'  labs(x = "Position", y = "Distributions",title=paste0("Evolution of distributions along the sequence : "), fill="States :")
 
-distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
+
+distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL) {
 
   states <- x$states
   order <- x$order
@@ -153,25 +162,8 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
   if (!is.null(output_file))
     utils::write.table(distrib, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
 
-  # figure plot
 
-  if(isTRUE(plot)){
-
-    values <- c(distrib[,c(2:c(length(states)+1))])
-    pos <- rep(distrib[,1],length(c("a","c","g","t")))
-    States <- rep(c("a","c","g","t"), each=length(seq(from=start, to=end, by=step)))
-
-    tab <- data.frame(cbind(pos,States,values))
-
-
-    fig <- tab   %>% ggplot(aes(x=as.numeric(pos), y=as.numeric(values), group=States,colour=States)) +
-      geom_line() + geom_point()+ theme_bw() +
-      theme(panel.spacing.y=unit(1,"cm")) + guides(shape=guide_legend(title=NULL, override.aes = list(alpha = 1))) +
-      theme(axis.title.x = element_text(size=10, face="bold"),legend.title =element_text(size=10, face="bold" ), axis.text =element_text(size=10, face="bold" ),legend.text=element_text(size=10)) +
-      labs(x = "Position", y = "Distributions",title=paste0("Evolution of distributions along the sequence : "), fill="States :")
-  }
-
-  return(list(distrib, if(isTRUE(plot)){fig}))
+  return(distrib)
 }
 
 
@@ -180,20 +172,22 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 
 #' Availability function
 #'
-#' @description Pointwise (or instantaneous) availability of a system at time \eqn{l \in N}
+#' @description The pointwise (or instantaneous) availability of a system \eqn{S_{ystem}} at time \eqn{k \in N} is the probability
+#' that the system is operational at time k (independently of the fact that the system has failed or not
+#' in \eqn{[0; k)}).
 #'
-#' @details The pointwise (or instantaneous) availability is the probability that the system is in a working state at time \eqn{l},
-#' independently of the fact that the system worked or not during the time interval \eqn{[0; l)}
+#' @details Consider a system (or a component) System whose possible states during its evolution in time are
+#' \eqn{E = \{1 \ldots s \}}. Denote by \eqn{U = \{1 \ldots s_1 \}} the subset of operational states of the system (the upstates) and by \eqn{D =\{s_{1}+1 \ldots s \}} the subset of failure states (the down states), with 0 < s1 < s(obviously, \eqn{E = U \cup D and U \cap D = \emptyset, U \neq \emptyset, D \neq \emptyset}). One can think of the states of U as
+#' different operating modes or performance levels of the system, whereas the states of D can be seen as failures of the systems with different modes.
 #' @param x An object of class \code{dmm}
 #' @param k1  Start position :  a positive integer giving the start position along the sequence from which the availabilities of the DMM should be computed
 #' @param k2 End position :  a positive integer giving the end position along the sequence until which the availabilities of the DMM should be computed
-#' @param upstates Character vector of the subspace working states among the state space vector such that upstates< s
+#' @param upstates Character vector giving the subset of operational states U.
 #' @param output_file (Optional) A file containing matrix of availability probabilities (e.g, "C:/.../AVAL.txt")
-#' @param plot \code{FALSE} (no figure plot of availability by position); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with positions and availability probabilities of states (and figure plot)
-#' @import ggplot2 tidyverse doSNOW foreach future
+#' @return A vector of length k+1 giving the values of the availability for the period \eqn{[0 \ldots k]}
+#' @import  tidyverse doSNOW foreach future
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -207,10 +201,22 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 #' k1 <- 1
 #' k2 <- 200
 #' upstates <- c("c","t")  # vector of working states
-#' availability(dmm,k1,k2,upstates,plot=TRUE)
+#' getA <- availability(dmm,k1,k2,upstates)
+#'
+#' Figure plot example :
+#' library(ggplot2)
+#' ggplot2::ggplot(data.frame(getA), aes(positions,availability)) + geom_path() +
+#' theme_bw() + geom_point() +
+#'  scale_y_continuous(name= "Availability") +
+#'  scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
+#'                     else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
+#'                     else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
+#'                     else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
+#'                     else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
+#'                     else{seq(from=0,to=k2, by=100000)})
 #'
 
-availability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
+availability <- function(x, k1,k2, upstates, output_file=NULL) {
 
   order <- x$order
   mod.length <- x$length
@@ -327,41 +333,26 @@ availability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
   if (!is.null(output_file))
     utils::write.table(getA, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
 
-  ##################### figure plot
 
-  if(isTRUE(plot)){
-    fig <- ggplot2::ggplot(data.frame(getA), aes(positions,availability)) + geom_path() +
-      theme_bw() + geom_point() +
-      scale_y_continuous(name= "Availability") +
-      scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
-                         else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
-                         else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
-                         else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
-                         else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
-                         else{seq(from=0,to=k2, by=100000)})
-
-  }
-
-  return(list(getA,if(isTRUE(plot)){fig}))
+  return(getA)
 }
 
 
 #' Reliability function
 #'
-#' @description Reliability or the survival function of a system at time \eqn{l \in N}
+#' @description Reliability or the survival function of a system at time \eqn{k \in N}
 #'
-#' @details The reliability at time \eqn{l \in N} is the probability that the system has functioned without failure in the period \eqn{[0, l]}
+#' @details The reliability at time \eqn{k \in N} is the probability that the system has functioned without failure in the period \eqn{[0, k]}
 #'
 #' @param x An object of class \code{dmm}
 #' @param k1 Start position :  a positive integer giving the start position along the sequence from which the reliabilities of the DMM should be computed
 #' @param k2 End position :  a positive integer giving the end position along the sequence until which the reliabilities of the DMM should be computed
 #' @param upstates Character vector of the subspace working states among the state space vector such that upstates < s
 #' @param output_file (Optional) A file containing matrix of reliability probabilities (e.g, "C:/.../REL.txt")
-#' @param plot \code{FALSE} (no figure plot of reliability by position); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with positions and reliability probabilities of states (and figure plot)
-#' @import ggplot2 tidyverse doSNOW foreach future
+#' @return A vector of length k + 1 giving the values of the reliability for the period \eqn{[0 \ldots k]}
+#' @import tidyverse doSNOW foreach future
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -374,10 +365,22 @@ availability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
 #' k1 <- 1
 #' k2 <- 200
 #' upstates <- c("c","t")  # vector of working states
-#' reliability(dmm,k1,k2,upstates,plot=TRUE)
+#' getR <- reliability(dmm,k1,k2,upstates)
+#'
+#' # Figure plot example :
+#'
+#' ggplot2::ggplot(data.frame(getR), aes(positions,reliability)) + geom_path() +
+#' theme_bw() + geom_point() +
+#'  scale_y_continuous(name= "Reliability") +
+#'  scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
+#'                     else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
+#'                     else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
+#'                     else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
+#'                     else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
+#'                     else{seq(from=0,to=k2, by=100000)})
 #'
 #'
-reliability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
+reliability <- function(x, k1,k2, upstates, output_file=NULL) {
 
   order <- x$order
   mod.length <- x$length
@@ -497,22 +500,8 @@ reliability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
   if (!is.null(output_file))
     utils::write.table(getR, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
 
-  ##################### figure plot
 
-  if(isTRUE(plot)){
-    fig <- ggplot2::ggplot(data.frame(getR), aes(positions,reliability)) + geom_path() +
-      theme_bw() + geom_point() +
-      scale_y_continuous(name= "Reliability") +
-      scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
-                         else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
-                         else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
-                         else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
-                         else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
-                         else{seq(from=0,to=k2, by=100000)})
-
-  }
-
- return(list(getR,if(isTRUE(plot)){fig}))
+ return(getR)
 }
 
 
@@ -520,21 +509,23 @@ reliability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
 
 #' Maintainability function
 #'
-#' @description Maintainability of a system at time \eqn{k \in N}.
+#' @description Maintainability of a system at time \eqn{k \in N} is the probability that the system is repaired up to time \eqn{k},
+#' given that is has failed at time \eqn{k=0}.
 #'
-#' @details The maintainability at time \eqn{k \in N} of a system is the probability that the system is repaired up to time \eqn{l},
-#' given that is has failed at time \eqn{l=0}.
+#'
+#' @details Consider a system (or a component) System whose possible states during its evolution in time are
+#' \eqn{E = \{1 \ldots s \}}. Denote by \eqn{U = \{1 \ldots s_1 \}} the subset of operational states of the system (the upstates) and by \eqn{D =\{s_{1}+1 \ldots s \}} the subset of failure states (the down states), with 0 < s1 < s(obviously, \eqn{E = U \cup D and U \cap D = \emptyset, U \neq \emptyset, D \neq \emptyset}). One can think of the states of U as
+#' different operating modes or performance levels of the system, whereas the states of D can be seen as failures of the systems with different modes.
 #'
 #' @param x An object of class \code{dmm}
 #' @param k1 Start position :  a positive integer giving the start position along the sequence from which the maintainabilities of the DMM should be computed
 #' @param k2 End position :  a positive integer giving the end position along the sequence until which the maintainabilities of the DMM should be computed
 #' @param upstates Character vector of the subspace working states among the state space vector such that upstates < s
 #' @param output_file (Optional) A file containing matrix of maintainability probabilities (e.g, "C:/.../MAIN.txt")
-#' @param plot \code{FALSE} (no figure plot of maintainability by position); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with positions and maintainability probabilities of states (and figure plot)
-#' @import ggplot2 tidyverse doSNOW foreach future
+#' @return A vector of length k + 1 giving the values of the maintainability for the period \eqn{[0 \ldots k]}
+#' @import tidyverse doSNOW foreach future
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -549,11 +540,25 @@ reliability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
 #' k1 <- 1
 #' k2 <- 200
 #' upstates <- c("c","t")  # vector of working states
-#' maintainability(dmm,k1,k2,upstates,plot=TRUE)
+#' getM <- maintainability(dmm,k1,k2,upstates)
+#'
+#'
+#' # Figure plot example :
+#'
+#' ggplot2::ggplot(data.frame(getM), aes(positions,maintainability)) + geom_path() +
+#' theme_bw() + geom_point() +
+#'  scale_y_continuous(name= "Maintainability") +
+#'  scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
+#'                     else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
+#'                     else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
+#'                     else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
+#'                     else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
+#'                     else{seq(from=0,to=k2, by=100000)})
+#'
 #'
 
 
-maintainability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
+maintainability <- function(x, k1,k2, upstates, output_file=NULL) {
 
   order <- x$order
   mod.length <- x$length
@@ -676,53 +681,39 @@ maintainability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
   if (!is.null(output_file))
     utils::write.table(getM, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
 
-  ##################### figure plot
-
-  if(isTRUE(plot)){
-    fig <- ggplot2::ggplot(data.frame(getM), aes(positions,maintainability)) + geom_path() +
-      theme_bw() + geom_point() +
-      scale_y_continuous(name= "Maintainability") +
-      scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
-                         else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
-                         else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
-                         else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
-                         else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
-                         else{seq(from=0,to=k2, by=100000)})
-
-  }
-  return(list(getM,if(isTRUE(plot)){fig}))
+  return(getM)
 }
 
 
 #' Failure rates function
 #'
-#' @description Estimation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate.
+#' @description Computation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate.
 #'
-#' As for BMP-failure rate, consider a system S starting to work at time \eqn{l = 0}. The BMP-failure rate at time \eqn{l \in N} is
-#' the conditional probability that the failure of the system occurs at time \eqn{l}, given that the system has
-#' worked until time \eqn{l - 1}.
-#'
-#' The RG-failure rate is a discrete-time adapted failure-rate proposed by D. Roy and R. Gupta. Classification of discrete
-#' lives. \emph{Microelectronics Reliability}, 32(10):1459–1473, 1992.
-#'
-#'
-#' @details The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
+#' As for BMP-failure rate, consider a system S starting to work at time \eqn{k = 0}. The BMP-failure rate at time \eqn{k \in N} is
+#' the conditional probability that the failure of the system occurs at time \eqn{k}, given that the system has
+#' worked until time \eqn{k - 1}. The BMP-failure rate denoted by \eqn{\lambda(k), k \in N} is usually considered for
 #' continuous time systems.
 #'
-#' The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
+#' The RG-failure rate is a discrete-time adapted failure-rate proposed by D. Roy and R. Gupta. Classification of discrete
+#' lives. \emph{Microelectronics Reliability}, 32(10):1459–1473, 1992. The RG-failure rate is denoted by \eqn{r(k), k \in N}.
+#'
+#'
+#' @details Consider a system (or a component) System whose possible states during its evolution in time are
+#' \eqn{E = \{1 \ldots s \}}. Denote by \eqn{U = \{1 \ldots s_1 \}} the subset of operational states of the system (the upstates) and by \eqn{D =\{s_{1}+1 \ldots s \}} the subset of failure states (the down states), with 0 < s1 < s(obviously, \eqn{E = U \cup D and U \cap D = \emptyset, U \neq \emptyset, D \neq \emptyset}). One can think of the states of U as
+#' different operating modes or performance levels of the system, whereas the states of D can be seen as failures of the systems with different modes.
+#'
 #'
 #' @param x An object of class \code{dmm}
 #' @param k1 Start position :  a positive integer giving the start position along the sequence from which the failure rates of the DMM should be computed
 #' @param k2 End position :  a positive integer giving the end position along the sequence until which the failure rates of the DMM should be computed
-#' @param \code{failure.rate} Default="BMP", then BMP-failure-rate is the method used to estimate the failure rate. If \code{failure.rate}= "RG",
-#' then RG-failure rate is the method used to estimate the failure rate.
+#' @param \code{failure.rate} Default="BMP", then BMP-failure-rate is the method used to compute the failure rate. If \code{failure.rate}= "RG",
+#' then RG-failure rate is the method used to compute the failure rate.
 #' @param upstates Character vector of the subspace working states among the state space vector such that upstates < s
 #' @param output_file (Optional) A file containing matrix of failure rates at each position (e.g, "C:/.../ER.txt")
-#' @param plot \code{FALSE} (no figure plot of failure rates by position); \code{TRUE} (figure plot)
 #' @author Alexandre Seiller
 #'
-#' @return A matrix with positions and failure rate scores of states (and figure plot)
-#' @import ggplot2 tidyverse doSNOW foreach future
+#' @return A vector of length k + 1 giving the values of the BMP (or RG) -failure rate for the period \eqn{[0 \ldots k]}
+#' @import  tidyverse doSNOW foreach future
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -737,13 +728,27 @@ maintainability <- function(x, k1,k2, upstates, output_file=NULL, plot=FALSE) {
 #' k1 <- 1
 #' k2 <- 200
 #' upstates <- c("c","t")  # vector of working states
-#' failureRate(dmm,k1,k2,upstates,failure.rate="BMP",plot=TRUE)
+#' getFR <- failureRate(dmm,k1,k2,upstates,failure.rate="BMP")
+#'
+#'
+#' # Figure plot example :
+#' library(ggplot2)
+#'
+#' ggplot2::ggplot(data.frame(getFR), aes(positions,getFR[,2])) + geom_path() +
+#' theme_bw() + geom_point() +
+#'  scale_y_continuous(name= paste0(failure.rate,"-failure rate")) +
+#'  scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
+#'                     else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
+#'                     else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
+#'                     else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
+#'                     else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
+#'                     else{seq(from=0,to=k2, by=100000)})
 #'
 
-failureRate <- function(x, k1,k2, upstates,failure.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
+failureRate <- function(x, k1,k2, upstates,failure.rate=c("BMP","RG"), output_file=NULL) {
 
   if(is.null(failure.rate)){
-    # BMP failure rate as default estimate
+    # BMP failure rate as default method
     failure.rate <- "BMP"
   }
 
@@ -755,7 +760,7 @@ failureRate <- function(x, k1,k2, upstates,failure.rate=c("BMP","RG"), output_fi
 
   getR <- matrix(NA, nrow=k2, ncol=1)
 
-  getR <- reliability(x,k1=1, k2=k2+1,upstates=upstates, plot=FALSE)
+  getR <- reliability(x,k1=1, k2=k2+1,upstates=upstates)
   getFR <- matrix(NA, nrow=k2, ncol=1)
 
   # BMP failure-rate
@@ -821,21 +826,7 @@ failureRate <- function(x, k1,k2, upstates,failure.rate=c("BMP","RG"), output_fi
   if (!is.null(output_file))
     utils::write.table(getFR, file=output_file, row.names=FALSE, col.names=TRUE,sep = "\t")
 
-  ##################### figure plot
 
-  if(isTRUE(plot)){
-    fig <- ggplot2::ggplot(data.frame(getFR), aes(positions,getFR[,2])) + geom_path() +
-      theme_bw() + geom_point() +
-      scale_y_continuous(name= paste0(failure.rate,"-failure rate")) +
-      scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
-                         else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
-                         else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
-                         else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
-                         else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
-                         else{seq(from=0,to=k2, by=100000)})
-
-  }
-
-  return(list(getFR,if(isTRUE(plot)){fig}))
+  return(getFR)
 }
 

@@ -2,20 +2,20 @@
 % Please edit documentation in R/dmm.R
 \name{bic.dmm}
 \alias{bic.dmm}
-\title{Evaluate BIC}
+\title{Evaluate the BIC of a drifting Markov Model}
 \usage{
 \method{bic}{dmm}(x, sequences)
 }
 \arguments{
 \item{x}{An object of class \code{dmm}}
 
-\item{sequences}{A character vector or a list of character vector representing the sequence}
+\item{sequences}{A character vector or a list of character vector representing the sequences for which the BIC will be computed based on \code{x}.}
 }
 \value{
-A list of BIC (numeric)
+A list of BIC (numeric).
 }
 \description{
-Evaluate BIC
+Computation of the Bayesian Information Criterion.
 }
 \examples{
 

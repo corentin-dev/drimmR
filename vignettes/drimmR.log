@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.17)  17 FEB 2021 13:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.17)  18 FEB 2021 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -92,6 +92,15 @@ LaTeX Font Info:    Trying to load font information for T1+aer on input line 11
 2.
  (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
+))
+(c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/upquote/upquote
+.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+
+(c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/textcomp.s
+ty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )) (./natbib.sty
 Package: natbib 2000/07/24 7.0a (PWD)
 \bibhang=\skip49
@@ -425,7 +434,7 @@ or  <return>  to continue without it.
 
 \blx@bcfin=\read3
 \blx@bcfout=\write4
-\blx@langwohyphens=\language3
+\blx@langwohyphens=\language86
 \c@mincomprange=\count309
 \c@maxcomprange=\count310
 \c@mincompwidth=\count311
@@ -751,7 +760,7 @@ File: lstlang3.sty 2020/03/24 1.8d listings language file
 \@quotelevel=\count413
 \@quotereset=\count414
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 15
-0.
+6.
 
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -765,25 +774,40 @@ File: l3backend-pdftex.def 2021-02-06 L3 backend support: PDF output (pdfTeX)
 No file drimmR.aux.
 \openout1 = `drimmR.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
 
+(c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/context/base/mkii/sup
+p-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count416
+\scratchdimen=\dimen162
+\scratchbox=\box53
+\nofMPsegments=\count417
+\nofMParguments=\count418
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count419
+\MPscratchDim=\dimen163
+\MPnumerator=\count420
+\makeMPintoPDFobject=\count421
+\everyMPtoPDFconversion=\toks23
+)
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/ep
 stopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -796,49 +820,49 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
-50.
+56.
 
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-50.
+56.
 
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-50.
+56.
 
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-150.
+156.
 
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-150.
+156.
 
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 150.
+(Font)              <10.95> on input line 156.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 150.
+(Font)              <8> on input line 156.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 150.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 150
+(Font)              <6> on input line 156.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 156
 .
 
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.f
 d
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 150
+LaTeX Font Info:    Trying to load font information for U+msb on input line 156
 .
 
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.f
@@ -846,14 +870,14 @@ d
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-Package natbib Warning: Citation `Ver08' on page 1 undefined on input line 150.
+Package natbib Warning: Citation `Ver08' on page 1 undefined on input line 156.
 
 
 
 Package natbib Warning: Citation `BaVe2018' on page 1 undefined on input line 1
-50.
+56.
 
-Package hyperref Info: Link coloring ON on input line 150.
+Package hyperref Info: Link coloring ON on input line 156.
 
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/namere
 f.sty
@@ -867,11 +891,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 g/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count416
+\c@section@level=\count422
 )
-LaTeX Info: Redefining \ref on input line 150.
-LaTeX Info: Redefining \pageref on input line 150.
-LaTeX Info: Redefining \nameref on input line 150.
+LaTeX Info: Redefining \ref on input line 156.
+LaTeX Info: Redefining \pageref on input line 156.
+LaTeX Info: Redefining \nameref on input line 156.
 \@outlinefile=\write5
 \openout5 = `drimmR.out'.
 
@@ -912,41 +936,38 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'drimmR.bbl' not found.
 
 No file drimmR.bbl.
-Package biblatex Info: Reference section=0 on input line 150.
-Package biblatex Info: Reference segment=0 on input line 150.
-\c@lstlisting=\count417
+Package biblatex Info: Reference section=0 on input line 156.
+Package biblatex Info: Reference segment=0 on input line 156.
+\c@lstlisting=\count423
 
-Package natbib Warning: Citation `Ver08' on page 1 undefined on input line 154.
-
-
-
-Package natbib Warning: Citation `BaVe2018' on page 1 undefined on input line 1
-54.
+Package natbib Warning: Citation `Ver08' on page 1 undefined on input line 159.
 
 
-Package natbib Warning: Citation `Ver08' on page 1 undefined on input line 156.
 
+LaTeX Warning: Citation 'BaVe2018' on page 1 undefined on input line 159.
+
+
+LaTeX Warning: Citation 'Ver08' on page 1 undefined on input line 161.
 
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-58.
+63.
 (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
-Package natbib Warning: Citation `krol_semimarkov_2015' on page 1 undefined on 
-input line 158.
+LaTeX Warning: Citation 'krol_semimarkov_2015' on page 1 undefined on input lin
+e 163.
 
 
-Package natbib Warning: Citation `BaBeCeSaVe' on page 1 undefined on input line
- 158.
+LaTeX Warning: Citation 'BaBeCeSaVe' on page 1 undefined on input line 163.
 
 
-Package natbib Warning: Citation `bulla_hsmm_2010' on page 1 undefined on input
- line 158.
+LaTeX Warning: Citation 'bulla_hsmm_2010' on page 1 undefined on input line 163
+.
 
 
 Package natbib Warning: Citation `oconnell_hidden_2011' on page 1 undefined on 
-input line 158.
+input line 163.
 
 
 Underfull \vbox (badness 1460) has occurred while \output is active []
@@ -956,61 +977,61 @@ Underfull \vbox (badness 1460) has occurred while \output is active []
 {c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pd
 ftex.map}]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-63.
+68.
  (c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
-Package natbib Warning: Citation `Kom2018' on page 2 undefined on input line 17
-0.
+Package natbib Warning: Citation `web2018' on page 2 undefined on input line 17
+5.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
 
  []
 
 
-LaTeX Warning: Reference `section_DMM' on page 2 undefined on input line 172.
+LaTeX Warning: Reference `section_DMM' on page 2 undefined on input line 177.
 
 
 LaTeX Warning: Reference `section_package' on page 2 undefined on input line 17
-2.
+7.
 
 
-LaTeX Warning: Reference `concluding' on page 2 undefined on input line 172.
+LaTeX Warning: Reference `concluding' on page 2 undefined on input line 177.
 
 
-Package natbib Warning: Citation `Ver08' on page 2 undefined on input line 176.
+Package natbib Warning: Citation `Ver08' on page 2 undefined on input line 181.
 
 
 
-LaTeX Warning: Reference `subsection_DMM' on page 2 undefined on input line 176
+LaTeX Warning: Reference `subsection_DMM' on page 2 undefined on input line 181
 .
 
 
 Package natbib Warning: Citation `BaVe2018' on page 2 undefined on input line 1
-76.
+81.
 
 
-LaTeX Warning: Reference `subsection_rel' on page 2 undefined on input line 176
+LaTeX Warning: Reference `subsection_rel' on page 2 undefined on input line 181
 .
 
 
 LaTeX Warning: Reference `subsection_estimation' on page 2 undefined on input l
-ine 176.
+ine 181.
 
 
-Package natbib Warning: Citation `Ver08' on page 2 undefined on input line 176.
+Package natbib Warning: Citation `Ver08' on page 2 undefined on input line 181.
 
 
 
 Package natbib Warning: Citation `BaVe2018' on page 2 undefined on input line 1
-76.
+81.
 
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.181 Let $\bm
+l.186 Let $\bm
               {\Pi}_0 = (\Pi_0(u, v))_{u,v \in E}$ and  $\bm{\Pi}_1 = (\Pi_1...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1021,7 +1042,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.181 ..._0 = (\Pi_0(u, v))_{u,v \in E}$ and  $\bm
+l.186 ..._0 = (\Pi_0(u, v))_{u,v \in E}$ and  $\bm
                                                   {\Pi}_1 = (\Pi_1(u, v))_{u...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1032,7 +1053,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.184 ...tween the Markov transition matrices $\bm
+l.189 ...tween the Markov transition matrices $\bm
                                                   {\Pi}_0$ and  $\bm{\Pi}_1$...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1043,7 +1064,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.184 ...ransition matrices $\bm{\Pi}_0$ and  $\bm
+l.189 ...ransition matrices $\bm{\Pi}_0$ and  $\bm
                                                   {\Pi}_1$ if the distributi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1052,7 +1073,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (14.69272pt too wide) in paragraph at lines 184--185
+Overfull \hbox (14.69272pt too wide) in paragraph at lines 189--190
 []\T1/lmr/m/it/10.95 A se-quence $\OML/lmm/m/it/10.95 X[];$
  []
 
@@ -1065,7 +1086,7 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.194 Let us denote by $\bm
+l.199 Let us denote by $\bm
                            {\alpha} = (\alpha(1), \ldots, \alpha(s))$ the \e...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1076,7 +1097,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.197 order $k$ and degree $d$. Let $\bm
+l.202 order $k$ and degree $d$. Let $\bm
                                         {\Pi}_{\frac{i}{d}} = (\bm{\Pi}_{\fr...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1085,7 +1106,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.197 ...e $d$. Let $\bm{\Pi}_{\frac{i}{d}} = (\bm
+l.202 ...e $d$. Let $\bm{\Pi}_{\frac{i}{d}} = (\bm
                                                   {\Pi}_{\frac{i}{d}}(u_1, \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1094,7 +1115,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.203 ...1}	= u_k, X_{t-2}=u_{k-1}, \ldots ) = \bm
+l.208 ...1}	= u_k, X_{t-2}=u_{k-1}, \ldots ) = \bm
                                                   {\Pi}_{\frac{t}{n}}(u_1, \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1103,7 +1124,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.207 \bm
+l.212 \bm
          {\Pi}_{\frac{t}{n}}(u_1, \dots, u_k, v) = \displaystyle\sum_{i=0}^d...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1112,7 +1133,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.207 ... v) = \displaystyle\sum_{i=0}^d A_i(t)\bm
+l.212 ... v) = \displaystyle\sum_{i=0}^d A_i(t)\bm
                                                   {\Pi}_{\frac{i}{d}}(u_1, \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1121,7 +1142,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.210 $A_i\g
+l.215 $A_i\g
             (\frac{nj}{d}\e)=\mi_{\{i=j\}}.$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1130,7 +1151,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.210 $A_i\g(\frac{nj}{d}\e
+l.215 $A_i\g(\frac{nj}{d}\e
                            )=\mi_{\{i=j\}}.$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1139,7 +1160,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.210 $A_i\g(\frac{nj}{d}\e)=\mi
+l.215 $A_i\g(\frac{nj}{d}\e)=\mi
                                 _{\{i=j\}}.$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1150,7 +1171,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.213 ...s implies the choice of the notation $\bm
+l.218 ...s implies the choice of the notation $\bm
                                                   {\Pi}_{\frac{i}{d}}$ and t...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1159,13 +1180,13 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Package natbib Warning: Citation `Ver08' on page 3 undefined on input line 213.
+Package natbib Warning: Citation `Ver08' on page 3 undefined on input line 218.
 
 
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.218 ...onding partitions accordingly (e.g., $\bm
+l.223 ...onding partitions accordingly (e.g., $\bm
                                                   {\Pi}_0^{UU},$ $\bm{\Pi}_0...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1176,7 +1197,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.218 ...ccordingly (e.g., $\bm{\Pi}_0^{UU},$ $\bm
+l.223 ...ccordingly (e.g., $\bm{\Pi}_0^{UU},$ $\bm
                                                   {\Pi}_0^{DU},$ $\bm{\alpha...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1187,7 +1208,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.218 ...\bm{\Pi}_0^{UU},$ $\bm{\Pi}_0^{DU},$ $\bm
+l.223 ...\bm{\Pi}_0^{UU},$ $\bm{\Pi}_0^{DU},$ $\bm
                                                   {\alpha}^{U}$ etc.).
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1202,14 +1223,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.220 \begin{proposition}
+l.225 \begin{proposition}
                          \label{prop_RelDrift}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.224 R(l) = \bm
+l.229 R(l) = \bm
                 {\alpha}^{U} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\r...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1218,7 +1239,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.224 ...l \left( \left(1 - \frac{t}{n}\right) \bm
+l.229 ...l \left( \left(1 - \frac{t}{n}\right) \bm
                                                   {\Pi}_0^{UU} + \frac{t}{n}...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1227,7 +1248,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.224 ...\right) \bm{\Pi}_0^{UU} + \frac{t}{n} \bm
+l.229 ...\right) \bm{\Pi}_0^{UU} + \frac{t}{n} \bm
                                                   {\Pi}_1^{UU} \right) \; \m...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1236,7 +1257,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.224 ...t}{n} \bm{\Pi}_1^{UU} \right) \; \mathbbm
+l.229 ...t}{n} \bm{\Pi}_1^{UU} \right) \; \mathbbm
                                                   {1}^U,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1245,7 +1266,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.225 \textrm{ where } \mathbbm
+l.230 \textrm{ where } \mathbbm
                                {1}^U = (\underbrace{1, \cdots, 1}_{s_1})^{\t...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1260,7 +1281,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.228 \end{proposition}
+l.233 \end{proposition}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1273,14 +1294,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.230 \begin{proposition}
+l.235 \begin{proposition}
                          \label{prop_AvDrift}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.234 A(l) = \bm
+l.239 A(l) = \bm
                 {\alpha} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1289,7 +1310,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.234 ...l \left( \left(1 - \frac{t}{n}\right) \bm
+l.239 ...l \left( \left(1 - \frac{t}{n}\right) \bm
                                                   {\Pi}_0 + \frac{t}{n} \bm{...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1298,7 +1319,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.234 ...t}{n}\right) \bm{\Pi}_0 + \frac{t}{n} \bm
+l.239 ...t}{n}\right) \bm{\Pi}_0 + \frac{t}{n} \bm
                                                   {\Pi}_1 \right) \; \mathbb...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1307,7 +1328,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.234 ...frac{t}{n} \bm{\Pi}_1 \right) \; \mathbbm
+l.239 ...frac{t}{n} \bm{\Pi}_1 \right) \; \mathbbm
                                                   {1}^{E,U}, \textrm{ where ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1316,7 +1337,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.234 ...hbbm{1}^{E,U}, \textrm{ where }  \mathbbm
+l.239 ...hbbm{1}^{E,U}, \textrm{ where }  \mathbbm
                                                   {1}^{E,U} = (\underbrace{1...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1331,7 +1352,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.237 \end{proposition}
+l.242 \end{proposition}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1344,7 +1365,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.239 \begin{proposition}
+l.244 \begin{proposition}
                          \label{prop_MaintDrift}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1357,7 +1378,7 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [3]
 ! Undefined control sequence.
-l.243 M(l) = 1 -  \bm
+l.248 M(l) = 1 -  \bm
                      {\alpha}^{D} \; \prod_{t=1}^l \left( \left(1 - \frac{t}...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1366,7 +1387,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.243 ...l \left( \left(1 - \frac{t}{n}\right) \bm
+l.248 ...l \left( \left(1 - \frac{t}{n}\right) \bm
                                                   {\Pi}_0^{DD} + \frac{t}{n}...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1375,7 +1396,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.243 ...\right) \bm{\Pi}_0^{DD} + \frac{t}{n} \bm
+l.248 ...\right) \bm{\Pi}_0^{DD} + \frac{t}{n} \bm
                                                   {\Pi}_1^{DD} \right) \; \m...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1384,7 +1405,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.243 ...t}{n} \bm{\Pi}_1^{DD} \right) \; \mathbbm
+l.248 ...t}{n} \bm{\Pi}_1^{DD} \right) \; \mathbbm
                                                   {1}^D,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1393,7 +1414,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.244 \textrm{ where } \mathbbm
+l.249 \textrm{ where } \mathbbm
                                {1}^D = (\underbrace{1, \cdots, 1}_{s-s_1})^{...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1408,7 +1429,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.247 \end{proposition}
+l.252 \end{proposition}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1421,7 +1442,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.250 \begin{proposition}
+l.255 \begin{proposition}
                          \label{prop_BMPDrift}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1430,7 +1451,7 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.251 ...lure rate at time $l 	at time $l,$ $l \in
+l.256 ...lure rate at time $l 	at time $l,$ $l \in
                                                    \mathbb N,$ is given by
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1442,7 +1463,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.262 \end{proposition}
+l.267 \end{proposition}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1455,7 +1476,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.266 \begin{proposition}
+l.271 \begin{proposition}
                          \label{prop_RGDrift}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1464,7 +1485,7 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.267 ...lure rate at time $l 	at time $l,$ $l \in
+l.272 ...lure rate at time $l 	at time $l,$ $l \in
                                                    \mathbb N,$ is given by
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1476,28 +1497,28 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.278 \end{proposition}
+l.283 \end{proposition}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-LaTeX Warning: Citation 'BaVe2018' on page 4 undefined on input line 282.
+LaTeX Warning: Citation 'BaVe2018' on page 4 undefined on input line 287.
 
 
-LaTeX Warning: Citation 'Bar2004b' on page 4 undefined on input line 282.
+LaTeX Warning: Citation 'Bar2004b' on page 4 undefined on input line 287.
 
 
-LaTeX Warning: Citation 'Bar2008b' on page 4 undefined on input line 282.
+LaTeX Warning: Citation 'Bar2008b' on page 4 undefined on input line 287.
 
 
-Package natbib Warning: Citation `Ver08' on page 4 undefined on input line 293.
+Package natbib Warning: Citation `Ver08' on page 4 undefined on input line 298.
 
 
 
 Package natbib Warning: Citation `BaVe2018' on page 4 undefined on input line 2
-93.
+98.
 
 
 ! LaTeX Error: Environment proposition undefined.
@@ -1506,7 +1527,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.295 \begin{proposition}
+l.300 \begin{proposition}
                          \label{prop_B1}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1515,7 +1536,7 @@ or  <return>  to continue without it.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.296 ...kov transition matrices (of order 1) $\bm
+l.301 ...kov transition matrices (of order 1) $\bm
                                                   {\Pi}_0$ and  $\bm{\Pi}_1,...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1526,7 +1547,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.296 ...rices (of order 1) $\bm{\Pi}_0$ and  $\bm
+l.301 ...rices (of order 1) $\bm{\Pi}_0$ and  $\bm
                                                   {\Pi}_1,$ for any states $...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1537,7 +1558,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_1(H, \bm 
                       {m}, \bm {n}) P_2(H, \bm {m}, \bm {n}) - P_3(H, \bm {m...
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1548,7 +1569,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_1(H, \bm {m}, \bm 
                                {n}) P_2(H, \bm {m}, \bm {n}) - P_3(H, \bm {m...
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1559,7 +1580,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_1(H, \bm {m}, \bm {n}) P_2(H, \bm 
                                                {m}, \bm {n}) - P_3(H, \bm {m...
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1570,7 +1591,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...m {m}, \bm {n}) P_2(H, \bm {m}, \bm 
                                                   {n}) - P_3(H, \bm {m}, \bm...
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1581,7 +1602,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...2(H, \bm {m}, \bm {n}) - P_3(H, \bm 
                                                   {m}, \bm {n})P_4(H, \bm {m...
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1592,7 +1613,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...{m}, \bm {n}) - P_3(H, \bm {m}, \bm 
                                                   {n})P_4(H, \bm {m}, \bm {n})
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1603,7 +1624,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ... P_3(H, \bm {m}, \bm {n})P_4(H, \bm 
                                                   {m}, \bm {n})
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1614,7 +1635,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...bm {m}, \bm {n})P_4(H, \bm {m}, \bm 
                                                   {n})
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1625,7 +1646,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_5(H, \bm 
                       {m}, \bm {n}) P_1(H, \bm {m}, \bm {n}) - P_3(H, \bm {m...
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1636,7 +1657,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_5(H, \bm {m}, \bm 
                                {n}) P_1(H, \bm {m}, \bm {n}) - P_3(H, \bm {m...
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1647,7 +1668,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_5(H, \bm {m}, \bm {n}) P_1(H, \bm 
                                                {m}, \bm {n}) - P_3(H, \bm {m...
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1658,7 +1679,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...m {m}, \bm {n}) P_1(H, \bm {m}, \bm 
                                                   {n}) - P_3(H, \bm {m}, \bm...
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1669,7 +1690,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...1(H, \bm {m}, \bm {n}) - P_3(H, \bm 
                                                   {m}, \bm {n})^2
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1680,7 +1701,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...{m}, \bm {n}) - P_3(H, \bm {m}, \bm 
                                                   {n})^2
-l.301 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.306 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1691,7 +1712,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_5(H, \bm 
                       {m}, \bm {n}) P_4(H, \bm {m}, \bm {n}) - P_3(H, \bm {m...
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1702,7 +1723,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_5(H, \bm {m}, \bm 
                                {n}) P_4(H, \bm {m}, \bm {n}) - P_3(H, \bm {m...
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1713,7 +1734,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_5(H, \bm {m}, \bm {n}) P_4(H, \bm 
                                                {m}, \bm {n}) - P_3(H, \bm {m...
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1724,7 +1745,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...m {m}, \bm {n}) P_4(H, \bm {m}, \bm 
                                                   {n}) - P_3(H, \bm {m}, \bm...
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1735,7 +1756,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...4(H, \bm {m}, \bm {n}) - P_3(H, \bm 
                                                   {m}, \bm {n}) P_2(H, \bm {...
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1746,7 +1767,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...{m}, \bm {n}) - P_3(H, \bm {m}, \bm 
                                                   {n}) P_2(H, \bm {m}, \bm {n})
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1757,7 +1778,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...P_3(H, \bm {m}, \bm {n}) P_2(H, \bm 
                                                   {m}, \bm {n})
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1768,7 +1789,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...m {m}, \bm {n}) P_2(H, \bm {m}, \bm 
                                                   {n})
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1779,7 +1800,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_5(H, \bm 
                       {m}, \bm {n})P_1(H, \bm {m}, \bm {n}) - P_3(H, \bm {m}...
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1790,7 +1811,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_5(H, \bm {m}, \bm 
                                {n})P_1(H, \bm {m}, \bm {n}) - P_3(H, \bm {m}...
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1801,7 +1822,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> P_5(H, \bm {m}, \bm {n})P_1(H, \bm 
                                               {m}, \bm {n}) - P_3(H, \bm {m}...
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1812,7 +1833,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...bm {m}, \bm {n})P_1(H, \bm {m}, \bm 
                                                   {n}) - P_3(H, \bm {m}, \bm...
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1823,7 +1844,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...1(H, \bm {m}, \bm {n}) - P_3(H, \bm 
                                                   {m}, \bm {n})^2
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1834,7 +1855,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...{m}, \bm {n}) - P_3(H, \bm {m}, \bm 
                                                   {n})^2
-l.303 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
+l.308 ...m{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}
                                                   ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1849,14 +1870,14 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [4]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 310.
+(Font)              <10> on input line 315.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 310.
+(Font)              <7> on input line 315.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 310.
+(Font)              <5> on input line 315.
 
 ! Undefined control sequence.
-l.310 $\displaystyle P_1(H, \bm
+l.315 $\displaystyle P_1(H, \bm
                                {m}, \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1865,7 +1886,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.310 $\displaystyle P_1(H, \bm{m}, \bm
+l.315 $\displaystyle P_1(H, \bm{m}, \bm
                                        {n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1874,7 +1895,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.310 ... \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mi
+l.315 ... \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mi
                                                   _{\{X_{t-1}^h=u \}} \g(\fr...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1883,12 +1904,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Double subscript.
-l.310 ...\bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mi_
+l.315 ...\bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mi_
                                                   {\{X_{t-1}^h=u \}} \g(\fra...
 I treat `x_1_2' essentially like `x_1{}_2'.
 
 ! Undefined control sequence.
-l.310 ...{m}\sum_{h=1}^H \mi_{\{X_{t-1}^h=u \}} \g
+l.315 ...{m}\sum_{h=1}^H \mi_{\{X_{t-1}^h=u \}} \g
                                                   (\frac{t}{n}\e)^2,$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1897,7 +1918,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.310 ...H \mi_{\{X_{t-1}^h=u \}} \g(\frac{t}{n}\e
+l.315 ...H \mi_{\{X_{t-1}^h=u \}} \g(\frac{t}{n}\e
                                                   )^2,$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1906,7 +1927,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.312 $\displaystyle P_2(H, \bm
+l.317 $\displaystyle P_2(H, \bm
                                {m}, \bm{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1915,7 +1936,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.312 $\displaystyle P_2(H, \bm{m}, \bm
+l.317 $\displaystyle P_2(H, \bm{m}, \bm
                                        {n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1924,7 +1945,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.312 ... \bm{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mi
+l.317 ... \bm{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mi
                                                   _{\{X_{t-1}^h=u, X_t^h=v \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1933,12 +1954,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Double subscript.
-l.312 ...\bm{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mi_
+l.317 ...\bm{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mi_
                                                   {\{X_{t-1}^h=u, X_t^h=v \}...
 I treat `x_1_2' essentially like `x_1{}_2'.
 
 ! Undefined control sequence.
-l.312 ...{h=1}^H\mi_{\{X_{t-1}^h=u, X_t^h=v \}} \g
+l.317 ...{h=1}^H\mi_{\{X_{t-1}^h=u, X_t^h=v \}} \g
                                                   (1-\frac{t}{n}\e),$\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1947,7 +1968,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.312 ...{t-1}^h=u, X_t^h=v \}} \g(1-\frac{t}{n}\e
+l.317 ...{t-1}^h=u, X_t^h=v \}} \g(1-\frac{t}{n}\e
                                                   ),$\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1956,7 +1977,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.314 $\displaystyle P_3(H, \bm
+l.319 $\displaystyle P_3(H, \bm
                                {m}, \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1965,7 +1986,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.314 $\displaystyle P_3(H, \bm{m}, \bm
+l.319 $\displaystyle P_3(H, \bm{m}, \bm
                                        {n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1974,7 +1995,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.314 ..., \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi
+l.319 ..., \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi
                                                   _{\{X_{t-1}^h=u \}} \g(1-\...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1983,12 +2004,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Double subscript.
-l.314 ... \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_
+l.319 ... \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_
                                                   {\{X_{t-1}^h=u \}} \g(1-\f...
 I treat `x_1_2' essentially like `x_1{}_2'.
 
 ! Undefined control sequence.
-l.314 ...^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u \}} \g
+l.319 ...^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u \}} \g
                                                   (1-\frac{t}{n}\e)\g(\frac{...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1997,7 +2018,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.314 ...\mi_{\{X_{t-1}^h=u \}} \g(1-\frac{t}{n}\e
+l.319 ...\mi_{\{X_{t-1}^h=u \}} \g(1-\frac{t}{n}\e
                                                   )\g(\frac{t}{n}\e),$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2006,7 +2027,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.314 ..._{\{X_{t-1}^h=u \}} \g(1-\frac{t}{n}\e)\g
+l.319 ..._{\{X_{t-1}^h=u \}} \g(1-\frac{t}{n}\e)\g
                                                   (\frac{t}{n}\e),$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2015,7 +2036,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.314 ...u \}} \g(1-\frac{t}{n}\e)\g(\frac{t}{n}\e
+l.319 ...u \}} \g(1-\frac{t}{n}\e)\g(\frac{t}{n}\e
                                                   ),$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2024,7 +2045,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.316 $\displaystyle 	P_4(H, \bm
+l.321 $\displaystyle 	P_4(H, \bm
                                 {m}, \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2033,7 +2054,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.316 $\displaystyle 	P_4(H, \bm{m}, \bm
+l.321 $\displaystyle 	P_4(H, \bm{m}, \bm
                                         {n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2042,7 +2063,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.316 ..., \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi
+l.321 ..., \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi
                                                   _{\{X_{t-1}^h=u, X_t^h=v \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2051,12 +2072,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Double subscript.
-l.316 ... \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_
+l.321 ... \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_
                                                   {\{X_{t-1}^h=u, X_t^h=v \}...
 I treat `x_1_2' essentially like `x_1{}_2'.
 
 ! Undefined control sequence.
-l.316 ..._{h=1}^H\mi_{\{X_{t-1}^h=u, X_t^h=v \}}\g
+l.321 ..._{h=1}^H\mi_{\{X_{t-1}^h=u, X_t^h=v \}}\g
                                                   (\frac{t}{n}\e),$\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2065,7 +2086,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.316 ...{X_{t-1}^h=u, X_t^h=v \}}\g(\frac{t}{n}\e
+l.321 ...{X_{t-1}^h=u, X_t^h=v \}}\g(\frac{t}{n}\e
                                                   ),$\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2074,7 +2095,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.318 $\displaystyle 	P_5(H, \bm
+l.323 $\displaystyle 	P_5(H, \bm
                                 {m}, \bm{n}) = \displaystyle\sum_{t=1}^{m}\s...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2083,7 +2104,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.318 $\displaystyle 	P_5(H, \bm{m}, \bm
+l.323 $\displaystyle 	P_5(H, \bm{m}, \bm
                                         {n}) = \displaystyle\sum_{t=1}^{m}\s...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2092,7 +2113,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.318 ...displaystyle\sum_{t=1}^{m}\sum_{h=1}^H\mi
+l.323 ...displaystyle\sum_{t=1}^{m}\sum_{h=1}^H\mi
                                                   _{\{X_{t-1}^h=u \}}\g(1-\f...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2101,12 +2122,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Double subscript.
-l.318 ...isplaystyle\sum_{t=1}^{m}\sum_{h=1}^H\mi_
+l.323 ...isplaystyle\sum_{t=1}^{m}\sum_{h=1}^H\mi_
                                                   {\{X_{t-1}^h=u \}}\g(1-\fr...
 I treat `x_1_2' essentially like `x_1{}_2'.
 
 ! Undefined control sequence.
-l.318 ...}^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u \}}\g
+l.323 ...}^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u \}}\g
                                                   (1-\frac{t}{n}\e)^2,$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2115,7 +2136,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.318 ...H\mi_{\{X_{t-1}^h=u \}}\g(1-\frac{t}{n}\e
+l.323 ...H\mi_{\{X_{t-1}^h=u \}}\g(1-\frac{t}{n}\e
                                                   )^2,$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2126,7 +2147,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.319 with $\bm
+l.324 with $\bm
                {m}=(m_1, \ldots, m_H)$ and $\bm{n}=(n_1, \ldots, n_H).$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2137,7 +2158,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \bm 
                     
-l.319 with $\bm{m}=(m_1, \ldots, m_H)$ and $\bm
+l.324 with $\bm{m}=(m_1, \ldots, m_H)$ and $\bm
                                                {n}=(n_1, \ldots, n_H).$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2152,7 +2173,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.322 \end{proposition}
+l.327 \end{proposition}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2160,12 +2181,12 @@ or  <return>  to continue without it.
 
 
 Package natbib Warning: Citation `BaVe2018' on page 5 undefined on input line 3
-26.
+31.
 
 ! Undefined control sequence.
 <argument> Section.\thesection .The \prolang 
                                              {drimmR} package.1
-l.329 \section{The \prolang{drimmR} package}
+l.334 \section{The \prolang{drimmR} package}
                                              \label{section_package}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2176,7 +2197,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> Section.\thesection .The \prolang 
                                              {drimmR} package.1
-l.329 \section{The \prolang{drimmR} package}
+l.334 \section{The \prolang{drimmR} package}
                                              \label{section_package}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2187,7 +2208,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> The \prolang 
                         {drimmR} package
-l.329 \section{The \prolang{drimmR} package}
+l.334 \section{The \prolang{drimmR} package}
                                              \label{section_package}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2198,7 +2219,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...]{Section.\thesection .The \prolang 
                                                   {drimmR} package.1}{\Hy@te...
-l.329 \section{The \prolang{drimmR} package}
+l.334 \section{The \prolang{drimmR} package}
                                              \label{section_package}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2209,7 +2230,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> Section.\thesection .The \prolang 
                                              {drimmR} package.1
-l.329 \section{The \prolang{drimmR} package}
+l.334 \section{The \prolang{drimmR} package}
                                              \label{section_package}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2220,7 +2241,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> \Large \thesection . The \prolang 
                                              {drimmR} package
-l.329 \section{The \prolang{drimmR} package}
+l.334 \section{The \prolang{drimmR} package}
                                              \label{section_package}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2229,7 +2250,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.331 The \prolang
+l.336 The \prolang
                   {drimmR} package is principally devoted to the simulation ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2238,7 +2259,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `fig' on page 5 undefined on input line 331.
+LaTeX Warning: Reference `fig' on page 5 undefined on input line 336.
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -2251,6 +2272,12 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
  []
 
 [6]
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+428.
+
+(c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 7
  []
@@ -2265,17 +2292,17 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [8
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 531--532
+Underfull \hbox (badness 10000) in paragraph at lines 536--537
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 548--549
+Underfull \hbox (badness 10000) in paragraph at lines 553--554
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 576--577
+Underfull \hbox (badness 10000) in paragraph at lines 581--582
 
  []
 
@@ -2285,10 +2312,10 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
  []
 
 [9]
-<wordprobas.png, id=224, 630.55576pt x 543.2295pt>
+<wordprobas.png, id=225, 630.55576pt x 543.2295pt>
 File: wordprobas.png Graphic file (type png)
 <use wordprobas.png>
-Package pdftex.def Info: wordprobas.png  used on input line 607.
+Package pdftex.def Info: wordprobas.png  used on input line 612.
 (pdftex.def)             Requested size: 309.85626pt x 266.94737pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2296,32 +2323,32 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [10 <./wordprobas.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 623--624
+Underfull \hbox (badness 10000) in paragraph at lines 628--629
 
  []
 
 
-Overfull \hbox (10.94977pt too wide) in paragraph at lines 630--631
+Overfull \hbox (10.94977pt too wide) in paragraph at lines 635--636
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<wordsprobas1.png, id=252, 631.76025pt x 541.42274pt>
+<wordsprobas1.png, id=253, 631.76025pt x 541.42274pt>
 File: wordsprobas1.png Graphic file (type png)
 <use wordsprobas1.png>
-Package pdftex.def Info: wordsprobas1.png  used on input line 666.
+Package pdftex.def Info: wordsprobas1.png  used on input line 671.
 (pdftex.def)             Requested size: 265.59494pt x 227.61905pt.
-<wordsprobas2.png, id=253, 632.3625pt x 543.83176pt>
+<wordsprobas2.png, id=254, 632.3625pt x 543.83176pt>
 File: wordsprobas2.png Graphic file (type png)
 <use wordsprobas2.png>
-Package pdftex.def Info: wordsprobas2.png  used on input line 667.
+Package pdftex.def Info: wordsprobas2.png  used on input line 672.
 (pdftex.def)             Requested size: 265.59494pt x 228.41608pt.
-<wordsprobas3.png, id=254, 630.55576pt x 542.62724pt>
+<wordsprobas3.png, id=255, 630.55576pt x 542.62724pt>
 File: wordsprobas3.png Graphic file (type png)
 <use wordsprobas3.png>
-Package pdftex.def Info: wordsprobas3.png  used on input line 668.
+Package pdftex.def Info: wordsprobas3.png  used on input line 673.
 (pdftex.def)             Requested size: 265.59494pt x 228.56427pt.
 
-LaTeX Warning: Float too large for page by 89.63248pt on input line 670.
+LaTeX Warning: Float too large for page by 89.63248pt on input line 675.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2336,27 +2363,27 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [12 <./wordsprobas1.PNG> <./wordsprobas2.PNG> <./wordsprobas3.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 687--688
+Underfull \hbox (badness 10000) in paragraph at lines 692--693
 
  []
 
-<lprobas1.png, id=299, 631.158pt x 542.025pt>
+<lprobas1.png, id=300, 631.158pt x 542.025pt>
 File: lprobas1.png Graphic file (type png)
 <use lprobas1.png>
-Package pdftex.def Info: lprobas1.png  used on input line 716.
+Package pdftex.def Info: lprobas1.png  used on input line 721.
 (pdftex.def)             Requested size: 354.12434pt x 304.11087pt.
-<lprobasv2.png, id=300, 534.798pt x 458.31226pt>
+<lprobasv2.png, id=301, 534.798pt x 458.31226pt>
 File: lprobasv2.png Graphic file (type png)
 <use lprobasv2.png>
-Package pdftex.def Info: lprobasv2.png  used on input line 717.
+Package pdftex.def Info: lprobasv2.png  used on input line 722.
 (pdftex.def)             Requested size: 455.93282pt x 390.73512pt.
 
-Overfull \hbox (13.27907pt too wide) in paragraph at lines 716--718
+Overfull \hbox (13.27907pt too wide) in paragraph at lines 721--723
  [] 
  []
 
 
-LaTeX Warning: Float too large for page by 98.87907pt on input line 719.
+LaTeX Warning: Float too large for page by 98.87907pt on input line 724.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2379,10 +2406,10 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 ]
 
-LaTeX Warning: Citation 'Bar2004b' on page 16 undefined on input line 758.
+LaTeX Warning: Citation 'Bar2004b' on page 16 undefined on input line 763.
 
 
-LaTeX Warning: Citation 'Bar2008b' on page 16 undefined on input line 758.
+LaTeX Warning: Citation 'Bar2008b' on page 16 undefined on input line 763.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2392,10 +2419,10 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [16
 
 ]
-<rel.png, id=359, 629.9535pt x 539.616pt>
+<rel.png, id=360, 629.9535pt x 539.616pt>
 File: rel.png Graphic file (type png)
 <use rel.png>
-Package pdftex.def Info: rel.png  used on input line 809.
+Package pdftex.def Info: rel.png  used on input line 814.
 (pdftex.def)             Requested size: 309.85626pt x 265.42691pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2405,10 +2432,10 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [17
 
  <./rel.PNG>]
-<ava.png, id=387, 630.55576pt x 537.80925pt>
+<ava.png, id=388, 630.55576pt x 537.80925pt>
 File: ava.png Graphic file (type png)
 <use ava.png>
-Package pdftex.def Info: ava.png  used on input line 842.
+Package pdftex.def Info: ava.png  used on input line 847.
 (pdftex.def)             Requested size: 309.85626pt x 264.28381pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2418,10 +2445,10 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [18
 
  <./ava.PNG>]
-<main.png, id=414, 628.14674pt x 538.4115pt>
+<main.png, id=415, 628.14674pt x 538.4115pt>
 File: main.png Graphic file (type png)
 <use main.png>
-Package pdftex.def Info: main.png  used on input line 876.
+Package pdftex.def Info: main.png  used on input line 881.
 (pdftex.def)             Requested size: 309.85626pt x 265.59848pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2431,15 +2458,15 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [19
 
  <./main.PNG>]
-Overfull \hbox (5.27972pt too wide) in paragraph at lines 891--892
+Overfull \hbox (5.27972pt too wide) in paragraph at lines 896--897
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][] 
  []
 
-<er.png, id=442, 630.55576pt x 540.21825pt>
+<er.png, id=443, 630.55576pt x 540.21825pt>
 File: er.png Graphic file (type png)
 <use er.png>
-Package pdftex.def Info: er.png  used on input line 912.
+Package pdftex.def Info: er.png  used on input line 917.
 (pdftex.def)             Requested size: 309.85626pt x 265.4676pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2463,16 +2490,19 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.936 \bibliography
+l.940 \bibliography
                    {drimmr}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-<fig.jpg, id=475, 1821.204pt x 2525.23425pt>
+
+LaTeX Warning: Empty bibliography on input line 942.
+
+<fig.jpg, id=476, 1821.204pt x 2525.23425pt>
 File: fig.jpg Graphic file (type jpg)
 <use fig.jpg>
-Package pdftex.def Info: fig.jpg  used on input line 941.
+Package pdftex.def Info: fig.jpg  used on input line 947.
 (pdftex.def)             Requested size: 309.85626pt x 429.63094pt.
 
 Package natbib Warning: There were undefined citations.
@@ -2509,20 +2539,20 @@ Package logreq Info: Writing requests to 'drimmR.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20140 strings out of 481250
- 329401 string characters out of 5913850
- 1099019 words of memory out of 5000000
- 36453 multiletter control sequences out of 15000+600000
- 484648 words of font info for 82 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 86i,9n,88p,857b,2525s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 20510 strings out of 479302
+ 334951 string characters out of 5858334
+ 1109635 words of memory out of 5000000
+ 37062 multiletter control sequences out of 15000+600000
+ 484953 words of font info for 83 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 86i,9n,88p,854b,2525s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-e
 c.enc}{c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/
-lm-rm.enc}{c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips
-/lm/lm-mathsy.enc}{c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/fonts/e
-nc/dvips/lm/lm-mathit.enc}{c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist
-/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/seillale/AppData/Roaming/TinyTeX/te
-xmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/seillale/AppData/Roaming/TinyT
+lm-ts1.enc}{c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvip
+s/lm/lm-rm.enc}{c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/
+dvips/lm/lm-mathsy.enc}{c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/fo
+nts/enc/dvips/lm/lm-mathit.enc}{c:/Users/seillale/AppData/Roaming/TinyTeX/texmf
+-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/Users/seillale/AppData/Roaming/TinyT
 eX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/seillale/AppData/Roami
 ng/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/seillale/AppDa
 ta/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/seilla
@@ -2554,10 +2584,10 @@ ale/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/User
 s/seillale/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtto10.pfb
 ><c:/Users/seillale/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfo
 nts/symbols/msbm10.pfb>
-Output written on drimmR.pdf (22 pages, 1364327 bytes).
+Output written on drimmR.pdf (22 pages, 1365620 bytes).
 PDF statistics:
- 653 PDF objects out of 1000 (max. 8388607)
- 574 compressed objects within 6 object streams
+ 655 PDF objects out of 1000 (max. 8388607)
+ 576 compressed objects within 6 object streams
  353 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

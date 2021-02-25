@@ -10,8 +10,7 @@ failureRate(
   k2,
   upstates,
   failure.rate = c("BMP", "RG"),
-  output_file = NULL,
-  plot = FALSE
+  output_file = NULL
 )
 }
 \arguments{
@@ -25,29 +24,27 @@ failureRate(
 
 \item{output_file}{(Optional) A file containing matrix of failure rates at each position (e.g, "C:/.../ER.txt")}
 
-\item{plot}{\code{FALSE} (no figure plot of failure rates by position); \code{TRUE} (figure plot)}
-
-\item{\code{failure.rate}}{Default="BMP", then BMP-failure-rate is the method used to estimate the failure rate. If \code{failure.rate}= "RG",
-then RG-failure rate is the method used to estimate the failure rate.}
+\item{\code{failure.rate}}{Default="BMP", then BMP-failure-rate is the method used to compute the failure rate. If \code{failure.rate}= "RG",
+then RG-failure rate is the method used to compute the failure rate.}
 }
 \value{
-A matrix with positions and failure rate scores of states (and figure plot)
+A vector of length k + 1 giving the values of the BMP (or RG) -failure rate for the period \eqn{[0 \ldots k]}
 }
 \description{
-Estimation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate.
+Computation of two different definition of the failure rate : the BMP-failure rate and RG-failure rate.
 
-As for BMP-failure rate, consider a system S starting to work at time \eqn{l = 0}. The BMP-failure rate at time \eqn{l \in N} is
-the conditional probability that the failure of the system occurs at time \eqn{l}, given that the system has
-worked until time \eqn{l - 1}.
-
-The RG-failure rate is a discrete-time adapted failure-rate proposed by D. Roy and R. Gupta. Classification of discrete
-lives. \emph{Microelectronics Reliability}, 32(10):1459–1473, 1992.
-}
-\details{
-The BMP-failure rate denoted by \eqn{\lambda(l), l \in N} is usually considered for
+As for BMP-failure rate, consider a system S starting to work at time \eqn{k = 0}. The BMP-failure rate at time \eqn{k \in N} is
+the conditional probability that the failure of the system occurs at time \eqn{k}, given that the system has
+worked until time \eqn{k - 1}. The BMP-failure rate denoted by \eqn{\lambda(k), k \in N} is usually considered for
 continuous time systems.
 
-The RG-failure rate denoted by \eqn{r(l), l \in N} is adapted to work in discrete time systems.
+The RG-failure rate is a discrete-time adapted failure-rate proposed by D. Roy and R. Gupta. Classification of discrete
+lives. \emph{Microelectronics Reliability}, 32(10):1459–1473, 1992. The RG-failure rate is denoted by \eqn{r(k), k \in N}.
+}
+\details{
+Consider a system (or a component) System whose possible states during its evolution in time are
+\eqn{E = \{1 \ldots s \}}. Denote by \eqn{U = \{1 \ldots s_1 \}} the subset of operational states of the system (the upstates) and by \eqn{D =\{s_{1}+1 \ldots s \}} the subset of failure states (the down states), with 0 < s1 < s(obviously, \eqn{E = U \cup D and U \cap D = \emptyset, U \neq \emptyset, D \neq \emptyset}). One can think of the states of U as
+different operating modes or performance levels of the system, whereas the states of D can be seen as failures of the systems with different modes.
 }
 \examples{
 
@@ -56,7 +53,21 @@ dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method=
 k1 <- 1
 k2 <- 200
 upstates <- c("c","t")  # vector of working states
-failureRate(dmm,k1,k2,upstates,failure.rate="BMP",plot=TRUE)
+getFR <- failureRate(dmm,k1,k2,upstates,failure.rate="BMP")
+
+
+# Figure plot example :
+library(ggplot2)
+
+ggplot2::ggplot(data.frame(getFR), aes(positions,getFR[,2])) + geom_path() +
+theme_bw() + geom_point() +
+ scale_y_continuous(name= paste0(failure.rate,"-failure rate")) +
+ scale_x_continuous(name= "Position",breaks = if(k2<=20){seq(from=0,to=k2, by=1)}
+                    else if(k2>20 & k2<=100){seq(from=0,to=k2, by=10)}
+                    else if(k2>100 & k2<=1000){seq(from=0,to=k2, by=100)}
+                    else if(k2>1000 & k2<=10000){seq(from=0,to=k2, by=1000)}
+                    else if(k2>10000 & k2<=100000){seq(from=0,to=k2, by=10000)}
+                    else{seq(from=0,to=k2, by=100000)})
 
 }
 \references{

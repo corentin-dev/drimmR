@@ -1,4 +1,4 @@
-#' Log-likelihood
+#' Log-likelihood of the drifting Markov Model
 #'
 #' @description Generic function computing the log-likelihood of the model \code{x},
 #'   with the list of sequences \code{sequences}.
@@ -28,9 +28,9 @@ loglik <- function(x,sequences) {
 #' @description Generic function computing the Akaike Information Criterion of
 #'   the model \code{x}, with the list of sequences \code{sequences}.
 #'
-#' @param x An object for which AIC of the DMM can be computed.
-#' @param sequences A vector of character or a list of vector of character representing the sequences for which the
-#'   AIC criterion must be computed.
+#' @param x An object for which the log-likelihood of the DMM can be computed.
+#' @param sequences A vector of characters or a list of vector of characters representing the sequences for which the
+#'   AIC will be computed based on \code{x}.
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A list of AIC (numeric)
 #' @importFrom Rdpack reprompt
@@ -51,9 +51,9 @@ aic <- function(x,sequences) {
 #' @description Generic function computing the Bayesian Information Criterion
 #'   of the model \code{x}, with the list of sequences \code{sequences}.
 #'
-#' @param x An object for which BIC of the DMM can be computed.
-#' @param sequences A vector or a list of vector of character representing the sequences for which the
-#'   BIC criterion must be computed.
+#' @param x An object for which the log-likelihood of the DMM can be computed.
+#' @param sequences A list of vectors representing the sequences for which the BIC will be computed
+#' based on \code{x}.
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A list of BIC (numeric)
 #' @importFrom Rdpack reprompt
@@ -92,10 +92,10 @@ simulate <- function(x, output_file,model_size=100000) {
 
 
 
-## Getting Transition Matrices and Steady State
+## Transition Matrices and Steady State
 ## =====================================================
 
-#' Get transition matrix of the drifting Markov Model
+#' Transition matrix of the drifting Markov Model
 #'
 #' @description Generic function evaluating the transition matrix of a model \code{x} at a given position \code{pos}
 #'
@@ -117,10 +117,10 @@ getTransitionMatrix <- function(x, pos) {
 
 
 
-## Get stationary laws
+## Stationary laws
 ## =====================================================
 
-#' Get the stationary laws of the DMM
+#' Stationary laws of the drifting Markov Model
 #'
 #'
 #' @description Generic function evaluating the stationary law of a model \code{x} at a given position \code{pos} or at every position \code{all.pos}
@@ -146,13 +146,13 @@ getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
 
 
 
-## Get distributions
+## Distributions
 ## =====================================================
 
-#' Get the distributions of the DMM
+#' Distributions of the drifting Markov Model
 #'
 #'
-#' @description Generic function evaluating the distribution of a model \code{x} at a given position \code{code} or at every position \code{all.pos}
+#' @description Generic function evaluating the distribution of a model \code{x} at a given position \code{pos} or at every position \code{all.pos}
 #'
 #' @details Distribution at position l is evaluated by \eqn{\mu_{l} =\mu_0 \prod_{t=k}^{l} \ \pi_{\frac{t}{n}}}, \eqn{\forall l \ge k, k \in N^*} order of the DMM
 #' @param x An object for which the distributions of the DMM can be computed.

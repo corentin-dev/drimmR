@@ -10,4 +10,6 @@
 #' of the same length). Computation of probabilities of appearance of a word along a sequence
 #' under a given model are also considered.
 #'
+"_PACKAGE"
+
 

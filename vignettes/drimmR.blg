@@ -5,15 +5,12 @@ The style file: jss.bst
 I found no \bibdata command---while reading file drimmR.aux
 Warning--I didn't find a database entry for "Ver08"
 Warning--I didn't find a database entry for "BaVe2018"
-Warning--I didn't find a database entry for "krol_semimarkov_2015"
-Warning--I didn't find a database entry for "BaBeCeSaVe"
-Warning--I didn't find a database entry for "bulla_hsmm_2010"
 Warning--I didn't find a database entry for "oconnell_hidden_2011"
-Warning--I didn't find a database entry for "Kom2018"
+Warning--I didn't find a database entry for "web2018"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 You've used 0 entries,
             3215 wiz_defined-function locations,
-            645 strings with 5203 characters,
+            640 strings with 5141 characters,
 and the built_in function-call counts, 41 in all, are:
 = -- 0
 > -- 0

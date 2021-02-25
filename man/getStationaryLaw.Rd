@@ -2,7 +2,7 @@
 % Please edit documentation in R/allgenerics.R
 \name{getStationaryLaw}
 \alias{getStationaryLaw}
-\title{Get the stationary laws of the DMM}
+\title{Stationary laws of the drifting Markov Model}
 \usage{
 getStationaryLaw(x, pos, all.pos = FALSE, internal = FALSE)
 }

@@ -2341,13 +2341,19 @@
   <!-- CITATION DATA -->
   <!-- SECTION 0 -->
   <bcf:bibdata section="0">
+    <bcf:datasource type="file" datatype="bibtex" glob="false">drimmr.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1">BaVe2018</bcf:citekey>
-    <bcf:citekey order="2">Bar2004b</bcf:citekey>
-    <bcf:citekey order="2">Bar2008b</bcf:citekey>
-    <bcf:citekey order="3">Bar2004b</bcf:citekey>
-    <bcf:citekey order="3">Bar2008b</bcf:citekey>
+    <bcf:citekey order="2">Ver08</bcf:citekey>
+    <bcf:citekey order="3">krol_semimarkov_2015</bcf:citekey>
+    <bcf:citekey order="4">BaBeCeSaVe</bcf:citekey>
+    <bcf:citekey order="5">bulla_hsmm_2010</bcf:citekey>
+    <bcf:citekey order="6">BaVe2018</bcf:citekey>
+    <bcf:citekey order="7">Bar2004b</bcf:citekey>
+    <bcf:citekey order="7">Bar2008b</bcf:citekey>
+    <bcf:citekey order="8">Bar2004b</bcf:citekey>
+    <bcf:citekey order="8">Bar2008b</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
@@ -2379,4 +2385,13 @@
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
+  <bcf:datalist section="0"
+                name="nty/global//global/global"
+                type="entry"
+                sortingtemplatename="nty"
+                sortingnamekeytemplatename="global"
+                labelprefix=""
+                uniquenametemplatename="global"
+                labelalphanametemplatename="global">
+  </bcf:datalist>
 </bcf:controlfile>

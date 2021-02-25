@@ -4,7 +4,7 @@
 \alias{words_probabilities}
 \title{Probability of appearance of several words at several positions of a DMM}
 \usage{
-words_probabilities(words, pos, x, output_file = NULL, plot = FALSE)
+words_probabilities(words, pos, x, output_file = NULL)
 }
 \arguments{
 \item{words}{A vector of characters containing words}
@@ -14,8 +14,6 @@ words_probabilities(words, pos, x, output_file = NULL, plot = FALSE)
 \item{x}{An object of class \code{dmm}}
 
 \item{output_file}{(Optional) A file containing the matrix of probabilities (e.g,"C:/.../PROB.txt")}
-
-\item{plot}{\code{FALSE} (no figure plot of words probabilities); \code{TRUE} (figure plot)}
 }
 \value{
 A dataframe of word probabilities along the positions of the sequence
@@ -27,7 +25,30 @@ Probability of appearance of several words at several positions of a DMM
 
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
-words_probabilities(c("atcgattc", "taggct", "ggatcgg"),c(100,300),dmm, plot=TRUE)
+words <- c("atcgattc", "taggct", "ggatcgg")
+pos <- c(100,300)
+words_probas <- words_probabilities(words=words,pos=pos,dmm)
+
+
+# Figure plot example :
+library(ggplot2)
+library(reshape2)
+
+colnames(words_probas) <- c("position",words[1:length(words)])
+words_probas<- subset(words_probas, position \%in\% c(pos[1]:pos[2]))
+# warning is ok :
+frame <- data.frame(reshape2::melt(words_probas[,-1]))
+frame <- cbind(rep(c(pos[1]:pos[2]),length(words)),frame)
+colnames(frame) <-c("position","word","probability")
+fig <- list()
+for (o in c(1:length(words))){
+
+  fig[[o]] <- frame \%>\% dplyr::filter(word==words[o]) \%>\%  ggplot2::ggplot(aes(x=position, y=probability)) +
+  ggplot2::geom_line() + geom_point() + scale_x_continuous(name= "Position",breaks = c(pos[1],pos[2])) +
+    ggplot2::ggtitle(paste0("Overall frame : \n Probability of the word '", words[o],"' at each position of the frame")) +
+    ggplot2::theme_bw()
+}
+fig
 
 }
 \references{
