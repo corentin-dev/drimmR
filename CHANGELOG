@@ -1,5 +1,6 @@
 commits 26/02/2021 :
 updates following meeting on 25/02/2021. Fix k1 parameter in reliability measures (+k1 is null by default)
+add some parameter input tests to several functions
 
 commits 25/02/2021 :
 same updates as 24/02/2021
