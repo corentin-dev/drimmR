@@ -124,7 +124,7 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
   # Test input sequences
   ############################
 
-  if(class(sequences) %in% c("matrix","array")) stop("The parameter sequences should be a list")
+  if(class(sequences) %in% c("matrix","array")) stop("The parameter 'sequences' should be a list of character vector(s), not a string of character, matrix or array")
 
   # convert one sequence character vector into a list
   if(typeof(sequences) == "character" & any(sapply(sequences, is.character))){sequences <- list(sequences)}
@@ -167,7 +167,7 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
   #####################
   # Test integer values
   #####################
-  if (!(.is_valid_integer(order) & .is_valid_integer(degree) & .is_valid_integer(model.length)))
+  if (!(.is_valid_integer(order) | .is_valid_integer(degree) | .is_valid_integer(model.length)))
     stop("Order, degree, or length must not have decimal parts")
 
 
@@ -349,6 +349,10 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 
 getTransitionMatrix.dmm <- function(x, pos) {
 
+  if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
+
+  if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
+
   if(pos<0){ stop("pos < 0 does not exist")}
 
   # model size  is of length n :
@@ -401,6 +405,8 @@ getTransitionMatrix.dmm <- function(x, pos) {
 #' }
 
 getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
+
+  if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
 
   seq.from <- Vectorize(seq.default, vectorize.args = c("from"))
 
@@ -540,6 +546,9 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
 
 getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
+
+  if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
+
 
   seq.from <- Vectorize(seq.default, vectorize.args = c("from"))
 
@@ -704,7 +713,9 @@ loglik.dmm <- function(x, sequences){
   # Test input sequences
   ################################################
 
-  if(class(sequences) %in% c("matrix","array")) stop("The parameter sequences should be a list")
+  if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
+
+  if(class(sequences) %in% c("matrix","array")) stop("The parameter 'sequences' should be a list of character vector(s), not a string of character, matrix or array")
 
   # convert one sequence character vector into a list
   if(typeof(sequences) == "character" & any(sapply(sequences, is.character))){sequences <- list(sequences)}
@@ -792,7 +803,9 @@ aic.dmm <- function(x,sequences) {
   # Test input sequences
   ################################################
 
-  if(class(sequences) %in% c("matrix","array")) stop("The parameter sequences should be a list")
+  if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
+
+  if(class(sequences) %in% c("matrix","array")) stop("The parameter 'sequences' should be a list of character vector(s), not a string of character, matrix or array")
 
   # convert one sequence character vector into a list
   if(typeof(sequences) == "character" & any(sapply(sequences, is.character))){sequences <- list(sequences)}
@@ -853,7 +866,9 @@ bic.dmm <- function(x,sequences) {
   # Test input sequences
   ################################################
 
-  if(class(sequences) %in% c("matrix","array")) stop("The parameter sequences should be a list")
+  if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
+
+  if(class(sequences) %in% c("matrix","array")) stop("The parameter 'sequences' should be a list of character vector(s), not a string of character, matrix or array")
 
   # convert one sequence character vector into a list
   if(typeof(sequences) == "character" & any(sapply(sequences, is.character))){sequences <- list(sequences)}
@@ -918,6 +933,8 @@ return(bic)
 
 
 simulate.dmm <- function(x, output_file=NULL,model_size=NULL) {
+
+  if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
 
   print("Write a simulated file from the model")
 

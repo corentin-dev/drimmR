@@ -32,7 +32,10 @@
 
 
 
-stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
+stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE){
+
+  if (!(.is_valid_integer(start) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
+
 
   states <- x$states
   order <- x$order
@@ -124,6 +127,9 @@ stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, outp
 
 
 distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
+
+  if (!(.is_valid_integer(start) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
+
 
   states <- x$states
   order <- x$order
@@ -229,6 +235,13 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 #' }
 
 availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
+
+  if (!(.is_valid_integer(k1) | .is_valid_integer(k1) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
+
+  if (missing(k2)) {
+    stop("<End> not specified.")
+  }
+
 
   order <- x$order
   mod.length <- x$length
@@ -399,6 +412,13 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 #'
 reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 
+  if (!(.is_valid_integer(k1) | .is_valid_integer(k1) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
+
+  if (missing(k2)) {
+    stop("<End> not specified.")
+  }
+
+
   order <- x$order
   mod.length <- x$length
   states <- x$states
@@ -443,7 +463,7 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
       # add start of the reliability function and pos=0 (printed index= 1)
       getR <- rbind(1,init.law_u %*%  matrix(rep(1,length(upstates))),getR)
       #remove k2^th pos after adding start of function and pos=0
-      getR <- getR[-c(k2+1),]
+      getR <- getR[-c(k2+2),]
 
 
     # pos
@@ -578,6 +598,13 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 
 
 maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
+
+  if (!(.is_valid_integer(k1) | .is_valid_integer(k1) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
+
+  if (missing(k2)) {
+    stop("<End> not specified.")
+  }
+
 
   order <- x$order
   mod.length <- x$length
@@ -764,10 +791,17 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE)
 
 failureRate <- function(x, k1=0L,k2, upstates,failure.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
 
+  if (!(.is_valid_integer(k1) | .is_valid_integer(k1) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
+
   if(is.null(failure.rate)){
     # BMP failure rate as default method
     failure.rate <- "BMP"
   }
+
+  if (missing(k2)) {
+    stop("<End> not specified.")
+  }
+
 
   order <- x$order
   mod.length <- x$length

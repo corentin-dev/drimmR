@@ -21,6 +21,13 @@
 #' word_probability("aggctga",4,dmm)
 #' }
 word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
+
+  if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
+
+  if (missing(pos)) {
+    stop("Error : positions not specified.")
+  }
+
   word_c <- unlist(strsplit(word, split=""))
   word_length <- length(word_c)
   order <- x$order
@@ -97,6 +104,8 @@ word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
 word_probabilities <-function(word, pos, x,  output_file=NULL,plot=FALSE){
   proba <- c()
 
+  if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
+
   if (missing(pos)) {
     stop("Error : positions not specified.")
   }
@@ -162,6 +171,8 @@ word_probabilities <-function(word, pos, x,  output_file=NULL,plot=FALSE){
 #'}
 
 words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
+
+  if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
 
   if (missing(pos)) {
     stop("Error : positions not specified.")
@@ -238,10 +249,14 @@ words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' }
 
 lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL,plot=FALSE) {
-  # Make sure that DMMLength in not shorter than the sequence !
+
+  if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
+
   if (missing(pos)) {
     stop("Error : positions not specified.")
   }
+
+  # Make sure that DMMLength in not shorter than the sequence !
 
   if (pos[1] >= pos[2]) {
     stop("Wrong arguments : start >= end")
