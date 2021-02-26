@@ -462,7 +462,7 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
       }
       # add start of the reliability function and pos=0 (printed index= 1)
       getR <- rbind(1,init.law_u %*%  matrix(rep(1,length(upstates))),getR)
-      #remove k2^th pos after adding start of function and pos=0
+      #remove k2^th pos after adding start of function and  pos=0
       getR <- getR[-c(k2+2),]
 
 
