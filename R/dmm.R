@@ -90,7 +90,7 @@
 #'
 #' @return An object of class \code{dmm}
 #' @export
-#' @import future doSNOW doParallel foreach seqinr
+#' @import future doParallel seqinr
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -196,11 +196,10 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
   ## Solve by row == for each order mer
 
   cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-  doSNOW::registerDoSNOW(cl)
-
+  doParallel::registerDoParallel(cl)
   # Get all order mers + 1 positions
 
-  output <- foreach(i=seq(from = 1, to = length(mers), by = length(states)),.packages = c("doSNOW"), .combine = "c") %dopar% {
+  output <- foreach(i=seq(from = 1, to = length(mers), by = length(states)),.packages = c("doParallel"), .combine = "c") %dopar% {
     R<-NULL
     M<-NULL
 
@@ -389,7 +388,7 @@ getTransitionMatrix.dmm <- function(x, pos) {
 #' @author Alexandre Seiller
 
 #' @return A vector or matrix of stationary law probabilities
-#' @import foreach doParallel doSNOW future
+#' @import doParallel future
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -457,10 +456,10 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
     SL <-  matrix(NA, nrow=x$length,ncol=length(x$states), byrow=TRUE)
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-    doSNOW::registerDoSNOW(cl)
+    doParallel::registerDoParallel(cl)
 
 
-    output <- foreach(i= c(1:x$length),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i= c(1:x$length),.packages = c("doParallel"), .combine = "c") %dopar% {
 
       # Get transition matrix
       m <- getTransitionMatrix(x, i)
@@ -528,7 +527,7 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' @author Alexandre Seiller
 #'
 #' @return A vector or matrix of distribution probabilities
-#' @import foreach doParallel doSNOW future
+#' @import doParallel future
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -629,10 +628,10 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
     if(order==1L){
 
       cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-      doSNOW::registerDoSNOW(cl)
+      doParallel::registerDoParallel(cl)
 
 
-      output <- foreach(i=seq(from = order, to = mod.length, by = 1),.packages = c("doSNOW"), .combine = "c") %dopar% {
+      output <- foreach(i=seq(from = order, to = mod.length, by = 1),.packages = c("doParallel"), .combine = "c") %dopar% {
 
         Pit <- lapply(i,getTransitionMatrix,x=x)
 
@@ -651,10 +650,10 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
     if(order > 1L){
 
       cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-      doSNOW::registerDoSNOW(cl)
+      doParallel::registerDoParallel(cl)
 
 
-      output <- foreach(i=seq(from = order, to = mod.length, by = 1),.packages = c("doSNOW"), .combine = "c") %dopar% {
+      output <- foreach(i=seq(from = order, to = mod.length, by = 1),.packages = c("doParallel"), .combine = "c") %dopar% {
 
         Pit <- lapply(i,.overlap_states(getTransitionMatrix),x=x)
 
@@ -916,7 +915,7 @@ return(bic)
 #' @param output_file (Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")
 #' @param model_size Size of the model
 #' @author  Annthomy Gilles, Alexandre Seiller
-#' @import parallel doSNOW doParallel foreach seqinr
+#' @import doParallel seqinr
 #' @export
 #' @importFrom Rdpack reprompt
 #' @references

@@ -216,7 +216,7 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k+1 giving the values of the availability for the period \eqn{[0 \ldots k]}
-#' @import  tidyverse doSNOW foreach future ggplot2
+#' @import  tidyverse doParallel future ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -269,9 +269,9 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
     Pit <- lapply(c(1:k2),getTransitionMatrix, x=x)
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-    doSNOW::registerDoSNOW(cl)
+    doParallel::registerDoParallel(cl)
 
-    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
 
       prod.mat <-  Reduce(`%*%`, Pit[c(1:i)])
 
@@ -317,9 +317,9 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
     }
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-    doSNOW::registerDoSNOW(cl)
+    doParallel::registerDoParallel(cl)
 
-    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
 
       prod.mat <-  Reduce(`%*%`, Pit[c(1:i)])
 
@@ -393,7 +393,7 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k + 1 giving the values of the reliability for the period \eqn{[0 \ldots k]}
-#' @import tidyverse doSNOW foreach future ggplot2
+#' @import tidyverse doParallel future ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -446,9 +446,9 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-    doSNOW::registerDoSNOW(cl)
+    doParallel::registerDoParallel(cl)
 
-    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
 
       prod.mat <-  Reduce(`%*%`, Pit_uu[c(1:i)])
 
@@ -494,9 +494,9 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
     Pit_uu <- lapply(Pit, function(x) {x[working.states,working.states]})
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-    doSNOW::registerDoSNOW(cl)
+    doParallel::registerDoParallel(cl)
 
-    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
 
       prod.mat <-  Reduce(`%*%`, Pit_uu[c(1:i)])
 
@@ -576,7 +576,7 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k + 1 giving the values of the maintainability for the period \eqn{[0 \ldots k]}
-#' @import tidyverse doSNOW foreach future ggplot2
+#' @import tidyverse doParallel future ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -633,9 +633,9 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE)
 
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-    doSNOW::registerDoSNOW(cl)
+    doParallel::registerDoParallel(cl)
 
-    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
 
       prod.mat <-  Reduce(`%*%`, Pit_dd[c(1:i)])
 
@@ -684,9 +684,9 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE)
     Pit_dd <- lapply(Pit, function(x) {x[failure.states,failure.states]})
 
     cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
-    doSNOW::registerDoSNOW(cl)
+    doParallel::registerDoParallel(cl)
 
-    output <- foreach(i=c(1:k2),.packages = c("doSNOW"), .combine = "c") %dopar% {
+    output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
 
       prod.mat <-  Reduce(`%*%`, Pit_dd[c(1:i)])
 
@@ -770,7 +770,7 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE)
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k + 1 giving the values of the BMP (or RG) -failure rate for the period \eqn{[0 \ldots k]}
-#' @import  tidyverse doSNOW foreach future ggplot2
+#' @import  tidyverse doParallel future ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
