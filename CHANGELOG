@@ -1,3 +1,7 @@
+commits 28/02/2021 :
+following pre-test notes on CRAN on 26/02/2021 : deletion of foreach and doSNOW package in code and dependance (description file) + deletion of VignetteBuilder 
+WARNING : add VignetteBuilder in description file after adding repertory "vignette" (see devtools_history.R file sent by FileX on 26/02/2021) 
+
 commits 26/02/2021 :
 updates following meeting on 25/02/2021. Fix k1 parameter in reliability measures (+k1 is null by default)
 add some parameter input tests to several functions
