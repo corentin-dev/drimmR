@@ -1,5 +1,5 @@
-Package: drimmR
 Type: Package
+Package: drimmR
 Title: Estimation, Simulation and Reliability of Drifting Markov Models
 Version: 1.0.0
 Author: Vlad Stefan Barbu,
