@@ -104,8 +104,6 @@ word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
 word_probabilities <-function(word, pos, x,  output_file=NULL,plot=FALSE){
   proba <- c()
 
-  if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
-
   if (missing(pos)) {
     stop("Error : positions not specified.")
   }
@@ -171,8 +169,6 @@ word_probabilities <-function(word, pos, x,  output_file=NULL,plot=FALSE){
 #'}
 
 words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
-
-  if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
 
   if (missing(pos)) {
     stop("Error : positions not specified.")
@@ -250,7 +246,6 @@ words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 
 lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL,plot=FALSE) {
 
-  if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
 
   if (missing(pos)) {
     stop("Error : positions not specified.")

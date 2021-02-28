@@ -90,7 +90,7 @@
 #'
 #' @return An object of class \code{dmm}
 #' @export
-#' @import future doParallel seqinr
+#' @import future doParallel seqinr foreach
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
