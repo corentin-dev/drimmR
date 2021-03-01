@@ -10,7 +10,7 @@ Author: Vlad Stefan Barbu,
 		Alexandre Seiller, 
 		Nicolas Vergne
 Maintainer: Nicolas Vergne <Nicolas.Vergne@univ-rouen.fr>
-Description: This package introduces the drifting Markov models (DMM) which are 
+Description: Performs the drifting Markov models (DMM) which are 
 	non-homogeneous Markov models designed for modeling the heterogeneities of
 	sequences in a more flexible way than homogeneous Markov chains or even 
 	hidden Markov models. In this context, we developed an R package dedicated to 
