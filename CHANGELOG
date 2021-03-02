@@ -1,3 +1,6 @@
+commits 02/03/2021 :
+change the authors format + replace dontrun examples by donttest (WARNING : resulting error in package compilation because examples use more than 2 nodes)
+
 commits 01/03/2021 :
 change the description of the DESCRIPTION file after first review on 01/03/2021
 
