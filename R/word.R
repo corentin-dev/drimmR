@@ -15,7 +15,7 @@
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probabilities}, \link[drimmR]{words_probabilities}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' word_probability("aggctga",4,dmm)
@@ -94,7 +94,7 @@ word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}, \link[drimmR]{words_probabilities}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),
 #' init.estim = "freq", fit.method="sum")
@@ -159,7 +159,7 @@ word_probabilities <-function(word, pos, x,  output_file=NULL,plot=FALSE){
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}, \link[drimmR]{word_probabilities}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #' fit.method="sum")
@@ -237,7 +237,7 @@ words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' m <- 2

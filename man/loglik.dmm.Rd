@@ -18,7 +18,7 @@ A list of log-likelihood (numeric)
 Evaluate the log-likelihood of a drifting Markov Model
 }
 \examples{
-\dontrun{
+\donttest{
 data(lambda, package = "drimmR")
 sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")

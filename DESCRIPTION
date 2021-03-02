@@ -2,13 +2,15 @@ Type: Package
 Package: drimmR
 Title: Estimation, Simulation and Reliability of Drifting Markov Models
 Version: 1.0.0
-Author: Vlad Stefan Barbu,
-        Geoffray Brelurut, 
-		Annthomy Gilles, 
-		Arnaud Lefebvre, 
-		Victor Mataigne, 
-		Alexandre Seiller, 
-		Nicolas Vergne
+Authors@R: c(person("Vlad Stefan", "Barbu", role = c("aut"),
+                      email = "VladStefan.Barbu@univ-rouen.fr"),
+               person("Geoffray", "Brelurut", role = "ctb"),
+               person("Annthomy", "Gilles", role = "ctb"),
+               person("Arnaud", "Lefebvre", role = "ctb"),
+               person("Victor", "Mataigne", role = "ctb"),
+               person("Alexandre", "Seiller", role = "ctb"),
+               person("Nicolas", "vergne", role = c("aut","cre"),
+                      email = "nicolas.vergne@univ-rouen.fr"))
 Maintainer: Nicolas Vergne <Nicolas.Vergne@univ-rouen.fr>
 Description: Performs the drifting Markov models (DMM) which are 
 	non-homogeneous Markov models designed for modeling the heterogeneities of

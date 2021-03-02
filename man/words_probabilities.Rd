@@ -24,7 +24,7 @@ A dataframe of word probabilities along the positions of the sequence
 Probability of appearance of several words at several positions of a DMM
 }
 \examples{
-\dontrun{
+\donttest{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 fit.method="sum")

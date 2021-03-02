@@ -29,7 +29,7 @@ Reliability or the survival function of a system at time \eqn{k \in N}
 The reliability at time \eqn{k \in N} is the probability that the system has functioned without failure in the period \eqn{[0, k]}
 }
 \examples{
-\dontrun{
+\donttest{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 fit.method="sum")

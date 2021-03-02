@@ -105,7 +105,7 @@ The estimation of DMMs is carried out for 4 different types of data :
  }
 }
 \examples{
-\dontrun{
+\donttest{
 data(lambda, package = "drimmR")
 states <- c("a","c","g","t")
 order <- 1

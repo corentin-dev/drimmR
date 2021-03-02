@@ -96,7 +96,7 @@
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' states <- c("a","c","g","t")
 #' order <- 1
@@ -339,7 +339,7 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq", fit.method="sum")
 #' t <- 10
@@ -396,7 +396,7 @@ getTransitionMatrix.dmm <- function(x, pos) {
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{stationary_distributions}, \link[drimmR]{getDistribution}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' t <- 10
@@ -535,7 +535,7 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{distributions}, \link[drimmR]{getStationaryLaw}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' t <- 10
@@ -698,7 +698,7 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
@@ -789,7 +789,7 @@ loglik.dmm <- function(x, sequences){
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{aic}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
@@ -852,7 +852,7 @@ aic.dmm <- function(x,sequences) {
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{bic}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm<- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
@@ -924,7 +924,7 @@ return(bic)
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{getStationaryLaw}
 #' @return the vector of simulated sequence
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' simulate(dmm, model_size=100)

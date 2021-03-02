@@ -24,7 +24,7 @@
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getStationaryLaw}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",fit.method="sum")
 #' stationary_distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
@@ -118,7 +118,7 @@ stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, outp
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getDistribution}, \link[drimmR]{getStationaryLaw}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
@@ -224,10 +224,10 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}, \link[drimmR]{maintainability}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
-#'  fit.method="sum", plot=TRUE)
+#'  fit.method="sum")
 #' k1 <- 1
 #' k2 <- 200
 #' upstates <- c("c","t")  # vector of working states
@@ -400,7 +400,7 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #' fit.method="sum")
@@ -585,7 +585,7 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),
 #' init.estim = "freq", fit.method="sum")
@@ -778,7 +778,7 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE)
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #'  fit.method="sum")

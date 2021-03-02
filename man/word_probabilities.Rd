@@ -24,7 +24,7 @@ A numeric vector, probabilities of \code{word}
 Probabilities of a word at several positions of a DMM
 }
 \examples{
-\dontrun{
+\donttest{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),
 init.estim = "freq", fit.method="sum")

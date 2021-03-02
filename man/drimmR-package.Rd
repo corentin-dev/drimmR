@@ -13,3 +13,21 @@ Several statistical frameworks are taken into account (one or several samples, c
 of the same length). Computation of probabilities of appearance of a word along a sequence
 under a given model are also considered.
 }
+\author{
+\strong{Maintainer}: Nicolas vergne \email{nicolas.vergne@univ-rouen.fr}
+
+Authors:
+\itemize{
+  \item Vlad Stefan Barbu \email{VladStefan.Barbu@univ-rouen.fr}
+}
+
+Other contributors:
+\itemize{
+  \item Geoffray Brelurut [contributor]
+  \item Annthomy Gilles [contributor]
+  \item Arnaud Lefebvre [contributor]
+  \item Victor Mataigne [contributor]
+  \item Alexandre Seiller [contributor]
+}
+
+}

@@ -33,7 +33,7 @@ A matrix with positions and stationary laws of states
 Stationary laws for a range of positions between <start> and <end>
 }
 \examples{
-\dontrun{
+\donttest{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",fit.method="sum")
 stationary_distributions(dmm,start=1,end=1000,step=100, plot=TRUE)

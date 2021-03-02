@@ -26,7 +26,7 @@ A dataframe of probability by position
 Probability of occurrence of the observed word of size m in a sequence at several positions
 }
 \examples{
-\dontrun{
+\donttest{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 m <- 2

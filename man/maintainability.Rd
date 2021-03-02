@@ -32,7 +32,7 @@ Consider a system (or a component) System whose possible states during its evolu
 different operating modes or performance levels of the system, whereas the states of D can be seen as failures of the systems with different modes.
 }
 \examples{
-\dontrun{
+\donttest{
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),
 init.estim = "freq", fit.method="sum")
