@@ -1,0 +1,25 @@
+image: rocker/tidyverse
+test:  
+  script:
+    - apt update
+    - apt install -y zlib1g-dev libjpeg-dev texlive-full qpdf
+    - R -e 'install.packages(c("testthat","seqinr", "rmarkdown", "kinitr", "ggplot2", "stats", "parallel", "future", "doParallel", "foreach", "tidyverse", "dplyr", "reshape2", "Rdpack"))'
+    - R -e 'install.packages(c("Biostrings"))'
+    - R CMD build --compact-vignettes=both .
+    - mv drimmR*.tar.gz drimmR.tar.gz
+    - R CMD check --as-cran drimmR.tar.gz
+  artifacts:
+    paths:
+      - drimmR.tar.gz
+  #test:  
+  #  script:
+  #    - apt update
+  #    - apt install -y zlib1g-dev libjpeg-dev texlive-full qpdf
+  #    - R -e 'install.packages(c("DiscreteWeibull","seqinr", "roxygen2", "Rcpp", "RcppArmadillo"))'
+  #    - R CMD build --compact-vignettes=both drimmR
+  #    - mv drimmR*.tar.gz drimmR.tar.gz
+  #    - R CMD check --as-cran drimmR.tar.gz
+  #  artifacts:
+  #    paths:
+  #      - drimmR.tar.gz
+  #      - drimmR/inst/doc/smm.pdf
