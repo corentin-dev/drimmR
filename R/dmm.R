@@ -86,6 +86,7 @@
 #' @param fit.method If \code{sequences} is a list of several character vectors of the same length,
 #'   the usual LSE over the sample paths is proposed when \code{fit.method}="sum" (a list of a single character vector
 #'   is its special case).
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author  Geoffray Brelurut, Alexandre Seiller
 #'
 #' @return An object of class \code{dmm}
@@ -105,7 +106,7 @@
 #' }
 
 
-fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "freq","prod","stationary","unif"), fit.method=c("sum")){
+fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "freq","prod","stationary","unif"), fit.method=c("sum"), ncpu=2){
 
 
   # ----------------------------------------------------------- Test input parameters
@@ -113,6 +114,11 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
   if(is.null(fit.method)){
     # default fit method
     fit.method <- "sum"
+  }
+
+  # if ncpu is -1, we use all available cores
+  if(ncpu==-1){
+    ncpu = future::availableCores()
   }
 
   # sum counts of the sequences of the same length
@@ -194,8 +200,8 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 
 
   ## Solve by row == for each order mer
-
-  cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+  #
+  cl <- parallel::makeCluster(ncpu, type = "PSOCK")
   doParallel::registerDoParallel(cl)
   # Get all order mers + 1 positions
 
@@ -385,6 +391,7 @@ getTransitionMatrix.dmm <- function(x, pos) {
 #' @param pos A positive integer giving the position along the sequence on which the stationary law of the DMM should be computed
 #' @param all.pos `FALSE` (default, evaluation at position index) ; `TRUE` (evaluation for all position indices)
 #' @param internal `FALSE` (default) ; `TRUE` (for internal use of th initial law of \link[drimmR]{fitdmm} and word applications)
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Alexandre Seiller
 
 #' @return A vector or matrix of stationary law probabilities
@@ -403,9 +410,14 @@ getTransitionMatrix.dmm <- function(x, pos) {
 #' getStationaryLaw(dmm,pos=t)
 #' }
 
-getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
+getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2){
 
   if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
+
+  # if ncpu is -1, we use all available cores
+  if(ncpu==-1){
+    ncpu = future::availableCores()
+  }
 
   seq.from <- Vectorize(seq.default, vectorize.args = c("from"))
 
@@ -455,7 +467,7 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
     SL <-  matrix(NA, nrow=x$length,ncol=length(x$states), byrow=TRUE)
 
-    cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+    cl <- parallel::makeCluster(ncpu, type = "PSOCK")
     doParallel::registerDoParallel(cl)
 
 
@@ -524,6 +536,7 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' @param pos A positive integer giving the position along the sequence on which the distribution of the DMM should be computed
 #' @param all.pos `FALSE` (default, evaluation at position index) ; `TRUE` (evaluation for all position indices)
 #' @param internal `FALSE` (default) ; `TRUE` (for internal use of \link[drimmR]{distributions} function)
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Alexandre Seiller
 #'
 #' @return A vector or matrix of distribution probabilities
@@ -544,10 +557,14 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
 
 
-getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
+getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2){
 
   if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
 
+  # if ncpu is -1, we use all available cores
+  if(ncpu==-1){
+    ncpu = future::availableCores()
+  }
 
   seq.from <- Vectorize(seq.default, vectorize.args = c("from"))
 
@@ -568,7 +585,7 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 
     if(order>4L){warning("The getDistribution function is time consuming beyond order 4")}
 
-    cl <- parallel::makeCluster(parallel::detectCores(), type = "PSOCK")
+    cl <- parallel::makeCluster(ncpu, type = "PSOCK")
     parallel::clusterExport(cl=cl,varlist=c(),envir=environment())
 
     # DMM order 1
@@ -627,7 +644,7 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
     # DMM order 1
     if(order==1L){
 
-      cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+      cl <- parallel::makeCluster(ncpu, type = "PSOCK")
       doParallel::registerDoParallel(cl)
 
 
@@ -649,7 +666,7 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
     # DMM order > 1
     if(order > 1L){
 
-      cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+      cl <- parallel::makeCluster(ncpu, type = "PSOCK")
       doParallel::registerDoParallel(cl)
 
 
@@ -687,6 +704,7 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #'
 #' @param x An object of class \code{dmm}
 #' @param sequences A character vector or a list of character vectors representing the sequence
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Annthomy Gilles, Alexandre Seiller
 #'
 #' @return A list of log-likelihood (numeric)
@@ -706,13 +724,18 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE){
 #' }
 
 
-loglik.dmm <- function(x, sequences){
+loglik.dmm <- function(x, sequences, ncpu=2){
 
   ################################################
   # Test input sequences
   ################################################
 
   if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
+
+  # if ncpu is -1, we use all available cores
+  if(ncpu==-1){
+    ncpu = future::availableCores()
+  }
 
   if(class(sequences) %in% c("matrix","array")) stop("The parameter 'sequences' should be a list of character vector(s), not a string of character, matrix or array")
 
@@ -743,7 +766,7 @@ loglik.dmm <- function(x, sequences){
 
     # from the kth state onwards
 
-    cl <- parallel::makeCluster(future::availableCores(), type = "PSOCK")
+    cl <- parallel::makeCluster(ncpu, type = "PSOCK")
     parallel::clusterExport(cl=cl, varlist=c("x","ll","sequences","k","states"),envir=environment())
     ll <- unlist(parallel::parLapply(cl, X=c(k:((length(sequences) - k) + 1)), function(i) {
       Pest <- getTransitionMatrix(x, i-1)
@@ -914,6 +937,7 @@ return(bic)
 #' @param x An object of class \code{dmm}
 #' @param output_file (Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")
 #' @param model_size Size of the model
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author  Annthomy Gilles, Alexandre Seiller
 #' @import doParallel seqinr
 #' @export
@@ -931,7 +955,7 @@ return(bic)
 #' }
 
 
-simulate.dmm <- function(x, output_file=NULL,model_size=NULL) {
+simulate.dmm <- function(x, output_file=NULL,model_size=NULL, ncpu) {
 
   if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
 
@@ -940,6 +964,10 @@ simulate.dmm <- function(x, output_file=NULL,model_size=NULL) {
   states <- x$states
   order <- x$order
 
+  # if ncpu is -1, we use all available cores
+  if(ncpu==-1){
+    ncpu = future::availableCores()
+  }
 
   if(is.null(model_size)){
     model_size <- x$length
@@ -977,7 +1005,7 @@ simulate.dmm <- function(x, output_file=NULL,model_size=NULL) {
   simulated_sequence <- NULL
 
 
-  cl <- parallel::makeCluster(detectCores(), type = "PSOCK")
+  cl <- parallel::makeCluster(ncpu, type = "PSOCK")
   parallel::clusterExport(cl=cl, varlist=c("t","first_order_nucleotides"),envir=environment())
 
   simulated_sequence <- unlist(parallel::parLapply(cl, X=t, function(pos) {

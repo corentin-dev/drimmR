@@ -9,9 +9,9 @@ Authors@R: c(person("Vlad Stefan", "Barbu", role = c("aut"),
                person("Arnaud", "Lefebvre", role = "ctb"),
                person("Victor", "Mataigne", role = "ctb"),
                person("Alexandre", "Seiller", role = "ctb"),
-               person("Nicolas", "vergne", role = c("aut","cre"),
+               person("Nicolas", "Vergne", role = c("aut","cre"),
                       email = "nicolas.vergne@univ-rouen.fr"))
-Maintainer: Nicolas Vergne <Nicolas.Vergne@univ-rouen.fr>
+Maintainer: Nicolas Vergne <nicolas.vergne@univ-rouen.fr>
 Description: Performs the drifting Markov models (DMM) which are 
 	non-homogeneous Markov models designed for modeling the heterogeneities of
 	sequences in a more flexible way than homogeneous Markov chains or even 

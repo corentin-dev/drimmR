@@ -213,6 +213,7 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 #' @param upstates Character vector giving the subset of operational states U.
 #' @param output_file (Optional) A file containing matrix of availability probabilities (e.g, "C:/.../AVAL.txt")
 #' @param plot \code{FALSE} (default); \code{TRUE} (display a figure plot of availability probabilities by position)
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k+1 giving the values of the availability for the period \eqn{[0 \ldots k]}
@@ -234,7 +235,7 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 #' getA <- availability(dmm,k1,k2,upstates,plot=TRUE)
 #' }
 
-availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
+availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, ncpu=2) {
 
   if (!(.is_valid_integer(k1) | .is_valid_integer(k1) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
 
@@ -242,6 +243,10 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
     stop("<End> not specified.")
   }
 
+  # if ncpu is -1, we use all available cores
+  if(ncpu==-1){
+    ncpu = future::availableCores()
+  }
 
   order <- x$order
   mod.length <- x$length
@@ -268,7 +273,7 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 
     Pit <- lapply(c(1:k2),getTransitionMatrix, x=x)
 
-    cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+    cl <- parallel::makeCluster(ncpu, type = "PSOCK")
     doParallel::registerDoParallel(cl)
 
     output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
@@ -316,7 +321,7 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
       Pit[[i]] <- .overlap_states(getTransitionMatrix(x,pos=i))
     }
 
-    cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+    cl <- parallel::makeCluster(ncpu, type = "PSOCK")
     doParallel::registerDoParallel(cl)
 
     output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
@@ -390,6 +395,7 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 #' @param upstates Character vector of the subspace working states among the state space vector such that upstates < s
 #' @param output_file (Optional) A file containing matrix of reliability probabilities (e.g, "C:/.../REL.txt")
 #' @param plot \code{FALSE} (default); \code{TRUE} (display a figure plot of reliability probabilities by position)
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k + 1 giving the values of the reliability for the period \eqn{[0 \ldots k]}
@@ -410,7 +416,7 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 #' reliability(dmm,k1,k2,upstates,plot=TRUE)
 #' }
 #'
-reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
+reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, ncpu=2) {
 
   if (!(.is_valid_integer(k1) | .is_valid_integer(k1) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
 
@@ -418,6 +424,10 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
     stop("<End> not specified.")
   }
 
+  # if ncpu is -1, we use all available cores
+  if(ncpu==-1){
+    ncpu = future::availableCores()
+  }
 
   order <- x$order
   mod.length <- x$length
@@ -445,7 +455,7 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
     Pit_uu <- lapply(Pit, function(x) {x[working.states,working.states]})
 
 
-    cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+    cl <- parallel::makeCluster(ncpu, type = "PSOCK")
     doParallel::registerDoParallel(cl)
 
     output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
@@ -493,7 +503,7 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 
     Pit_uu <- lapply(Pit, function(x) {x[working.states,working.states]})
 
-    cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+    cl <- parallel::makeCluster(ncpu, type = "PSOCK")
     doParallel::registerDoParallel(cl)
 
     output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
@@ -573,6 +583,7 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 #' @param upstates Character vector of the subspace working states among the state space vector such that upstates < s
 #' @param output_file (Optional) A file containing matrix of maintainability probabilities (e.g, "C:/.../MAIN.txt")
 #' @param plot \code{FALSE} (default); \code{TRUE} (display a figure plot of maintainability probabilities by position)
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k + 1 giving the values of the maintainability for the period \eqn{[0 \ldots k]}
@@ -597,7 +608,7 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
 #'
 
 
-maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE) {
+maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, ncpu=2) {
 
   if (!(.is_valid_integer(k1) | .is_valid_integer(k1) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
 
@@ -605,6 +616,10 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE)
     stop("<End> not specified.")
   }
 
+  # if ncpu is -1, we use all available cores
+  if(ncpu==-1){
+    ncpu = future::availableCores()
+  }
 
   order <- x$order
   mod.length <- x$length
@@ -632,7 +647,7 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE)
     Pit_dd <- lapply(Pit, function(x) {x[ failure.states, failure.states]})
 
 
-    cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+    cl <- parallel::makeCluster(ncpu, type = "PSOCK")
     doParallel::registerDoParallel(cl)
 
     output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
@@ -683,7 +698,7 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE)
 
     Pit_dd <- lapply(Pit, function(x) {x[failure.states,failure.states]})
 
-    cl <- parallel::makeCluster(future::availableCores() , type = "PSOCK")
+    cl <- parallel::makeCluster(ncpu, type = "PSOCK")
     doParallel::registerDoParallel(cl)
 
     output <- foreach(i=c(1:k2),.packages = c("doParallel"), .combine = "c") %dopar% {
