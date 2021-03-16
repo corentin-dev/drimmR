@@ -241,10 +241,10 @@ words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' data(lambda, package = "drimmR")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' m <- 2
-#' lengthWord_probabilities(m, lambda, c(1,length(lambda)-m+1), dmm, plot=TRUE)
+#' lengthWord_probabilities(m, lambda, c(1,length(lambda)-m), dmm, plot=TRUE)
 #' }
 
-lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL,plot=FALSE) {
+lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL, plot=FALSE) {
 
 
   if (missing(pos)) {

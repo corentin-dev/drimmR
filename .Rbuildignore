@@ -1,3 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^drimmR$
+\.gitignore
+\.gitlab-ci.yml
+^.*.sh
+^.*.log
+^.*.pdf
+^.*.tar.gz

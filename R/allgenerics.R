@@ -5,6 +5,7 @@
 #'
 #' @param x An object for which the log-likelihood of the DMM can be computed.
 #' @param sequences A vector of character or list of vectors representing the sequences for which the
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #'   log-likelihood of the model must be computed.
 #' @author Annthomy Gilles, Alexandre Seiller
 #' @return A list of loglikelihood (numeric)
@@ -17,7 +18,7 @@
 #'
 #' @export
 #'
-loglik <- function(x,sequences) {
+loglik <- function(x, sequences, ncpu=2) {
   UseMethod("loglik", x)
 }
 
@@ -40,7 +41,7 @@ loglik <- function(x,sequences) {
 #'
 #' @export
 #'
-aic <- function(x,sequences) {
+aic <- function(x, sequences) {
   UseMethod("aic", x)
 }
 
@@ -76,6 +77,7 @@ bic <- function(x, sequences) {
 #' @param x  An object for which simulated sequences of the DMM can be computed.
 #' @param output_file (Optional) File containing the simulated sequence (e.g, "C:/.../SIM.txt")
 #' @param model_size Size of the model
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author  Annthomy Gilles, Alexandre Seiller
 #' @return the vector of simulated sequence
 
@@ -85,8 +87,7 @@ bic <- function(x, sequences) {
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @export
-
-simulate <- function(x, output_file,model_size=100000) {
+simulate <- function(x, output_file, model_size=100000, ncpu=2) {
   UseMethod("simulate", x)
 }
 
@@ -110,7 +111,6 @@ simulate <- function(x, output_file,model_size=100000) {
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #'
-
 getTransitionMatrix <- function(x, pos) {
   UseMethod("getTransitionMatrix", x)
 }
@@ -130,6 +130,7 @@ getTransitionMatrix <- function(x, pos) {
 #' @param pos A positive integer giving the position along the sequence on which the stationary law of the DMM should be computed
 #' @param all.pos `FALSE` (default, evaluation at position index) ; `TRUE` (evaluation for all position indices)
 #' @param internal `FALSE` (default) ; `TRUE` (for internal use of the initial law computation)
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Alexandre Seiller
 #'
 #' @return A vector or matrix of stationary law probabilities
@@ -139,8 +140,7 @@ getTransitionMatrix <- function(x, pos) {
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #'
-
-getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
+getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2) {
   UseMethod("getStationaryLaw", x)
 }
 
@@ -159,6 +159,7 @@ getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
 #' @param pos A positive integer giving the position along the sequence on which the distribution of the DMM should be computed
 #' @param all.pos `FALSE` (evaluation at position index) ; `TRUE` (evaluation for all position indices)
 #' @param internal `FALSE` (default) ; `TRUE` (for internal use of the \link[drimmR]{distributions} function)
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Alexandre Seiller
 #' @importFrom Rdpack reprompt
 #' @references
@@ -166,8 +167,7 @@ getStationaryLaw <- function(x, pos, all.pos=FALSE, internal=FALSE) {
 #' \insertRef{Ver08}{drimmR}
 #' @return A vector or matrix of distribution probabilities
 #' @export
-
-getDistribution <- function(x, pos, all.pos=FALSE, internal=FALSE) {
+getDistribution <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2) {
   UseMethod("getDistribution", x)
 }
 
