@@ -3,7 +3,7 @@
 ^drimmR$
 \.gitignore
 \.gitlab-ci.yml
-^.*.sh
-^.*.log
+check.sh
+check.log
 ^.*.pdf
 ^.*.tar.gz
