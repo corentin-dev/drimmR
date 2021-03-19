@@ -22,26 +22,25 @@ Description: Performs the drifting Markov models (DMM) which are
     of drifting Markov models. The implemented methods are described in
     Vergne, N. (2008), <doi:10.2202/1544-6115.1326> and
     Barbu, V.S., Vergne, N. (2019) <doi:10.1007/s11009-018-9682-8> .
-License: GPL
+License: GPL-3
 Depends: R (>= 2.10)
 Encoding: UTF-8
 LazyData: true
 Suggests: utils,
     knitr,
     rmarkdown
-Imports: seqinr,
+    Imports: seqinr,
     Biostrings,
     testthat,
     stats,
     ggplot2,
-	parallel,
-	future,
-	doParallel,
-        foreach,
+    parallel,
+    future,
+    doParallel,
+    foreach,
     tidyverse,
-	dplyr,
-	reshape2,
-	Rdpack
+    dplyr,
+    reshape2,
+    Rdpack
 RdMacros: Rdpack
 RoxygenNote: 7.1.1
-

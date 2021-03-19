@@ -7,3 +7,5 @@ check.sh
 check.log
 ^.*.pdf
 ^.*.tar.gz
+README.md
+LICENSE.md
