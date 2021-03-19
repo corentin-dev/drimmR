@@ -2,6 +2,14 @@
 .Rhistory
 .RData
 .Ruserdata
+*.Rproj
+*.Rcheck
+
 inst/doc
 man
+
 *.tar.gz
+
+check.*
+
+*.swp
