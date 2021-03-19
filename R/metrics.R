@@ -25,7 +25,6 @@
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getStationaryLaw}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",fit.method="sum")
 #' stationary_distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
 
@@ -402,7 +401,6 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, nc
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #' fit.method="sum")
 #' k1 <- 1
@@ -591,7 +589,6 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, ncp
 
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),
 #' init.estim = "freq", fit.method="sum")
 #' k1 <- 1
@@ -785,7 +782,6 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE,
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #'  fit.method="sum")
 #' k1 <- 1

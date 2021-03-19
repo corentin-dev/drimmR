@@ -5,6 +5,7 @@
 #' @param x An object of class \code{dmm}
 #' @param output_file (Optional) A file containing the probability (e.g,"C:/.../PROB.txt")
 #' @param internal \code{FALSE} (default) ; \code{TRUE} (for internal use of word applications)
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A numeric, probability of \code{word}
@@ -16,11 +17,10 @@
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probabilities}, \link[drimmR]{words_probabilities}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' word_probability("aggctga",4,dmm)
 
-word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
+word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE, ncpu=2){
 
   if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
 
@@ -37,7 +37,7 @@ word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
   }
 
   # ex : word = "aatcgt"
-  res <- getStationaryLaw(x, pos, all.pos=FALSE, internal=TRUE)
+  res <- getStationaryLaw(x, pos, all.pos=FALSE, internal=TRUE, ncpu=ncpu)
 
   p <- 0.0
 
@@ -95,7 +95,6 @@ word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}, \link[drimmR]{words_probabilities}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),
 #' init.estim = "freq", fit.method="sum")
 #' word_probabilities("aggctga",c(100,300),dmm, plot=TRUE)
@@ -159,7 +158,6 @@ word_probabilities <-function(word, pos, x,  output_file=NULL,plot=FALSE){
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}, \link[drimmR]{word_probabilities}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #' fit.method="sum")
 #' words <- c("atcgattc", "taggct", "ggatcgg")

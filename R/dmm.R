@@ -98,7 +98,6 @@
 #' \insertRef{Ver08}{drimmR}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' states <- c("a","c","g","t")
 #' order <- 1
 #' degree <- 1
@@ -344,7 +343,6 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 #' @seealso \link[drimmR]{fitdmm}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq", fit.method="sum")
 #' t <- 10
 #' getTransitionMatrix(dmm,pos=t)
@@ -401,7 +399,6 @@ getTransitionMatrix.dmm <- function(x, pos) {
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{stationary_distributions}, \link[drimmR]{getDistribution}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' t <- 10
 #' getStationaryLaw(dmm,pos=t)
@@ -545,7 +542,6 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2){
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{distributions}, \link[drimmR]{getStationaryLaw}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' t <- 10
 #' getDistribution(dmm,pos=t)
@@ -710,7 +706,6 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2){
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' loglik(dmm,sequence)
@@ -772,7 +767,7 @@ loglik.dmm <- function(x, sequences, ncpu=2){
     # initial law for the k first states
 
     for (i in 1:k) {
-      proba1 <- getStationaryLaw(x, i,all.pos=FALSE)
+      proba1 <- getStationaryLaw(x, i,all.pos=FALSE, ncpu=ncpu)
       names(proba1) <- NULL
       ll <- ll + log(proba1[which(states == sequences[i])])
     }
@@ -794,6 +789,7 @@ loglik.dmm <- function(x, sequences, ncpu=2){
 #'
 #' @param x An object of class \code{dmm}
 #' @param sequences A character vector or a list of character vector representing the sequences for which the AIC will be computed based on \code{x}.
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A list of AIC (numeric)
 #' @export
@@ -804,12 +800,11 @@ loglik.dmm <- function(x, sequences, ncpu=2){
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{aic}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' aic(dmm,sequence)
 
-aic.dmm <- function(x, sequences) {
+aic.dmm <- function(x, sequences, ncpu=2) {
 
   ################################################
   # Test input sequences
@@ -841,7 +836,7 @@ aic.dmm <- function(x, sequences) {
   aicfunc <- function(x, sequences){
   nb.param <- (x$degree+1) * (length(x$states)^x$order) * (length(x$states) -
                                               1)
-  res <- -2 * unlist(loglik(x, sequences)) + 2 * nb.param
+  res <- -2 * unlist(loglik(x, sequences, ncpu=ncpu)) + 2 * nb.param
   return(res)
   }
 
@@ -856,6 +851,7 @@ aic.dmm <- function(x, sequences) {
 #'
 #' @param x An object of class \code{dmm}
 #' @param sequences A character vector or a list of character vector representing the sequences for which the BIC will be computed based on \code{x}.
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return  A list of BIC (numeric).
 #' @export
@@ -866,12 +862,11 @@ aic.dmm <- function(x, sequences) {
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{bic}
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm<- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' bic(dmm,sequence)
 
-bic.dmm <- function(x, sequences) {
+bic.dmm <- function(x, sequences, ncpu=2) {
 
   ################################################
   # Test input sequences
@@ -906,10 +901,10 @@ bic.dmm <- function(x, sequences) {
   nb.param <- (x$degree+1) * (length(x$states)^x$order) * (length(x$states) -
                                               1)
   if(max(sapply(sequences, length))==1){
-  res <- -2 * unlist(loglik(x, sequences)) + nb.param * log(length(sequences))
+  res <- -2 * unlist(loglik(x, sequences, ncpu=ncpu)) + nb.param * log(length(sequences))
   }
   else{
-    res <- -2 * unlist(loglik(x, sequences)) + nb.param * log(max(sapply(sequences, length)))
+    res <- -2 * unlist(loglik(x, sequences, ncpu=ncpu)) + nb.param * log(max(sapply(sequences, length)))
   }
 
   return(res)
@@ -938,7 +933,6 @@ return(bic)
 #' @return the vector of simulated sequence
 #' @examples
 #' data(lambda, package = "drimmR")
-#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' simulate(dmm, model_size=100)
 

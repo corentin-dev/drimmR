@@ -30,8 +30,8 @@ loglik <- function(x, sequences, ncpu=2) {
 #'   the model \code{x}, with the list of sequences \code{sequences}.
 #'
 #' @param x An object for which the log-likelihood of the DMM can be computed.
-#' @param sequences A vector of characters or a list of vector of characters representing the sequences for which the
-#'   AIC will be computed based on \code{x}.
+#' @param sequences A vector of characters or a list of vector of characters representing the sequences for which the AIC will be computed based on \code{x}.
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A list of AIC (numeric)
 #' @importFrom Rdpack reprompt
@@ -41,7 +41,7 @@ loglik <- function(x, sequences, ncpu=2) {
 #'
 #' @export
 #'
-aic <- function(x, sequences) {
+aic <- function(x, sequences, ncpu=2) {
   UseMethod("aic", x)
 }
 
@@ -53,8 +53,8 @@ aic <- function(x, sequences) {
 #'   of the model \code{x}, with the list of sequences \code{sequences}.
 #'
 #' @param x An object for which the log-likelihood of the DMM can be computed.
-#' @param sequences A list of vectors representing the sequences for which the BIC will be computed
-#' based on \code{x}.
+#' @param sequences A list of vectors representing the sequences for which the BIC will be computed based on \code{x}.
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author  Victor Mataigne, Alexandre Seiller
 #' @return A list of BIC (numeric)
 #' @importFrom Rdpack reprompt
@@ -64,7 +64,7 @@ aic <- function(x, sequences) {
 #'
 #' @export
 #'
-bic <- function(x, sequences) {
+bic <- function(x, sequences, ncpu=2) {
   UseMethod("bic", x)
 }
 
