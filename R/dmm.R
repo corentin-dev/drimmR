@@ -97,13 +97,13 @@
 #' \insertRef{BaVe2018}{drimmR}
 #' \insertRef{Ver08}{drimmR}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' states <- c("a","c","g","t")
 #' order <- 1
 #' degree <- 1
 #' fitdmm(lambda,order,degree,states, init.estim = "freq",fit.method="sum")
-#' }
+
 fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "freq", "prod", "stationary", "unif"), fit.method=c("sum"), ncpu=2){
 
 
@@ -343,12 +343,12 @@ fitdmm <- function(sequences, order, degree, states,  init.estim = c("mle", "fre
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq", fit.method="sum")
 #' t <- 10
 #' getTransitionMatrix(dmm,pos=t)
-#' }
+
 getTransitionMatrix.dmm <- function(x, pos) {
 
   if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
@@ -400,12 +400,12 @@ getTransitionMatrix.dmm <- function(x, pos) {
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{stationary_distributions}, \link[drimmR]{getDistribution}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' t <- 10
 #' getStationaryLaw(dmm,pos=t)
-#' }
+
 getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2){
 
   if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
@@ -544,12 +544,12 @@ getStationaryLaw.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2){
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{distributions}, \link[drimmR]{getStationaryLaw}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' t <- 10
 #' getDistribution(dmm,pos=t)
-#' }
+
 getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2){
 
   if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}
@@ -709,12 +709,12 @@ getDistribution.dmm <- function(x, pos, all.pos=FALSE, internal=FALSE, ncpu=2){
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' loglik(dmm,sequence)
-#' }
+
 loglik.dmm <- function(x, sequences, ncpu=2){
 
   ################################################
@@ -803,12 +803,12 @@ loglik.dmm <- function(x, sequences, ncpu=2){
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{aic}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' aic(dmm,sequence)
-#' }
+
 aic.dmm <- function(x, sequences) {
 
   ################################################
@@ -865,12 +865,12 @@ aic.dmm <- function(x, sequences) {
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{loglik}, \link[drimmR]{bic}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
 #' dmm<- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' bic(dmm,sequence)
-#' }
+
 bic.dmm <- function(x, sequences) {
 
   ################################################
@@ -937,11 +937,11 @@ return(bic)
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{getStationaryLaw}
 #' @return the vector of simulated sequence
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' simulate(dmm, model_size=100)
-#' }
+
 simulate.dmm <- function(x, output_file=NULL, model_size=NULL, ncpu=2) {
 
   if(isFALSE(inherits(x, "dmm"))){stop("'x' parameter must be of class 'dmm'")}

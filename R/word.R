@@ -15,11 +15,11 @@
 #' \insertRef{Ver08}{drimmR}
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probabilities}, \link[drimmR]{words_probabilities}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' word_probability("aggctga",4,dmm)
-#' }
+
 word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
 
   if (!(.is_valid_integer(pos) )){stop("Position must not have decimal parts")}
@@ -94,12 +94,11 @@ word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE){
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}, \link[drimmR]{words_probabilities}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),
 #' init.estim = "freq", fit.method="sum")
 #' word_probabilities("aggctga",c(100,300),dmm, plot=TRUE)
-#' }
 
 word_probabilities <-function(word, pos, x,  output_file=NULL,plot=FALSE){
   proba <- c()
@@ -159,14 +158,13 @@ word_probabilities <-function(word, pos, x,  output_file=NULL,plot=FALSE){
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}, \link[drimmR]{word_probabilities}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #' fit.method="sum")
 #' words <- c("atcgattc", "taggct", "ggatcgg")
 #' pos <- c(100,300)
 #' words_probabilities(words=words,pos=pos,dmm,plot=TRUE)
-#'}
 
 words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 
@@ -237,12 +235,11 @@ words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{word_probability}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' m <- 2
 #' lengthWord_probabilities(m, lambda, c(1,length(lambda)-m), dmm, plot=TRUE)
-#' }
 
 lengthWord_probabilities <- function(m, sequence, pos, x, output_file=NULL, plot=FALSE) {
 

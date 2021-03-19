@@ -24,13 +24,10 @@
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getStationaryLaw}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",fit.method="sum")
 #' stationary_distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
-#' }
-
-
 
 stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE){
 
@@ -107,6 +104,7 @@ stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, outp
 #' @param step A step (integer)
 #' @param output_file (Optional) A file containing matrix of distributions (e.g, "C:/.../DIST.txt")
 #' @param plot \code{FALSE} (default); \code{TRUE} (display a figure plot of distribution probabilities by position)
+#' @param ncpu Default=2. Represents the number of cores used to parallelized computation. If ncpu=-1, then it uses all available cores.
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with positions and distributions of states
@@ -123,10 +121,8 @@ stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, outp
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 #' distributions(dmm,start=1,end=1000,step=100, plot=TRUE)
 #' }
-#'
 
-
-distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE) {
+distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NULL, plot=FALSE, ncpu=2) {
 
   if (!(.is_valid_integer(start) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
 
@@ -152,7 +148,7 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 
     # product of distribution with stationary law of k first states (internal=TRUE means only the recursive product of TM is done, so product with initial law is not done)
     distrib[i,] <- c(seq(from=start, to=end, by=step)[i],
-                     getStationaryLaw(x, pos=c(start+order-1), all.pos=FALSE)%*% getDistribution(x, pos=seq(from=start, to=end, by=step)[i], all.pos=FALSE, internal=TRUE))
+                     getStationaryLaw(x, pos=c(start+order-1), all.pos=FALSE, ncpu=ncpu)%*% getDistribution(x, pos=seq(from=start, to=end, by=step)[i], all.pos=FALSE, internal=TRUE, ncpu=ncpu))
 
 
   }
@@ -225,15 +221,14 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}, \link[drimmR]{maintainability}
 #'
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #'  fit.method="sum")
 #' k1 <- 1
 #' k2 <- 200
 #' upstates <- c("c","t")  # vector of working states
 #' getA <- availability(dmm,k1,k2,upstates,plot=TRUE)
-#' }
 
 availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, ncpu=2) {
 
@@ -406,16 +401,15 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, nc
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #' fit.method="sum")
 #' k1 <- 1
 #' k2 <- 200
 #' upstates <- c("c","t")  # vector of working states
 #' reliability(dmm,k1,k2,upstates,plot=TRUE)
-#' }
-#'
+
 reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, ncpu=2) {
 
   if (!(.is_valid_integer(k1) | .is_valid_integer(k1) )){stop("<Start> and <end> positions of the frame must not have decimal parts")}
@@ -596,17 +590,14 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, ncp
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}
 
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),
 #' init.estim = "freq", fit.method="sum")
 #' k1 <- 1
 #' k2 <- 200
 #' upstates <- c("c","t")  # vector of working states
 #' maintainability(dmm,k1,k2,upstates,plot=TRUE)
-#' }
-#'
-
 
 maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, ncpu=2) {
 
@@ -793,16 +784,14 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE,
 #' @export
 #' @seealso \link[drimmR]{fitdmm}, \link[drimmR]{getTransitionMatrix}, \link[drimmR]{reliability}
 #' @examples
-#' \donttest{
 #' data(lambda, package = "drimmR")
+#' length(lambda) <- 1000
 #' dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq",
 #'  fit.method="sum")
 #' k1 <- 1
 #' k2 <- 200
 #' upstates <- c("c","t")  # vector of working states
 #' failureRate(dmm,k1,k2,upstates,failure.rate="BMP",plot=TRUE)
-#' }
-#'
 
 failureRate <- function(x, k1=0L,k2, upstates,failure.rate=c("BMP","RG"), output_file=NULL, plot=FALSE) {
 
