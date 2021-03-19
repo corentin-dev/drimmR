@@ -29,7 +29,7 @@ LazyData: true
 Suggests: utils,
     knitr,
     rmarkdown
-    Imports: seqinr,
+Imports: seqinr,
     Biostrings,
     testthat,
     stats,
