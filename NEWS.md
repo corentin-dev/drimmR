@@ -1,5 +1,9 @@
 # Changelog
 
+## commits 04/05/2021 :
+- version 1.0.1
+- correcting package dependencies
+
 ## commits 19/03/2021 :
 - default ncpu to 2
 - adding ncpu to parallel functions

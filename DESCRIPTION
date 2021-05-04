@@ -1,7 +1,7 @@
 Type: Package
 Package: drimmR
 Title: Estimation, Simulation and Reliability of Drifting Markov Models
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person("Vlad Stefan", "Barbu", role = "aut",
                   email = "vladstefan.barbu@univ-rouen.fr"),
                person("Geoffray", "Brelurut", role = "ctb"),
@@ -30,9 +30,6 @@ Suggests: utils,
     knitr,
     rmarkdown
 Imports: seqinr,
-    Biostrings,
-    testthat,
-    stats,
     ggplot2,
     parallel,
     future,
