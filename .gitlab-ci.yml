@@ -8,8 +8,7 @@ check-as-cran:
     - R -e 'BiocManager::install("Biostrings")'
     - R -e 'roxygen2::roxygenise()'
     - R CMD build --compact-vignettes=both .
-    - mv drimmR*.tar.gz drimmR.tar.gz
-    - R CMD check --as-cran drimmR.tar.gz
+    - R CMD check --as-cran drimmR*.tar.gz
   artifacts:
     paths:
-      - drimmR.tar.gz
+      - drimmR*.tar.gz
