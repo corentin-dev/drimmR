@@ -7,9 +7,14 @@ CONTRIBUTING\.md
 ^\.RData
 
 ^drimmR$
+^papers$
 
 \.gitignore
 \.gitlab-ci\.yml
+
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
 
 check\.sh
 check\.log

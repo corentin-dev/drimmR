@@ -40,4 +40,4 @@ Imports: seqinr,
     reshape2,
     Rdpack
 RdMacros: Rdpack
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
