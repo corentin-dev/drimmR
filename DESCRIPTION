@@ -28,16 +28,17 @@ Encoding: UTF-8
 LazyData: true
 Suggests: utils,
     knitr,
-    rmarkdown
+    rmarkdown,
+    Rdpack,
 Imports: seqinr,
     ggplot2,
     parallel,
     future,
     doParallel,
     foreach,
-    tidyverse,
     dplyr,
-    reshape2,
-    Rdpack
+    tidyverse,
+    reshape2
+VignetteBuilder: knitr
 RdMacros: Rdpack
 RoxygenNote: 7.1.2

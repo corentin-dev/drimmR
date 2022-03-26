@@ -13,3 +13,5 @@ man
 check.*
 
 *.swp
+/doc/
+/Meta/

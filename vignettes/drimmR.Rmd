@@ -1,0 +1,653 @@
+---
+title: "drimmR : R Package for Estimation, Simulation and Reliability of drifting Markov Models"
+output:
+  rmarkdown::html_vignette:
+    number_sections: true
+bibliography: drimmR.bib
+vignette: >
+  %\VignetteIndexEntry{drimmR}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(
+    fig.align = "center",
+    fig.height = 5.5,
+    fig.width = 6,
+    warning = FALSE,
+    collapse = TRUE,
+    dev.args = list(pointsize = 10),
+    out.width = "65%"
+)
+```
+
+```{r, message = FALSE, echo = FALSE}
+library(drimmR)
+```
+
+
+# Introduction
+
+In this work we focus on multi-state systems modeled by means of a
+particular class of non-homogeneous Markov processes introduced in
+@Ver08, called drifting Markov processes. Most of the estimation methods
+and reliability results are developed in **@BaVe2018**.
+
+Note that in many mathematical models it is assumed the homogeneity with
+respect to time, which is inappropriate in most of the applications.
+But, considering general non-homogeneous processes could be unrealistic
+from a practical point of view. For this reason, the drifting Markov
+chains introduced in **@Ver08** assume that the Markov transition matrix
+is a linear/polynomial function of two/several Markov transition
+matrices. Thus we obtain a "smooth" non-homogeneity, with sensibly less
+parameters than in the general case.
+
+Few R packages have been developed to handle similar types of models of
+Markov, semi-Markov or hidden semi-Markov type, useful in reliability or
+DNA analysis. For semi-Markov models we have `semiMarkov` `R` package
+**@krol_semimarkov_2015** that performs maximum likelihood estimation for
+parametric continuous-time semi-Markov processes, `smm` `R` package
+**@BaBeCeSaVe** which performs parametric and non-parametric estimation
+and simulation for multi-state discrete-time semi-Markov processes. Two
+`R` packages are also dedicated to hidden semi-Markov models,
+implementing estimation and prediction methods: the `hsmm` `R` package
+**@bulla_hsmm_2010** and the `mhsmm` `R` package **@oconnell_hidden_2011**.
+
+Note that there is no `R` package developed for drifting Markov models
+(DMMs). Thus the purpose of this paper is to present an `R` package that
+we have developed, called `drimmR`, which performs estimation and
+simulation for such models, as well as the estimation of associated
+reliability measures. The aim of this paper is to describe the different
+possibilities of this package. To summarize, the package `drimmR` that
+we present deals with different problems:
+
+-   We consider one or several sample paths; for several sample paths,
+    two estimation methods are proposed: one is the usual LSE, the other
+    one is the average of LSEs obtained on each sample;
+
+-   The samples paths are complete or incomplete;
+
+-   The sample paths come from drifting Markov chains that are of the
+    same length or of different lengths (between the same Markov
+    transition probability matrices);
+
+-   We derive exact computations of reliability/survival analysis
+    measures (reliability or survival function, availability,
+    maintainability, failure rates);
+
+-   We compute the probabilities of appearance of a word in a given
+    sequence under a given model.
+
+We would like to mention that a web interface called `WebDRIMM` has been
+also developed [cf. **@web2018**] for simulating and estimating drifting
+Markov models, as well as associated reliability indicators; it is
+available at `http://bioinfo.univ-rouen.fr/WebDRIMM`\
+The paper is organized as follows. Section
+[2](#section_DMM){reference-type="ref" reference="section_DMM"}
+describes the drifting Markov models used in this package, present
+associated reliability indicators and corresponding estimation results
+and techniques. Section [3](#section_package){reference-type="ref"
+reference="section_package"} illustrates the different functions of the
+`drimmR` package and we end the paper by presenting some concluding
+remarks on this `R` package in
+Section [4](#concluding){reference-type="ref" reference="concluding"}.
+
+# Drifting Markov models, estimation and associated reliability measures {#section_DMM}
+
+Let us consider a random system with finite state space
+$E=\{1,\ldots, s\}$, $s < \infty.$ We assume that the time evolution of
+a system is governed by a discrete-time stochastic process with values
+in $E.$ In the following we will introduce a class of processes
+according to **@Ver08** in Section
+[2.1](#subsection_DMM){reference-type="ref" reference="subsection_DMM"},
+we will briefly present associated reliability indicators according to
+**@BaVe2018** in Section [2.2](#subsection_rel){reference-type="ref"
+reference="subsection_rel"} and estimation of the parameters in Section
+[2.3](#subsection_estimation){reference-type="ref"
+reference="subsection_estimation"}, according to **@Ver08** **@BaVe2018**.
+
+## Drifting Markov models {#subsection_DMM}
+
+Let $\bm{\Pi}_0 = (\Pi_0(u, v))_{u,v \in E}$ and
+$\bm{\Pi}_1 = (\Pi_1(u, v))_{u,v \in E}$ be two Markov transition
+matrices of order 1 over the state space $E.$
+
+::: {#def_DriftLin .definition}
+**Definition 1** (linear drifting Markov chain of order $1$ and of
+length $n$). *A sequence $X_0,$ $X_1, \ldots, X_n$ with state space
+$E=\mathbb \{1, 2, \ldots, s\}$ is said to be a *linear drifting Markov
+chain (of order 1)* of length $n$ between the Markov transition matrices
+$\bm{\Pi}_0$ and $\bm{\Pi}_1$ if the distribution of $X_t,$
+$t = 1, \ldots, n,$ is defined by $$\label{eq_DriftLin1}
+\mathbb P(X_t=v \mid X_{t-1}    = u, X_{t-2}, \ldots ) = \Pi_{\frac{t}{n}}(u, v), \; u, v \in E,$$
+where $$\label{eq_DriftLin2}
+\Pi_{\frac{t}{n}}(u, v) = \left( 1 - \frac{t}{n} \right) \Pi_0(u, v) + \frac{t}{n} \Pi_1(u, v), \; u, v \in E.$$*
+:::
+
+Let us denote by $\bm{\alpha} = (\alpha(1), \ldots, \alpha(s))$ the
+*initial distribution of the chain*, that is the distribution of $X_0,$
+$\alpha(u)=\mathbb P (X_0 = u)$ for any state $u\in E.$
+
+The *linear drifting Markov model* of order $1$ can be generalized to
+*polynomial drifting Markov model* of order $k$ and degree $d$. Let
+$\bm{\Pi}_{\frac{i}{d}} = (\bm{\Pi}_{\frac{i}{d}}(u_1, \dots, u_k, v))_{u_1, \dots, u_k,v \in E}$
+be $d$ Markov transition matrices (of order $k$) over a state space $E.$
+
+::: {#def_DriftPol .definition}
+**Definition 2** (polynomial drifting Markov chain of order $k$ and of
+length $n$). *A sequence $X_0,$ $X_1,$ $\ldots,$ $X_n$ with state space
+$E=\mathbb \{1, 2, \ldots, s\}$ is said to be a *polynomial drifting
+Markov chain of order k* and of length $n$ if the distribution of $X_t,$
+$t = 1, \ldots, n,$ is defined by $$\label{eq_DriftPol1}
+\mathbb P(X_t=v \mid X_{t-1}    = u_k, X_{t-2}=u_{k-1}, \ldots ) = \bm{\Pi}_{\frac{t}{n}}(u_1, \dots, u_k, v), \; u_1, \dots, u_k, v \in E,$$
+where $$\label{eq_DriftPol2}
+\bm{\Pi}_{\frac{t}{n}}(u_1, \dots, u_k, v) = \displaystyle\sum_{i=0}^d A_i(t)\bm{\Pi}_{\frac{i}{d}}(u_1, \dots, u_k,v), \; u_1, \dots, u_k, v \in E,$$
+with $A_i$ polynomials of degree $d$ such as, for any
+$i, j \in \{0, 1, \ldots, d\},$ $A_i\g(\frac{nj}{d}\e)=\mi_{\{i=j\}}.$*
+:::
+
+We would like to stress that the coherence between notations implies the
+choice of the notation $\bm{\Pi}_{\frac{i}{d}}$ and that, in fact, $A_i$
+are Lagrange polynomials; see @Ver08 for more details on these two
+points.
+
+## Reliability of drifting Markov models {#subsection_rel}
+
+In order to undertake a reliability analysis of a system modeled by a
+DMM, let us assume that the state space of the system is partitioned
+into working and failure states, $E=U \cup D,$ with
+$U \cap D=\emptyset,$ where $U=\{1,\ldots,s_1\}$ represents the working
+states and $D=\{s_1+1,\ldots,s\}$ the failure states of the system.
+According to this partition of the state space we partition any matrix
+of vector we are working with and we denote the corresponding partitions
+accordingly (e.g., $\bm{\Pi}_0^{UU},$ $\bm{\Pi}_0^{DU},$
+$\bm{\alpha}^{U}$ etc.).
+
+::: proposition
+[]{#prop_RelDrift label="prop_RelDrift"} For a linear drifting Markov
+chain of order $1$ $(X_t)_{0 \leq t \leq n},$ the reliability at time
+$l,$ $l \in \mathbb N,$ is given by $$\label{eq_RelDrift}
+R(l) = \bm{\alpha}^{U} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \bm{\Pi}_0^{UU} + \frac{t}{n} \bm{\Pi}_1^{UU} \right) \; \mathbbm{1}^U,
+\textrm{ where } \mathbbm{1}^U = (\underbrace{1, \cdots, 1}_{s_1})^{\top}.$$
+:::
+
+::: proposition
+[]{#prop_AvDrift label="prop_AvDrift"} For a linear drifting Markov
+chain of order $1$ $(X_t)_{0 \leq t \leq n},$ the pointwise (or
+instantaneous) availability at time $l,$ $l \in \mathbb N,$ is given by
+$$\label{eq_AvDrift}
+A(l) = \bm{\alpha} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \bm{\Pi}_0 + \frac{t}{n} \bm{\Pi}_1 \right) \; \mathbbm{1}^{E,U}, \textrm{ where }  \mathbbm{1}^{E,U} = (\underbrace{1, \cdots, 1}_{s_1}, \underbrace{0, \cdots, 0}_{s-s_1} )^{\top}.$$
+:::
+
+::: proposition
+[]{#prop_MaintDrift label="prop_MaintDrift"} For a linear drifting
+Markov chain of order $1$ $(X_t)_{0 \leq t \leq n},$ the maintainability
+at time $l,$ $l \in \mathbb N,$ is given by $$\label{eq_MaintDrift_gen}
+M(l) = 1 -  \bm{\alpha}^{D} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \bm{\Pi}_0^{DD} + \frac{t}{n} \bm{\Pi}_1^{DD} \right) \; \mathbbm{1}^D,
+\textrm{ where } \mathbbm{1}^D = (\underbrace{1, \cdots, 1}_{s-s_1})^{\top}.$$
+:::
+
+::: proposition
+[]{#prop_BMPDrift label="prop_BMPDrift"} For a linear drifting Markov
+chain of order $1$ $(X_t)_{0 \leq t \leq n},$ the BMP-failure rate at
+time $l  at time$l,$$l N,$is given by
+%
+\begin{equation} \label{eq_BMPDrift}
+\lambda(l)  \left\{
+    \begin{array}{ll}
+         1- \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U} \ \ , \ \text{si R(l-1) != 0 }\\
+        0 \ , \ otherwise \\
+    \end{array}
+\right.
+\end{equation}
+
+\end{proposition}
+
+
+
+\begin{proposition}\label{prop_RGDrift}
+For a linear drifting Markov chain of order$`<!-- -->`{=html}1$$(X_t)\_0
+t n,$the RG-failure rate at time$l at time $l,$ $l \in \mathbb N,$ is
+given by $$\label{eq_RGDrift}
+r(l)  \left\{
+  \begin{array}{ll}
+  -\ln \frac{\mu_0^U \ \prod_{t=1}^{l}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U}{\mu_0^U \ \prod_{t=1}^{l-1}( \ (1-\frac{t}{n}) \pi_0^{UU} + (\frac{t}{n}) \pi_1^{UU}) \ \mathbb{1}^U} \ \ , \ if \ l \ge 1 \ ,\\
+  -\ln R(0) \ , \ if \ \ l = 0 \\
+  \end{array}
+  \right.$$
+:::
+
+See **@BaVe2018** for more details and **@Bar2004b**; **@Bar2008b** for similar
+questions in a discrete-time semi-Markov framework.
+
+## Estimation of drifting Markov models {#subsection_estimation}
+
+In this section we will consider different types of data for which the
+estimators of the characteristics of a drifting Markov chain and of the
+associated reliability indicators will be derived.
+
+One can observe one sample path, that will be denoted by
+${\mathcal H}(m,n):= (X_0,X_1, \ldots,X_{m}),$ where $m$ denotes the
+length of the sample path and $n$ the length of the drifting Markov
+chain. Two cases can be considered: (a1) $m=n$ (a complete sample path);
+(a2) $m < n$ (an incomplete sample path).
+
+One can also observe $H$ i.i.d. sample paths,
+${\mathcal H}_i(m_i,n_i), i=1, \ldots, H.$ Four cases can be considered
+here: (b1) $m_i=n_i=n$ for all $i=1, \ldots, H$ (complete sample paths
+of drifting Markov chains of the same length) ; (b2) $n_i=n$ for all
+$i=1, \ldots, H$ (incomplete sample paths of drifting Markov chains of
+the same length); (b3) $m_i=n_i$ for all $i=1, \ldots, H$ (complete
+sample paths of drifting Markov chains of different lengths) ; (b4)
+$m_i \leq n_i$ for all $i=1, \ldots, H$ (incomplete sample paths of
+drifting Markov chains of different lengths).
+
+We have developed cf. **@Ver08**; **@BaVe2018** mean square estimators
+starting from data under these frameworks; we present here only the case
+of a linear drifting Markov chain of order $1$ under the sample
+framework (b1) (complete sample paths of drifting Markov chains of the
+same length).
+
+::: proposition
+[]{#prop_B1 label="prop_B1"} Under the setting (b1), starting with $H$
+complete sample paths of drifting Markov chains of the same length of a
+linear drifting Markov chain between two Markov transition matrices (of
+order 1) $\bm{\Pi}_0$ and $\bm{\Pi}_1,$ for any states $u, v \in E,$ the
+estimators of $\Pi_0(u,v)$ and $\Pi_1(u,v)$ are given by:
+
+$$\begin{aligned}
+&&\widehat{\Pi}_{0; (n,H)} (u,v) = \frac{P_1(H, \bm{m}, \bm{n}) P_2(H, \bm{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})P_4(H, \bm{m}, \bm{n})}
+{P_5(H, \bm{m}, \bm{n}) P_1(H, \bm{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}\\
+&& \widehat{\Pi}_{1; (n,H)} (u,v)=\frac{P_5(H, \bm{m}, \bm{n}) P_4(H, \bm{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n}) P_2(H, \bm{m}, \bm{n})}
+{P_5(H, \bm{m}, \bm{n})P_1(H, \bm{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2},\end{aligned}$$
+
+where we have introduced the following notation:\
+
+::: small
+$\displaystyle P_1(H, \bm{m}, \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mi_{\{X_{t-1}^h=u \}} \g(\frac{t}{n}\e)^2,$
+$\displaystyle P_2(H, \bm{m}, \bm{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mi_{\{X_{t-1}^h=u, X_t^h=v \}} \g(1-\frac{t}{n}\e),$\
+$\displaystyle P_3(H, \bm{m}, \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u \}} \g(1-\frac{t}{n}\e)\g(\frac{t}{n}\e),$
+$\displaystyle  P_4(H, \bm{m}, \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u, X_t^h=v \}}\g(\frac{t}{n}\e),$\
+$\displaystyle  P_5(H, \bm{m}, \bm{n}) = \displaystyle\sum_{t=1}^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u \}}\g(1-\frac{t}{n}\e)^2,$
+with $\bm{m}=(m_1, \ldots, m_H)$ and $\bm{n}=(n_1, \ldots, n_H).$
+:::
+:::
+
+Note we can adapt the estimation procedures that we have previously
+obtained in order to get estimators of the drifting Markov models in the
+other cases; one can see **@BaVe2018** for more details. Using the
+expression of the reliability indicators of a drifting Markov chain
+previously obtained and the estimators of the characteristics of a
+drifting Markov chain, one immediately obtains the associated plug-in
+estimators of the reliability metrics.
+
+# The package {#section_package}
+
+The package is principally devoted to the simulation and estimation of
+drifting Markov models, as well as to the estimation of associated
+reliability measures and to the computation of the probabilities of a
+word occurrence under a given model. All the different possibilities of
+the package are illustrated in Figure [2](#fig){reference-type="ref"
+reference="fig"}.
+
+## Estimation of drifting Markov models {#subsection_pack_estim}
+
+The estimation of DMMs is carried out by the functions `fitdmm`, when
+starting from one (several) sample path (and obtain LSE). We will
+describe this function in the sequel.
+
+1.  The function `fitdmm`
+
+The different **arguments** of this function are:
+
+-   `sequences`: A list of character vector(s) representing one
+    (several) sequence(s) from which the estimation is carried out
+
+-   `order`: Order of the Markov chain
+
+-   `degree`: Degree of the polynomials (e.g., linear drifting if
+    degree=1, etc.)
+
+-   `states`: Vector of states space of length s \> 1
+
+-   `init.estim`: Method used to estimate the initial law.
+
+Here we have an example of an estimation of a drifting Markov model of
+order 1 and degree 1 using the function `fitdmm`, starting from a DNA
+sequence called `lambda`.
+
+```{r}
+data(lambda, package = "drimmR")
+states <- c("a","c","g","t")
+dmm <- fitdmm(lambda, 1, 1, states, init.estim="freq", fit.method="sum")
+dmm
+```
+
+### Estimation of corresponding model characteristics {#subsection_pack_charact}
+
+Once a Markov drifting model has been estimated/constructed as described
+in the previous subsection, various characteristics of the model can be
+computed. These are: the log-likelihood of one or several sequences, the
+AIC and BIC information criteria, the stationary distribution on an
+entire sequence or only on a part of it, the distribution of the chain
+on the entire sequence or only on a part of it.
+
+The functions `loglik`, `aic` and `bic` have the following
+**arguments**:
+
+-   `x`: Object of class `dmm`
+
+-   `sequences`: A list of character vector(s) representing one
+    (several) sequence(s)
+
+They return the numerical values of the log-likelihood, the AIC, the BIC
+of the sequence, respectively.
+
+
+```{r}
+data(lambda, package = "drimmR")
+sequence <- c("a","g","g","t","c","g","a","t","a","a","a")
+dmm <-fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+
+loglik(dmm, sequence)
+
+aic(dmm, sequence)
+
+bic(dmm, sequence)
+```
+
+The function `getTransitionMatrix` evaluates the transition matrix at a
+given position. The function has the following arguments :
+
+-   `x`: Object of class `dmm`
+
+-   `pos`: position along the sequence (integer)
+
+```{r}
+data(lambda)
+dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'),init.estim = "freq")
+t <- 10
+getTransitionMatrix(dmm,pos=t)
+```
+
+The function `getStationaryLaw` evaluates the stationary law at a given
+position or for all positions along the list of sequence(s).
+
+-   `x`: Object of class `dmm`
+
+-   `pos`: position along the sequence (integer)
+
+-   `all.pos`: FALSE (default, evaluation at pos index) ; TRUE
+    (evaluation for all pos index)
+
+-   `internal`: FALSE (default) ; TRUE (for internal use of fitdmm
+    initial law)
+
+```{r}
+data(lambda, package = "drimmR")
+sequence <- sample(lambda, 30, replace=TRUE )
+dmm <- fitdmm(sequence, 1, 1, c('a','c','g','t'), init.estim = "freq")
+t <- 10
+getStationaryLaw(dmm,pos=t)
+getStationaryLaw(dmm,all.pos=TRUE)
+```
+
+### Analysis of a model {#subsection_pack_analysis}
+
+Once a Markov drifting model has been estimated/constructed as described
+at the beginning of this section, the obtained model can be analyzed by
+means of several functions.\
+
+1.  The computation of word probabilities according to an
+    estimated/constructed DMM is carried out by means of the functions
+    `word_probability`, `word_probabilities` and `words_probabilities`.
+
+The function `word_probability` computes the probability of a word at a given
+position; it has the following **arguments**:
+
+-   `word`: A word, i.e., a subsequence string of characters
+
+-   `pos`: A position of the word along the sequence (numeric)
+
+-   `x`: An object of class `dmm`
+
+-   `output_file`: A file containing the probability
+
+-   `internal`: FALSE (default) ; TRUE (for internal use of word
+    applications)
+
+It returns the numerical value of the probability.\
+
+```{r}
+data(lambda, package = "drimmR")
+dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+word_probability("cgt",10,dmm,output_file="file.txt")
+```
+
+The function `word_probabilities` computes the probabilities of a word at given
+positions. It has the following **arguments**:
+
+-   `word`: A word, i.e., a subsequence string of characters
+
+-   `pos`: Vector of integer positions of the word along the sequence;
+    it is given by a `start` and `end` point
+
+-   `x`: An object of class `dmm`
+
+-   `output_file`: A file containing the probabilities
+
+-   `internal`: FALSE (default) ; TRUE (for internal use of word
+    applications)
+
+-   `plot`: display a figure plot of word probabilities along the
+    positions if TRUE
+
+It returns a numerical vector of probabilities computed at the positions
+given in `pos`.\
+
+```{r}
+data(lambda, package = "drimmR")
+dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
+res <- word_probabilities("cgt", c(100, length(lambda)-3), dmm, output_file="file.txt", plot=TRUE)
+head(res[[1]], n=10)
+```
+
+![Figure plot of word probabilities along the sequence between \<start\>
+and \<end\> of `pos` argument](wordprobas.png){#wordprobas width="70%"}
+
+The function `words_probabilities` computes the probabilities of a word at
+given positions; it has the following **arguments**:
+
+-   `words`: A vector of characters containing words
+
+-   `pos`: Vector of integer positions of the word along the sequence;
+    it is given by a `start` and `end` point
+
+-   `x`: An object of class `dmm`
+
+-   `output_file`: A file containing the matrix of probabilities
+
+-   `plot`: display a figure plot of word probabilities along the
+    positions if TRUE
+
+It returns a data frame of probabilities computed for each element of
+`words` at the positions given in `pos`.\
+
+```
+data(lambda, package = "drimmR")
+dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+res <- words_probabilities(c("atcgattc", "taggct", "ggatcgg"), c(100, length(lambda)-8), dmm, output_file="file.txt", plot=TRUE)
+head(res[[1]], n=10)
+```
+
+![image](wordsprobas1.png){width="60%"}
+![image](wordsprobas2.png){width="60%"}
+![image](wordsprobas3.png){width="60%"}
+
+1.  The function `lengthWord_probabilities` computes the probabilities of
+    occurrence of the observed word of given size in a sequence at
+    several positions. This function has the following **arguments**:
+
+-   `n`: Integer, the given length of the word
+
+-   `sequence`: Vector of characters representing the sequence
+
+-   `pos`: Vector of integer positions of the word along the sequence.
+    It it is given by a `start` and `end` point
+
+-   `x`: An object of class `dmm`
+
+-   `output_file` A file containing the vector of probabilities
+
+-   `plot` display several figure plots of probabilities of appearance
+    of words along the positions if TRUE
+
+It returns a data frame of probability by position\
+
+```{r}
+data(lambda, package = "drimmR")
+dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+res <- lengthWord_probabilities(2, lambda, c(100, length(lambda)-2), dmm, output_file="file.txt", plot=TRUE)
+```
+
+![image](lprobas1.png){width="80%"}
+![image](lprobasv2.png){width="103%"}
+
+## Simulation of drifting Markov models {#subsection_pack_simul}
+
+The simulation of drifting Markov models is carried out by the function
+`simulation` that has the following **arguments**:
+
+-   `DRIMM`: An object of class `dmm`
+
+-   `output_file`: File containing the simulated sequence
+
+-   `model_size`: Integer, the size of the model
+
+```{r}
+data(lambda, package = "drimmR")
+dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
+# simulate a sequence of length 20 000 from dmm
+simulate(dmm, "file.txt", 20000)
+```
+
+## Reliability of drifting Markov models {#subsection_pack_reliab}
+
+The reliability measures are computed by means of the following
+functions: `A` (availability), `R` (reliability,survival function), `M`
+(maintainability), `errorRate` (the classical failure rate, called
+BMP-failure rate and a more recent failure rate adapted to discrete
+data, called RG-failure rate). For more details on these reliability
+measures one can see **@Bar2004b**; **@Bar2008b**. All these functions have
+the following **arguments**:
+
+-   `x`: An object of class `dmm`
+
+-   `k1`: An integer, start position for the computation of the
+    corresponding reliability measure
+
+-   `k2`: An integer, end position for the computation of the
+    corresponding reliability measure
+
+-   `s1`: Character vector of the subspace working states (up-states)
+    among the state space vector s.t. s1 \< s
+
+-   `output_file`: File containing the estimated/computed values of the
+    corresponding reliability measure at each position of the selected
+    frame
+
+-   `plot`: display figure plot of the corresponding reliability measure
+    along the positions if TRUE
+
+The function `errorRate` enables to select the type of evaluated failure
+rate with an additional argument :
+
+-   `error.rate`: Default=\"BMP\", then BMP-failure-rate is the method
+    used to estimate the error rate. If error.rate= \"RG\", then
+    RG-failure rate is the method used to estimate the error rate.
+
+These functions return vectors with the values of the corresponding
+reliability measure.
+
+### Estimation of reliability {#subsection_pack_reliab}
+
+```{r}
+data(lambda, package = "drimmR")
+dmm <- fitdmm(lambda, 1, 1, c("a","c","g","t"), init.estim ="freq", fit.method="sum")
+reliability(dmm, k1=1, k2=10, upstates=c("a","c"),output_file = "file.txt", plot=TRUE)
+```
+
+![Figure plot of reliability probabilities along the sequence between
+`k1` and `k2` position arguments for the working states subspace `s1`
+](rel.png){width="70%"}
+
+### Estimation of availability {#subsection_pack_avail}
+
+```{r}
+data(lambda, package = "drimmR")
+dmm <- fitdmm(lambda, 1, 1, c("a", "c", "g", "t"), init.estim = "freq", fit.method="sum")
+availability(dmm, k1=1, k2=10, upstates=c("a","c"), output_file = "file.txt", plot=TRUE)
+```
+
+![Figure plot of availability probabilities along the sequence between
+`k1` and `k2` position arguments for the working states subspace `s1`
+](ava.png){width="70%"}
+
+### Estimation of maintainability {#subsection_pack_maintain}
+
+```{r}
+data(lambda, package = "drimmR")
+dmm <- fitdmm(lambda, 1, 1, c("a","c","g","t"), init.estim="freq", fit.method="sum")
+maintainability(dmm, k1=1, k2=10, upstates=c("a","c"), output_file = "file.txt", plot=TRUE)
+```
+
+![Figure plot of availability probabilities along the sequence between
+`k1` and `k2` position arguments for the working states subspace `s1`
+](main.png){width="70%"}
+
+### Estimation of failure rates {#subsection_pack_reliab}
+
+```{r}
+data(lambda, package = "drimmR")
+dmm <- fitdmm(lambda, 1, 1, c("a","c","g","t"), init.estim="freq", fit.method="sum")
+failureRate(dmm, k1=1, k2=10, upstates=c("a","c"), failure.rate="BMP", output_file="file.txt", plot=TRUE)
+```
+
+![Figure plot of BMP-failure rates along the sequence between `k1` and
+`k2` position arguments for the working states subspace `s1`
+](er.png){width="70%"}
+
+# Concluding remarks {#concluding}
+
+To conclude, in this paper we have presented `drimmR`, an `R` package
+for simulation, estimation and reliability and survival analysis of
+drifting Markov models. These are versatile stochastic models of Markov
+type capable of taking into account a time non-homogeneity of a known,
+controlled shape. For this reason these models can represent interesting
+modeling alternatives to classical models (like Markov models,
+semi-Markov models, etc.) and can be useful for researchers,
+practitioners and engineers in various fields.
+
+The package addresses several items important from practical point of
+view, when carrying out the estimation: we consider one or several
+samples, the sample paths can be complete or not, can come from models
+of the same length or of different lengths.
+
+The fields of application of the DMMs can be numerous; we only want to
+point out three of them.
+
+-   *Survival analysis* and *reliability theory*: note that important
+    indicators like reliability or survival function, availability,
+    maintainability and failure rates are computed in our package;
+
+-   *Bioinformatics*: note that important quantities for OMICS data in
+    general, DNA analysis in particular, are computed by the proposed
+    package. Thus we have the computation of the probabilities and
+    expectations of appearance of a given word along the sequence.
+
+![Flowchart of the `drimmR package. `](fig.jpg){#fig width="70%"}
