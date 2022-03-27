@@ -455,10 +455,8 @@ data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq", fit.method="sum")
 res <- word_probabilities("cgt", c(100, length(lambda)-3), dmm, output_file="file.txt", plot=TRUE)
 head(res[[1]], n=10)
+res[2]
 ```
-
-![Figure plot of word probabilities along the sequence between \<start\>
-and \<end\> of `pos` argument](wordprobas.png){#wordprobas width="70%"}
 
 The function `words_probabilities` computes the probabilities of a word at
 given positions; it has the following **arguments**:
@@ -483,11 +481,8 @@ data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 res <- words_probabilities(c("atcgattc", "taggct", "ggatcgg"), c(100, length(lambda)-8), dmm, output_file="file.txt", plot=TRUE)
 head(res[[1]], n=10)
+res[2]
 ```
-
-![image](wordsprobas1.png){width="60%"}
-![image](wordsprobas2.png){width="60%"}
-![image](wordsprobas3.png){width="60%"}
 
 1.  The function `lengthWord_probabilities` computes the probabilities of
     occurrence of the observed word of given size in a sequence at
@@ -513,10 +508,8 @@ It returns a data frame of probability by position\
 data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c('a','c','g','t'), init.estim = "freq")
 res <- lengthWord_probabilities(2, lambda, c(100, length(lambda)-2), dmm, output_file="file.txt", plot=TRUE)
+res[2]
 ```
-
-![image](lprobas1.png){width="80%"}
-![image](lprobasv2.png){width="103%"}
 
 ## Simulation of drifting Markov models {#subsection_pack_simul}
 
@@ -582,10 +575,6 @@ dmm <- fitdmm(lambda, 1, 1, c("a","c","g","t"), init.estim ="freq", fit.method="
 reliability(dmm, k1=1, k2=10, upstates=c("a","c"),output_file = "file.txt", plot=TRUE)
 ```
 
-![Figure plot of reliability probabilities along the sequence between
-`k1` and `k2` position arguments for the working states subspace `s1`
-](rel.png){width="70%"}
-
 ### Estimation of availability {#subsection_pack_avail}
 
 ```{r}
@@ -593,10 +582,6 @@ data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c("a", "c", "g", "t"), init.estim = "freq", fit.method="sum")
 availability(dmm, k1=1, k2=10, upstates=c("a","c"), output_file = "file.txt", plot=TRUE)
 ```
-
-![Figure plot of availability probabilities along the sequence between
-`k1` and `k2` position arguments for the working states subspace `s1`
-](ava.png){width="70%"}
 
 ### Estimation of maintainability {#subsection_pack_maintain}
 
@@ -606,10 +591,6 @@ dmm <- fitdmm(lambda, 1, 1, c("a","c","g","t"), init.estim="freq", fit.method="s
 maintainability(dmm, k1=1, k2=10, upstates=c("a","c"), output_file = "file.txt", plot=TRUE)
 ```
 
-![Figure plot of availability probabilities along the sequence between
-`k1` and `k2` position arguments for the working states subspace `s1`
-](main.png){width="70%"}
-
 ### Estimation of failure rates {#subsection_pack_reliab}
 
 ```{r}
@@ -617,10 +598,6 @@ data(lambda, package = "drimmR")
 dmm <- fitdmm(lambda, 1, 1, c("a","c","g","t"), init.estim="freq", fit.method="sum")
 failureRate(dmm, k1=1, k2=10, upstates=c("a","c"), failure.rate="BMP", output_file="file.txt", plot=TRUE)
 ```
-
-![Figure plot of BMP-failure rates along the sequence between `k1` and
-`k2` position arguments for the working states subspace `s1`
-](er.png){width="70%"}
 
 # Concluding remarks {#concluding}
 
