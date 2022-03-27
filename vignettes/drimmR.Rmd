@@ -148,7 +148,7 @@ $t = 1, \ldots, n,$ is defined by $$\label{eq_DriftPol1}
 where $$\label{eq_DriftPol2}
 \boldsymbol{\Pi}_{\frac{t}{n}}(u_1, \dots, u_k, v) = \displaystyle\sum_{i=0}^d A_i(t)\boldsymbol{\Pi}_{\frac{i}{d}}(u_1, \dots, u_k,v), \; u_1, \dots, u_k, v \in E,$$
 with $A_i$ polynomials of degree $d$ such as, for any
-$i, j \in \{0, 1, \ldots, d\},$ $A_i\begin(\frac{nj}{d}\end)=\mathbb{1}_{\{i=j\}}.$*
+$i, j \in \{0, 1, \ldots, d\},$ $A_i\left(\frac{nj}{d}\right)=\mathbb{1}_{\{i=j\}}.$*
 :::
 
 We would like to stress that the coherence between notations implies the
@@ -269,11 +269,11 @@ $$\begin{aligned}
 where we have introduced the following notation:\
 
 ::: small
-$\displaystyle P_1(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mathbb{1}_{\{X_{t-1}^h=u \}} \begin(\frac{t}{n}\end)^2,$
-$\displaystyle P_2(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u, X_t^h=v \}} \begin(1-\frac{t}{n}\end),$\
-$\displaystyle P_3(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u \}} \begin(1-\frac{t}{n}\end)\begin(\frac{t}{n}\end),$
-$\displaystyle  P_4(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u, X_t^h=v \}}\begin(\frac{t}{n}\end),$\
-$\displaystyle  P_5(H, \boldsymbol{m}, \boldsymbol{n}) = \displaystyle\sum_{t=1}^{m}\sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u \}}\begin(1-\frac{t}{n}\end)^2,$
+$\displaystyle P_1(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mathbb{1}_{\{X_{t-1}^h=u \}} \left(\frac{t}{n}\right)^2,$
+$\displaystyle P_2(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u, X_t^h=v \}} \left(1-\frac{t}{n}\right),$\
+$\displaystyle P_3(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u \}} \left(1-\frac{t}{n}\right)\left(\frac{t}{n}\right),$
+$\displaystyle  P_4(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u, X_t^h=v \}}\left(\frac{t}{n}\right),$\
+$\displaystyle  P_5(H, \boldsymbol{m}, \boldsymbol{n}) = \displaystyle\sum_{t=1}^{m}\sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u \}}\left(1-\frac{t}{n}\right)^2,$
 with $\boldsymbol{m}=(m_1, \ldots, m_H)$ and $\boldsymbol{n}=(n_1, \ldots, n_H).$
 :::
 :::

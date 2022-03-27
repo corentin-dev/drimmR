@@ -7,7 +7,7 @@ build_package:
     - R -e 'install.packages(c("seqinr", "rmarkdown", "utils", "stats", "parallel", "future", "doParallel", "foreach", "tidyverse", "dplyr", "reshape2", "Rdpack", "pkgdown", "devtools", "BiocManager"))'
     - R -e 'BiocManager::install("Biostrings")'
     - R -e 'devtools::document()'
-    - R -e 'devtools::build()'
+    - R -e 'devtools::build(vignettes=FALSE)'
     - R -e 'devtools::install_local()'
     - R -e 'pkgdown::build_site(devel=TRUE, preview=FALSE)'
     - R -e 'devtools::check(env_vars = c("_R_CHECK_SYSTEM_CLOCK_" = 0))'
