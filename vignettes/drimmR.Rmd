@@ -113,8 +113,8 @@ reference="subsection_estimation"}, according to **@Ver08** **@BaVe2018**.
 
 ## Drifting Markov models {#subsection_DMM}
 
-Let $\bm{\Pi}_0 = (\Pi_0(u, v))_{u,v \in E}$ and
-$\bm{\Pi}_1 = (\Pi_1(u, v))_{u,v \in E}$ be two Markov transition
+Let $\boldsymbol{\Pi}_0 = (\Pi_0(u, v))_{u,v \in E}$ and
+$\boldsymbol{\Pi}_1 = (\Pi_1(u, v))_{u,v \in E}$ be two Markov transition
 matrices of order 1 over the state space $E.$
 
 ::: {#def_DriftLin .definition}
@@ -122,20 +122,20 @@ matrices of order 1 over the state space $E.$
 length $n$). *A sequence $X_0,$ $X_1, \ldots, X_n$ with state space
 $E=\mathbb \{1, 2, \ldots, s\}$ is said to be a *linear drifting Markov
 chain (of order 1)* of length $n$ between the Markov transition matrices
-$\bm{\Pi}_0$ and $\bm{\Pi}_1$ if the distribution of $X_t,$
+$\boldsymbol{\Pi}_0$ and $\boldsymbol{\Pi}_1$ if the distribution of $X_t,$
 $t = 1, \ldots, n,$ is defined by $$\label{eq_DriftLin1}
 \mathbb P(X_t=v \mid X_{t-1}    = u, X_{t-2}, \ldots ) = \Pi_{\frac{t}{n}}(u, v), \; u, v \in E,$$
 where $$\label{eq_DriftLin2}
 \Pi_{\frac{t}{n}}(u, v) = \left( 1 - \frac{t}{n} \right) \Pi_0(u, v) + \frac{t}{n} \Pi_1(u, v), \; u, v \in E.$$*
 :::
 
-Let us denote by $\bm{\alpha} = (\alpha(1), \ldots, \alpha(s))$ the
+Let us denote by $\boldsymbol{\alpha} = (\alpha(1), \ldots, \alpha(s))$ the
 *initial distribution of the chain*, that is the distribution of $X_0,$
 $\alpha(u)=\mathbb P (X_0 = u)$ for any state $u\in E.$
 
 The *linear drifting Markov model* of order $1$ can be generalized to
 *polynomial drifting Markov model* of order $k$ and degree $d$. Let
-$\bm{\Pi}_{\frac{i}{d}} = (\bm{\Pi}_{\frac{i}{d}}(u_1, \dots, u_k, v))_{u_1, \dots, u_k,v \in E}$
+$\boldsymbol{\Pi}_{\frac{i}{d}} = (\boldsymbol{\Pi}_{\frac{i}{d}}(u_1, \dots, u_k, v))_{u_1, \dots, u_k,v \in E}$
 be $d$ Markov transition matrices (of order $k$) over a state space $E.$
 
 ::: {#def_DriftPol .definition}
@@ -144,15 +144,15 @@ length $n$). *A sequence $X_0,$ $X_1,$ $\ldots,$ $X_n$ with state space
 $E=\mathbb \{1, 2, \ldots, s\}$ is said to be a *polynomial drifting
 Markov chain of order k* and of length $n$ if the distribution of $X_t,$
 $t = 1, \ldots, n,$ is defined by $$\label{eq_DriftPol1}
-\mathbb P(X_t=v \mid X_{t-1}    = u_k, X_{t-2}=u_{k-1}, \ldots ) = \bm{\Pi}_{\frac{t}{n}}(u_1, \dots, u_k, v), \; u_1, \dots, u_k, v \in E,$$
+\mathbb P(X_t=v \mid X_{t-1}    = u_k, X_{t-2}=u_{k-1}, \ldots ) = \boldsymbol{\Pi}_{\frac{t}{n}}(u_1, \dots, u_k, v), \; u_1, \dots, u_k, v \in E,$$
 where $$\label{eq_DriftPol2}
-\bm{\Pi}_{\frac{t}{n}}(u_1, \dots, u_k, v) = \displaystyle\sum_{i=0}^d A_i(t)\bm{\Pi}_{\frac{i}{d}}(u_1, \dots, u_k,v), \; u_1, \dots, u_k, v \in E,$$
+\boldsymbol{\Pi}_{\frac{t}{n}}(u_1, \dots, u_k, v) = \displaystyle\sum_{i=0}^d A_i(t)\boldsymbol{\Pi}_{\frac{i}{d}}(u_1, \dots, u_k,v), \; u_1, \dots, u_k, v \in E,$$
 with $A_i$ polynomials of degree $d$ such as, for any
-$i, j \in \{0, 1, \ldots, d\},$ $A_i\g(\frac{nj}{d}\e)=\mi_{\{i=j\}}.$*
+$i, j \in \{0, 1, \ldots, d\},$ $A_i\begin(\frac{nj}{d}\end)=\mathbb{1}_{\{i=j\}}.$*
 :::
 
 We would like to stress that the coherence between notations implies the
-choice of the notation $\bm{\Pi}_{\frac{i}{d}}$ and that, in fact, $A_i$
+choice of the notation $\boldsymbol{\Pi}_{\frac{i}{d}}$ and that, in fact, $A_i$
 are Lagrange polynomials; see @Ver08 for more details on these two
 points.
 
@@ -165,15 +165,15 @@ $U \cap D=\emptyset,$ where $U=\{1,\ldots,s_1\}$ represents the working
 states and $D=\{s_1+1,\ldots,s\}$ the failure states of the system.
 According to this partition of the state space we partition any matrix
 of vector we are working with and we denote the corresponding partitions
-accordingly (e.g., $\bm{\Pi}_0^{UU},$ $\bm{\Pi}_0^{DU},$
-$\bm{\alpha}^{U}$ etc.).
+accordingly (e.g., $\boldsymbol{\Pi}_0^{UU},$ $\boldsymbol{\Pi}_0^{DU},$
+$\boldsymbol{\alpha}^{U}$ etc.).
 
 ::: proposition
 []{#prop_RelDrift label="prop_RelDrift"} For a linear drifting Markov
 chain of order $1$ $(X_t)_{0 \leq t \leq n},$ the reliability at time
 $l,$ $l \in \mathbb N,$ is given by $$\label{eq_RelDrift}
-R(l) = \bm{\alpha}^{U} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \bm{\Pi}_0^{UU} + \frac{t}{n} \bm{\Pi}_1^{UU} \right) \; \mathbbm{1}^U,
-\textrm{ where } \mathbbm{1}^U = (\underbrace{1, \cdots, 1}_{s_1})^{\top}.$$
+R(l) = \boldsymbol{\alpha}^{U} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \boldsymbol{\Pi}_0^{UU} + \frac{t}{n} \boldsymbol{\Pi}_1^{UU} \right) \; \mathbb{1}^U,
+\textrm{ where } \mathbb{1}^U = (\underbrace{1, \cdots, 1}_{s_1})^{\top}.$$
 :::
 
 ::: proposition
@@ -181,15 +181,15 @@ R(l) = \bm{\alpha}^{U} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \bm{
 chain of order $1$ $(X_t)_{0 \leq t \leq n},$ the pointwise (or
 instantaneous) availability at time $l,$ $l \in \mathbb N,$ is given by
 $$\label{eq_AvDrift}
-A(l) = \bm{\alpha} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \bm{\Pi}_0 + \frac{t}{n} \bm{\Pi}_1 \right) \; \mathbbm{1}^{E,U}, \textrm{ where }  \mathbbm{1}^{E,U} = (\underbrace{1, \cdots, 1}_{s_1}, \underbrace{0, \cdots, 0}_{s-s_1} )^{\top}.$$
+A(l) = \boldsymbol{\alpha} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \boldsymbol{\Pi}_0 + \frac{t}{n} \boldsymbol{\Pi}_1 \right) \; \mathbb{1}^{E,U}, \textrm{ where }  \mathbb{1}^{E,U} = (\underbrace{1, \cdots, 1}_{s_1}, \underbrace{0, \cdots, 0}_{s-s_1} )^{\top}.$$
 :::
 
 ::: proposition
 []{#prop_MaintDrift label="prop_MaintDrift"} For a linear drifting
 Markov chain of order $1$ $(X_t)_{0 \leq t \leq n},$ the maintainability
 at time $l,$ $l \in \mathbb N,$ is given by $$\label{eq_MaintDrift_gen}
-M(l) = 1 -  \bm{\alpha}^{D} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \bm{\Pi}_0^{DD} + \frac{t}{n} \bm{\Pi}_1^{DD} \right) \; \mathbbm{1}^D,
-\textrm{ where } \mathbbm{1}^D = (\underbrace{1, \cdots, 1}_{s-s_1})^{\top}.$$
+M(l) = 1 -  \boldsymbol{\alpha}^{D} \; \prod_{t=1}^l \left( \left(1 - \frac{t}{n}\right) \boldsymbol{\Pi}_0^{DD} + \frac{t}{n} \boldsymbol{\Pi}_1^{DD} \right) \; \mathbb{1}^D,
+\textrm{ where } \mathbb{1}^D = (\underbrace{1, \cdots, 1}_{s-s_1})^{\top}.$$
 :::
 
 ::: proposition
@@ -257,24 +257,24 @@ same length).
 []{#prop_B1 label="prop_B1"} Under the setting (b1), starting with $H$
 complete sample paths of drifting Markov chains of the same length of a
 linear drifting Markov chain between two Markov transition matrices (of
-order 1) $\bm{\Pi}_0$ and $\bm{\Pi}_1,$ for any states $u, v \in E,$ the
+order 1) $\boldsymbol{\Pi}_0$ and $\boldsymbol{\Pi}_1,$ for any states $u, v \in E,$ the
 estimators of $\Pi_0(u,v)$ and $\Pi_1(u,v)$ are given by:
 
 $$\begin{aligned}
-&&\widehat{\Pi}_{0; (n,H)} (u,v) = \frac{P_1(H, \bm{m}, \bm{n}) P_2(H, \bm{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})P_4(H, \bm{m}, \bm{n})}
-{P_5(H, \bm{m}, \bm{n}) P_1(H, \bm{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2}\\
-&& \widehat{\Pi}_{1; (n,H)} (u,v)=\frac{P_5(H, \bm{m}, \bm{n}) P_4(H, \bm{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n}) P_2(H, \bm{m}, \bm{n})}
-{P_5(H, \bm{m}, \bm{n})P_1(H, \bm{m}, \bm{n}) - P_3(H, \bm{m}, \bm{n})^2},\end{aligned}$$
+&&\widehat{\Pi}_{0; (n,H)} (u,v) = \frac{P_1(H, \boldsymbol{m}, \boldsymbol{n}) P_2(H, \boldsymbol{m}, \boldsymbol{n}) - P_3(H, \boldsymbol{m}, \boldsymbol{n})P_4(H, \boldsymbol{m}, \boldsymbol{n})}
+{P_5(H, \boldsymbol{m}, \boldsymbol{n}) P_1(H, \boldsymbol{m}, \boldsymbol{n}) - P_3(H, \boldsymbol{m}, \boldsymbol{n})^2}\\
+&& \widehat{\Pi}_{1; (n,H)} (u,v)=\frac{P_5(H, \boldsymbol{m}, \boldsymbol{n}) P_4(H, \boldsymbol{m}, \boldsymbol{n}) - P_3(H, \boldsymbol{m}, \boldsymbol{n}) P_2(H, \boldsymbol{m}, \boldsymbol{n})}
+{P_5(H, \boldsymbol{m}, \boldsymbol{n})P_1(H, \boldsymbol{m}, \boldsymbol{n}) - P_3(H, \boldsymbol{m}, \boldsymbol{n})^2},\end{aligned}$$
 
 where we have introduced the following notation:\
 
 ::: small
-$\displaystyle P_1(H, \bm{m}, \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mi_{\{X_{t-1}^h=u \}} \g(\frac{t}{n}\e)^2,$
-$\displaystyle P_2(H, \bm{m}, \bm{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mi_{\{X_{t-1}^h=u, X_t^h=v \}} \g(1-\frac{t}{n}\e),$\
-$\displaystyle P_3(H, \bm{m}, \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u \}} \g(1-\frac{t}{n}\e)\g(\frac{t}{n}\e),$
-$\displaystyle  P_4(H, \bm{m}, \bm{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u, X_t^h=v \}}\g(\frac{t}{n}\e),$\
-$\displaystyle  P_5(H, \bm{m}, \bm{n}) = \displaystyle\sum_{t=1}^{m}\sum_{h=1}^H\mi_{\{X_{t-1}^h=u \}}\g(1-\frac{t}{n}\e)^2,$
-with $\bm{m}=(m_1, \ldots, m_H)$ and $\bm{n}=(n_1, \ldots, n_H).$
+$\displaystyle P_1(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m}\sum_{h=1}^H \mathbb{1}_{\{X_{t-1}^h=u \}} \begin(\frac{t}{n}\end)^2,$
+$\displaystyle P_2(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m} \sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u, X_t^h=v \}} \begin(1-\frac{t}{n}\end),$\
+$\displaystyle P_3(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u \}} \begin(1-\frac{t}{n}\end)\begin(\frac{t}{n}\end),$
+$\displaystyle  P_4(H, \boldsymbol{m}, \boldsymbol{n}) = \sum_{t=1}^{m}\sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u, X_t^h=v \}}\begin(\frac{t}{n}\end),$\
+$\displaystyle  P_5(H, \boldsymbol{m}, \boldsymbol{n}) = \displaystyle\sum_{t=1}^{m}\sum_{h=1}^H\mathbb{1}_{\{X_{t-1}^h=u \}}\begin(1-\frac{t}{n}\end)^2,$
+with $\boldsymbol{m}=(m_1, \ldots, m_H)$ and $\boldsymbol{n}=(n_1, \ldots, n_H).$
 :::
 :::
 
