@@ -35,14 +35,14 @@ library(drimmR)
 
 In this work we focus on multi-state systems modeled by means of a
 particular class of non-homogeneous Markov processes introduced in
-@Ver08, called drifting Markov processes. Most of the estimation methods
+**@Ver08**, called drifting Markov processes. Most of the estimation methods
 and reliability results are developed in **@BaVe2018**.
 
 Note that in many mathematical models it is assumed the homogeneity with
 respect to time, which is inappropriate in most of the applications.
 But, considering general non-homogeneous processes could be unrealistic
 from a practical point of view. For this reason, the drifting Markov
-chains introduced in **@Ver08** assume that the Markov transition matrix
+chains assume that the Markov transition matrix
 is a linear/polynomial function of two/several Markov transition
 matrices. Thus we obtain a "smooth" non-homogeneity, with sensibly less
 parameters than in the general case.
@@ -211,8 +211,8 @@ time $l  at time$l,$$l N,$is given by
 
 
 \begin{proposition}\label{prop_RGDrift}
-For a linear drifting Markov chain of order$`<!-- -->`{=html}1$$(X_t)\_0
-t n,$the RG-failure rate at time$l at time $l,$ $l \in \mathbb N,$ is
+For a linear drifting Markov chain of order$1$$(X_t)\_0t n,$
+the RG-failure rate at time$l at time $l,$ $l \in \mathbb N,$ is
 given by $$\label{eq_RGDrift}
 r(l)  \left\{
   \begin{array}{ll}
