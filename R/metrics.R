@@ -15,7 +15,7 @@
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with positions and stationary laws of states
-#' @import tidyverse ggplot2
+#' @import ggplot2
 #' @importFrom Rdpack reprompt
 #' @importFrom utils write.table
 #' @references
@@ -107,7 +107,7 @@ stationary_distributions <- function(x, start = 1, end = NULL, step = NULL, outp
 #' @author Alexandre Seiller
 #'
 #' @return A matrix with positions and distributions of states
-#' @import  tidyverse ggplot2
+#' @import  ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -212,7 +212,7 @@ distributions <- function(x, start = 1, end = NULL, step = NULL, output_file=NUL
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k+1 giving the values of the availability for the period \eqn{[0 \ldots k]}
-#' @import  tidyverse doParallel future ggplot2
+#' @import  doParallel future ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -393,7 +393,7 @@ availability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, nc
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k + 1 giving the values of the reliability for the period \eqn{[0 \ldots k]}
-#' @import tidyverse doParallel future ggplot2
+#' @import doParallel future ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -579,7 +579,7 @@ reliability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE, ncp
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k + 1 giving the values of the maintainability for the period \eqn{[0 \ldots k]}
-#' @import tidyverse doParallel future ggplot2
+#' @import doParallel future ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -773,7 +773,7 @@ maintainability <- function(x, k1=0L,k2, upstates, output_file=NULL, plot=FALSE,
 #' @author Alexandre Seiller
 #'
 #' @return A vector of length k + 1 giving the values of the BMP (or RG) -failure rate for the period \eqn{[0 \ldots k]}
-#' @import  tidyverse doParallel future ggplot2
+#' @import  doParallel future ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}

@@ -86,7 +86,7 @@ word_probability <-function(word, pos, x, output_file=NULL, internal=FALSE, ncpu
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A numeric vector, probabilities of \code{word}
-#' @import tidyverse ggplot2
+#' @import ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
@@ -148,7 +148,7 @@ word_probabilities <-function(word, pos, x,  output_file=NULL,plot=FALSE){
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A dataframe of word probabilities along the positions of the sequence
-#' @import  tidyverse ggplot2 reshape2
+#' @import  ggplot2 reshape2
 #' @rawNamespace import(dplyr, except = count)
 #' @importFrom Rdpack reprompt
 #' @references
@@ -225,7 +225,7 @@ words_probabilities <- function(words, pos, x, output_file=NULL, plot=FALSE) {
 #' @author Victor Mataigne, Alexandre Seiller
 #'
 #' @return A dataframe of probability by position
-#' @import tidyverse ggplot2
+#' @import ggplot2
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{BaVe2018}{drimmR}
