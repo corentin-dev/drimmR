@@ -41,3 +41,5 @@ Imports: seqinr,
 VignetteBuilder: knitr
 RdMacros: Rdpack
 RoxygenNote: 7.1.2
+URL: https://github.com/corentin-dev/drimmR
+BugReports: https://github.com/corentin-dev/drimmR/issues
